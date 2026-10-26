@@ -1,0 +1,989 @@
+=== REQ000376 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the product of the odd digits.
+    // Return 0 if all digits are even.
+    // For example:
+    // >>> digits((1l))
+    // (1l)
+    // >>> digits((4l))
+    // (0l)
+    // >>> digits((235l))
+    // (15l)
+    public static long digits(long n) {
+        long product = 1;
+        boolean sawOddDigit = false;
+
+        for (long remaining = n; remaining > 0; remaining /= 10) {
+            long digit = remaining % 10;
+            if (digit % 2 == 1) {
+                product *= digit;
+                sawOddDigit = true;
+            }
+        }
+
+        // An empty product would be 1, but the specification asks for 0 instead.
+        return sawOddDigit ? product : 0;
+    }
+}
+=== REQ000376 END ===
+
+=== REQ000377 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the product of the odd digits.
+// Return 0 if all digits are even.
+// For example:
+// >>> digits((1))
+// (1)
+// >>> digits((4))
+// (0)
+// >>> digits((235))
+// (15)
+long digits(long n) {
+    long result = 1;
+    bool hasOdd = false;
+    std::string s = std::to_string(n);
+    for (char c : s) {
+        int d = c - '0';
+        if (d % 2 == 1) {
+            result *= d;
+            hasOdd = true;
+        }
+    }
+    return hasOdd ? result : 0;
+}
+
+int main() {
+    std::cout << digits(1) << std::endl;
+    std::cout << digits(4) << std::endl;
+    std::cout << digits(235) << std::endl;
+    return 0;
+}
+=== REQ000377 END ===
+
+=== REQ000378 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the product of the odd digits.
+// Return 0 if all digits are even.
+// For example:
+// >>> digits((1))
+// (1)
+// >>> digits((4))
+// (0)
+// >>> digits((235))
+// (15)
+long digits(long n) {
+    long product = 1;
+    bool sawOddDigit = false;
+
+    for (long remaining = n; remaining > 0; remaining /= 10) {
+        const long digit = remaining % 10;
+        if (digit % 2 == 1) {
+            product *= digit;
+            sawOddDigit = true;
+        }
+    }
+
+    // An empty product would be 1, but the specification asks for 0 instead.
+    return sawOddDigit ? product : 0;
+}
+=== REQ000378 END ===
+
+=== REQ000379 START ===
+def int_to_mini_roman(number):
+    """
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """
+    vals = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+    syms = ['m', 'cm', 'd', 'cd', 'c', 'xc', 'l', 'xl', 'x', 'ix', 'v', 'iv', 'i']
+    res = []
+    n = number
+    for v, s in zip(vals, syms):
+        while n >= v:
+            res.append(s)
+            n -= v
+    return ''.join(res)
+=== REQ000379 END ===
+
+=== REQ000380 START ===
+def int_to_mini_roman(number):
+    """
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """
+    # Values run largest to smallest and include the subtractive pairs (cm, cd,
+    # xc, ...), so a plain greedy sweep never needs to backtrack.
+    numerals = (
+        (1000, "m"), (900, "cm"), (500, "d"), (400, "cd"),
+        (100, "c"), (90, "xc"), (50, "l"), (40, "xl"),
+        (10, "x"), (9, "ix"), (5, "v"), (4, "iv"), (1, "i"),
+    )
+
+    pieces = []
+    remaining = number
+    for value, symbol in numerals:
+        repeats, remaining = divmod(remaining, value)
+        pieces.append(symbol * repeats)
+
+    return "".join(pieces)
+=== REQ000380 END ===
+
+=== REQ000381 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer, obtain its roman numeral equivalent as a string,
+    // and return it in lowercase.
+    // Restrictions: 1 <= num <= 1000
+    // Examples:
+    // >>> intToMiniRoman((19l))
+    // ("xix")
+    // >>> intToMiniRoman((152l))
+    // ("clii")
+    // >>> intToMiniRoman((426l))
+    // ("cdxxvi")
+    public static String intToMiniRoman(long number) {
+        long[] vals = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] syms = {"m", "cm", "d", "cd", "c", "xc", "l", "xl", "x", "ix", "v", "iv", "i"};
+        StringBuilder sb = new StringBuilder();
+        long n = number;
+        for (int i = 0; i < vals.length; i++) {
+            while (n >= vals[i]) {
+                sb.append(syms[i]);
+                n -= vals[i];
+            }
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(intToMiniRoman(19L));
+        System.out.println(intToMiniRoman(152L));
+        System.out.println(intToMiniRoman(426L));
+    }
+}
+=== REQ000381 END ===
+
+=== REQ000382 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer, obtain its roman numeral equivalent as a string,
+    // and return it in lowercase.
+    // Restrictions: 1 <= num <= 1000
+    // Examples:
+    // >>> intToMiniRoman((19l))
+    // ("xix")
+    // >>> intToMiniRoman((152l))
+    // ("clii")
+    // >>> intToMiniRoman((426l))
+    // ("cdxxvi")
+
+    // Values run largest to smallest and include the subtractive pairs
+    // (cm, cd, xc, ...), so a plain greedy sweep never needs to backtrack.
+    private static final long[] NUMERAL_VALUES =
+            {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    private static final String[] NUMERAL_SYMBOLS =
+            {"m", "cm", "d", "cd", "c", "xc", "l", "xl", "x", "ix", "v", "iv", "i"};
+
+    public static String intToMiniRoman(long number) {
+        StringBuilder roman = new StringBuilder();
+        long remaining = number;
+
+        for (int i = 0; i < NUMERAL_VALUES.length; i++) {
+            long repeats = remaining / NUMERAL_VALUES[i];
+            remaining %= NUMERAL_VALUES[i];
+            for (long repeat = 0; repeat < repeats; repeat++) {
+                roman.append(NUMERAL_SYMBOLS[i]);
+            }
+        }
+
+        return roman.toString();
+    }
+}
+=== REQ000382 END ===
+
+=== REQ000383 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer, obtain its roman numeral equivalent as a string,
+// and return it in lowercase.
+// Restrictions: 1 <= num <= 1000
+// Examples:
+// >>> int_to_mini_roman((19))
+// ("xix")
+// >>> int_to_mini_roman((152))
+// ("clii")
+// >>> int_to_mini_roman((426))
+// ("cdxxvi")
+std::string int_to_mini_roman(long number) {
+    std::vector<long> vals = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+    std::vector<std::string> syms = {"m","cm","d","cd","c","xc","l","xl","x","ix","v","iv","i"};
+    std::string res;
+    long n = number;
+    for (size_t i = 0; i < vals.size(); i++) {
+        while (n >= vals[i]) {
+            res += syms[i];
+            n -= vals[i];
+        }
+    }
+    return res;
+}
+
+int main() {
+    std::cout << int_to_mini_roman(19) << std::endl;
+    std::cout << int_to_mini_roman(152) << std::endl;
+    std::cout << int_to_mini_roman(426) << std::endl;
+    return 0;
+}
+=== REQ000383 END ===
+
+=== REQ000384 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer, obtain its roman numeral equivalent as a string,
+// and return it in lowercase.
+// Restrictions: 1 <= num <= 1000
+// Examples:
+// >>> int_to_mini_roman((19))
+// ("xix")
+// >>> int_to_mini_roman((152))
+// ("clii")
+// >>> int_to_mini_roman((426))
+// ("cdxxvi")
+std::string int_to_mini_roman(long number) {
+    // Values run largest to smallest and include the subtractive pairs
+    // (cm, cd, xc, ...), so a plain greedy sweep never needs to backtrack.
+    static const long numeralValues[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    static const std::string numeralSymbols[] = {
+        "m", "cm", "d", "cd", "c", "xc", "l", "xl", "x", "ix", "v", "iv", "i"};
+    constexpr int kNumeralCount = 13;
+
+    std::string roman;
+    long remaining = number;
+
+    for (int i = 0; i < kNumeralCount; ++i) {
+        const long repeats = remaining / numeralValues[i];
+        remaining %= numeralValues[i];
+        for (long repeat = 0; repeat < repeats; ++repeat) {
+            roman += numeralSymbols[i];
+        }
+    }
+
+    return roman;
+}
+=== REQ000384 END ===
+
+=== REQ000385 START ===
+def do_algebra(operator, operand):
+    """
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """
+    tokens = [str(operand[0])]
+    for i, op in enumerate(operator):
+        tokens.append(op)
+        tokens.append(str(operand[i + 1]))
+    expr = ' '.join(tokens)
+    return eval(expr)
+=== REQ000385 END ===
+
+=== REQ000386 START ===
+def do_algebra(operator, operand):
+    """
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """
+    # Interleaving operands and operators reproduces the intended expression,
+    # and Python's own parser then applies the usual precedence rules.
+    pieces = [str(operand[0])]
+    for position, symbol in enumerate(operator):
+        pieces.append(symbol)
+        pieces.append(str(operand[position + 1]))
+
+    return eval(" ".join(pieces))
+=== REQ000386 END ===
+
+=== REQ000387 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given two array lists operator, and operand. The first array list has basic algebra operations, and 
+    // the second array list is an array array list of integers. Use the two given array lists to build the algebric 
+    // expression and return the evaluation of this expression.
+    // The basic algebra operations:
+    // Addition ( + ) 
+    // Subtraction ( - ) 
+    // Multiplication ( * ) 
+    // Floor division ( // ) 
+    // Exponentiation ( ** ) 
+    // Example:
+    // operator['+', '*', '-']
+    // array array list = [2, 3, 4, 5]
+    // result = 2 + 3 * 4 - 5
+    // => result = 9
+    // Note:
+    // The length of operator array list is equal to the length of operand array list minus one.
+    // Operand is an array array list of of non-negative integers.
+    // Operator array list has at least one operator, and operand array list has at least two operands.
+    public static long doAlgebra(ArrayList<String> op, ArrayList<Long> operand) {
+        // Precedence: ** highest, then * and //, then + and -
+        List<Long> values = new ArrayList<>(operand);
+        List<String> ops = new ArrayList<>(op);
+
+        // Pass 1: exponentiation (right-to-left not specified; assume left-to-right like others)
+        for (int i = 0; i < ops.size(); ) {
+            if (ops.get(i).equals("**")) {
+                long base = values.get(i), exp = values.get(i + 1);
+                long res = 1;
+                for (long e = 0; e < exp; e++) res *= base;
+                values.set(i, res);
+                values.remove(i + 1);
+                ops.remove(i);
+            } else {
+                i++;
+            }
+        }
+        // Pass 2: * and //
+        for (int i = 0; i < ops.size(); ) {
+            String o = ops.get(i);
+            if (o.equals("*") || o.equals("//")) {
+                long a = values.get(i), b = values.get(i + 1);
+                long res = o.equals("*") ? a * b : Math.floorDiv(a, b);
+                values.set(i, res);
+                values.remove(i + 1);
+                ops.remove(i);
+            } else {
+                i++;
+            }
+        }
+        // Pass 3: + and -
+        long result = values.get(0);
+        for (int i = 0; i < ops.size(); i++) {
+            String o = ops.get(i);
+            long b = values.get(i + 1);
+            if (o.equals("+")) result += b;
+            else if (o.equals("-")) result -= b;
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(doAlgebra(new ArrayList<>(Arrays.asList("+","*","-")), new ArrayList<>(Arrays.asList(2L,3L,4L,5L))));
+    }
+}
+=== REQ000387 END ===
+
+=== REQ000388 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given two array lists operator, and operand. The first array list has basic algebra operations, and 
+    // the second array list is an array array list of integers. Use the two given array lists to build the algebric 
+    // expression and return the evaluation of this expression.
+    // The basic algebra operations:
+    // Addition ( + ) 
+    // Subtraction ( - ) 
+    // Multiplication ( * ) 
+    // Floor division ( // ) 
+    // Exponentiation ( ** ) 
+    // Example:
+    // operator['+', '*', '-']
+    // array array list = [2, 3, 4, 5]
+    // result = 2 + 3 * 4 - 5
+    // => result = 9
+    // Note:
+    // The length of operator array list is equal to the length of operand array list minus one.
+    // Operand is an array array list of of non-negative integers.
+    // Operator array list has at least one operator, and operand array list has at least two operands.
+
+    // Operators are collapsed in precedence order: exponentiation binds
+    // tightest, then multiplication and floor division, then the additive pair.
+    private static final List<Set<String>> PRECEDENCE_LEVELS = Arrays.asList(
+            new HashSet<>(Arrays.asList("**")),
+            new HashSet<>(Arrays.asList("*", "//")),
+            new HashSet<>(Arrays.asList("+", "-")));
+
+    public static long doAlgebra(ArrayList<String> op, ArrayList<Long> operand) {
+        LinkedList<Long> values = new LinkedList<>(operand);
+        LinkedList<String> symbols = new LinkedList<>(op);
+
+        for (Set<String> level : PRECEDENCE_LEVELS) {
+            collapse(values, symbols, level);
+        }
+
+        return values.getFirst();
+    }
+
+    /** Applies every operator belonging to {@code level}, left to right. */
+    private static void collapse(
+            LinkedList<Long> values, LinkedList<String> symbols, Set<String> level) {
+        int position = 0;
+        while (position < symbols.size()) {
+            String symbol = symbols.get(position);
+            if (!level.contains(symbol)) {
+                position++;
+                continue;
+            }
+
+            long result = apply(symbol, values.get(position), values.get(position + 1));
+            values.set(position, result);
+            values.remove(position + 1);
+            symbols.remove(position);
+        }
+    }
+
+    private static long apply(String symbol, long left, long right) {
+        switch (symbol) {
+            case "**":
+                return power(left, right);
+            case "*":
+                return left * right;
+            case "//":
+                return Math.floorDiv(left, right);
+            case "+":
+                return left + right;
+            default:
+                return left - right;
+        }
+    }
+
+    private static long power(long base, long exponent) {
+        long result = 1;
+        for (long step = 0; step < exponent; step++) {
+            result *= base;
+        }
+        return result;
+    }
+}
+=== REQ000388 END ===
+
+=== REQ000389 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given two vectors operator, and operand. The first vector has basic algebra operations, and 
+// the second vector is a vector of integers. Use the two given vectors to build the algebric 
+// expression and return the evaluation of this expression.
+// The basic algebra operations:
+// Addition ( + ) 
+// Subtraction ( - ) 
+// Multiplication ( * ) 
+// Floor division ( // ) 
+// Exponentiation ( ** ) 
+// Example:
+// operator['+', '*', '-']
+// vector = [2, 3, 4, 5]
+// result = 2 + 3 * 4 - 5
+// => result = 9
+// Note:
+// The length of operator vector is equal to the length of operand vector minus one.
+// Operand is a vector of of non-negative integers.
+// Operator vector has at least one operator, and operand vector has at least two operands.
+long do_algebra(std::vector<std::string> op, std::vector<long> operand) {
+    std::vector<long> values = operand;
+    std::vector<std::string> ops = op;
+
+    // Pass 1: exponentiation
+    for (size_t i = 0; i < ops.size(); ) {
+        if (ops[i] == "**") {
+            long base = values[i], exp = values[i+1];
+            long res = 1;
+            for (long e = 0; e < exp; e++) res *= base;
+            values[i] = res;
+            values.erase(values.begin() + i + 1);
+            ops.erase(ops.begin() + i);
+        } else {
+            i++;
+        }
+    }
+    // Pass 2: * and //
+    for (size_t i = 0; i < ops.size(); ) {
+        if (ops[i] == "*" || ops[i] == "//") {
+            long a = values[i], b = values[i+1];
+            long res;
+            if (ops[i] == "*") res = a * b;
+            else {
+                res = a / b;
+                if ((a % b != 0) && ((a < 0) != (b < 0))) res--;
+            }
+            values[i] = res;
+            values.erase(values.begin() + i + 1);
+            ops.erase(ops.begin() + i);
+        } else {
+            i++;
+        }
+    }
+    // Pass 3: + and -
+    long result = values[0];
+    for (size_t i = 0; i < ops.size(); i++) {
+        long b = values[i+1];
+        if (ops[i] == "+") result += b;
+        else if (ops[i] == "-") result -= b;
+    }
+    return result;
+}
+
+int main() {
+    std::vector<std::string> op = {"+","*","-"};
+    std::vector<long> operand = {2,3,4,5};
+    std::cout << do_algebra(op, operand) << std::endl;
+    return 0;
+}
+=== REQ000389 END ===
+
+=== REQ000390 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given two vectors operator, and operand. The first vector has basic algebra operations, and 
+// the second vector is a vector of integers. Use the two given vectors to build the algebric 
+// expression and return the evaluation of this expression.
+// The basic algebra operations:
+// Addition ( + ) 
+// Subtraction ( - ) 
+// Multiplication ( * ) 
+// Floor division ( // ) 
+// Exponentiation ( ** ) 
+// Example:
+// operator['+', '*', '-']
+// vector = [2, 3, 4, 5]
+// result = 2 + 3 * 4 - 5
+// => result = 9
+// Note:
+// The length of operator vector is equal to the length of operand vector minus one.
+// Operand is a vector of of non-negative integers.
+// Operator vector has at least one operator, and operand vector has at least two operands.
+
+/// Applies one operator to its two operands.
+static long applyOperator(const std::string& symbol, long left, long right) {
+    if (symbol == "**") {
+        long result = 1;
+        for (long step = 0; step < right; ++step) {
+            result *= left;
+        }
+        return result;
+    }
+    if (symbol == "*") {
+        return left * right;
+    }
+    if (symbol == "//") {
+        long quotient = left / right;
+        if ((left % right != 0) && ((left < 0) != (right < 0))) {
+            quotient--;  // C++ truncates towards zero; Python floors.
+        }
+        return quotient;
+    }
+    if (symbol == "+") {
+        return left + right;
+    }
+    return left - right;
+}
+
+/// Applies every operator belonging to `level`, left to right.
+static void collapse(std::vector<long>& values, std::vector<std::string>& symbols,
+                     const std::set<std::string>& level) {
+    std::size_t position = 0;
+    while (position < symbols.size()) {
+        if (level.count(symbols[position]) == 0) {
+            ++position;
+            continue;
+        }
+
+        values[position] = applyOperator(symbols[position], values[position], values[position + 1]);
+        values.erase(values.begin() + position + 1);
+        symbols.erase(symbols.begin() + position);
+    }
+}
+
+long do_algebra(std::vector<std::string> op, std::vector<long> operand) {
+    std::vector<long> values = operand;
+    std::vector<std::string> symbols = op;
+
+    // Operators are collapsed in precedence order: exponentiation binds
+    // tightest, then multiplication and floor division, then the additive pair.
+    const std::vector<std::set<std::string>> precedenceLevels = {
+        {"**"}, {"*", "//"}, {"+", "-"}};
+
+    for (const auto& level : precedenceLevels) {
+        collapse(values, symbols, level);
+    }
+
+    return values[0];
+}
+=== REQ000390 END ===
+
+=== REQ000391 START ===
+def solve(s):
+    """You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve("1234") = "4321"
+    solve("ab") = "AB"
+    solve("#a@C") = "#A@c"
+    """
+    has_letter = any(c.isalpha() for c in s)
+    if has_letter:
+        return ''.join(c.lower() if c.isupper() else c.upper() if c.islower() else c for c in s)
+    else:
+        return s[::-1]
+=== REQ000391 END ===
+
+=== REQ000392 START ===
+def solve(s):
+    """You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve("1234") = "4321"
+    solve("ab") = "AB"
+    solve("#a@C") = "#A@c"
+    """
+    contains_letter = any(character.isalpha() for character in s)
+
+    # With no letters to flip there is nothing for the case rule to do, so the
+    # specification falls back to reversing the whole string instead.
+    if not contains_letter:
+        return s[::-1]
+
+    return s.swapcase()
+=== REQ000392 END ===
+
+=== REQ000393 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a string s.
+    // if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    // otherwise keep it as it is.
+    // If the string contains no letters, reverse the string.
+    // The function should return the resulted string.
+    // Examples
+    // >>> solve(("1234"))
+    // ("4321")
+    // >>> solve(("ab"))
+    // ("AB")
+    // >>> solve(("#a@C"))
+    // ("#A@c")
+    public static String solve(String s) {
+        boolean hasLetter = false;
+        for (char c : s.toCharArray()) {
+            if (Character.isLetter(c)) { hasLetter = true; break; }
+        }
+        if (hasLetter) {
+            StringBuilder sb = new StringBuilder();
+            for (char c : s.toCharArray()) {
+                if (Character.isUpperCase(c)) sb.append(Character.toLowerCase(c));
+                else if (Character.isLowerCase(c)) sb.append(Character.toUpperCase(c));
+                else sb.append(c);
+            }
+            return sb.toString();
+        } else {
+            return new StringBuilder(s).reverse().toString();
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solve("1234"));
+        System.out.println(solve("ab"));
+        System.out.println(solve("#a@C"));
+    }
+}
+=== REQ000393 END ===
+
+=== REQ000394 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a string s.
+    // if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    // otherwise keep it as it is.
+    // If the string contains no letters, reverse the string.
+    // The function should return the resulted string.
+    // Examples
+    // >>> solve(("1234"))
+    // ("4321")
+    // >>> solve(("ab"))
+    // ("AB")
+    // >>> solve(("#a@C"))
+    // ("#A@c")
+    public static String solve(String s) {
+        // With no letters to flip there is nothing for the case rule to do, so
+        // the specification falls back to reversing the whole string instead.
+        if (!containsLetter(s)) {
+            return new StringBuilder(s).reverse().toString();
+        }
+
+        return swapCase(s);
+    }
+
+    private static boolean containsLetter(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isLetter(text.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** Flips the case of every letter, leaving other characters untouched. */
+    private static String swapCase(String text) {
+        char[] flipped = text.toCharArray();
+        for (int i = 0; i < flipped.length; i++) {
+            if (Character.isUpperCase(flipped[i])) {
+                flipped[i] = Character.toLowerCase(flipped[i]);
+            } else if (Character.isLowerCase(flipped[i])) {
+                flipped[i] = Character.toUpperCase(flipped[i]);
+            }
+        }
+        return new String(flipped);
+    }
+}
+=== REQ000394 END ===
+
+=== REQ000395 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a string s.
+// if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+// otherwise keep it as it is.
+// If the string contains no letters, reverse the string.
+// The function should return the resulted string.
+// Examples
+// >>> solve(("1234"))
+// ("4321")
+// >>> solve(("ab"))
+// ("AB")
+// >>> solve(("#a@C"))
+// ("#A@c")
+std::string solve(std::string s) {
+    bool hasLetter = false;
+    for (char c : s) {
+        if (isalpha((unsigned char)c)) { hasLetter = true; break; }
+    }
+    if (hasLetter) {
+        std::string res;
+        for (char c : s) {
+            if (isupper((unsigned char)c)) res += tolower(c);
+            else if (islower((unsigned char)c)) res += toupper(c);
+            else res += c;
+        }
+        return res;
+    } else {
+        std::reverse(s.begin(), s.end());
+        return s;
+    }
+}
+
+int main() {
+    std::cout << solve("1234") << std::endl;
+    std::cout << solve("ab") << std::endl;
+    std::cout << solve("#a@C") << std::endl;
+    return 0;
+}
+=== REQ000395 END ===
+
+=== REQ000396 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a string s.
+// if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+// otherwise keep it as it is.
+// If the string contains no letters, reverse the string.
+// The function should return the resulted string.
+// Examples
+// >>> solve(("1234"))
+// ("4321")
+// >>> solve(("ab"))
+// ("AB")
+// >>> solve(("#a@C"))
+// ("#A@c")
+std::string solve(std::string s) {
+    const bool containsLetter = std::any_of(
+        s.begin(), s.end(),
+        [](unsigned char character) { return std::isalpha(character) != 0; });
+
+    // With no letters to flip there is nothing for the case rule to do, so the
+    // specification falls back to reversing the whole string instead.
+    if (!containsLetter) {
+        std::reverse(s.begin(), s.end());
+        return s;
+    }
+
+    // Flip the case of every letter, leaving other characters untouched.
+    for (char& character : s) {
+        const unsigned char raw = static_cast<unsigned char>(character);
+        if (std::isupper(raw)) {
+            character = static_cast<char>(std::tolower(raw));
+        } else if (std::islower(raw)) {
+            character = static_cast<char>(std::toupper(raw));
+        }
+    }
+    return s;
+}
+=== REQ000396 END ===
+
+=== REQ000397 START ===
+
+
+def strlen(string: str) -> int:
+    """ Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """
+    return len(string)
+=== REQ000397 END ===
+
+=== REQ000398 START ===
+
+
+def strlen(string: str) -> int:
+    """ Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """
+    return len(string)
+=== REQ000398 END ===
+
+=== REQ000399 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Return length of given string
+    // >>> stringLength((""))
+    // (0l)
+    // >>> stringLength(("abc"))
+    // (3l)
+    public static long strlen(String string) {
+        return string.length();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(strlen(""));
+        System.out.println(strlen("abc"));
+    }
+}
+=== REQ000399 END ===
+
+=== REQ000400 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Return length of given string
+    // >>> stringLength((""))
+    // (0l)
+    // >>> stringLength(("abc"))
+    // (3l)
+    public static long strlen(String string) {
+        return string.length();
+    }
+}
+=== REQ000400 END ===

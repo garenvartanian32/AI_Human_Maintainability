@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including input/output format, constraints, and any sample I/O). If you want a quick start, reply "use CP template" and I'll provide a ready-to-use C++ competitive-programming template or, if you paste the problem, a complete solution.

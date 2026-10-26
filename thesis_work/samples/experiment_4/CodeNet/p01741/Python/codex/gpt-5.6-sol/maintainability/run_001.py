@@ -1,0 +1,1 @@
+Please send the full programming problem statement, including input/output format, constraints, and sample cases. I’ll provide a clean, maintainable Python solution with an explanation and complexity analysis.

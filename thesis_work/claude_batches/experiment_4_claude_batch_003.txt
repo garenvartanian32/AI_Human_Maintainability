@@ -1,0 +1,1850 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000051 PROMPT ===
+Solve the following programming problem in Java.
+
+There are n points on a coordinate axis OX. The i-th point is located at the integer point x_i and has a speed v_i. It is guaranteed that no two points occupy the same coordinate. All n points move with the constant speed, the coordinate of the i-th point at the moment t (t can be non-integer) is calculated as x_i + t ⋅ v_i.
+
+Consider two points i and j. Let d(i, j) be the minimum possible distance between these two points over any possible moments of time (even non-integer). It means that if two points i and j coincide at some moment, the value d(i, j) will be 0.
+
+Your task is to calculate the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Input
+
+The first line of the input contains one integer n (2 ≤ n ≤ 2 ⋅ 10^5) — the number of points.
+
+The second line of the input contains n integers x_1, x_2, ..., x_n (1 ≤ x_i ≤ 10^8), where x_i is the initial coordinate of the i-th point. It is guaranteed that all x_i are distinct.
+
+The third line of the input contains n integers v_1, v_2, ..., v_n (-10^8 ≤ v_i ≤ 10^8), where v_i is the speed of the i-th point.
+
+Output
+
+Print one integer — the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Examples
+
+Input
+
+
+3
+1 3 2
+-100 2 3
+
+
+Output
+
+
+3
+
+
+Input
+
+
+5
+2 1 4 3 5
+2 2 2 3 4
+
+
+Output
+
+
+19
+
+
+Input
+
+
+2
+2 1
+-3 0
+
+
+Output
+
+
+0
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000052 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+There are n points on a coordinate axis OX. The i-th point is located at the integer point x_i and has a speed v_i. It is guaranteed that no two points occupy the same coordinate. All n points move with the constant speed, the coordinate of the i-th point at the moment t (t can be non-integer) is calculated as x_i + t ⋅ v_i.
+
+Consider two points i and j. Let d(i, j) be the minimum possible distance between these two points over any possible moments of time (even non-integer). It means that if two points i and j coincide at some moment, the value d(i, j) will be 0.
+
+Your task is to calculate the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Input
+
+The first line of the input contains one integer n (2 ≤ n ≤ 2 ⋅ 10^5) — the number of points.
+
+The second line of the input contains n integers x_1, x_2, ..., x_n (1 ≤ x_i ≤ 10^8), where x_i is the initial coordinate of the i-th point. It is guaranteed that all x_i are distinct.
+
+The third line of the input contains n integers v_1, v_2, ..., v_n (-10^8 ≤ v_i ≤ 10^8), where v_i is the speed of the i-th point.
+
+Output
+
+Print one integer — the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Examples
+
+Input
+
+
+3
+1 3 2
+-100 2 3
+
+
+Output
+
+
+3
+
+
+Input
+
+
+5
+2 1 4 3 5
+2 2 2 3 4
+
+
+Output
+
+
+19
+
+
+Input
+
+
+2
+2 1
+-3 0
+
+
+Output
+
+
+0
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000053 PROMPT ===
+Solve the following programming problem in C++.
+
+There are n points on a coordinate axis OX. The i-th point is located at the integer point x_i and has a speed v_i. It is guaranteed that no two points occupy the same coordinate. All n points move with the constant speed, the coordinate of the i-th point at the moment t (t can be non-integer) is calculated as x_i + t ⋅ v_i.
+
+Consider two points i and j. Let d(i, j) be the minimum possible distance between these two points over any possible moments of time (even non-integer). It means that if two points i and j coincide at some moment, the value d(i, j) will be 0.
+
+Your task is to calculate the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Input
+
+The first line of the input contains one integer n (2 ≤ n ≤ 2 ⋅ 10^5) — the number of points.
+
+The second line of the input contains n integers x_1, x_2, ..., x_n (1 ≤ x_i ≤ 10^8), where x_i is the initial coordinate of the i-th point. It is guaranteed that all x_i are distinct.
+
+The third line of the input contains n integers v_1, v_2, ..., v_n (-10^8 ≤ v_i ≤ 10^8), where v_i is the speed of the i-th point.
+
+Output
+
+Print one integer — the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Examples
+
+Input
+
+
+3
+1 3 2
+-100 2 3
+
+
+Output
+
+
+3
+
+
+Input
+
+
+5
+2 1 4 3 5
+2 2 2 3 4
+
+
+Output
+
+
+19
+
+
+Input
+
+
+2
+2 1
+-3 0
+
+
+Output
+
+
+0
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000054 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+There are n points on a coordinate axis OX. The i-th point is located at the integer point x_i and has a speed v_i. It is guaranteed that no two points occupy the same coordinate. All n points move with the constant speed, the coordinate of the i-th point at the moment t (t can be non-integer) is calculated as x_i + t ⋅ v_i.
+
+Consider two points i and j. Let d(i, j) be the minimum possible distance between these two points over any possible moments of time (even non-integer). It means that if two points i and j coincide at some moment, the value d(i, j) will be 0.
+
+Your task is to calculate the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Input
+
+The first line of the input contains one integer n (2 ≤ n ≤ 2 ⋅ 10^5) — the number of points.
+
+The second line of the input contains n integers x_1, x_2, ..., x_n (1 ≤ x_i ≤ 10^8), where x_i is the initial coordinate of the i-th point. It is guaranteed that all x_i are distinct.
+
+The third line of the input contains n integers v_1, v_2, ..., v_n (-10^8 ≤ v_i ≤ 10^8), where v_i is the speed of the i-th point.
+
+Output
+
+Print one integer — the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Examples
+
+Input
+
+
+3
+1 3 2
+-100 2 3
+
+
+Output
+
+
+3
+
+
+Input
+
+
+5
+2 1 4 3 5
+2 2 2 3 4
+
+
+Output
+
+
+19
+
+
+Input
+
+
+2
+2 1
+-3 0
+
+
+Output
+
+
+0
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000055 PROMPT ===
+Solve the following programming problem in Python.
+
+Easy and hard versions are actually different problems, so read statements of both problems completely and carefully.
+
+Summer vacation has started so Alice and Bob want to play and joy, but... Their mom doesn't think so. She says that they have to read some amount of books before all entertainments. Alice and Bob will read each book together to end this exercise faster.
+
+There are n books in the family library. The i-th book is described by three integers: t_i — the amount of time Alice and Bob need to spend to read it, a_i (equals 1 if Alice likes the i-th book and 0 if not), and b_i (equals 1 if Bob likes the i-th book and 0 if not).
+
+So they need to choose some books from the given n books in such a way that:
+
+  * Alice likes at least k books from the chosen set and Bob likes at least k books from the chosen set; 
+  * the total reading time of these books is minimized (they are children and want to play and joy as soon a possible). 
+
+
+
+The set they choose is the same for both Alice an Bob (it's shared between them) and they read all books together, so the total reading time is the sum of t_i over all books that are in the chosen set.
+
+Your task is to help them and find any suitable set of books or determine that it is impossible to find such a set.
+
+Input
+
+The first line of the input contains two integers n and k (1 ≤ k ≤ n ≤ 2 ⋅ 10^5).
+
+The next n lines contain descriptions of books, one description per line: the i-th line contains three integers t_i, a_i and b_i (1 ≤ t_i ≤ 10^4, 0 ≤ a_i, b_i ≤ 1), where:
+
+  * t_i — the amount of time required for reading the i-th book; 
+  * a_i equals 1 if Alice likes the i-th book and 0 otherwise; 
+  * b_i equals 1 if Bob likes the i-th book and 0 otherwise. 
+
+Output
+
+If there is no solution, print only one integer -1. Otherwise print one integer T — the minimum total reading time of the suitable set of books.
+
+Examples
+
+Input
+
+8 4
+7 1 1
+2 1 1
+4 0 1
+8 1 1
+1 0 1
+1 1 1
+1 0 1
+3 0 0
+
+
+Output
+
+18
+
+
+Input
+
+5 2
+6 0 0
+9 0 0
+1 0 1
+2 1 1
+5 1 0
+
+
+Output
+
+8
+
+
+Input
+
+5 3
+3 0 0
+2 1 0
+3 1 0
+5 0 1
+3 0 1
+
+
+Output
+
+-1
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000056 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+Easy and hard versions are actually different problems, so read statements of both problems completely and carefully.
+
+Summer vacation has started so Alice and Bob want to play and joy, but... Their mom doesn't think so. She says that they have to read some amount of books before all entertainments. Alice and Bob will read each book together to end this exercise faster.
+
+There are n books in the family library. The i-th book is described by three integers: t_i — the amount of time Alice and Bob need to spend to read it, a_i (equals 1 if Alice likes the i-th book and 0 if not), and b_i (equals 1 if Bob likes the i-th book and 0 if not).
+
+So they need to choose some books from the given n books in such a way that:
+
+  * Alice likes at least k books from the chosen set and Bob likes at least k books from the chosen set; 
+  * the total reading time of these books is minimized (they are children and want to play and joy as soon a possible). 
+
+
+
+The set they choose is the same for both Alice an Bob (it's shared between them) and they read all books together, so the total reading time is the sum of t_i over all books that are in the chosen set.
+
+Your task is to help them and find any suitable set of books or determine that it is impossible to find such a set.
+
+Input
+
+The first line of the input contains two integers n and k (1 ≤ k ≤ n ≤ 2 ⋅ 10^5).
+
+The next n lines contain descriptions of books, one description per line: the i-th line contains three integers t_i, a_i and b_i (1 ≤ t_i ≤ 10^4, 0 ≤ a_i, b_i ≤ 1), where:
+
+  * t_i — the amount of time required for reading the i-th book; 
+  * a_i equals 1 if Alice likes the i-th book and 0 otherwise; 
+  * b_i equals 1 if Bob likes the i-th book and 0 otherwise. 
+
+Output
+
+If there is no solution, print only one integer -1. Otherwise print one integer T — the minimum total reading time of the suitable set of books.
+
+Examples
+
+Input
+
+8 4
+7 1 1
+2 1 1
+4 0 1
+8 1 1
+1 0 1
+1 1 1
+1 0 1
+3 0 0
+
+
+Output
+
+18
+
+
+Input
+
+5 2
+6 0 0
+9 0 0
+1 0 1
+2 1 1
+5 1 0
+
+
+Output
+
+8
+
+
+Input
+
+5 3
+3 0 0
+2 1 0
+3 1 0
+5 0 1
+3 0 1
+
+
+Output
+
+-1
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000057 PROMPT ===
+Solve the following programming problem in Java.
+
+Easy and hard versions are actually different problems, so read statements of both problems completely and carefully.
+
+Summer vacation has started so Alice and Bob want to play and joy, but... Their mom doesn't think so. She says that they have to read some amount of books before all entertainments. Alice and Bob will read each book together to end this exercise faster.
+
+There are n books in the family library. The i-th book is described by three integers: t_i — the amount of time Alice and Bob need to spend to read it, a_i (equals 1 if Alice likes the i-th book and 0 if not), and b_i (equals 1 if Bob likes the i-th book and 0 if not).
+
+So they need to choose some books from the given n books in such a way that:
+
+  * Alice likes at least k books from the chosen set and Bob likes at least k books from the chosen set; 
+  * the total reading time of these books is minimized (they are children and want to play and joy as soon a possible). 
+
+
+
+The set they choose is the same for both Alice an Bob (it's shared between them) and they read all books together, so the total reading time is the sum of t_i over all books that are in the chosen set.
+
+Your task is to help them and find any suitable set of books or determine that it is impossible to find such a set.
+
+Input
+
+The first line of the input contains two integers n and k (1 ≤ k ≤ n ≤ 2 ⋅ 10^5).
+
+The next n lines contain descriptions of books, one description per line: the i-th line contains three integers t_i, a_i and b_i (1 ≤ t_i ≤ 10^4, 0 ≤ a_i, b_i ≤ 1), where:
+
+  * t_i — the amount of time required for reading the i-th book; 
+  * a_i equals 1 if Alice likes the i-th book and 0 otherwise; 
+  * b_i equals 1 if Bob likes the i-th book and 0 otherwise. 
+
+Output
+
+If there is no solution, print only one integer -1. Otherwise print one integer T — the minimum total reading time of the suitable set of books.
+
+Examples
+
+Input
+
+8 4
+7 1 1
+2 1 1
+4 0 1
+8 1 1
+1 0 1
+1 1 1
+1 0 1
+3 0 0
+
+
+Output
+
+18
+
+
+Input
+
+5 2
+6 0 0
+9 0 0
+1 0 1
+2 1 1
+5 1 0
+
+
+Output
+
+8
+
+
+Input
+
+5 3
+3 0 0
+2 1 0
+3 1 0
+5 0 1
+3 0 1
+
+
+Output
+
+-1
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000058 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+Easy and hard versions are actually different problems, so read statements of both problems completely and carefully.
+
+Summer vacation has started so Alice and Bob want to play and joy, but... Their mom doesn't think so. She says that they have to read some amount of books before all entertainments. Alice and Bob will read each book together to end this exercise faster.
+
+There are n books in the family library. The i-th book is described by three integers: t_i — the amount of time Alice and Bob need to spend to read it, a_i (equals 1 if Alice likes the i-th book and 0 if not), and b_i (equals 1 if Bob likes the i-th book and 0 if not).
+
+So they need to choose some books from the given n books in such a way that:
+
+  * Alice likes at least k books from the chosen set and Bob likes at least k books from the chosen set; 
+  * the total reading time of these books is minimized (they are children and want to play and joy as soon a possible). 
+
+
+
+The set they choose is the same for both Alice an Bob (it's shared between them) and they read all books together, so the total reading time is the sum of t_i over all books that are in the chosen set.
+
+Your task is to help them and find any suitable set of books or determine that it is impossible to find such a set.
+
+Input
+
+The first line of the input contains two integers n and k (1 ≤ k ≤ n ≤ 2 ⋅ 10^5).
+
+The next n lines contain descriptions of books, one description per line: the i-th line contains three integers t_i, a_i and b_i (1 ≤ t_i ≤ 10^4, 0 ≤ a_i, b_i ≤ 1), where:
+
+  * t_i — the amount of time required for reading the i-th book; 
+  * a_i equals 1 if Alice likes the i-th book and 0 otherwise; 
+  * b_i equals 1 if Bob likes the i-th book and 0 otherwise. 
+
+Output
+
+If there is no solution, print only one integer -1. Otherwise print one integer T — the minimum total reading time of the suitable set of books.
+
+Examples
+
+Input
+
+8 4
+7 1 1
+2 1 1
+4 0 1
+8 1 1
+1 0 1
+1 1 1
+1 0 1
+3 0 0
+
+
+Output
+
+18
+
+
+Input
+
+5 2
+6 0 0
+9 0 0
+1 0 1
+2 1 1
+5 1 0
+
+
+Output
+
+8
+
+
+Input
+
+5 3
+3 0 0
+2 1 0
+3 1 0
+5 0 1
+3 0 1
+
+
+Output
+
+-1
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000059 PROMPT ===
+Solve the following programming problem in C++.
+
+Easy and hard versions are actually different problems, so read statements of both problems completely and carefully.
+
+Summer vacation has started so Alice and Bob want to play and joy, but... Their mom doesn't think so. She says that they have to read some amount of books before all entertainments. Alice and Bob will read each book together to end this exercise faster.
+
+There are n books in the family library. The i-th book is described by three integers: t_i — the amount of time Alice and Bob need to spend to read it, a_i (equals 1 if Alice likes the i-th book and 0 if not), and b_i (equals 1 if Bob likes the i-th book and 0 if not).
+
+So they need to choose some books from the given n books in such a way that:
+
+  * Alice likes at least k books from the chosen set and Bob likes at least k books from the chosen set; 
+  * the total reading time of these books is minimized (they are children and want to play and joy as soon a possible). 
+
+
+
+The set they choose is the same for both Alice an Bob (it's shared between them) and they read all books together, so the total reading time is the sum of t_i over all books that are in the chosen set.
+
+Your task is to help them and find any suitable set of books or determine that it is impossible to find such a set.
+
+Input
+
+The first line of the input contains two integers n and k (1 ≤ k ≤ n ≤ 2 ⋅ 10^5).
+
+The next n lines contain descriptions of books, one description per line: the i-th line contains three integers t_i, a_i and b_i (1 ≤ t_i ≤ 10^4, 0 ≤ a_i, b_i ≤ 1), where:
+
+  * t_i — the amount of time required for reading the i-th book; 
+  * a_i equals 1 if Alice likes the i-th book and 0 otherwise; 
+  * b_i equals 1 if Bob likes the i-th book and 0 otherwise. 
+
+Output
+
+If there is no solution, print only one integer -1. Otherwise print one integer T — the minimum total reading time of the suitable set of books.
+
+Examples
+
+Input
+
+8 4
+7 1 1
+2 1 1
+4 0 1
+8 1 1
+1 0 1
+1 1 1
+1 0 1
+3 0 0
+
+
+Output
+
+18
+
+
+Input
+
+5 2
+6 0 0
+9 0 0
+1 0 1
+2 1 1
+5 1 0
+
+
+Output
+
+8
+
+
+Input
+
+5 3
+3 0 0
+2 1 0
+3 1 0
+5 0 1
+3 0 1
+
+
+Output
+
+-1
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000060 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+Easy and hard versions are actually different problems, so read statements of both problems completely and carefully.
+
+Summer vacation has started so Alice and Bob want to play and joy, but... Their mom doesn't think so. She says that they have to read some amount of books before all entertainments. Alice and Bob will read each book together to end this exercise faster.
+
+There are n books in the family library. The i-th book is described by three integers: t_i — the amount of time Alice and Bob need to spend to read it, a_i (equals 1 if Alice likes the i-th book and 0 if not), and b_i (equals 1 if Bob likes the i-th book and 0 if not).
+
+So they need to choose some books from the given n books in such a way that:
+
+  * Alice likes at least k books from the chosen set and Bob likes at least k books from the chosen set; 
+  * the total reading time of these books is minimized (they are children and want to play and joy as soon a possible). 
+
+
+
+The set they choose is the same for both Alice an Bob (it's shared between them) and they read all books together, so the total reading time is the sum of t_i over all books that are in the chosen set.
+
+Your task is to help them and find any suitable set of books or determine that it is impossible to find such a set.
+
+Input
+
+The first line of the input contains two integers n and k (1 ≤ k ≤ n ≤ 2 ⋅ 10^5).
+
+The next n lines contain descriptions of books, one description per line: the i-th line contains three integers t_i, a_i and b_i (1 ≤ t_i ≤ 10^4, 0 ≤ a_i, b_i ≤ 1), where:
+
+  * t_i — the amount of time required for reading the i-th book; 
+  * a_i equals 1 if Alice likes the i-th book and 0 otherwise; 
+  * b_i equals 1 if Bob likes the i-th book and 0 otherwise. 
+
+Output
+
+If there is no solution, print only one integer -1. Otherwise print one integer T — the minimum total reading time of the suitable set of books.
+
+Examples
+
+Input
+
+8 4
+7 1 1
+2 1 1
+4 0 1
+8 1 1
+1 0 1
+1 1 1
+1 0 1
+3 0 0
+
+
+Output
+
+18
+
+
+Input
+
+5 2
+6 0 0
+9 0 0
+1 0 1
+2 1 1
+5 1 0
+
+
+Output
+
+8
+
+
+Input
+
+5 3
+3 0 0
+2 1 0
+3 1 0
+5 0 1
+3 0 1
+
+
+Output
+
+-1
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000061 PROMPT ===
+Solve the following programming problem in Python.
+
+You may know that Euclid was a mathematician. Well, as it turns out, Morpheus knew it too. So when he wanted to play a mean trick on Euclid, he sent him an appropriate nightmare. 
+
+In his bad dream Euclid has a set S of n m-dimensional vectors over the Z_2 field and can perform vector addition on them. In other words he has vectors with m coordinates, each one equal either 0 or 1. Vector addition is defined as follows: let u+v = w, then w_i = (u_i + v_i) mod 2. 
+
+Euclid can sum any subset of S and archive another m-dimensional vector over Z_2. In particular, he can sum together an empty subset; in such a case, the resulting vector has all coordinates equal 0.
+
+Let T be the set of all the vectors that can be written as a sum of some vectors from S. Now Euclid wonders the size of T and whether he can use only a subset S' of S to obtain all the vectors from T. As it is usually the case in such scenarios, he will not wake up until he figures this out. So far, things are looking rather grim for the philosopher. But there is hope, as he noticed that all vectors in S have at most 2 coordinates equal 1. 
+
+Help Euclid and calculate |T|, the number of m-dimensional vectors over Z_2 that can be written as a sum of some vectors from S. As it can be quite large, calculate it modulo 10^9+7. You should also find S', the smallest such subset of S, that all vectors in T can be written as a sum of vectors from S'. In case there are multiple such sets with a minimal number of elements, output the lexicographically smallest one with respect to the order in which their elements are given in the input. 
+
+Consider sets A and B such that |A| = |B|. Let a_1, a_2, ... a_{|A|} and b_1, b_2, ... b_{|B|} be increasing arrays of indices elements of A and B correspondingly. A is lexicographically smaller than B iff there exists such i that a_j = b_j for all j < i and a_i < b_i.
+
+Input
+
+In the first line of input, there are two integers n, m (1 ≤ n, m ≤ 5 ⋅ 10^5) denoting the number of vectors in S and the number of dimensions. 
+
+Next n lines contain the description of the vectors in S. In each of them there is an integer k (1 ≤ k ≤ 2) and then follow k distinct integers x_1, ... x_k (1 ≤ x_i ≤ m). This encodes an m-dimensional vector having 1s on coordinates x_1, ... x_k and 0s on the rest of them.
+
+Among the n vectors, no two are the same.
+
+Output
+
+In the first line, output two integers: remainder modulo 10^9+7 of |T| and |S'|. In the second line, output |S'| numbers, indices of the elements of S' in ascending order. The elements of S are numbered from 1 in the order they are given in the input.
+
+Examples
+
+Input
+
+
+3 2
+1 1
+1 2
+2 2 1
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+2 3
+2 1 3
+2 1 2
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+3 5
+2 1 2
+1 3
+1 4
+
+
+Output
+
+
+8 3
+1 2 3 
+
+Note
+
+In the first example we are given three vectors: 
+
+  * 10 
+  * 01 
+  * 11 
+
+
+
+It turns out that we can represent all vectors from our 2-dimensional space using these vectors: 
+
+  * 00 is a sum of the empty subset of above vectors; 
+  * 01 = 11 + 10, is a sum of the first and third vector; 
+  * 10 = 10, is just the first vector; 
+  * 11 = 10 + 01, is a sum of the first and the second vector. 
+
+
+
+Hence, T = \{00, 01, 10, 11\}. We can choose any two of the three vectors from S and still be able to obtain all the vectors in T. In such a case, we choose the two vectors which appear first in the input. Since we cannot obtain all vectors in T using only a single vector from S, |S'| = 2 and S' = \{10, 01\} (indices 1 and 2), as set \{1, 2 \} is lexicographically the smallest. We can represent all vectors from T, using only vectors from S', as shown below: 
+
+  * 00 is a sum of the empty subset; 
+  * 01 = 01 is just the second vector; 
+  * 10 = 10 is just the first vector; 
+  * 11 = 10 + 01 is a sum of the first and the second vector. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000062 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+You may know that Euclid was a mathematician. Well, as it turns out, Morpheus knew it too. So when he wanted to play a mean trick on Euclid, he sent him an appropriate nightmare. 
+
+In his bad dream Euclid has a set S of n m-dimensional vectors over the Z_2 field and can perform vector addition on them. In other words he has vectors with m coordinates, each one equal either 0 or 1. Vector addition is defined as follows: let u+v = w, then w_i = (u_i + v_i) mod 2. 
+
+Euclid can sum any subset of S and archive another m-dimensional vector over Z_2. In particular, he can sum together an empty subset; in such a case, the resulting vector has all coordinates equal 0.
+
+Let T be the set of all the vectors that can be written as a sum of some vectors from S. Now Euclid wonders the size of T and whether he can use only a subset S' of S to obtain all the vectors from T. As it is usually the case in such scenarios, he will not wake up until he figures this out. So far, things are looking rather grim for the philosopher. But there is hope, as he noticed that all vectors in S have at most 2 coordinates equal 1. 
+
+Help Euclid and calculate |T|, the number of m-dimensional vectors over Z_2 that can be written as a sum of some vectors from S. As it can be quite large, calculate it modulo 10^9+7. You should also find S', the smallest such subset of S, that all vectors in T can be written as a sum of vectors from S'. In case there are multiple such sets with a minimal number of elements, output the lexicographically smallest one with respect to the order in which their elements are given in the input. 
+
+Consider sets A and B such that |A| = |B|. Let a_1, a_2, ... a_{|A|} and b_1, b_2, ... b_{|B|} be increasing arrays of indices elements of A and B correspondingly. A is lexicographically smaller than B iff there exists such i that a_j = b_j for all j < i and a_i < b_i.
+
+Input
+
+In the first line of input, there are two integers n, m (1 ≤ n, m ≤ 5 ⋅ 10^5) denoting the number of vectors in S and the number of dimensions. 
+
+Next n lines contain the description of the vectors in S. In each of them there is an integer k (1 ≤ k ≤ 2) and then follow k distinct integers x_1, ... x_k (1 ≤ x_i ≤ m). This encodes an m-dimensional vector having 1s on coordinates x_1, ... x_k and 0s on the rest of them.
+
+Among the n vectors, no two are the same.
+
+Output
+
+In the first line, output two integers: remainder modulo 10^9+7 of |T| and |S'|. In the second line, output |S'| numbers, indices of the elements of S' in ascending order. The elements of S are numbered from 1 in the order they are given in the input.
+
+Examples
+
+Input
+
+
+3 2
+1 1
+1 2
+2 2 1
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+2 3
+2 1 3
+2 1 2
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+3 5
+2 1 2
+1 3
+1 4
+
+
+Output
+
+
+8 3
+1 2 3 
+
+Note
+
+In the first example we are given three vectors: 
+
+  * 10 
+  * 01 
+  * 11 
+
+
+
+It turns out that we can represent all vectors from our 2-dimensional space using these vectors: 
+
+  * 00 is a sum of the empty subset of above vectors; 
+  * 01 = 11 + 10, is a sum of the first and third vector; 
+  * 10 = 10, is just the first vector; 
+  * 11 = 10 + 01, is a sum of the first and the second vector. 
+
+
+
+Hence, T = \{00, 01, 10, 11\}. We can choose any two of the three vectors from S and still be able to obtain all the vectors in T. In such a case, we choose the two vectors which appear first in the input. Since we cannot obtain all vectors in T using only a single vector from S, |S'| = 2 and S' = \{10, 01\} (indices 1 and 2), as set \{1, 2 \} is lexicographically the smallest. We can represent all vectors from T, using only vectors from S', as shown below: 
+
+  * 00 is a sum of the empty subset; 
+  * 01 = 01 is just the second vector; 
+  * 10 = 10 is just the first vector; 
+  * 11 = 10 + 01 is a sum of the first and the second vector. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000063 PROMPT ===
+Solve the following programming problem in Java.
+
+You may know that Euclid was a mathematician. Well, as it turns out, Morpheus knew it too. So when he wanted to play a mean trick on Euclid, he sent him an appropriate nightmare. 
+
+In his bad dream Euclid has a set S of n m-dimensional vectors over the Z_2 field and can perform vector addition on them. In other words he has vectors with m coordinates, each one equal either 0 or 1. Vector addition is defined as follows: let u+v = w, then w_i = (u_i + v_i) mod 2. 
+
+Euclid can sum any subset of S and archive another m-dimensional vector over Z_2. In particular, he can sum together an empty subset; in such a case, the resulting vector has all coordinates equal 0.
+
+Let T be the set of all the vectors that can be written as a sum of some vectors from S. Now Euclid wonders the size of T and whether he can use only a subset S' of S to obtain all the vectors from T. As it is usually the case in such scenarios, he will not wake up until he figures this out. So far, things are looking rather grim for the philosopher. But there is hope, as he noticed that all vectors in S have at most 2 coordinates equal 1. 
+
+Help Euclid and calculate |T|, the number of m-dimensional vectors over Z_2 that can be written as a sum of some vectors from S. As it can be quite large, calculate it modulo 10^9+7. You should also find S', the smallest such subset of S, that all vectors in T can be written as a sum of vectors from S'. In case there are multiple such sets with a minimal number of elements, output the lexicographically smallest one with respect to the order in which their elements are given in the input. 
+
+Consider sets A and B such that |A| = |B|. Let a_1, a_2, ... a_{|A|} and b_1, b_2, ... b_{|B|} be increasing arrays of indices elements of A and B correspondingly. A is lexicographically smaller than B iff there exists such i that a_j = b_j for all j < i and a_i < b_i.
+
+Input
+
+In the first line of input, there are two integers n, m (1 ≤ n, m ≤ 5 ⋅ 10^5) denoting the number of vectors in S and the number of dimensions. 
+
+Next n lines contain the description of the vectors in S. In each of them there is an integer k (1 ≤ k ≤ 2) and then follow k distinct integers x_1, ... x_k (1 ≤ x_i ≤ m). This encodes an m-dimensional vector having 1s on coordinates x_1, ... x_k and 0s on the rest of them.
+
+Among the n vectors, no two are the same.
+
+Output
+
+In the first line, output two integers: remainder modulo 10^9+7 of |T| and |S'|. In the second line, output |S'| numbers, indices of the elements of S' in ascending order. The elements of S are numbered from 1 in the order they are given in the input.
+
+Examples
+
+Input
+
+
+3 2
+1 1
+1 2
+2 2 1
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+2 3
+2 1 3
+2 1 2
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+3 5
+2 1 2
+1 3
+1 4
+
+
+Output
+
+
+8 3
+1 2 3 
+
+Note
+
+In the first example we are given three vectors: 
+
+  * 10 
+  * 01 
+  * 11 
+
+
+
+It turns out that we can represent all vectors from our 2-dimensional space using these vectors: 
+
+  * 00 is a sum of the empty subset of above vectors; 
+  * 01 = 11 + 10, is a sum of the first and third vector; 
+  * 10 = 10, is just the first vector; 
+  * 11 = 10 + 01, is a sum of the first and the second vector. 
+
+
+
+Hence, T = \{00, 01, 10, 11\}. We can choose any two of the three vectors from S and still be able to obtain all the vectors in T. In such a case, we choose the two vectors which appear first in the input. Since we cannot obtain all vectors in T using only a single vector from S, |S'| = 2 and S' = \{10, 01\} (indices 1 and 2), as set \{1, 2 \} is lexicographically the smallest. We can represent all vectors from T, using only vectors from S', as shown below: 
+
+  * 00 is a sum of the empty subset; 
+  * 01 = 01 is just the second vector; 
+  * 10 = 10 is just the first vector; 
+  * 11 = 10 + 01 is a sum of the first and the second vector. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000064 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+You may know that Euclid was a mathematician. Well, as it turns out, Morpheus knew it too. So when he wanted to play a mean trick on Euclid, he sent him an appropriate nightmare. 
+
+In his bad dream Euclid has a set S of n m-dimensional vectors over the Z_2 field and can perform vector addition on them. In other words he has vectors with m coordinates, each one equal either 0 or 1. Vector addition is defined as follows: let u+v = w, then w_i = (u_i + v_i) mod 2. 
+
+Euclid can sum any subset of S and archive another m-dimensional vector over Z_2. In particular, he can sum together an empty subset; in such a case, the resulting vector has all coordinates equal 0.
+
+Let T be the set of all the vectors that can be written as a sum of some vectors from S. Now Euclid wonders the size of T and whether he can use only a subset S' of S to obtain all the vectors from T. As it is usually the case in such scenarios, he will not wake up until he figures this out. So far, things are looking rather grim for the philosopher. But there is hope, as he noticed that all vectors in S have at most 2 coordinates equal 1. 
+
+Help Euclid and calculate |T|, the number of m-dimensional vectors over Z_2 that can be written as a sum of some vectors from S. As it can be quite large, calculate it modulo 10^9+7. You should also find S', the smallest such subset of S, that all vectors in T can be written as a sum of vectors from S'. In case there are multiple such sets with a minimal number of elements, output the lexicographically smallest one with respect to the order in which their elements are given in the input. 
+
+Consider sets A and B such that |A| = |B|. Let a_1, a_2, ... a_{|A|} and b_1, b_2, ... b_{|B|} be increasing arrays of indices elements of A and B correspondingly. A is lexicographically smaller than B iff there exists such i that a_j = b_j for all j < i and a_i < b_i.
+
+Input
+
+In the first line of input, there are two integers n, m (1 ≤ n, m ≤ 5 ⋅ 10^5) denoting the number of vectors in S and the number of dimensions. 
+
+Next n lines contain the description of the vectors in S. In each of them there is an integer k (1 ≤ k ≤ 2) and then follow k distinct integers x_1, ... x_k (1 ≤ x_i ≤ m). This encodes an m-dimensional vector having 1s on coordinates x_1, ... x_k and 0s on the rest of them.
+
+Among the n vectors, no two are the same.
+
+Output
+
+In the first line, output two integers: remainder modulo 10^9+7 of |T| and |S'|. In the second line, output |S'| numbers, indices of the elements of S' in ascending order. The elements of S are numbered from 1 in the order they are given in the input.
+
+Examples
+
+Input
+
+
+3 2
+1 1
+1 2
+2 2 1
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+2 3
+2 1 3
+2 1 2
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+3 5
+2 1 2
+1 3
+1 4
+
+
+Output
+
+
+8 3
+1 2 3 
+
+Note
+
+In the first example we are given three vectors: 
+
+  * 10 
+  * 01 
+  * 11 
+
+
+
+It turns out that we can represent all vectors from our 2-dimensional space using these vectors: 
+
+  * 00 is a sum of the empty subset of above vectors; 
+  * 01 = 11 + 10, is a sum of the first and third vector; 
+  * 10 = 10, is just the first vector; 
+  * 11 = 10 + 01, is a sum of the first and the second vector. 
+
+
+
+Hence, T = \{00, 01, 10, 11\}. We can choose any two of the three vectors from S and still be able to obtain all the vectors in T. In such a case, we choose the two vectors which appear first in the input. Since we cannot obtain all vectors in T using only a single vector from S, |S'| = 2 and S' = \{10, 01\} (indices 1 and 2), as set \{1, 2 \} is lexicographically the smallest. We can represent all vectors from T, using only vectors from S', as shown below: 
+
+  * 00 is a sum of the empty subset; 
+  * 01 = 01 is just the second vector; 
+  * 10 = 10 is just the first vector; 
+  * 11 = 10 + 01 is a sum of the first and the second vector. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000065 PROMPT ===
+Solve the following programming problem in C++.
+
+You may know that Euclid was a mathematician. Well, as it turns out, Morpheus knew it too. So when he wanted to play a mean trick on Euclid, he sent him an appropriate nightmare. 
+
+In his bad dream Euclid has a set S of n m-dimensional vectors over the Z_2 field and can perform vector addition on them. In other words he has vectors with m coordinates, each one equal either 0 or 1. Vector addition is defined as follows: let u+v = w, then w_i = (u_i + v_i) mod 2. 
+
+Euclid can sum any subset of S and archive another m-dimensional vector over Z_2. In particular, he can sum together an empty subset; in such a case, the resulting vector has all coordinates equal 0.
+
+Let T be the set of all the vectors that can be written as a sum of some vectors from S. Now Euclid wonders the size of T and whether he can use only a subset S' of S to obtain all the vectors from T. As it is usually the case in such scenarios, he will not wake up until he figures this out. So far, things are looking rather grim for the philosopher. But there is hope, as he noticed that all vectors in S have at most 2 coordinates equal 1. 
+
+Help Euclid and calculate |T|, the number of m-dimensional vectors over Z_2 that can be written as a sum of some vectors from S. As it can be quite large, calculate it modulo 10^9+7. You should also find S', the smallest such subset of S, that all vectors in T can be written as a sum of vectors from S'. In case there are multiple such sets with a minimal number of elements, output the lexicographically smallest one with respect to the order in which their elements are given in the input. 
+
+Consider sets A and B such that |A| = |B|. Let a_1, a_2, ... a_{|A|} and b_1, b_2, ... b_{|B|} be increasing arrays of indices elements of A and B correspondingly. A is lexicographically smaller than B iff there exists such i that a_j = b_j for all j < i and a_i < b_i.
+
+Input
+
+In the first line of input, there are two integers n, m (1 ≤ n, m ≤ 5 ⋅ 10^5) denoting the number of vectors in S and the number of dimensions. 
+
+Next n lines contain the description of the vectors in S. In each of them there is an integer k (1 ≤ k ≤ 2) and then follow k distinct integers x_1, ... x_k (1 ≤ x_i ≤ m). This encodes an m-dimensional vector having 1s on coordinates x_1, ... x_k and 0s on the rest of them.
+
+Among the n vectors, no two are the same.
+
+Output
+
+In the first line, output two integers: remainder modulo 10^9+7 of |T| and |S'|. In the second line, output |S'| numbers, indices of the elements of S' in ascending order. The elements of S are numbered from 1 in the order they are given in the input.
+
+Examples
+
+Input
+
+
+3 2
+1 1
+1 2
+2 2 1
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+2 3
+2 1 3
+2 1 2
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+3 5
+2 1 2
+1 3
+1 4
+
+
+Output
+
+
+8 3
+1 2 3 
+
+Note
+
+In the first example we are given three vectors: 
+
+  * 10 
+  * 01 
+  * 11 
+
+
+
+It turns out that we can represent all vectors from our 2-dimensional space using these vectors: 
+
+  * 00 is a sum of the empty subset of above vectors; 
+  * 01 = 11 + 10, is a sum of the first and third vector; 
+  * 10 = 10, is just the first vector; 
+  * 11 = 10 + 01, is a sum of the first and the second vector. 
+
+
+
+Hence, T = \{00, 01, 10, 11\}. We can choose any two of the three vectors from S and still be able to obtain all the vectors in T. In such a case, we choose the two vectors which appear first in the input. Since we cannot obtain all vectors in T using only a single vector from S, |S'| = 2 and S' = \{10, 01\} (indices 1 and 2), as set \{1, 2 \} is lexicographically the smallest. We can represent all vectors from T, using only vectors from S', as shown below: 
+
+  * 00 is a sum of the empty subset; 
+  * 01 = 01 is just the second vector; 
+  * 10 = 10 is just the first vector; 
+  * 11 = 10 + 01 is a sum of the first and the second vector. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000066 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+You may know that Euclid was a mathematician. Well, as it turns out, Morpheus knew it too. So when he wanted to play a mean trick on Euclid, he sent him an appropriate nightmare. 
+
+In his bad dream Euclid has a set S of n m-dimensional vectors over the Z_2 field and can perform vector addition on them. In other words he has vectors with m coordinates, each one equal either 0 or 1. Vector addition is defined as follows: let u+v = w, then w_i = (u_i + v_i) mod 2. 
+
+Euclid can sum any subset of S and archive another m-dimensional vector over Z_2. In particular, he can sum together an empty subset; in such a case, the resulting vector has all coordinates equal 0.
+
+Let T be the set of all the vectors that can be written as a sum of some vectors from S. Now Euclid wonders the size of T and whether he can use only a subset S' of S to obtain all the vectors from T. As it is usually the case in such scenarios, he will not wake up until he figures this out. So far, things are looking rather grim for the philosopher. But there is hope, as he noticed that all vectors in S have at most 2 coordinates equal 1. 
+
+Help Euclid and calculate |T|, the number of m-dimensional vectors over Z_2 that can be written as a sum of some vectors from S. As it can be quite large, calculate it modulo 10^9+7. You should also find S', the smallest such subset of S, that all vectors in T can be written as a sum of vectors from S'. In case there are multiple such sets with a minimal number of elements, output the lexicographically smallest one with respect to the order in which their elements are given in the input. 
+
+Consider sets A and B such that |A| = |B|. Let a_1, a_2, ... a_{|A|} and b_1, b_2, ... b_{|B|} be increasing arrays of indices elements of A and B correspondingly. A is lexicographically smaller than B iff there exists such i that a_j = b_j for all j < i and a_i < b_i.
+
+Input
+
+In the first line of input, there are two integers n, m (1 ≤ n, m ≤ 5 ⋅ 10^5) denoting the number of vectors in S and the number of dimensions. 
+
+Next n lines contain the description of the vectors in S. In each of them there is an integer k (1 ≤ k ≤ 2) and then follow k distinct integers x_1, ... x_k (1 ≤ x_i ≤ m). This encodes an m-dimensional vector having 1s on coordinates x_1, ... x_k and 0s on the rest of them.
+
+Among the n vectors, no two are the same.
+
+Output
+
+In the first line, output two integers: remainder modulo 10^9+7 of |T| and |S'|. In the second line, output |S'| numbers, indices of the elements of S' in ascending order. The elements of S are numbered from 1 in the order they are given in the input.
+
+Examples
+
+Input
+
+
+3 2
+1 1
+1 2
+2 2 1
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+2 3
+2 1 3
+2 1 2
+
+
+Output
+
+
+4 2
+1 2 
+
+
+Input
+
+
+3 5
+2 1 2
+1 3
+1 4
+
+
+Output
+
+
+8 3
+1 2 3 
+
+Note
+
+In the first example we are given three vectors: 
+
+  * 10 
+  * 01 
+  * 11 
+
+
+
+It turns out that we can represent all vectors from our 2-dimensional space using these vectors: 
+
+  * 00 is a sum of the empty subset of above vectors; 
+  * 01 = 11 + 10, is a sum of the first and third vector; 
+  * 10 = 10, is just the first vector; 
+  * 11 = 10 + 01, is a sum of the first and the second vector. 
+
+
+
+Hence, T = \{00, 01, 10, 11\}. We can choose any two of the three vectors from S and still be able to obtain all the vectors in T. In such a case, we choose the two vectors which appear first in the input. Since we cannot obtain all vectors in T using only a single vector from S, |S'| = 2 and S' = \{10, 01\} (indices 1 and 2), as set \{1, 2 \} is lexicographically the smallest. We can represent all vectors from T, using only vectors from S', as shown below: 
+
+  * 00 is a sum of the empty subset; 
+  * 01 = 01 is just the second vector; 
+  * 10 = 10 is just the first vector; 
+  * 11 = 10 + 01 is a sum of the first and the second vector. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000067 PROMPT ===
+Solve the following programming problem in Python.
+
+You are given an integer n. You have to apply m operations to it.
+
+In a single operation, you must replace every digit d of the number with the decimal representation of integer d + 1. For example, 1912 becomes 21023 after applying the operation once.
+
+You have to find the length of n after applying m operations. Since the answer can be very large, print it modulo 10^9+7.
+
+Input
+
+The first line contains a single integer t (1 ≤ t ≤ 2 ⋅ 10^5) — the number of test cases.
+
+The only line of each test case contains two integers n (1 ≤ n ≤ 10^9) and m (1 ≤ m ≤ 2 ⋅ 10^5) — the initial number and the number of operations. 
+
+Output
+
+For each test case output the length of the resulting number modulo 10^9+7.
+
+Example
+
+Input
+
+
+5
+1912 1
+5 6
+999 1
+88 2
+12 100
+
+
+Output
+
+
+5
+2
+6
+4
+2115
+
+Note
+
+For the first test, 1912 becomes 21023 after 1 operation which is of length 5.
+
+For the second test, 5 becomes 21 after 6 operations which is of length 2.
+
+For the third test, 999 becomes 101010 after 1 operation which is of length 6.
+
+For the fourth test, 88 becomes 1010 after 2 operations which is of length 4.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000068 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+You are given an integer n. You have to apply m operations to it.
+
+In a single operation, you must replace every digit d of the number with the decimal representation of integer d + 1. For example, 1912 becomes 21023 after applying the operation once.
+
+You have to find the length of n after applying m operations. Since the answer can be very large, print it modulo 10^9+7.
+
+Input
+
+The first line contains a single integer t (1 ≤ t ≤ 2 ⋅ 10^5) — the number of test cases.
+
+The only line of each test case contains two integers n (1 ≤ n ≤ 10^9) and m (1 ≤ m ≤ 2 ⋅ 10^5) — the initial number and the number of operations. 
+
+Output
+
+For each test case output the length of the resulting number modulo 10^9+7.
+
+Example
+
+Input
+
+
+5
+1912 1
+5 6
+999 1
+88 2
+12 100
+
+
+Output
+
+
+5
+2
+6
+4
+2115
+
+Note
+
+For the first test, 1912 becomes 21023 after 1 operation which is of length 5.
+
+For the second test, 5 becomes 21 after 6 operations which is of length 2.
+
+For the third test, 999 becomes 101010 after 1 operation which is of length 6.
+
+For the fourth test, 88 becomes 1010 after 2 operations which is of length 4.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000069 PROMPT ===
+Solve the following programming problem in Java.
+
+You are given an integer n. You have to apply m operations to it.
+
+In a single operation, you must replace every digit d of the number with the decimal representation of integer d + 1. For example, 1912 becomes 21023 after applying the operation once.
+
+You have to find the length of n after applying m operations. Since the answer can be very large, print it modulo 10^9+7.
+
+Input
+
+The first line contains a single integer t (1 ≤ t ≤ 2 ⋅ 10^5) — the number of test cases.
+
+The only line of each test case contains two integers n (1 ≤ n ≤ 10^9) and m (1 ≤ m ≤ 2 ⋅ 10^5) — the initial number and the number of operations. 
+
+Output
+
+For each test case output the length of the resulting number modulo 10^9+7.
+
+Example
+
+Input
+
+
+5
+1912 1
+5 6
+999 1
+88 2
+12 100
+
+
+Output
+
+
+5
+2
+6
+4
+2115
+
+Note
+
+For the first test, 1912 becomes 21023 after 1 operation which is of length 5.
+
+For the second test, 5 becomes 21 after 6 operations which is of length 2.
+
+For the third test, 999 becomes 101010 after 1 operation which is of length 6.
+
+For the fourth test, 88 becomes 1010 after 2 operations which is of length 4.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000070 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+You are given an integer n. You have to apply m operations to it.
+
+In a single operation, you must replace every digit d of the number with the decimal representation of integer d + 1. For example, 1912 becomes 21023 after applying the operation once.
+
+You have to find the length of n after applying m operations. Since the answer can be very large, print it modulo 10^9+7.
+
+Input
+
+The first line contains a single integer t (1 ≤ t ≤ 2 ⋅ 10^5) — the number of test cases.
+
+The only line of each test case contains two integers n (1 ≤ n ≤ 10^9) and m (1 ≤ m ≤ 2 ⋅ 10^5) — the initial number and the number of operations. 
+
+Output
+
+For each test case output the length of the resulting number modulo 10^9+7.
+
+Example
+
+Input
+
+
+5
+1912 1
+5 6
+999 1
+88 2
+12 100
+
+
+Output
+
+
+5
+2
+6
+4
+2115
+
+Note
+
+For the first test, 1912 becomes 21023 after 1 operation which is of length 5.
+
+For the second test, 5 becomes 21 after 6 operations which is of length 2.
+
+For the third test, 999 becomes 101010 after 1 operation which is of length 6.
+
+For the fourth test, 88 becomes 1010 after 2 operations which is of length 4.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000071 PROMPT ===
+Solve the following programming problem in C++.
+
+You are given an integer n. You have to apply m operations to it.
+
+In a single operation, you must replace every digit d of the number with the decimal representation of integer d + 1. For example, 1912 becomes 21023 after applying the operation once.
+
+You have to find the length of n after applying m operations. Since the answer can be very large, print it modulo 10^9+7.
+
+Input
+
+The first line contains a single integer t (1 ≤ t ≤ 2 ⋅ 10^5) — the number of test cases.
+
+The only line of each test case contains two integers n (1 ≤ n ≤ 10^9) and m (1 ≤ m ≤ 2 ⋅ 10^5) — the initial number and the number of operations. 
+
+Output
+
+For each test case output the length of the resulting number modulo 10^9+7.
+
+Example
+
+Input
+
+
+5
+1912 1
+5 6
+999 1
+88 2
+12 100
+
+
+Output
+
+
+5
+2
+6
+4
+2115
+
+Note
+
+For the first test, 1912 becomes 21023 after 1 operation which is of length 5.
+
+For the second test, 5 becomes 21 after 6 operations which is of length 2.
+
+For the third test, 999 becomes 101010 after 1 operation which is of length 6.
+
+For the fourth test, 88 becomes 1010 after 2 operations which is of length 4.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000072 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+You are given an integer n. You have to apply m operations to it.
+
+In a single operation, you must replace every digit d of the number with the decimal representation of integer d + 1. For example, 1912 becomes 21023 after applying the operation once.
+
+You have to find the length of n after applying m operations. Since the answer can be very large, print it modulo 10^9+7.
+
+Input
+
+The first line contains a single integer t (1 ≤ t ≤ 2 ⋅ 10^5) — the number of test cases.
+
+The only line of each test case contains two integers n (1 ≤ n ≤ 10^9) and m (1 ≤ m ≤ 2 ⋅ 10^5) — the initial number and the number of operations. 
+
+Output
+
+For each test case output the length of the resulting number modulo 10^9+7.
+
+Example
+
+Input
+
+
+5
+1912 1
+5 6
+999 1
+88 2
+12 100
+
+
+Output
+
+
+5
+2
+6
+4
+2115
+
+Note
+
+For the first test, 1912 becomes 21023 after 1 operation which is of length 5.
+
+For the second test, 5 becomes 21 after 6 operations which is of length 2.
+
+For the third test, 999 becomes 101010 after 1 operation which is of length 6.
+
+For the fourth test, 88 becomes 1010 after 2 operations which is of length 4.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000073 PROMPT ===
+Solve the following programming problem in Python.
+
+Vasily the Programmer loves romance, so this year he decided to illuminate his room with candles.
+
+Vasily has a candles.When Vasily lights up a new candle, it first burns for an hour and then it goes out. Vasily is smart, so he can make b went out candles into a new candle. As a result, this new candle can be used like any other new candle.
+
+Now Vasily wonders: for how many hours can his candles light up the room if he acts optimally well? Help him find this number.
+
+Input
+
+The single line contains two integers, a and b (1 ≤ a ≤ 1000; 2 ≤ b ≤ 1000).
+
+Output
+
+Print a single integer — the number of hours Vasily can light up the room for.
+
+Examples
+
+Input
+
+4 2
+
+
+Output
+
+7
+
+
+Input
+
+6 3
+
+
+Output
+
+8
+
+Note
+
+Consider the first sample. For the first four hours Vasily lights up new candles, then he uses four burned out candles to make two new ones and lights them up. When these candles go out (stop burning), Vasily can make another candle. Overall, Vasily can light up the room for 7 hours.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000074 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+Vasily the Programmer loves romance, so this year he decided to illuminate his room with candles.
+
+Vasily has a candles.When Vasily lights up a new candle, it first burns for an hour and then it goes out. Vasily is smart, so he can make b went out candles into a new candle. As a result, this new candle can be used like any other new candle.
+
+Now Vasily wonders: for how many hours can his candles light up the room if he acts optimally well? Help him find this number.
+
+Input
+
+The single line contains two integers, a and b (1 ≤ a ≤ 1000; 2 ≤ b ≤ 1000).
+
+Output
+
+Print a single integer — the number of hours Vasily can light up the room for.
+
+Examples
+
+Input
+
+4 2
+
+
+Output
+
+7
+
+
+Input
+
+6 3
+
+
+Output
+
+8
+
+Note
+
+Consider the first sample. For the first four hours Vasily lights up new candles, then he uses four burned out candles to make two new ones and lights them up. When these candles go out (stop burning), Vasily can make another candle. Overall, Vasily can light up the room for 7 hours.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000075 PROMPT ===
+Solve the following programming problem in Java.
+
+Vasily the Programmer loves romance, so this year he decided to illuminate his room with candles.
+
+Vasily has a candles.When Vasily lights up a new candle, it first burns for an hour and then it goes out. Vasily is smart, so he can make b went out candles into a new candle. As a result, this new candle can be used like any other new candle.
+
+Now Vasily wonders: for how many hours can his candles light up the room if he acts optimally well? Help him find this number.
+
+Input
+
+The single line contains two integers, a and b (1 ≤ a ≤ 1000; 2 ≤ b ≤ 1000).
+
+Output
+
+Print a single integer — the number of hours Vasily can light up the room for.
+
+Examples
+
+Input
+
+4 2
+
+
+Output
+
+7
+
+
+Input
+
+6 3
+
+
+Output
+
+8
+
+Note
+
+Consider the first sample. For the first four hours Vasily lights up new candles, then he uses four burned out candles to make two new ones and lights them up. When these candles go out (stop burning), Vasily can make another candle. Overall, Vasily can light up the room for 7 hours.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

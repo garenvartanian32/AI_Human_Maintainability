@@ -1,8 +1,32 @@
 # Ignore everything by default
 /*
 
-# Only track essential repository files
+# Repository files
 !/.gitignore
 !/README.md
 !/requirements.txt
-!/AI_Human_Maintainability.py
+
+# Python scripts and JSONL exports
+!/*.py
+!/*.jsonl
+
+# Experimental folders
+!/datasets/
+!/experiments/
+!/thesis_work/
+
+# Exclude temporary and sensitive files
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Large dataset files (download separately)
+datasets/human_vs_ai_quality/java_dataset.jsonl
+datasets/human_vs_ai_quality/python_dataset.jsonl
+
+# Large generated results
+thesis_work/results/hvai_full.csv

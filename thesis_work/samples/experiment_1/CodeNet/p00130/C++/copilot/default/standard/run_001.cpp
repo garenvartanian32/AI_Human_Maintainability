@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including input/output format, samples, and constraints). Once provided, I'll implement a complete, efficient C++ solution with brief explanation and any notes about complexity.

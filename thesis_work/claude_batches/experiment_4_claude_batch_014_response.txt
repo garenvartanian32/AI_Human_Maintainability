@@ -1,0 +1,997 @@
+=== REQ000326 START ===
+"""Count roads that lie on no shortest path between their two towns."""
+
+import sys
+
+UNREACHABLE = float("inf")
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    town_count = int(tokens[0])
+    road_count = int(tokens[1])
+
+    shortest = [[UNREACHABLE] * (town_count + 1) for _ in range(town_count + 1)]
+    for town in range(1, town_count + 1):
+        shortest[town][town] = 0
+
+    roads = []
+    cursor = 2
+    for _ in range(road_count):
+        first = int(tokens[cursor])
+        second = int(tokens[cursor + 1])
+        length = int(tokens[cursor + 2])
+        cursor += 3
+
+        roads.append((first, second, length))
+        # Parallel roads may exist; keep only the shortest as the direct link.
+        if length < shortest[first][second]:
+            shortest[first][second] = length
+            shortest[second][first] = length
+
+    _run_floyd_warshall(shortest, town_count)
+
+    # A road is redundant exactly when some detour beats travelling along it.
+    redundant = sum(1 for first, second, length in roads if shortest[first][second] < length)
+    print(redundant)
+
+
+def _run_floyd_warshall(shortest: list[list[float]], town_count: int) -> None:
+    for waypoint in range(1, town_count + 1):
+        via_waypoint = shortest[waypoint]
+        for origin in range(1, town_count + 1):
+            to_waypoint = shortest[origin][waypoint]
+            if to_waypoint == UNREACHABLE:
+                continue
+
+            row = shortest[origin]
+            for destination in range(1, town_count + 1):
+                detour = to_waypoint + via_waypoint[destination]
+                if detour < row[destination]:
+                    row[destination] = detour
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000326 END ===
+
+=== REQ000327 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int m = (int) st.nval;
+        long INF = Long.MAX_VALUE / 4;
+        long[][] dist = new long[n+1][n+1];
+        for (long[] row : dist) Arrays.fill(row, INF);
+        for (int i = 1; i <= n; i++) dist[i][i] = 0;
+        int[] ea = new int[m], eb = new int[m];
+        long[] ec = new long[m];
+        for (int i = 0; i < m; i++) {
+            st.nextToken(); int a = (int) st.nval;
+            st.nextToken(); int b = (int) st.nval;
+            st.nextToken(); long c = (long) st.nval;
+            ea[i] = a; eb[i] = b; ec[i] = c;
+            if (c < dist[a][b]) { dist[a][b] = c; dist[b][a] = c; }
+        }
+        for (int k = 1; k <= n; k++) {
+            for (int i = 1; i <= n; i++) {
+                if (dist[i][k] >= INF) continue;
+                for (int j = 1; j <= n; j++) {
+                    long nd = dist[i][k] + dist[k][j];
+                    if (nd < dist[i][j]) dist[i][j] = nd;
+                }
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            if (dist[ea[i]][eb[i]] < ec[i]) count++;
+        }
+        System.out.println(count);
+    }
+}
+=== REQ000327 END ===
+
+=== REQ000328 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.Arrays;
+
+/**
+ * Counts roads that lie on no shortest path between their two towns.
+ *
+ * <p>A road is redundant exactly when some detour beats travelling along it.
+ */
+public class Sol {
+
+    private static final long UNREACHABLE = Long.MAX_VALUE / 4;
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int townCount = (int) input.nval;
+        input.nextToken();
+        int roadCount = (int) input.nval;
+
+        long[][] shortest = new long[townCount + 1][townCount + 1];
+        for (long[] row : shortest) {
+            Arrays.fill(row, UNREACHABLE);
+        }
+        for (int town = 1; town <= townCount; town++) {
+            shortest[town][town] = 0;
+        }
+
+        int[] firstTown = new int[roadCount];
+        int[] secondTown = new int[roadCount];
+        long[] roadLength = new long[roadCount];
+
+        for (int road = 0; road < roadCount; road++) {
+            input.nextToken();
+            firstTown[road] = (int) input.nval;
+            input.nextToken();
+            secondTown[road] = (int) input.nval;
+            input.nextToken();
+            roadLength[road] = (long) input.nval;
+
+            // Parallel roads may exist; keep only the shortest as the link.
+            if (roadLength[road] < shortest[firstTown[road]][secondTown[road]]) {
+                shortest[firstTown[road]][secondTown[road]] = roadLength[road];
+                shortest[secondTown[road]][firstTown[road]] = roadLength[road];
+            }
+        }
+
+        runFloydWarshall(shortest, townCount);
+
+        int redundant = 0;
+        for (int road = 0; road < roadCount; road++) {
+            if (shortest[firstTown[road]][secondTown[road]] < roadLength[road]) {
+                redundant++;
+            }
+        }
+        System.out.println(redundant);
+    }
+
+    private static void runFloydWarshall(long[][] shortest, int townCount) {
+        for (int waypoint = 1; waypoint <= townCount; waypoint++) {
+            for (int origin = 1; origin <= townCount; origin++) {
+                long toWaypoint = shortest[origin][waypoint];
+                if (toWaypoint >= UNREACHABLE) {
+                    continue;
+                }
+                for (int destination = 1; destination <= townCount; destination++) {
+                    long detour = toWaypoint + shortest[waypoint][destination];
+                    if (detour < shortest[origin][destination]) {
+                        shortest[origin][destination] = detour;
+                    }
+                }
+            }
+        }
+    }
+}
+=== REQ000328 END ===
+
+=== REQ000329 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    const long long INF = LLONG_MAX / 4;
+    vector<vector<long long>> dist(n+1, vector<long long>(n+1, INF));
+    for (int i = 1; i <= n; i++) dist[i][i] = 0;
+    vector<int> ea(m), eb(m);
+    vector<long long> ec(m);
+    for (int i = 0; i < m; i++) {
+        int a, b; long long c;
+        cin >> a >> b >> c;
+        ea[i] = a; eb[i] = b; ec[i] = c;
+        if (c < dist[a][b]) { dist[a][b] = c; dist[b][a] = c; }
+    }
+    for (int k = 1; k <= n; k++) {
+        for (int i = 1; i <= n; i++) {
+            if (dist[i][k] >= INF) continue;
+            for (int j = 1; j <= n; j++) {
+                long long nd = dist[i][k] + dist[k][j];
+                if (nd < dist[i][j]) dist[i][j] = nd;
+            }
+        }
+    }
+    int count = 0;
+    for (int i = 0; i < m; i++) {
+        if (dist[ea[i]][eb[i]] < ec[i]) count++;
+    }
+    cout << count << endl;
+    return 0;
+}
+=== REQ000329 END ===
+
+=== REQ000330 START ===
+#include <climits>
+#include <iostream>
+#include <vector>
+
+namespace {
+
+constexpr long long kUnreachable = LLONG_MAX / 4;
+
+void runFloydWarshall(std::vector<std::vector<long long>>& shortest, int townCount) {
+    for (int waypoint = 1; waypoint <= townCount; ++waypoint) {
+        for (int origin = 1; origin <= townCount; ++origin) {
+            const long long toWaypoint = shortest[origin][waypoint];
+            if (toWaypoint >= kUnreachable) {
+                continue;
+            }
+            for (int destination = 1; destination <= townCount; ++destination) {
+                const long long detour = toWaypoint + shortest[waypoint][destination];
+                if (detour < shortest[origin][destination]) {
+                    shortest[origin][destination] = detour;
+                }
+            }
+        }
+    }
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int townCount, roadCount;
+    std::cin >> townCount >> roadCount;
+
+    std::vector<std::vector<long long>> shortest(
+        townCount + 1, std::vector<long long>(townCount + 1, kUnreachable));
+    for (int town = 1; town <= townCount; ++town) {
+        shortest[town][town] = 0;
+    }
+
+    std::vector<int> firstTown(roadCount), secondTown(roadCount);
+    std::vector<long long> roadLength(roadCount);
+
+    for (int road = 0; road < roadCount; ++road) {
+        std::cin >> firstTown[road] >> secondTown[road] >> roadLength[road];
+
+        // Parallel roads may exist; keep only the shortest as the direct link.
+        if (roadLength[road] < shortest[firstTown[road]][secondTown[road]]) {
+            shortest[firstTown[road]][secondTown[road]] = roadLength[road];
+            shortest[secondTown[road]][firstTown[road]] = roadLength[road];
+        }
+    }
+
+    runFloydWarshall(shortest, townCount);
+
+    // A road is redundant exactly when some detour beats travelling along it.
+    int redundant = 0;
+    for (int road = 0; road < roadCount; ++road) {
+        if (shortest[firstTown[road]][secondTown[road]] < roadLength[road]) {
+            ++redundant;
+        }
+    }
+
+    std::cout << redundant << '\n';
+    return 0;
+}
+=== REQ000330 END ===
+
+=== REQ000331 START ===
+import sys
+
+def main():
+    a, b = map(int, sys.stdin.read().split())
+    if a <= 0 <= b:
+        print("Zero")
+    elif a > 0:
+        print("Positive")
+    else:
+        count = b - a + 1
+        print("Positive" if count % 2 == 0 else "Negative")
+
+main()
+=== REQ000331 END ===
+
+=== REQ000332 START ===
+"""Report the sign of the product of every integer in [a, b]."""
+
+import sys
+
+
+def main() -> None:
+    low, high = map(int, sys.stdin.read().split())
+
+    if low <= 0 <= high:
+        # Zero is in range, so it annihilates the product.
+        print("Zero")
+    elif low > 0:
+        # Every factor is positive.
+        print("Positive")
+    else:
+        # Every factor is negative; the sign follows the count's parity.
+        factor_count = high - low + 1
+        print("Positive" if factor_count % 2 == 0 else "Negative")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000332 END ===
+
+=== REQ000333 START ===
+import java.io.*;
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); long a = (long) st.nval;
+        st.nextToken(); long b = (long) st.nval;
+        if (a <= 0 && 0 <= b) {
+            System.out.println("Zero");
+        } else if (a > 0) {
+            System.out.println("Positive");
+        } else {
+            long count = b - a + 1;
+            System.out.println(count % 2 == 0 ? "Positive" : "Negative");
+        }
+    }
+}
+=== REQ000333 END ===
+
+=== REQ000334 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ * Reports the sign of the product of every integer in [a, b].
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer line = new StringTokenizer(reader.readLine());
+
+        long low = Long.parseLong(line.nextToken());
+        long high = Long.parseLong(line.nextToken());
+
+        if (low <= 0 && 0 <= high) {
+            // Zero is in range, so it annihilates the product.
+            System.out.println("Zero");
+        } else if (low > 0) {
+            // Every factor is positive.
+            System.out.println("Positive");
+        } else {
+            // Every factor is negative; the sign follows the count's parity.
+            long factorCount = high - low + 1;
+            System.out.println(factorCount % 2 == 0 ? "Positive" : "Negative");
+        }
+    }
+}
+=== REQ000334 END ===
+
+=== REQ000335 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    long long a, b;
+    cin >> a >> b;
+    if (a <= 0 && 0 <= b) {
+        cout << "Zero" << endl;
+    } else if (a > 0) {
+        cout << "Positive" << endl;
+    } else {
+        long long count = b - a + 1;
+        cout << (count % 2 == 0 ? "Positive" : "Negative") << endl;
+    }
+    return 0;
+}
+=== REQ000335 END ===
+
+=== REQ000336 START ===
+#include <iostream>
+
+int main() {
+    long long low, high;
+    std::cin >> low >> high;
+
+    if (low <= 0 && 0 <= high) {
+        // Zero is in range, so it annihilates the product.
+        std::cout << "Zero\n";
+    } else if (low > 0) {
+        // Every factor is positive.
+        std::cout << "Positive\n";
+    } else {
+        // Every factor is negative; the sign follows the count's parity.
+        const long long factorCount = high - low + 1;
+        std::cout << (factorCount % 2 == 0 ? "Positive" : "Negative") << '\n';
+    }
+    return 0;
+}
+=== REQ000336 END ===
+
+=== REQ000337 START ===
+def max_fill(grid, capacity):
+    import math
+    """
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+    Example 1:
+        Input: 
+            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
+            bucket_capacity : 1
+        Output: 6
+
+    Example 2:
+        Input: 
+            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
+            bucket_capacity : 2
+        Output: 5
+    
+    Example 3:
+        Input: 
+            grid : [[0,0,0], [0,0,0]]
+            bucket_capacity : 5
+        Output: 0
+
+    Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """
+    total = 0
+    for row in grid:
+        total += math.ceil(sum(row) / capacity)
+    return total
+=== REQ000337 END ===
+
+=== REQ000338 START ===
+def max_fill(grid, capacity):
+    import math
+    """
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+    Example 1:
+        Input: 
+            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
+            bucket_capacity : 1
+        Output: 6
+
+    Example 2:
+        Input: 
+            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
+            bucket_capacity : 2
+        Output: 5
+    
+    Example 3:
+        Input: 
+            grid : [[0,0,0], [0,0,0]]
+            bucket_capacity : 5
+        Output: 0
+
+    Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """
+    # Wells are independent: each one needs its own water divided by the bucket
+    # size, rounded up because a part-full bucket still counts as one lowering.
+    total_lowerings = 0
+    for well in grid:
+        units_of_water = sum(well)
+        total_lowerings += math.ceil(units_of_water / capacity)
+    return total_lowerings
+=== REQ000338 END ===
+
+=== REQ000339 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a rectangular grid of wells. Each row represents a single well,
+    // and each 1 in a row represents a single unit of water.
+    // Each well has a corresponding bucket that can be used to extract water from it, 
+    // and all buckets have the same capacity.
+    // Your task is to use the buckets to empty the wells.
+    // Output the number of times you need to lower the buckets.
+    // Example 1:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l))))), (1l))
+    // (6l)
+    // Example 2:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)1l, (long)1l))))), (2l))
+    // (5l)
+    // Example 3:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l))))), (5l))
+    // (0l)
+    // Constraints:
+    // * all wells have the same length
+    // * 1 <= grid.length <= 10^2
+    // * 1 <= grid[:,1].length <= 10^2
+    // * grid[i][j] -> 0 | 1
+    // * 1 <= capacity <= 10
+    public static long maxFill(ArrayList<ArrayList<Long>> grid, long capacity) {
+        long total = 0;
+        for (ArrayList<Long> row : grid) {
+            long sum = 0;
+            for (long v : row) sum += v;
+            total += (sum + capacity - 1) / capacity;
+        }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<ArrayList<Long>> g1 = new ArrayList<>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(0L,0L,1L,0L)),
+            new ArrayList<>(Arrays.asList(0L,1L,0L,0L)),
+            new ArrayList<>(Arrays.asList(1L,1L,1L,1L))));
+        System.out.println(maxFill(g1, 1L));
+        ArrayList<ArrayList<Long>> g2 = new ArrayList<>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(0L,0L,1L,1L)),
+            new ArrayList<>(Arrays.asList(0L,0L,0L,0L)),
+            new ArrayList<>(Arrays.asList(1L,1L,1L,1L)),
+            new ArrayList<>(Arrays.asList(0L,1L,1L,1L))));
+        System.out.println(maxFill(g2, 2L));
+    }
+}
+=== REQ000339 END ===
+
+=== REQ000340 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a rectangular grid of wells. Each row represents a single well,
+    // and each 1 in a row represents a single unit of water.
+    // Each well has a corresponding bucket that can be used to extract water from it, 
+    // and all buckets have the same capacity.
+    // Your task is to use the buckets to empty the wells.
+    // Output the number of times you need to lower the buckets.
+    // Example 1:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l))))), (1l))
+    // (6l)
+    // Example 2:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)1l, (long)1l))))), (2l))
+    // (5l)
+    // Example 3:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l))))), (5l))
+    // (0l)
+    // Constraints:
+    // * all wells have the same length
+    // * 1 <= grid.length <= 10^2
+    // * 1 <= grid[:,1].length <= 10^2
+    // * grid[i][j] -> 0 | 1
+    // * 1 <= capacity <= 10
+    public static long maxFill(ArrayList<ArrayList<Long>> grid, long capacity) {
+        // Wells are independent: each one needs its own water divided by the
+        // bucket size, rounded up because a part-full bucket still counts.
+        long totalLowerings = 0;
+        for (ArrayList<Long> well : grid) {
+            totalLowerings += loweringsFor(unitsOfWater(well), capacity);
+        }
+        return totalLowerings;
+    }
+
+    /** Total units of water sitting in one well. */
+    private static long unitsOfWater(ArrayList<Long> well) {
+        long units = 0;
+        for (long cell : well) {
+            units += cell;
+        }
+        return units;
+    }
+
+    /** Bucket lowerings needed to empty one well, rounding partial loads up. */
+    private static long loweringsFor(long unitsOfWater, long capacity) {
+        return (unitsOfWater + capacity - 1) / capacity;
+    }
+}
+=== REQ000340 END ===
+
+=== REQ000341 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a rectangular grid of wells. Each row represents a single well,
+// and each 1 in a row represents a single unit of water.
+// Each well has a corresponding bucket that can be used to extract water from it, 
+// and all buckets have the same capacity.
+// Your task is to use the buckets to empty the wells.
+// Output the number of times you need to lower the buckets.
+// Example 1:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1})})), (1))
+// (6)
+// Example 2:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)1, (long)1})})), (2))
+// (5)
+// Example 3:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0})})), (5))
+// (0)
+// Constraints:
+// * all wells have the same length
+// * 1 <= grid.length <= 10^2
+// * 1 <= grid[:,1].length <= 10^2
+// * grid[i][j] -> 0 | 1
+// * 1 <= capacity <= 10
+long max_fill(std::vector<std::vector<long>> grid, long capacity) {
+    long total = 0;
+    for (auto &row : grid) {
+        long s = 0;
+        for (long v : row) s += v;
+        total += (s + capacity - 1) / capacity;
+    }
+    return total;
+}
+
+int main() {
+    std::vector<std::vector<long>> g1 = {{0,0,1,0},{0,1,0,0},{1,1,1,1}};
+    std::cout << max_fill(g1, 1) << std::endl;
+    std::vector<std::vector<long>> g2 = {{0,0,1,1},{0,0,0,0},{1,1,1,1},{0,1,1,1}};
+    std::cout << max_fill(g2, 2) << std::endl;
+    return 0;
+}
+=== REQ000341 END ===
+
+=== REQ000342 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a rectangular grid of wells. Each row represents a single well,
+// and each 1 in a row represents a single unit of water.
+// Each well has a corresponding bucket that can be used to extract water from it, 
+// and all buckets have the same capacity.
+// Your task is to use the buckets to empty the wells.
+// Output the number of times you need to lower the buckets.
+// Example 1:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1})})), (1))
+// (6)
+// Example 2:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)1, (long)1})})), (2))
+// (5)
+// Example 3:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0})})), (5))
+// (0)
+// Constraints:
+// * all wells have the same length
+// * 1 <= grid.length <= 10^2
+// * 1 <= grid[:,1].length <= 10^2
+// * grid[i][j] -> 0 | 1
+// * 1 <= capacity <= 10
+long max_fill(std::vector<std::vector<long>> grid, long capacity) {
+    // Wells are independent: each one needs its own water divided by the bucket
+    // size, rounded up because a part-full bucket still counts as one lowering.
+    long totalLowerings = 0;
+    for (const std::vector<long>& well : grid) {
+        const long unitsOfWater = std::accumulate(well.begin(), well.end(), 0L);
+        totalLowerings += (unitsOfWater + capacity - 1) / capacity;
+    }
+    return totalLowerings;
+}
+=== REQ000342 END ===
+
+=== REQ000343 START ===
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+    def is_good(s):
+        bal = 0
+        for c in s:
+            bal += 1 if c == '(' else -1
+            if bal < 0:
+                return False
+        return bal == 0
+
+    a, b = lst[0], lst[1]
+    if is_good(a + b) or is_good(b + a):
+        return 'Yes'
+    return 'No'
+=== REQ000343 END ===
+
+=== REQ000344 START ===
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+    def is_balanced(text: str) -> bool:
+        """True when every closing bracket is matched by an earlier opening one."""
+        depth = 0
+        for character in text:
+            depth += 1 if character == '(' else -1
+            if depth < 0:
+                return False
+        return depth == 0
+
+    first, second = lst
+
+    # Only two orderings exist, so testing both settles the question.
+    if is_balanced(first + second) or is_balanced(second + first):
+        return 'Yes'
+    return 'No'
+=== REQ000344 END ===
+
+=== REQ000345 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list of two strings, both strings consist of open
+    // parentheses '(' or close parentheses ')' only.
+    // Your job is to check if it is possible to concatenate the two strings in
+    // some order, that the resulting string will be good.
+    // A string S is considered to be good if and only if all parentheses in S
+    // are balanced. For example: the string '(())()' is good, while the string
+    // '())' is not.
+    // Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+    // Examples:
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)"()(", (String)")"))))
+    // ("Yes")
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)")", (String)")"))))
+    // ("No")
+    public static String matchParens(ArrayList<String> lst) {
+        String a = lst.get(0), b = lst.get(1);
+        if (isGood(a + b) || isGood(b + a)) return "Yes";
+        return "No";
+    }
+
+    private static boolean isGood(String s) {
+        int bal = 0;
+        for (char c : s.toCharArray()) {
+            bal += (c == '(') ? 1 : -1;
+            if (bal < 0) return false;
+        }
+        return bal == 0;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(matchParens(new ArrayList<>(Arrays.asList("()(", ")"))));
+        System.out.println(matchParens(new ArrayList<>(Arrays.asList(")", ")"))));
+    }
+}
+=== REQ000345 END ===
+
+=== REQ000346 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list of two strings, both strings consist of open
+    // parentheses '(' or close parentheses ')' only.
+    // Your job is to check if it is possible to concatenate the two strings in
+    // some order, that the resulting string will be good.
+    // A string S is considered to be good if and only if all parentheses in S
+    // are balanced. For example: the string '(())()' is good, while the string
+    // '())' is not.
+    // Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+    // Examples:
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)"()(", (String)")"))))
+    // ("Yes")
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)")", (String)")"))))
+    // ("No")
+    public static String matchParens(ArrayList<String> lst) {
+        String first = lst.get(0);
+        String second = lst.get(1);
+
+        // Only two orderings exist, so testing both settles the question.
+        boolean anyOrderWorks = isBalanced(first + second) || isBalanced(second + first);
+        return anyOrderWorks ? "Yes" : "No";
+    }
+
+    /** True when every closing bracket is matched by an earlier opening one. */
+    private static boolean isBalanced(String text) {
+        int depth = 0;
+        for (int i = 0; i < text.length(); i++) {
+            depth += (text.charAt(i) == '(') ? 1 : -1;
+            if (depth < 0) {
+                return false;
+            }
+        }
+        return depth == 0;
+    }
+}
+=== REQ000346 END ===
+
+=== REQ000347 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector of two strings, both strings consist of open
+// parentheses '(' or close parentheses ')' only.
+// Your job is to check if it is possible to concatenate the two strings in
+// some order, that the resulting string will be good.
+// A string S is considered to be good if and only if all parentheses in S
+// are balanced. For example: the string '(())()' is good, while the string
+// '())' is not.
+// Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+// Examples:
+// >>> match_parens((std::vector<std::string>({(std::string)"()(", (std::string)")"})))
+// ("Yes")
+// >>> match_parens((std::vector<std::string>({(std::string)")", (std::string)")"})))
+// ("No")
+bool isGood(const std::string &s) {
+    int bal = 0;
+    for (char c : s) {
+        bal += (c == '(') ? 1 : -1;
+        if (bal < 0) return false;
+    }
+    return bal == 0;
+}
+
+std::string match_parens(std::vector<std::string> lst) {
+    std::string a = lst[0], b = lst[1];
+    if (isGood(a + b) || isGood(b + a)) return "Yes";
+    return "No";
+}
+
+int main() {
+    std::cout << match_parens({"()(", ")"}) << std::endl;
+    std::cout << match_parens({")", ")"}) << std::endl;
+    return 0;
+}
+=== REQ000347 END ===
+
+=== REQ000348 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector of two strings, both strings consist of open
+// parentheses '(' or close parentheses ')' only.
+// Your job is to check if it is possible to concatenate the two strings in
+// some order, that the resulting string will be good.
+// A string S is considered to be good if and only if all parentheses in S
+// are balanced. For example: the string '(())()' is good, while the string
+// '())' is not.
+// Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+// Examples:
+// >>> match_parens((std::vector<std::string>({(std::string)"()(", (std::string)")"})))
+// ("Yes")
+// >>> match_parens((std::vector<std::string>({(std::string)")", (std::string)")"})))
+// ("No")
+
+/// True when every closing bracket is matched by an earlier opening one.
+static bool isBalanced(const std::string& text) {
+    int depth = 0;
+    for (char character : text) {
+        depth += (character == '(') ? 1 : -1;
+        if (depth < 0) {
+            return false;
+        }
+    }
+    return depth == 0;
+}
+
+std::string match_parens(std::vector<std::string> lst) {
+    const std::string& first = lst[0];
+    const std::string& second = lst[1];
+
+    // Only two orderings exist, so testing both settles the question.
+    const bool anyOrderWorks = isBalanced(first + second) || isBalanced(second + first);
+    return anyOrderWorks ? "Yes" : "No";
+}
+=== REQ000348 END ===
+
+=== REQ000349 START ===
+def intersection(interval1, interval2):
+    """You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return "YES",
+    otherwise, return "NO".
+    If the two intervals don't intersect, return "NO".
+
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> "NO"
+    intersection((-1, 1), (0, 4)) ==> "NO"
+    intersection((-3, -1), (-5, 5)) ==> "YES"
+    """
+    lo = max(interval1[0], interval2[0])
+    hi = min(interval1[1], interval2[1])
+    length = hi - lo
+    if length < 2:
+        return "NO"
+    for i in range(2, int(length ** 0.5) + 1):
+        if length % i == 0:
+            return "NO"
+    return "YES"
+=== REQ000349 END ===
+
+=== REQ000350 START ===
+def intersection(interval1, interval2):
+    """You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return "YES",
+    otherwise, return "NO".
+    If the two intervals don't intersect, return "NO".
+
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> "NO"
+    intersection((-1, 1), (0, 4)) ==> "NO"
+    intersection((-3, -1), (-5, 5)) ==> "YES"
+    """
+    def is_prime(value: int) -> bool:
+        if value < 2:
+            return False
+        divisor = 2
+        while divisor * divisor <= value:
+            if value % divisor == 0:
+                return False
+            divisor += 1
+        return True
+
+    # The overlap runs from the later start to the earlier end; a negative or
+    # zero span means the intervals miss each other entirely.
+    overlap_start = max(interval1[0], interval2[0])
+    overlap_end = min(interval1[1], interval2[1])
+    overlap_length = overlap_end - overlap_start
+
+    return "YES" if is_prime(overlap_length) else "NO"
+=== REQ000350 END ===

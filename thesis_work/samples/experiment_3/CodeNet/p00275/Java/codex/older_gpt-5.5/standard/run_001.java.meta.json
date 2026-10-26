@@ -1,0 +1,13 @@
+{
+  "experiment": 3,
+  "dataset": "CodeNet",
+  "problem_id": "p00275",
+  "language": "Java",
+  "source": "AI",
+  "provider": "codex",
+  "model": "gpt-5.5",
+  "model_group": "older",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

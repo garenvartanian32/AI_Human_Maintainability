@@ -1,0 +1,1025 @@
+=== REQ000076 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ * Total candles burned when spent stubs can be recycled into new candles.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer line = new StringTokenizer(reader.readLine());
+
+        long initialCandles = Long.parseLong(line.nextToken());
+        long stubsPerCandle = Long.parseLong(line.nextToken());
+
+        System.out.println(totalCandlesBurned(initialCandles, stubsPerCandle));
+    }
+
+    /** Returns how many candles burn in total, recycling stubs as we go. */
+    private static long totalCandlesBurned(long initialCandles, long stubsPerCandle) {
+        long burned = initialCandles;
+        long stubsOnHand = initialCandles;
+
+        while (stubsOnHand >= stubsPerCandle) {
+            long recycled = stubsOnHand / stubsPerCandle;
+            burned += recycled;
+            // The recycled candles burn down into stubs of their own.
+            stubsOnHand = stubsOnHand % stubsPerCandle + recycled;
+        }
+
+        return burned;
+    }
+}
+=== REQ000076 END ===
+
+=== REQ000077 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long a, b;
+    cin >> a >> b;
+    long long total = a;
+    long long leftover = a;
+    while (leftover >= b) {
+        long long add = leftover / b;
+        total += add;
+        leftover = leftover % b + add;
+    }
+    cout << total << endl;
+    return 0;
+}
+=== REQ000077 END ===
+
+=== REQ000078 START ===
+#include <iostream>
+
+namespace {
+
+/// Returns how many candles burn in total, recycling stubs as we go.
+long long totalCandlesBurned(long long initialCandles, long long stubsPerCandle) {
+    long long burned = initialCandles;
+    long long stubsOnHand = initialCandles;
+
+    while (stubsOnHand >= stubsPerCandle) {
+        const long long recycled = stubsOnHand / stubsPerCandle;
+        burned += recycled;
+        // The recycled candles burn down into stubs of their own.
+        stubsOnHand = stubsOnHand % stubsPerCandle + recycled;
+    }
+
+    return burned;
+}
+
+}  // namespace
+
+int main() {
+    long long initialCandles, stubsPerCandle;
+    std::cin >> initialCandles >> stubsPerCandle;
+    std::cout << totalCandlesBurned(initialCandles, stubsPerCandle) << '\n';
+    return 0;
+}
+=== REQ000078 END ===
+
+=== REQ000079 START ===
+import sys
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    idx = 0
+    n = int(data[idx]); m = int(data[idx+1]); idx += 2
+    covered = set()
+    for _ in range(n):
+        xi = int(data[idx]); idx += 1
+        for _ in range(xi):
+            covered.add(int(data[idx])); idx += 1
+    print("YES" if len(covered) == m else "NO")
+
+main()
+=== REQ000079 END ===
+
+=== REQ000080 START ===
+"""Decide whether pressing every button can switch off all the bulbs."""
+
+import sys
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    button_count = int(tokens[0])
+    bulb_count = int(tokens[1])
+
+    # Pressing every button is always allowed, so a bulb can be switched off
+    # exactly when at least one button controls it.
+    controlled_bulbs: set[int] = set()
+
+    cursor = 2
+    for _ in range(button_count):
+        bulbs_on_this_button = int(tokens[cursor])
+        cursor += 1
+        for offset in range(bulbs_on_this_button):
+            controlled_bulbs.add(int(tokens[cursor + offset]))
+        cursor += bulbs_on_this_button
+
+    every_bulb_is_covered = len(controlled_bulbs) == bulb_count
+    print("YES" if every_bulb_is_covered else "NO")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000080 END ===
+
+=== REQ000081 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int m = (int) st.nval;
+        Set<Integer> covered = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            st.nextToken(); int xi = (int) st.nval;
+            for (int j = 0; j < xi; j++) {
+                st.nextToken();
+                covered.add((int) st.nval);
+            }
+        }
+        System.out.println(covered.size() == m ? "YES" : "NO");
+    }
+}
+=== REQ000081 END ===
+
+=== REQ000082 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Decides whether pressing every button can switch off all the bulbs.
+ *
+ * <p>Pressing every button is always allowed, so a bulb can be switched off
+ * exactly when at least one button controls it.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int buttonCount = (int) input.nval;
+        input.nextToken();
+        int bulbCount = (int) input.nval;
+
+        Set<Integer> controlledBulbs = new HashSet<>();
+        for (int button = 0; button < buttonCount; button++) {
+            input.nextToken();
+            int bulbsOnThisButton = (int) input.nval;
+            for (int i = 0; i < bulbsOnThisButton; i++) {
+                input.nextToken();
+                controlledBulbs.add((int) input.nval);
+            }
+        }
+
+        boolean everyBulbIsCovered = controlledBulbs.size() == bulbCount;
+        System.out.println(everyBulbIsCovered ? "YES" : "NO");
+    }
+}
+=== REQ000082 END ===
+
+=== REQ000083 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    unordered_set<int> covered;
+    for (int i = 0; i < n; i++) {
+        int xi;
+        cin >> xi;
+        for (int j = 0; j < xi; j++) {
+            int y;
+            cin >> y;
+            covered.insert(y);
+        }
+    }
+    cout << ((int)covered.size() == m ? "YES" : "NO") << endl;
+    return 0;
+}
+=== REQ000083 END ===
+
+=== REQ000084 START ===
+#include <iostream>
+#include <unordered_set>
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int buttonCount, bulbCount;
+    std::cin >> buttonCount >> bulbCount;
+
+    // Pressing every button is always allowed, so a bulb can be switched off
+    // exactly when at least one button controls it.
+    std::unordered_set<int> controlledBulbs;
+
+    for (int button = 0; button < buttonCount; ++button) {
+        int bulbsOnThisButton;
+        std::cin >> bulbsOnThisButton;
+        for (int i = 0; i < bulbsOnThisButton; ++i) {
+            int bulb;
+            std::cin >> bulb;
+            controlledBulbs.insert(bulb);
+        }
+    }
+
+    const bool everyBulbIsCovered =
+        static_cast<int>(controlledBulbs.size()) == bulbCount;
+    std::cout << (everyBulbIsCovered ? "YES" : "NO") << '\n';
+    return 0;
+}
+=== REQ000084 END ===
+
+=== REQ000085 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split('\n')
+    first = data[0].split()
+    t = int(first[0]); m = int(first[1])
+    mem = [0] * m
+    active = set()
+    next_id = 1
+    out = []
+    for i in range(1, t + 1):
+        parts = data[i].split()
+        cmd = parts[0]
+        if cmd == 'alloc':
+            n = int(parts[1])
+            found = -1
+            run = 0
+            for j in range(m):
+                if mem[j] == 0:
+                    run += 1
+                    if run == n:
+                        found = j - n + 1
+                        break
+                else:
+                    run = 0
+            if found == -1:
+                out.append("NULL")
+            else:
+                for j in range(found, found + n):
+                    mem[j] = next_id
+                active.add(next_id)
+                out.append(str(next_id))
+                next_id += 1
+        elif cmd == 'erase':
+            x = int(parts[1])
+            if x in active:
+                for j in range(m):
+                    if mem[j] == x:
+                        mem[j] = 0
+                active.discard(x)
+            else:
+                out.append("ILLEGAL_ERASE_ARGUMENT")
+        elif cmd == 'defragment':
+            vals = [v for v in mem if v != 0]
+            for j in range(m):
+                mem[j] = vals[j] if j < len(vals) else 0
+    print('\n'.join(out))
+
+main()
+=== REQ000085 END ===
+
+=== REQ000086 START ===
+"""A toy memory manager supporting alloc, erase and defragment."""
+
+import sys
+
+FREE = 0
+NULL_RESULT = "NULL"
+ILLEGAL_ERASE = "ILLEGAL_ERASE_ARGUMENT"
+
+
+class MemoryManager:
+    """Fixed-size memory modelled as a list of owning block identifiers."""
+
+    def __init__(self, size: int) -> None:
+        self._cells = [FREE] * size
+        self._live_blocks: set[int] = set()
+        self._next_identifier = 1
+
+    def allocate(self, cells_needed: int) -> str:
+        """Reserve the first run of free cells that is long enough."""
+        start = self._find_free_run(cells_needed)
+        if start is None:
+            return NULL_RESULT
+
+        identifier = self._next_identifier
+        self._next_identifier += 1
+
+        for cell in range(start, start + cells_needed):
+            self._cells[cell] = identifier
+        self._live_blocks.add(identifier)
+
+        return str(identifier)
+
+    def erase(self, identifier: int) -> str | None:
+        """Free a live block; returns an error string for unknown blocks."""
+        if identifier not in self._live_blocks:
+            return ILLEGAL_ERASE
+
+        self._live_blocks.discard(identifier)
+        for cell, owner in enumerate(self._cells):
+            if owner == identifier:
+                self._cells[cell] = FREE
+        return None
+
+    def defragment(self) -> None:
+        """Slide every allocated block towards the start, preserving order."""
+        occupied = [owner for owner in self._cells if owner != FREE]
+        self._cells = occupied + [FREE] * (len(self._cells) - len(occupied))
+
+    def _find_free_run(self, cells_needed: int) -> int | None:
+        run_length = 0
+        for cell, owner in enumerate(self._cells):
+            run_length = run_length + 1 if owner == FREE else 0
+            if run_length == cells_needed:
+                return cell - cells_needed + 1
+        return None
+
+
+def main() -> None:
+    lines = sys.stdin.read().split("\n")
+    operation_count, memory_size = (int(value) for value in lines[0].split())
+
+    manager = MemoryManager(memory_size)
+    output: list[str] = []
+
+    for index in range(1, operation_count + 1):
+        parts = lines[index].split()
+        if not parts:
+            continue
+
+        command = parts[0]
+        if command == "alloc":
+            output.append(manager.allocate(int(parts[1])))
+        elif command == "erase":
+            error = manager.erase(int(parts[1]))
+            if error is not None:
+                output.append(error)
+        elif command == "defragment":
+            manager.defragment()
+
+    sys.stdout.write("\n".join(output) + ("\n" if output else ""))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000086 END ===
+
+=== REQ000087 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer first = new StringTokenizer(br.readLine());
+        int t = Integer.parseInt(first.nextToken());
+        int m = Integer.parseInt(first.nextToken());
+        int[] mem = new int[m];
+        Set<Integer> active = new HashSet<>();
+        int nextId = 1;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < t; i++) {
+            StringTokenizer stk = new StringTokenizer(br.readLine());
+            String cmd = stk.nextToken();
+            if (cmd.equals("alloc")) {
+                int n = Integer.parseInt(stk.nextToken());
+                int found = -1, run = 0;
+                for (int j = 0; j < m; j++) {
+                    if (mem[j] == 0) {
+                        run++;
+                        if (run == n) { found = j - n + 1; break; }
+                    } else {
+                        run = 0;
+                    }
+                }
+                if (found == -1) {
+                    sb.append("NULL").append('\n');
+                } else {
+                    for (int j = found; j < found + n; j++) mem[j] = nextId;
+                    active.add(nextId);
+                    sb.append(nextId).append('\n');
+                    nextId++;
+                }
+            } else if (cmd.equals("erase")) {
+                int x = Integer.parseInt(stk.nextToken());
+                if (active.contains(x)) {
+                    for (int j = 0; j < m; j++) if (mem[j] == x) mem[j] = 0;
+                    active.remove(x);
+                } else {
+                    sb.append("ILLEGAL_ERASE_ARGUMENT").append('\n');
+                }
+            } else if (cmd.equals("defragment")) {
+                int[] vals = new int[m];
+                int c = 0;
+                for (int v : mem) if (v != 0) vals[c++] = v;
+                for (int j = 0; j < m; j++) mem[j] = (j < c) ? vals[j] : 0;
+            }
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000087 END ===
+
+=== REQ000088 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+/**
+ * A toy memory manager supporting alloc, erase and defragment.
+ */
+public class Sol {
+
+    private static final int FREE = 0;
+    private static final String NULL_RESULT = "NULL";
+    private static final String ILLEGAL_ERASE = "ILLEGAL_ERASE_ARGUMENT";
+    private static final int NO_RUN_FOUND = -1;
+
+    /** Fixed-size memory modelled as an array of owning block identifiers. */
+    private static final class MemoryManager {
+        private final int[] cells;
+        private final Set<Integer> liveBlocks = new HashSet<>();
+        private int nextIdentifier = 1;
+
+        MemoryManager(int size) {
+            this.cells = new int[size];
+        }
+
+        /** Reserves the first run of free cells that is long enough. */
+        String allocate(int cellsNeeded) {
+            int start = findFreeRun(cellsNeeded);
+            if (start == NO_RUN_FOUND) {
+                return NULL_RESULT;
+            }
+
+            int identifier = nextIdentifier++;
+            Arrays.fill(cells, start, start + cellsNeeded, identifier);
+            liveBlocks.add(identifier);
+            return Integer.toString(identifier);
+        }
+
+        /** Frees a live block; returns an error string for unknown blocks. */
+        String erase(int identifier) {
+            if (!liveBlocks.remove(identifier)) {
+                return ILLEGAL_ERASE;
+            }
+            for (int cell = 0; cell < cells.length; cell++) {
+                if (cells[cell] == identifier) {
+                    cells[cell] = FREE;
+                }
+            }
+            return null;
+        }
+
+        /** Slides every allocated block towards the start, preserving order. */
+        void defragment() {
+            int writePosition = 0;
+            for (int cell = 0; cell < cells.length; cell++) {
+                if (cells[cell] != FREE) {
+                    cells[writePosition++] = cells[cell];
+                }
+            }
+            Arrays.fill(cells, writePosition, cells.length, FREE);
+        }
+
+        private int findFreeRun(int cellsNeeded) {
+            int runLength = 0;
+            for (int cell = 0; cell < cells.length; cell++) {
+                runLength = (cells[cell] == FREE) ? runLength + 1 : 0;
+                if (runLength == cellsNeeded) {
+                    return cell - cellsNeeded + 1;
+                }
+            }
+            return NO_RUN_FOUND;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer header = new StringTokenizer(reader.readLine());
+        int operationCount = Integer.parseInt(header.nextToken());
+        int memorySize = Integer.parseInt(header.nextToken());
+
+        MemoryManager manager = new MemoryManager(memorySize);
+        StringBuilder output = new StringBuilder();
+
+        for (int operation = 0; operation < operationCount; operation++) {
+            StringTokenizer line = new StringTokenizer(reader.readLine());
+            String command = line.nextToken();
+
+            switch (command) {
+                case "alloc":
+                    output.append(manager.allocate(Integer.parseInt(line.nextToken())))
+                          .append('\n');
+                    break;
+                case "erase":
+                    String error = manager.erase(Integer.parseInt(line.nextToken()));
+                    if (error != null) {
+                        output.append(error).append('\n');
+                    }
+                    break;
+                case "defragment":
+                    manager.defragment();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        System.out.print(output);
+    }
+}
+=== REQ000088 END ===
+
+=== REQ000089 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t, m;
+    cin >> t >> m;
+    cin.ignore();
+    vector<int> mem(m, 0);
+    unordered_set<int> active;
+    int nextId = 1;
+    string out;
+    for (int i = 0; i < t; i++) {
+        string line;
+        getline(cin, line);
+        istringstream iss(line);
+        string cmd;
+        iss >> cmd;
+        if (cmd == "alloc") {
+            int n;
+            iss >> n;
+            int found = -1, run = 0;
+            for (int j = 0; j < m; j++) {
+                if (mem[j] == 0) {
+                    run++;
+                    if (run == n) { found = j - n + 1; break; }
+                } else {
+                    run = 0;
+                }
+            }
+            if (found == -1) {
+                out += "NULL\n";
+            } else {
+                for (int j = found; j < found + n; j++) mem[j] = nextId;
+                active.insert(nextId);
+                out += to_string(nextId) + "\n";
+                nextId++;
+            }
+        } else if (cmd == "erase") {
+            int x;
+            iss >> x;
+            if (active.count(x)) {
+                for (int j = 0; j < m; j++) if (mem[j] == x) mem[j] = 0;
+                active.erase(x);
+            } else {
+                out += "ILLEGAL_ERASE_ARGUMENT\n";
+            }
+        } else if (cmd == "defragment") {
+            vector<int> vals;
+            for (int v : mem) if (v != 0) vals.push_back(v);
+            for (int j = 0; j < m; j++) mem[j] = (j < (int)vals.size()) ? vals[j] : 0;
+        }
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000089 END ===
+
+=== REQ000090 START ===
+#include <algorithm>
+#include <iostream>
+#include <set>
+#include <sstream>
+#include <string>
+#include <vector>
+
+namespace {
+
+constexpr int kFree = 0;
+constexpr int kNoRunFound = -1;
+const std::string kNullResult = "NULL";
+const std::string kIllegalErase = "ILLEGAL_ERASE_ARGUMENT";
+
+/// Fixed-size memory modelled as a vector of owning block identifiers.
+class MemoryManager {
+public:
+    explicit MemoryManager(int size) : cells_(size, kFree) {}
+
+    /// Reserves the first run of free cells that is long enough.
+    std::string allocate(int cellsNeeded) {
+        const int start = findFreeRun(cellsNeeded);
+        if (start == kNoRunFound) {
+            return kNullResult;
+        }
+
+        const int identifier = nextIdentifier_++;
+        std::fill(cells_.begin() + start, cells_.begin() + start + cellsNeeded, identifier);
+        liveBlocks_.insert(identifier);
+        return std::to_string(identifier);
+    }
+
+    /// Frees a live block; reports whether an error message is needed.
+    bool erase(int identifier, std::string* error) {
+        if (liveBlocks_.erase(identifier) == 0) {
+            *error = kIllegalErase;
+            return false;
+        }
+        for (int& owner : cells_) {
+            if (owner == identifier) {
+                owner = kFree;
+            }
+        }
+        return true;
+    }
+
+    /// Slides every allocated block towards the start, preserving order.
+    void defragment() {
+        std::size_t writePosition = 0;
+        for (std::size_t cell = 0; cell < cells_.size(); ++cell) {
+            if (cells_[cell] != kFree) {
+                cells_[writePosition++] = cells_[cell];
+            }
+        }
+        std::fill(cells_.begin() + writePosition, cells_.end(), kFree);
+    }
+
+private:
+    int findFreeRun(int cellsNeeded) const {
+        int runLength = 0;
+        for (std::size_t cell = 0; cell < cells_.size(); ++cell) {
+            runLength = (cells_[cell] == kFree) ? runLength + 1 : 0;
+            if (runLength == cellsNeeded) {
+                return static_cast<int>(cell) - cellsNeeded + 1;
+            }
+        }
+        return kNoRunFound;
+    }
+
+    std::vector<int> cells_;
+    std::set<int> liveBlocks_;
+    int nextIdentifier_ = 1;
+};
+
+}  // namespace
+
+int main() {
+    int operationCount, memorySize;
+    std::cin >> operationCount >> memorySize;
+    std::cin.ignore();
+
+    MemoryManager manager(memorySize);
+    std::ostringstream output;
+
+    for (int operation = 0; operation < operationCount; ++operation) {
+        std::string line;
+        if (!std::getline(std::cin, line)) {
+            break;
+        }
+        std::istringstream parts(line);
+        std::string command;
+        if (!(parts >> command)) {
+            --operation;
+            continue;
+        }
+
+        if (command == "alloc") {
+            int cellsNeeded;
+            parts >> cellsNeeded;
+            output << manager.allocate(cellsNeeded) << '\n';
+        } else if (command == "erase") {
+            int identifier;
+            parts >> identifier;
+            std::string error;
+            if (!manager.erase(identifier, &error)) {
+                output << error << '\n';
+            }
+        } else if (command == "defragment") {
+            manager.defragment();
+        }
+    }
+
+    std::cout << output.str();
+    return 0;
+}
+=== REQ000090 END ===
+
+=== REQ000091 START ===
+import sys
+
+def main():
+    n = int(sys.stdin.read().split()[0])
+    buf = []
+    out = []
+
+    def bt(max_used):
+        if len(buf) == n:
+            out.append(''.join(buf))
+            return
+        for c in range(0, max_used + 2):
+            buf.append(chr(ord('a') + c))
+            bt(max(max_used, c))
+            buf.pop()
+
+    bt(-1)
+    print('\n'.join(out))
+
+main()
+=== REQ000091 END ===
+
+=== REQ000092 START ===
+"""Enumerate every length-n string in normal form, in lexicographic order."""
+
+import sys
+
+FIRST_LETTER = "a"
+
+
+def normal_form_strings(length: int) -> list[str]:
+    """Return all normal-form strings of the given length.
+
+    A string is in normal form when each letter is at most one past the
+    largest letter used before it. That keeps exactly one representative of
+    every partition of the positions, and building left to right in
+    alphabetical order yields them already sorted.
+    """
+    results: list[str] = []
+    buffer = [FIRST_LETTER] * length
+
+    def extend(position: int, highest_used: int) -> None:
+        if position == length:
+            results.append("".join(buffer))
+            return
+
+        for letter_index in range(highest_used + 1):
+            buffer[position] = chr(ord(FIRST_LETTER) + letter_index)
+            next_highest = highest_used + 1 if letter_index == highest_used else highest_used
+            extend(position + 1, next_highest)
+
+    extend(0, 0)
+    return results
+
+
+def main() -> None:
+    length = int(sys.stdin.buffer.read().split()[0])
+    sys.stdout.write("\n".join(normal_form_strings(length)) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000092 END ===
+
+=== REQ000093 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int n;
+    static char[] buf;
+    static StringBuilder out = new StringBuilder();
+
+    static void bt(int pos, int maxUsed) {
+        if (pos == n) {
+            out.append(new String(buf, 0, n)).append('\n');
+            return;
+        }
+        for (int c = 0; c <= maxUsed + 1; c++) {
+            buf[pos] = (char) ('a' + c);
+            bt(pos + 1, Math.max(maxUsed, c));
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine().trim());
+        buf = new char[n];
+        bt(0, -1);
+        System.out.print(out);
+    }
+}
+=== REQ000093 END ===
+
+=== REQ000094 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Enumerates every length-n string in normal form, in lexicographic order.
+ *
+ * <p>A string is in normal form when each letter is at most one past the largest
+ * letter used before it. Building left to right in alphabetical order yields
+ * the strings already sorted.
+ */
+public class Sol {
+
+    private static final char FIRST_LETTER = 'a';
+
+    private static int length;
+    private static char[] buffer;
+    private static StringBuilder results;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        length = Integer.parseInt(reader.readLine().trim());
+
+        buffer = new char[length];
+        results = new StringBuilder();
+
+        extend(0, 0);
+        System.out.print(results);
+    }
+
+    private static void extend(int position, int highestUsed) {
+        if (position == length) {
+            results.append(buffer, 0, length).append('\n');
+            return;
+        }
+
+        for (int letterIndex = 0; letterIndex <= highestUsed; letterIndex++) {
+            buffer[position] = (char) (FIRST_LETTER + letterIndex);
+            int nextHighest = (letterIndex == highestUsed) ? highestUsed + 1 : highestUsed;
+            extend(position + 1, nextHighest);
+        }
+    }
+}
+=== REQ000094 END ===
+
+=== REQ000095 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+string buf;
+string out;
+
+void bt(int pos, int maxUsed) {
+    if (pos == n) {
+        out += buf;
+        out += '\n';
+        return;
+    }
+    for (int c = 0; c <= maxUsed + 1; c++) {
+        buf[pos] = (char)('a' + c);
+        bt(pos + 1, max(maxUsed, c));
+    }
+}
+
+int main() {
+    cin >> n;
+    buf.resize(n);
+    bt(0, -1);
+    cout << out;
+    return 0;
+}
+=== REQ000095 END ===
+
+=== REQ000096 START ===
+#include <iostream>
+#include <string>
+
+namespace {
+
+constexpr char kFirstLetter = 'a';
+
+int gLength;
+std::string gBuffer;
+std::string gResults;
+
+/**
+ * Extends the buffer at `position`, given the largest letter index used so far.
+ *
+ * A string is in normal form when each letter is at most one past the largest
+ * letter used before it, so building left to right in alphabetical order yields
+ * the strings already sorted.
+ */
+void extend(int position, int highestUsed) {
+    if (position == gLength) {
+        gResults += gBuffer;
+        gResults += '\n';
+        return;
+    }
+
+    for (int letterIndex = 0; letterIndex <= highestUsed; ++letterIndex) {
+        gBuffer[position] = static_cast<char>(kFirstLetter + letterIndex);
+        const int nextHighest = (letterIndex == highestUsed) ? highestUsed + 1 : highestUsed;
+        extend(position + 1, nextHighest);
+    }
+}
+
+}  // namespace
+
+int main() {
+    std::cin >> gLength;
+    gBuffer.assign(gLength, kFirstLetter);
+
+    extend(0, 0);
+    std::cout << gResults;
+    return 0;
+}
+=== REQ000096 END ===
+
+=== REQ000097 START ===
+import sys
+
+def main():
+    a, b = map(int, sys.stdin.read().split())
+    print("Odd" if (a % 2 == 1 and b % 2 == 1) else "Even")
+
+main()
+=== REQ000097 END ===
+
+=== REQ000098 START ===
+"""Report whether the product of two integers is odd or even."""
+
+import sys
+
+
+def main() -> None:
+    first, second = map(int, sys.stdin.buffer.read().split())
+
+    # A product is odd only when neither factor contributes a factor of two.
+    product_is_odd = first % 2 == 1 and second % 2 == 1
+    print("Odd" if product_is_odd else "Even")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000098 END ===
+
+=== REQ000099 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int a = (int) st.nval;
+        st.nextToken(); int b = (int) st.nval;
+        System.out.println((a % 2 == 1 && b % 2 == 1) ? "Odd" : "Even");
+    }
+}
+=== REQ000099 END ===
+
+=== REQ000100 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ * Reports whether the product of two integers is odd or even.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer line = new StringTokenizer(reader.readLine());
+
+        long first = Long.parseLong(line.nextToken());
+        long second = Long.parseLong(line.nextToken());
+
+        // A product is odd only when neither factor contributes a factor of two.
+        boolean productIsOdd = isOdd(first) && isOdd(second);
+        System.out.println(productIsOdd ? "Odd" : "Even");
+    }
+
+    private static boolean isOdd(long value) {
+        return value % 2 != 0;
+    }
+}
+=== REQ000100 END ===

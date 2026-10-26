@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including constraints and sample I/O) so I can produce a correct Python solution.

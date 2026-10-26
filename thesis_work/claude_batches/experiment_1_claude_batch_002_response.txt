@@ -1,0 +1,859 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000026 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        long[] x = new long[n], v = new long[n];
+        for (int i=0;i<n;i++) x[i]=sc.nextLong();
+        for (int i=0;i<n;i++) v[i]=sc.nextLong();
+        Long[] idx = new Long[n];
+        for (int i=0;i<n;i++) idx[i]=(long)i;
+        Arrays.sort(idx, (a,b) -> Long.compare(x[a.intValue()], x[b.intValue()]));
+        long total = 0;
+        for (int i=0;i<n-1;i++) {
+            int a = idx[i].intValue(), b = idx[i+1].intValue();
+            if (v[a] <= v[b]) total += x[b]-x[a];
+        }
+        System.out.println(total);
+    }
+}
+
+=== REQ000026 END ===
+
+=== REQ000027 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    vector<long long> x(n), v(n);
+    for (auto &e: x) cin >> e;
+    for (auto &e: v) cin >> e;
+    vector<int> idx(n);
+    for (int i=0;i<n;i++) idx[i]=i;
+    sort(idx.begin(), idx.end(), [&](int a, int b){ return x[a]<x[b]; });
+    long long total=0;
+    for (int i=0;i<n-1;i++){
+        int a=idx[i], b=idx[i+1];
+        if (v[a]<=v[b]) total += x[b]-x[a];
+    }
+    cout << total << endl;
+    return 0;
+}
+
+=== REQ000027 END ===
+
+=== REQ000028 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); k = int(data[idx+1]); idx += 2
+    both = []
+    onlyA = []
+    onlyB = []
+    for _ in range(n):
+        t = int(data[idx]); a = int(data[idx+1]); b = int(data[idx+2]); idx += 3
+        if a and b:
+            both.append(t)
+        elif a:
+            onlyA.append(t)
+        elif b:
+            onlyB.append(t)
+    both.sort(); onlyA.sort(); onlyB.sort()
+    prefBoth = [0]*(len(both)+1)
+    for i, v in enumerate(both):
+        prefBoth[i+1] = prefBoth[i]+v
+    prefA = [0]*(len(onlyA)+1)
+    for i, v in enumerate(onlyA):
+        prefA[i+1] = prefA[i]+v
+    prefB = [0]*(len(onlyB)+1)
+    for i, v in enumerate(onlyB):
+        prefB[i+1] = prefB[i]+v
+    best = None
+    for x in range(0, min(len(both), k)+1):
+        needA = max(0, k-x)
+        needB = max(0, k-x)
+        if needA > len(onlyA) or needB > len(onlyB):
+            continue
+        total = prefBoth[x] + prefA[needA] + prefB[needB]
+        if best is None or total < best:
+            best = total
+    if best is None:
+        print(-1)
+    else:
+        print(best)
+
+main()
+
+=== REQ000028 END ===
+
+=== REQ000029 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int k = (int) st.nval;
+        List<Long> both = new ArrayList<Long>(), onlyA = new ArrayList<Long>(), onlyB = new ArrayList<Long>();
+        for (int i = 0; i < n; i++) {
+            st.nextToken(); long t = (long) st.nval;
+            st.nextToken(); int a = (int) st.nval;
+            st.nextToken(); int b = (int) st.nval;
+            if (a==1 && b==1) both.add(t);
+            else if (a==1) onlyA.add(t);
+            else if (b==1) onlyB.add(t);
+        }
+        Collections.sort(both); Collections.sort(onlyA); Collections.sort(onlyB);
+        long[] prefBoth = new long[both.size()+1];
+        for (int i=0;i<both.size();i++) prefBoth[i+1]=prefBoth[i]+both.get(i);
+        long[] prefA = new long[onlyA.size()+1];
+        for (int i=0;i<onlyA.size();i++) prefA[i+1]=prefA[i]+onlyA.get(i);
+        long[] prefB = new long[onlyB.size()+1];
+        for (int i=0;i<onlyB.size();i++) prefB[i+1]=prefB[i]+onlyB.get(i);
+        Long best = null;
+        for (int x = 0; x <= Math.min(both.size(), k); x++) {
+            int needA = Math.max(0, k-x);
+            int needB = Math.max(0, k-x);
+            if (needA > onlyA.size() || needB > onlyB.size()) continue;
+            long total = prefBoth[x] + prefA[needA] + prefB[needB];
+            if (best == null || total < best) best = total;
+        }
+        System.out.println(best == null ? -1 : best);
+    }
+}
+
+=== REQ000029 END ===
+
+=== REQ000030 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n, k;
+    cin >> n >> k;
+    vector<long long> both, onlyA, onlyB;
+    for (int i=0;i<n;i++){
+        long long t; int a,b;
+        cin >> t >> a >> b;
+        if (a==1 && b==1) both.push_back(t);
+        else if (a==1) onlyA.push_back(t);
+        else if (b==1) onlyB.push_back(t);
+    }
+    sort(both.begin(),both.end());
+    sort(onlyA.begin(),onlyA.end());
+    sort(onlyB.begin(),onlyB.end());
+    vector<long long> prefBoth(both.size()+1,0), prefA(onlyA.size()+1,0), prefB(onlyB.size()+1,0);
+    for (size_t i=0;i<both.size();i++) prefBoth[i+1]=prefBoth[i]+both[i];
+    for (size_t i=0;i<onlyA.size();i++) prefA[i+1]=prefA[i]+onlyA[i];
+    for (size_t i=0;i<onlyB.size();i++) prefB[i+1]=prefB[i]+onlyB[i];
+    bool has = false;
+    long long best = 0;
+    for (int x = 0; x <= min((int)both.size(), k); x++) {
+        int needA = max(0, k-x);
+        int needB = max(0, k-x);
+        if (needA > (int)onlyA.size() || needB > (int)onlyB.size()) continue;
+        long long total = prefBoth[x] + prefA[needA] + prefB[needB];
+        if (!has || total < best) { best = total; has = true; }
+    }
+    cout << (has ? best : -1) << endl;
+    return 0;
+}
+
+=== REQ000030 END ===
+
+=== REQ000031 START ===
+import sys
+
+MOD = 10**9+7
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); m = int(data[idx+1]); idx += 2
+    parent = list(range(m+1))
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+    def union(x, y):
+        rx, ry = find(x), find(y)
+        if rx != ry:
+            parent[rx] = ry
+            return True
+        return False
+    single_seen = set()
+    rank_count = 0
+    chosen = []
+    for i in range(n):
+        vec = data[idx]; idx += 1
+        ones = [j+1 for j, c in enumerate(vec) if c == '1']
+        if len(ones) == 0:
+            continue
+        elif len(ones) == 1:
+            v = ones[0]
+            if v not in single_seen:
+                single_seen.add(v)
+                rank_count += 1
+                chosen.append(i+1)
+                # merge into a virtual "zero" root separately; treat singles as forcing that coordinate fixed
+                parent[v] = 0 if False else parent[v]
+        else:
+            a, b = ones[0], ones[1]
+            if union(a, b):
+                rank_count += 1
+                chosen.append(i+1)
+    size = pow(2, rank_count, MOD)
+    print(size)
+    print(len(chosen))
+    print(' '.join(map(str, chosen)))
+
+main()
+
+=== REQ000031 END ===
+
+=== REQ000032 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    static int[] parent;
+    static int find(int x) {
+        while (parent[x] != x) { parent[x] = parent[parent[x]]; x = parent[x]; }
+        return x;
+    }
+    static boolean union(int x, int y) {
+        int rx = find(x), ry = find(y);
+        if (rx != ry) { parent[rx] = ry; return true; }
+        return false;
+    }
+    public static void main(String[] args) throws IOException {
+        final long MOD = 1000000007;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        parent = new int[m+1];
+        for (int i = 0; i <= m; i++) parent[i] = i;
+        Set<Integer> singleSeen = new HashSet<Integer>();
+        int rankCount = 0;
+        List<Integer> chosen = new ArrayList<Integer>();
+        for (int i = 0; i < n; i++) {
+            String vec = br.readLine().trim();
+            List<Integer> ones = new ArrayList<Integer>();
+            for (int j = 0; j < vec.length(); j++) if (vec.charAt(j)=='1') ones.add(j+1);
+            if (ones.size() == 0) continue;
+            else if (ones.size() == 1) {
+                int v = ones.get(0);
+                if (!singleSeen.contains(v)) {
+                    singleSeen.add(v);
+                    rankCount++;
+                    chosen.add(i+1);
+                }
+            } else {
+                int a = ones.get(0), b = ones.get(1);
+                if (union(a,b)) { rankCount++; chosen.add(i+1); }
+            }
+        }
+        long size = 1;
+        for (int i = 0; i < rankCount; i++) size = size*2%MOD;
+        StringBuilder out = new StringBuilder();
+        out.append(size).append("\n");
+        out.append(chosen.size()).append("\n");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < chosen.size(); i++) { if (i>0) sb.append(' '); sb.append(chosen.get(i)); }
+        out.append(sb).append("\n");
+        System.out.print(out);
+    }
+}
+
+=== REQ000032 END ===
+
+=== REQ000033 START ===
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> parent_;
+int findp(int x) {
+    while (parent_[x] != x) { parent_[x] = parent_[parent_[x]]; x = parent_[x]; }
+    return x;
+}
+bool unionp(int x, int y) {
+    int rx = findp(x), ry = findp(y);
+    if (rx != ry) { parent_[rx] = ry; return true; }
+    return false;
+}
+int main(){
+    const long long MOD = 1000000007;
+    int n, m;
+    cin >> n >> m;
+    parent_.resize(m+1);
+    for (int i=0;i<=m;i++) parent_[i]=i;
+    set<int> singleSeen;
+    int rankCount = 0;
+    vector<int> chosen;
+    for (int i=0;i<n;i++){
+        string vec;
+        cin >> vec;
+        vector<int> ones;
+        for (int j=0;j<(int)vec.size();j++) if (vec[j]=='1') ones.push_back(j+1);
+        if (ones.empty()) continue;
+        else if (ones.size()==1) {
+            int v = ones[0];
+            if (!singleSeen.count(v)) {
+                singleSeen.insert(v);
+                rankCount++;
+                chosen.push_back(i+1);
+            }
+        } else {
+            int a=ones[0], b=ones[1];
+            if (unionp(a,b)) { rankCount++; chosen.push_back(i+1); }
+        }
+    }
+    long long size=1;
+    for (int i=0;i<rankCount;i++) size=size*2%MOD;
+    cout << size << "\n" << chosen.size() << "\n";
+    for (size_t i=0;i<chosen.size();i++){ if(i>0) cout<<' '; cout<<chosen[i]; }
+    cout << "\n";
+    return 0;
+}
+
+=== REQ000033 END ===
+
+=== REQ000034 START ===
+import sys
+
+MOD = 10**9+7
+MAXM = 200001
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    t = int(data[idx]); idx += 1
+    length = [[0]*(MAXM) for _ in range(10)]
+    for d in range(10):
+        length[d][0] = 1
+    for s in range(1, MAXM):
+        for d in range(10):
+            nd = d+1
+            digs = [int(c) for c in str(nd)]
+            length[d][s] = sum(length[dd][s-1] for dd in digs) % MOD
+    out = []
+    for _ in range(t):
+        n, m = data[idx], int(data[idx+1]); idx += 2
+        total = 0
+        for c in n:
+            dd = int(c)
+            total = (total + length[dd][m]) % MOD
+        out.append(str(total))
+    print('\n'.join(out))
+
+main()
+
+=== REQ000034 END ===
+
+=== REQ000035 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    static final long MOD = 1000000007;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        String[][] lines = new String[t][2];
+        int maxM = 0;
+        for (int i = 0; i < t; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            lines[i][0] = st.nextToken();
+            lines[i][1] = st.nextToken();
+            maxM = Math.max(maxM, Integer.parseInt(lines[i][1]));
+        }
+        long[][] length = new long[10][maxM+1];
+        for (int d = 0; d < 10; d++) length[d][0] = 1;
+        for (int s = 1; s <= maxM; s++) {
+            for (int d = 0; d < 10; d++) {
+                int nd = d+1;
+                String ds = Integer.toString(nd);
+                long sum = 0;
+                for (char c : ds.toCharArray()) sum = (sum + length[c-'0'][s-1]) % MOD;
+                length[d][s] = sum;
+            }
+        }
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < t; i++) {
+            String n = lines[i][0];
+            int m = Integer.parseInt(lines[i][1]);
+            long total = 0;
+            for (char c : n.toCharArray()) total = (total + length[c-'0'][m]) % MOD;
+            out.append(total).append("\n");
+        }
+        System.out.print(out);
+    }
+}
+
+=== REQ000035 END ===
+
+=== REQ000036 START ===
+#include <bits/stdc++.h>
+using namespace std;
+const long long MOD = 1000000007;
+int main(){
+    int t;
+    cin >> t;
+    vector<string> ns(t);
+    vector<int> ms(t);
+    int maxM = 0;
+    for (int i=0;i<t;i++){
+        cin >> ns[i] >> ms[i];
+        maxM = max(maxM, ms[i]);
+    }
+    vector<vector<long long>> length(10, vector<long long>(maxM+1, 0));
+    for (int d=0;d<10;d++) length[d][0]=1;
+    for (int s=1;s<=maxM;s++){
+        for (int d=0;d<10;d++){
+            int nd = d+1;
+            string ds = to_string(nd);
+            long long sum = 0;
+            for (char c: ds) sum = (sum + length[c-'0'][s-1]) % MOD;
+            length[d][s] = sum;
+        }
+    }
+    string out;
+    for (int i=0;i<t;i++){
+        long long total = 0;
+        for (char c: ns[i]) total = (total + length[c-'0'][ms[i]]) % MOD;
+        out += to_string(total) + "\n";
+    }
+    cout << out;
+    return 0;
+}
+
+=== REQ000036 END ===
+
+=== REQ000037 START ===
+def main():
+    a, b = map(int, input().split())
+    total = a
+    stubs = a
+    while stubs >= b:
+        new = stubs // b
+        total += new
+        stubs = stubs % b + new
+    print(total)
+
+main()
+
+=== REQ000037 END ===
+
+=== REQ000038 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long a = sc.nextLong(), b = sc.nextLong();
+        long total = a, stubs = a;
+        while (stubs >= b) {
+            long nw = stubs / b;
+            total += nw;
+            stubs = stubs % b + nw;
+        }
+        System.out.println(total);
+    }
+}
+
+=== REQ000038 END ===
+
+=== REQ000039 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long a,b;
+    cin >> a >> b;
+    long long total=a, stubs=a;
+    while (stubs >= b) {
+        long long nw = stubs/b;
+        total += nw;
+        stubs = stubs%b + nw;
+    }
+    cout << total << endl;
+    return 0;
+}
+
+=== REQ000039 END ===
+
+=== REQ000040 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); m = int(data[idx+1]); idx += 2
+    on = set()
+    for _ in range(n):
+        x = int(data[idx]); idx += 1
+        for _ in range(x):
+            on.add(int(data[idx])); idx += 1
+    print("YES" if len(on) == m else "NO")
+
+main()
+
+=== REQ000040 END ===
+
+=== REQ000041 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int m = (int) st.nval;
+        Set<Integer> on = new HashSet<Integer>();
+        for (int i = 0; i < n; i++) {
+            st.nextToken(); int x = (int) st.nval;
+            for (int j = 0; j < x; j++) { st.nextToken(); on.add((int) st.nval); }
+        }
+        System.out.println(on.size() == m ? "YES" : "NO");
+    }
+}
+
+=== REQ000041 END ===
+
+=== REQ000042 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n, m;
+    cin >> n >> m;
+    set<int> on;
+    for (int i=0;i<n;i++){
+        int x;
+        cin >> x;
+        for (int j=0;j<x;j++){
+            int v;
+            cin >> v;
+            on.insert(v);
+        }
+    }
+    cout << ((int)on.size() == m ? "YES" : "NO") << endl;
+    return 0;
+}
+
+=== REQ000042 END ===
+
+=== REQ000043 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split('\n')
+    idx = 0
+    m, n = map(int, data[idx].split()); idx += 1
+    free = [(1, m)]  # list of (start, length) free blocks, in order
+    blocks = {}  # id -> (start, length) or None if erased
+    next_id = 1
+    out = []
+    for _ in range(n):
+        parts = data[idx].split(); idx += 1
+        if parts[0] == 'alloc':
+            need = int(parts[1])
+            placed = False
+            for i, (s, l) in enumerate(free):
+                if l >= need:
+                    blocks[next_id] = (s, need)
+                    if l == need:
+                        free.pop(i)
+                    else:
+                        free[i] = (s+need, l-need)
+                    out.append(str(next_id))
+                    next_id += 1
+                    placed = True
+                    break
+            if not placed:
+                out.append("NULL")
+                next_id += 1
+        elif parts[0] == 'erase':
+            x = int(parts[1])
+            if x in blocks and blocks[x] is not None:
+                s, l = blocks[x]
+                free.append((s, l))
+                free.sort()
+                merged = []
+                for seg in free:
+                    if merged and merged[-1][0]+merged[-1][1] == seg[0]:
+                        merged[-1] = (merged[-1][0], merged[-1][1]+seg[1])
+                    else:
+                        merged.append(seg)
+                free = merged
+                blocks[x] = None
+            else:
+                out.append("ILLEGAL_ERASE_ARGUMENT")
+        else:  # defragment
+            occupied = sorted((s,l,bid) for bid,(s,l) in blocks.items() if blocks[bid] is not None)
+            pos = 1
+            newblocks = {}
+            for s,l,bid in occupied:
+                newblocks[bid] = (pos, l)
+                pos += l
+            blocks = newblocks
+            free = [(pos, m-pos+1)] if pos <= m else []
+    print('\n'.join(out))
+
+main()
+
+=== REQ000043 END ===
+
+=== REQ000044 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st0 = new StringTokenizer(br.readLine());
+        int m = Integer.parseInt(st0.nextToken());
+        int n = Integer.parseInt(st0.nextToken());
+        List<int[]> free = new ArrayList<int[]>();
+        free.add(new int[]{1, m});
+        Map<Integer, int[]> blocks = new HashMap<Integer, int[]>();
+        int nextId = 1;
+        StringBuilder out = new StringBuilder();
+        for (int q = 0; q < n; q++) {
+            String line = br.readLine();
+            StringTokenizer st = new StringTokenizer(line);
+            String cmd = st.nextToken();
+            if (cmd.equals("alloc")) {
+                int need = Integer.parseInt(st.nextToken());
+                boolean placed = false;
+                for (int i = 0; i < free.size(); i++) {
+                    int[] f = free.get(i);
+                    if (f[1] >= need) {
+                        blocks.put(nextId, new int[]{f[0], need});
+                        if (f[1] == need) free.remove(i);
+                        else free.set(i, new int[]{f[0]+need, f[1]-need});
+                        out.append(nextId).append("\n");
+                        nextId++;
+                        placed = true;
+                        break;
+                    }
+                }
+                if (!placed) { out.append("NULL\n"); nextId++; }
+            } else if (cmd.equals("erase")) {
+                int x = Integer.parseInt(st.nextToken());
+                if (blocks.containsKey(x)) {
+                    int[] b = blocks.remove(x);
+                    free.add(b);
+                    free.sort((a,c) -> a[0]-c[0]);
+                    List<int[]> merged = new ArrayList<int[]>();
+                    for (int[] seg : free) {
+                        if (!merged.isEmpty() && merged.get(merged.size()-1)[0]+merged.get(merged.size()-1)[1] == seg[0]) {
+                            merged.get(merged.size()-1)[1] += seg[1];
+                        } else merged.add(seg);
+                    }
+                    free = merged;
+                } else {
+                    out.append("ILLEGAL_ERASE_ARGUMENT\n");
+                }
+            } else {
+                List<Map.Entry<Integer,int[]>> occ = new ArrayList<Map.Entry<Integer,int[]>>(blocks.entrySet());
+                occ.sort((a,b) -> a.getValue()[0]-b.getValue()[0]);
+                int pos = 1;
+                Map<Integer,int[]> newBlocks = new HashMap<Integer,int[]>();
+                for (Map.Entry<Integer,int[]> e : occ) {
+                    int l = e.getValue()[1];
+                    newBlocks.put(e.getKey(), new int[]{pos, l});
+                    pos += l;
+                }
+                blocks = newBlocks;
+                free = new ArrayList<int[]>();
+                if (pos <= m) free.add(new int[]{pos, m-pos+1});
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+=== REQ000044 END ===
+
+=== REQ000045 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int m, n;
+    cin >> m >> n;
+    cin.ignore();
+    vector<pair<int,int>> free_;
+    free_.push_back({1, m});
+    map<int, pair<int,int>> blocks;
+    int nextId = 1;
+    string out;
+    for (int q = 0; q < n; q++) {
+        string line;
+        getline(cin, line);
+        istringstream iss(line);
+        string cmd;
+        iss >> cmd;
+        if (cmd == "alloc") {
+            int need;
+            iss >> need;
+            bool placed = false;
+            for (size_t i = 0; i < free_.size(); i++) {
+                if (free_[i].second >= need) {
+                    blocks[nextId] = {free_[i].first, need};
+                    if (free_[i].second == need) free_.erase(free_.begin()+i);
+                    else free_[i] = {free_[i].first+need, free_[i].second-need};
+                    out += to_string(nextId) + "\n";
+                    nextId++;
+                    placed = true;
+                    break;
+                }
+            }
+            if (!placed) { out += "NULL\n"; nextId++; }
+        } else if (cmd == "erase") {
+            int x;
+            iss >> x;
+            if (blocks.count(x)) {
+                free_.push_back(blocks[x]);
+                blocks.erase(x);
+                sort(free_.begin(), free_.end());
+                vector<pair<int,int>> merged;
+                for (auto &seg : free_) {
+                    if (!merged.empty() && merged.back().first+merged.back().second == seg.first) {
+                        merged.back().second += seg.second;
+                    } else merged.push_back(seg);
+                }
+                free_ = merged;
+            } else {
+                out += "ILLEGAL_ERASE_ARGUMENT\n";
+            }
+        } else {
+            vector<pair<int,pair<int,int>>> occ;
+            for (auto &p : blocks) occ.push_back({p.second.first, {p.first, p.second.second}});
+            sort(occ.begin(), occ.end());
+            int pos = 1;
+            map<int,pair<int,int>> newBlocks;
+            for (auto &o : occ) {
+                int bid = o.second.first, l = o.second.second;
+                newBlocks[bid] = {pos, l};
+                pos += l;
+            }
+            blocks = newBlocks;
+            free_.clear();
+            if (pos <= m) free_.push_back({pos, m-pos+1});
+        }
+    }
+    cout << out;
+    return 0;
+}
+
+=== REQ000045 END ===
+
+=== REQ000046 START ===
+def main():
+    n = int(input())
+    result = []
+    def rec(s, maxc):
+        if len(s) == n:
+            result.append(''.join(chr(ord('a')+c) for c in s))
+            return
+        for c in range(maxc+2):
+            rec(s+[c], max(maxc, c))
+    rec([], -1)
+    print(len(result))
+    print('\n'.join(result))
+
+main()
+
+=== REQ000046 END ===
+
+=== REQ000047 START ===
+import java.util.*;
+
+public class Main {
+    static int n;
+    static List<String> result = new ArrayList<String>();
+    static void rec(int[] s, int len, int maxc) {
+        if (len == n) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < len; i++) sb.append((char)('a'+s[i]));
+            result.add(sb.toString());
+            return;
+        }
+        for (int c = 0; c <= maxc+1; c++) {
+            s[len] = c;
+            rec(s, len+1, Math.max(maxc, c));
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        rec(new int[n], 0, -1);
+        StringBuilder out = new StringBuilder();
+        out.append(result.size()).append("\n");
+        for (String s : result) out.append(s).append("\n");
+        System.out.print(out);
+    }
+}
+
+=== REQ000047 END ===
+
+=== REQ000048 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+vector<string> result;
+vector<int> s;
+void rec(int len, int maxc){
+    if (len==n) {
+        string str;
+        for (int i=0;i<len;i++) str += char('a'+s[i]);
+        result.push_back(str);
+        return;
+    }
+    for (int c=0;c<=maxc+1;c++){
+        s[len]=c;
+        rec(len+1, max(maxc,c));
+    }
+}
+int main(){
+    cin >> n;
+    s.assign(n,0);
+    rec(0,-1);
+    cout << result.size() << "\n";
+    for (auto &r: result) cout << r << "\n";
+    return 0;
+}
+
+=== REQ000048 END ===
+
+=== REQ000049 START ===
+def main():
+    a, b = map(int, input().split())
+    print("Odd" if (a*b) % 2 == 1 else "Even")
+
+main()
+
+=== REQ000049 END ===
+
+=== REQ000050 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt(), b = sc.nextInt();
+        System.out.println((a*b) % 2 == 1 ? "Odd" : "Even");
+    }
+}
+
+=== REQ000050 END ===

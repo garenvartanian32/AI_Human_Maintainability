@@ -1,0 +1,1 @@
+I don't see the problem statement — please paste the full programming problem (including input format, output format, constraints and sample I/O). If you prefer, state any assumptions (e.g., max n, time limits) and I'll produce a complete, tested Python solution.

@@ -1,0 +1,1 @@
+The problem statement is missing. Please paste the full programming problem (including input/output format, constraints, and any sample cases). I'll then provide a complete Java solution, brief explanation, and example I/O.

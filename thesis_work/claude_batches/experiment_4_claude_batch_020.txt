@@ -1,0 +1,282 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000476 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def multiply(a, b):
+    """Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000477 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Complete the function that takes two integers and returns 
+    // the product of their unit digits.
+    // Assume the input is always valid.
+    // Examples:
+    // >>> multiply((148l), (412l))
+    // (16l)
+    // >>> multiply((19l), (28l))
+    // (72l)
+    // >>> multiply((2020l), (1851l))
+    // (0l)
+    // >>> multiply((14l), (-15l))
+    // (20l)
+    public static long multiply(long a, long b) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000478 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Complete the function that takes two integers and returns 
+    // the product of their unit digits.
+    // Assume the input is always valid.
+    // Examples:
+    // >>> multiply((148l), (412l))
+    // (16l)
+    // >>> multiply((19l), (28l))
+    // (72l)
+    // >>> multiply((2020l), (1851l))
+    // (0l)
+    // >>> multiply((14l), (-15l))
+    // (20l)
+    public static long multiply(long a, long b) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000479 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Complete the function that takes two integers and returns 
+// the product of their unit digits.
+// Assume the input is always valid.
+// Examples:
+// >>> multiply((148), (412))
+// (16)
+// >>> multiply((19), (28))
+// (72)
+// >>> multiply((2020), (1851))
+// (0)
+// >>> multiply((14), (-15))
+// (20)
+long multiply(long a, long b) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000480 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Complete the function that takes two integers and returns 
+// the product of their unit digits.
+// Assume the input is always valid.
+// Examples:
+// >>> multiply((148), (412))
+// (16)
+// >>> multiply((19), (28))
+// (72)
+// >>> multiply((2020), (1851))
+// (0)
+// >>> multiply((14), (-15))
+// (20)
+long multiply(long a, long b) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000481 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def closest_integer(value):
+    '''
+    Create a function that takes a value (string) representing a number
+    and returns the closest integer to it. If the number is equidistant
+    from two integers, round it away from zero.
+
+    Examples
+    >>> closest_integer("10")
+    10
+    >>> closest_integer("15.3")
+    15
+
+    Note:
+    Rounding away from zero means that if the given number is equidistant
+    from two integers, the one you should return is the one that is the
+    farthest from zero. For example closest_integer("14.5") should
+    return 15 and closest_integer("-14.5") should return -15.
+    '''
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000482 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def closest_integer(value):
+    '''
+    Create a function that takes a value (string) representing a number
+    and returns the closest integer to it. If the number is equidistant
+    from two integers, round it away from zero.
+
+    Examples
+    >>> closest_integer("10")
+    10
+    >>> closest_integer("15.3")
+    15
+
+    Note:
+    Rounding away from zero means that if the given number is equidistant
+    from two integers, the one you should return is the one that is the
+    farthest from zero. For example closest_integer("14.5") should
+    return 15 and closest_integer("-14.5") should return -15.
+    '''
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000483 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Create a function that takes a value (string) representing a number
+    // and returns the closest integer to it. If the number is equidistant
+    // from two integers, round it away from zero.
+    // Examples
+    // >>> closestInteger(("10"))
+    // (10l)
+    // >>> closestInteger(("15.3"))
+    // (15l)
+    // Note:
+    // Rounding away from zero means that if the given number is equidistant
+    // from two integers, the one you should return is the one that is the
+    // farthest from zero. For example closest_integer("14.5") should
+    // return 15 and closest_integer("-14.5") should return -15.
+    public static long closestInteger(String value) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000484 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Create a function that takes a value (string) representing a number
+    // and returns the closest integer to it. If the number is equidistant
+    // from two integers, round it away from zero.
+    // Examples
+    // >>> closestInteger(("10"))
+    // (10l)
+    // >>> closestInteger(("15.3"))
+    // (15l)
+    // Note:
+    // Rounding away from zero means that if the given number is equidistant
+    // from two integers, the one you should return is the one that is the
+    // farthest from zero. For example closest_integer("14.5") should
+    // return 15 and closest_integer("-14.5") should return -15.
+    public static long closestInteger(String value) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000485 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Create a function that takes a value (string) representing a number
+// and returns the closest integer to it. If the number is equidistant
+// from two integers, round it away from zero.
+// Examples
+// >>> closest_integer(("10"))
+// (10)
+// >>> closest_integer(("15.3"))
+// (15)
+// Note:
+// Rounding away from zero means that if the given number is equidistant
+// from two integers, the one you should return is the one that is the
+// farthest from zero. For example closest_integer("14.5") should
+// return 15 and closest_integer("-14.5") should return -15.
+long closest_integer(std::string value) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000486 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Create a function that takes a value (string) representing a number
+// and returns the closest integer to it. If the number is equidistant
+// from two integers, round it away from zero.
+// Examples
+// >>> closest_integer(("10"))
+// (10)
+// >>> closest_integer(("15.3"))
+// (15)
+// Note:
+// Rounding away from zero means that if the given number is equidistant
+// from two integers, the one you should return is the one that is the
+// farthest from zero. For example closest_integer("14.5") should
+// return 15 and closest_integer("-14.5") should return -15.
+long closest_integer(std::string value) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

@@ -1,0 +1,1448 @@
+=== REQ000126 START ===
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    long long count;
+    std::cin >> count;
+
+    long long total = 0;
+    long long largestScore = 0;
+    for (long long i = 0; i < count; ++i) {
+        long long score;
+        std::cin >> score;
+        total += score;
+        largestScore = std::max(largestScore, score);
+    }
+
+    // The answer must be at least the current maximum, and large enough that
+    // `count` copies of it strictly exceed twice the current total.
+    long long smallestWinning = largestScore;
+    while (count * smallestWinning <= 2 * total) {
+        ++smallestWinning;
+    }
+
+    std::cout << smallestWinning << '\n';
+    return 0;
+}
+=== REQ000126 END ===
+
+=== REQ000127 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    rows = data[1:1+n]
+    # build bit matrix
+    mat = []
+    for r in rows:
+        bits = []
+        for ch in r:
+            v = int(ch, 16)
+            for shift in range(3, -1, -1):
+                bits.append((v >> shift) & 1)
+        mat.append(bits)
+    # prefix sum
+    pre = [[0]*(n+1) for _ in range(n+1)]
+    for i in range(1, n+1):
+        row_sum = 0
+        for j in range(1, n+1):
+            row_sum += mat[i-1][j-1]
+            pre[i][j] = pre[i-1][j] + row_sum
+
+    def block_sum(r1, c1, r2, c2):
+        # inclusive, 1-indexed
+        return pre[r2][c2] - pre[r1-1][c2] - pre[r2][c1-1] + pre[r1-1][c1-1]
+
+    # find divisors of n descending
+    divisors = [x for x in range(1, n+1) if n % x == 0]
+    divisors.sort(reverse=True)
+    for x in divisors:
+        ok = True
+        for bi in range(0, n, x):
+            if not ok:
+                break
+            for bj in range(0, n, x):
+                s = block_sum(bi+1, bj+1, bi+x, bj+x)
+                if s != 0 and s != x*x:
+                    ok = False
+                    break
+        if ok:
+            print(x)
+            return
+
+main()
+=== REQ000127 END ===
+
+=== REQ000128 START ===
+"""Largest x for which a binary matrix survives x-compression."""
+
+import sys
+
+HEX_BITS = 4
+
+
+def decode_rows(hex_rows: list[str], size: int) -> list[list[int]]:
+    """Expand each hexadecimal row into its ``size`` binary cells."""
+    matrix = []
+    for hex_row in hex_rows:
+        bits: list[int] = []
+        for character in hex_row:
+            value = int(character, 16)
+            for shift in reversed(range(HEX_BITS)):
+                bits.append((value >> shift) & 1)
+        matrix.append(bits)
+    return matrix
+
+
+def build_prefix_sums(matrix: list[list[int]], size: int) -> list[list[int]]:
+    """Standard 2-D prefix sums, padded with a zero row and column."""
+    prefix = [[0] * (size + 1) for _ in range(size + 1)]
+    for row in range(1, size + 1):
+        running = 0
+        for column in range(1, size + 1):
+            running += matrix[row - 1][column - 1]
+            prefix[row][column] = prefix[row - 1][column] + running
+    return prefix
+
+
+def block_is_uniform(prefix: list[list[int]], top: int, left: int, side: int) -> bool:
+    """True when the ``side``x``side`` block is entirely zeros or entirely ones."""
+    bottom, right = top + side, left + side
+    ones = (
+        prefix[bottom][right]
+        - prefix[top][right]
+        - prefix[bottom][left]
+        + prefix[top][left]
+    )
+    return ones == 0 or ones == side * side
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    size = int(tokens[0])
+    hex_rows = [tokens[1 + index].decode() for index in range(size)]
+
+    matrix = decode_rows(hex_rows, size)
+    prefix = build_prefix_sums(matrix, size)
+
+    # Larger x always implies every smaller divisor works, so scan downwards
+    # and stop at the first divisor whose blocks are all uniform.
+    for side in sorted((d for d in range(1, size + 1) if size % d == 0), reverse=True):
+        if all(
+            block_is_uniform(prefix, top, left, side)
+            for top in range(0, size, side)
+            for left in range(0, size, side)
+        ):
+            print(side)
+            return
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000128 END ===
+
+=== REQ000129 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine().trim());
+        byte[][] mat = new byte[n][n];
+        for (int i = 0; i < n; i++) {
+            String row = br.readLine().trim();
+            int col = 0;
+            for (int k = 0; k < row.length(); k++) {
+                int v = Character.digit(row.charAt(k), 16);
+                for (int shift = 3; shift >= 0; shift--) {
+                    mat[i][col++] = (byte) ((v >> shift) & 1);
+                }
+            }
+        }
+        int[][] pre = new int[n+1][n+1];
+        for (int i = 1; i <= n; i++) {
+            int rowSum = 0;
+            for (int j = 1; j <= n; j++) {
+                rowSum += mat[i-1][j-1];
+                pre[i][j] = pre[i-1][j] + rowSum;
+            }
+        }
+        List<Integer> divisors = new ArrayList<>();
+        for (int x = 1; x <= n; x++) {
+            if (n % x == 0) divisors.add(x);
+        }
+        divisors.sort(Collections.reverseOrder());
+        for (int x : divisors) {
+            boolean ok = true;
+            for (int bi = 0; bi < n && ok; bi += x) {
+                for (int bj = 0; bj < n; bj += x) {
+                    int r1 = bi+1, c1 = bj+1, r2 = bi+x, c2 = bj+x;
+                    int s = pre[r2][c2] - pre[r1-1][c2] - pre[r2][c1-1] + pre[r1-1][c1-1];
+                    if (s != 0 && s != x*x) { ok = false; break; }
+                }
+            }
+            if (ok) { System.out.println(x); return; }
+        }
+    }
+}
+=== REQ000129 END ===
+
+=== REQ000130 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Largest x for which a binary matrix survives x-compression.
+ *
+ * <p>Larger x always implies every smaller divisor works, so we scan divisors
+ * downwards and stop at the first whose blocks are all uniform.
+ */
+public class Sol {
+
+    private static final int HEX_BITS = 4;
+
+    private static int size;
+    private static int[][] prefix;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        size = Integer.parseInt(reader.readLine().trim());
+
+        byte[][] matrix = new byte[size][size];
+        for (int row = 0; row < size; row++) {
+            String hexRow = reader.readLine().trim();
+            int column = 0;
+            for (int i = 0; i < hexRow.length(); i++) {
+                int value = Character.digit(hexRow.charAt(i), 16);
+                for (int shift = HEX_BITS - 1; shift >= 0; shift--) {
+                    matrix[row][column++] = (byte) ((value >> shift) & 1);
+                }
+            }
+        }
+
+        prefix = buildPrefixSums(matrix);
+
+        for (int side = size; side >= 1; side--) {
+            if (size % side == 0 && everyBlockIsUniform(side)) {
+                System.out.println(side);
+                return;
+            }
+        }
+    }
+
+    /** Standard 2-D prefix sums, padded with a zero row and column. */
+    private static int[][] buildPrefixSums(byte[][] matrix) {
+        int[][] sums = new int[size + 1][size + 1];
+        for (int row = 1; row <= size; row++) {
+            int running = 0;
+            for (int column = 1; column <= size; column++) {
+                running += matrix[row - 1][column - 1];
+                sums[row][column] = sums[row - 1][column] + running;
+            }
+        }
+        return sums;
+    }
+
+    private static boolean everyBlockIsUniform(int side) {
+        for (int top = 0; top < size; top += side) {
+            for (int left = 0; left < size; left += side) {
+                if (!blockIsUniform(top, left, side)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /** True when the side x side block is entirely zeros or entirely ones. */
+    private static boolean blockIsUniform(int top, int left, int side) {
+        int bottom = top + side;
+        int right = left + side;
+        int ones = prefix[bottom][right] - prefix[top][right]
+                 - prefix[bottom][left] + prefix[top][left];
+        return ones == 0 || ones == side * side;
+    }
+}
+=== REQ000130 END ===
+
+=== REQ000131 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
+    vector<vector<char>> mat(n, vector<char>(n));
+    for (int i = 0; i < n; i++) {
+        string row;
+        cin >> row;
+        int col = 0;
+        for (char ch : row) {
+            int v = (ch >= '0' && ch <= '9') ? (ch - '0') : (ch - 'A' + 10);
+            for (int shift = 3; shift >= 0; shift--) {
+                mat[i][col++] = (v >> shift) & 1;
+            }
+        }
+    }
+    vector<vector<int>> pre(n+1, vector<int>(n+1, 0));
+    for (int i = 1; i <= n; i++) {
+        int rowSum = 0;
+        for (int j = 1; j <= n; j++) {
+            rowSum += mat[i-1][j-1];
+            pre[i][j] = pre[i-1][j] + rowSum;
+        }
+    }
+    vector<int> divisors;
+    for (int x = 1; x <= n; x++) if (n % x == 0) divisors.push_back(x);
+    sort(divisors.rbegin(), divisors.rend());
+    for (int x : divisors) {
+        bool ok = true;
+        for (int bi = 0; bi < n && ok; bi += x) {
+            for (int bj = 0; bj < n; bj += x) {
+                int r1=bi+1,c1=bj+1,r2=bi+x,c2=bj+x;
+                int s = pre[r2][c2]-pre[r1-1][c2]-pre[r2][c1-1]+pre[r1-1][c1-1];
+                if (s != 0 && s != x*x) { ok = false; break; }
+            }
+        }
+        if (ok) { cout << x << endl; return 0; }
+    }
+    return 0;
+}
+=== REQ000131 END ===
+
+=== REQ000132 START ===
+#include <iostream>
+#include <string>
+#include <vector>
+
+namespace {
+
+constexpr int kHexBits = 4;
+
+int gSize;
+std::vector<std::vector<int>> gPrefix;
+
+/// Standard 2-D prefix sums, padded with a zero row and column.
+void buildPrefixSums(const std::vector<std::vector<char>>& matrix) {
+    gPrefix.assign(gSize + 1, std::vector<int>(gSize + 1, 0));
+    for (int row = 1; row <= gSize; ++row) {
+        int running = 0;
+        for (int column = 1; column <= gSize; ++column) {
+            running += matrix[row - 1][column - 1];
+            gPrefix[row][column] = gPrefix[row - 1][column] + running;
+        }
+    }
+}
+
+/// True when the side x side block is entirely zeros or entirely ones.
+bool blockIsUniform(int top, int left, int side) {
+    const int bottom = top + side;
+    const int right = left + side;
+    const int ones = gPrefix[bottom][right] - gPrefix[top][right]
+                   - gPrefix[bottom][left] + gPrefix[top][left];
+    return ones == 0 || ones == side * side;
+}
+
+bool everyBlockIsUniform(int side) {
+    for (int top = 0; top < gSize; top += side) {
+        for (int left = 0; left < gSize; left += side) {
+            if (!blockIsUniform(top, left, side)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    std::cin >> gSize;
+
+    std::vector<std::vector<char>> matrix(gSize, std::vector<char>(gSize));
+    for (int row = 0; row < gSize; ++row) {
+        std::string hexRow;
+        std::cin >> hexRow;
+        int column = 0;
+        for (char character : hexRow) {
+            const int value = (character >= '0' && character <= '9')
+                                  ? character - '0'
+                                  : character - 'A' + 10;
+            for (int shift = kHexBits - 1; shift >= 0; --shift) {
+                matrix[row][column++] = (value >> shift) & 1;
+            }
+        }
+    }
+
+    buildPrefixSums(matrix);
+
+    // Larger x always implies every smaller divisor works, so scan downwards.
+    for (int side = gSize; side >= 1; --side) {
+        if (gSize % side == 0 && everyBlockIsUniform(side)) {
+            std::cout << side << '\n';
+            return 0;
+        }
+    }
+    return 0;
+}
+=== REQ000132 END ===
+
+=== REQ000133 START ===
+import sys
+
+def main():
+    q = int(sys.stdin.read().split()[0])
+    if q == 1:
+        print(1)
+        print(0)
+        return
+    factors = []
+    n = q
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        factors.append(n)
+    k = len(factors)
+    if k == 1:
+        print(1)
+        print(0)
+    elif k == 2:
+        print(2)
+    else:
+        factors.sort()
+        print(1)
+        print(factors[0] * factors[1])
+
+main()
+=== REQ000133 END ===
+
+=== REQ000134 START ===
+"""Decide the winner of the non-trivial-divisor game, and a winning first move."""
+
+import sys
+
+FIRST_PLAYER_WINS = 1
+SECOND_PLAYER_WINS = 2
+NO_MOVE_NEEDED = 0
+
+
+def prime_factors_with_multiplicity(value: int) -> list[int]:
+    """Return every prime factor of ``value``, repeated by its multiplicity."""
+    factors: list[int] = []
+    remaining = value
+
+    divisor = 2
+    while divisor * divisor <= remaining:
+        while remaining % divisor == 0:
+            factors.append(divisor)
+            remaining //= divisor
+        divisor += 1
+
+    if remaining > 1:
+        factors.append(remaining)
+    return factors
+
+
+def main() -> None:
+    number = int(sys.stdin.buffer.read().split()[0])
+
+    if number == 1:
+        # Already a losing position for the opponent; nothing to play.
+        print(FIRST_PLAYER_WINS)
+        print(NO_MOVE_NEEDED)
+        return
+
+    factors = prime_factors_with_multiplicity(number)
+
+    if len(factors) == 1:
+        # A prime has no non-trivial divisor, so the opponent is stuck.
+        print(FIRST_PLAYER_WINS)
+        print(NO_MOVE_NEEDED)
+    elif len(factors) == 2:
+        # Any move hands a winning position to the opponent.
+        print(SECOND_PLAYER_WINS)
+    else:
+        # Move to the product of the two smallest primes, a losing position.
+        factors.sort()
+        print(FIRST_PLAYER_WINS)
+        print(factors[0] * factors[1])
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000134 END ===
+
+=== REQ000135 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        long q = Long.parseLong(br.readLine().trim());
+        if (q == 1) {
+            System.out.println(1);
+            System.out.println(0);
+            return;
+        }
+        List<Long> factors = new ArrayList<>();
+        long n = q;
+        for (long d = 2; d * d <= n; d++) {
+            while (n % d == 0) {
+                factors.add(d);
+                n /= d;
+            }
+        }
+        if (n > 1) factors.add(n);
+        int k = factors.size();
+        if (k == 1) {
+            System.out.println(1);
+            System.out.println(0);
+        } else if (k == 2) {
+            System.out.println(2);
+        } else {
+            Collections.sort(factors);
+            System.out.println(1);
+            System.out.println(factors.get(0) * factors.get(1));
+        }
+    }
+}
+=== REQ000135 END ===
+
+=== REQ000136 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Decides the winner of the non-trivial-divisor game and a winning first move.
+ */
+public class Sol {
+
+    private static final int FIRST_PLAYER_WINS = 1;
+    private static final int SECOND_PLAYER_WINS = 2;
+    private static final int NO_MOVE_NEEDED = 0;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        long number = Long.parseLong(reader.readLine().trim());
+
+        if (number == 1) {
+            // Already a losing position for the opponent; nothing to play.
+            System.out.println(FIRST_PLAYER_WINS);
+            System.out.println(NO_MOVE_NEEDED);
+            return;
+        }
+
+        List<Long> factors = primeFactorsWithMultiplicity(number);
+
+        if (factors.size() == 1) {
+            // A prime has no non-trivial divisor, so the opponent is stuck.
+            System.out.println(FIRST_PLAYER_WINS);
+            System.out.println(NO_MOVE_NEEDED);
+        } else if (factors.size() == 2) {
+            // Any move hands a winning position to the opponent.
+            System.out.println(SECOND_PLAYER_WINS);
+        } else {
+            // Move to the product of the two smallest primes, a losing position.
+            Collections.sort(factors);
+            System.out.println(FIRST_PLAYER_WINS);
+            System.out.println(factors.get(0) * factors.get(1));
+        }
+    }
+
+    /** Returns every prime factor of {@code value}, repeated by multiplicity. */
+    private static List<Long> primeFactorsWithMultiplicity(long value) {
+        List<Long> factors = new ArrayList<>();
+        long remaining = value;
+
+        for (long divisor = 2; divisor * divisor <= remaining; divisor++) {
+            while (remaining % divisor == 0) {
+                factors.add(divisor);
+                remaining /= divisor;
+            }
+        }
+
+        if (remaining > 1) {
+            factors.add(remaining);
+        }
+        return factors;
+    }
+}
+=== REQ000136 END ===
+
+=== REQ000137 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long q;
+    cin >> q;
+    if (q == 1) {
+        cout << 1 << "\n" << 0 << "\n";
+        return 0;
+    }
+    vector<long long> factors;
+    long long n = q;
+    for (long long d = 2; d * d <= n; d++) {
+        while (n % d == 0) {
+            factors.push_back(d);
+            n /= d;
+        }
+    }
+    if (n > 1) factors.push_back(n);
+    int k = factors.size();
+    if (k == 1) {
+        cout << 1 << "\n" << 0 << "\n";
+    } else if (k == 2) {
+        cout << 2 << "\n";
+    } else {
+        sort(factors.begin(), factors.end());
+        cout << 1 << "\n" << (factors[0] * factors[1]) << "\n";
+    }
+    return 0;
+}
+=== REQ000137 END ===
+
+=== REQ000138 START ===
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+namespace {
+
+constexpr int kFirstPlayerWins = 1;
+constexpr int kSecondPlayerWins = 2;
+constexpr int kNoMoveNeeded = 0;
+
+/// Returns every prime factor of `value`, repeated by its multiplicity.
+std::vector<long long> primeFactorsWithMultiplicity(long long value) {
+    std::vector<long long> factors;
+    long long remaining = value;
+
+    for (long long divisor = 2; divisor * divisor <= remaining; ++divisor) {
+        while (remaining % divisor == 0) {
+            factors.push_back(divisor);
+            remaining /= divisor;
+        }
+    }
+
+    if (remaining > 1) {
+        factors.push_back(remaining);
+    }
+    return factors;
+}
+
+}  // namespace
+
+int main() {
+    long long number;
+    std::cin >> number;
+
+    if (number == 1) {
+        // Already a losing position for the opponent; nothing to play.
+        std::cout << kFirstPlayerWins << '\n' << kNoMoveNeeded << '\n';
+        return 0;
+    }
+
+    std::vector<long long> factors = primeFactorsWithMultiplicity(number);
+
+    if (factors.size() == 1) {
+        // A prime has no non-trivial divisor, so the opponent is stuck.
+        std::cout << kFirstPlayerWins << '\n' << kNoMoveNeeded << '\n';
+    } else if (factors.size() == 2) {
+        // Any move hands a winning position to the opponent.
+        std::cout << kSecondPlayerWins << '\n';
+    } else {
+        // Move to the product of the two smallest primes, a losing position.
+        std::sort(factors.begin(), factors.end());
+        std::cout << kFirstPlayerWins << '\n' << factors[0] * factors[1] << '\n';
+    }
+    return 0;
+}
+=== REQ000138 END ===
+
+=== REQ000139 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    t = int(data[idx]); idx += 1
+    out = []
+    for _ in range(t):
+        k = int(data[idx]); n = int(data[idx+1]); m = int(data[idx+2]); idx += 3
+        a = data[idx:idx+n]; idx += n
+        b = data[idx:idx+m]; idx += m
+        a = list(map(int, a))
+        b = list(map(int, b))
+        length = k
+        i = j = 0
+        res = []
+        ok = True
+        while i < n or j < m:
+            if i < n and (a[i] == 0 or a[i] <= length):
+                if a[i] == 0:
+                    length += 1
+                res.append(a[i])
+                i += 1
+            elif j < m and (b[j] == 0 or b[j] <= length):
+                if b[j] == 0:
+                    length += 1
+                res.append(b[j])
+                j += 1
+            else:
+                ok = False
+                break
+        if ok:
+            out.append(' '.join(map(str, res)))
+        else:
+            out.append('-1')
+    print('\n'.join(out))
+
+main()
+=== REQ000139 END ===
+
+=== REQ000140 START ===
+"""Interleave two partial edit logs into one consistent history."""
+
+import sys
+
+PLACEHOLDER = 0
+IMPOSSIBLE = "-1"
+
+
+def merge_logs(initial_size: int, first: list[int], second: list[int]) -> list[int] | None:
+    """Return an interleaving of the two logs, or None when none exists.
+
+    An entry may be replayed only if it targets a position that already exists.
+    A ``PLACEHOLDER`` entry appends a new position, growing the document. Taking
+    whichever log has a currently-valid head is safe: deferring a valid entry
+    can never unlock anything the other log needs.
+    """
+    merged: list[int] = []
+    size = initial_size
+    first_index = second_index = 0
+
+    while first_index < len(first) or second_index < len(second):
+        if first_index < len(first) and _can_replay(first[first_index], size):
+            entry = first[first_index]
+            first_index += 1
+        elif second_index < len(second) and _can_replay(second[second_index], size):
+            entry = second[second_index]
+            second_index += 1
+        else:
+            return None
+
+        if entry == PLACEHOLDER:
+            size += 1
+        merged.append(entry)
+
+    return merged
+
+
+def _can_replay(entry: int, size: int) -> bool:
+    return entry == PLACEHOLDER or entry <= size
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    cursor = 0
+    test_count = int(tokens[cursor])
+    cursor += 1
+
+    answers = []
+    for _ in range(test_count):
+        initial_size = int(tokens[cursor])
+        first_length = int(tokens[cursor + 1])
+        second_length = int(tokens[cursor + 2])
+        cursor += 3
+
+        first = [int(token) for token in tokens[cursor : cursor + first_length]]
+        cursor += first_length
+        second = [int(token) for token in tokens[cursor : cursor + second_length]]
+        cursor += second_length
+
+        merged = merge_logs(initial_size, first, second)
+        answers.append(" ".join(map(str, merged)) if merged is not None else IMPOSSIBLE)
+
+    sys.stdout.write("\n".join(answers) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000140 END ===
+
+=== REQ000141 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int t = (int) st.nval;
+        StringBuilder sb = new StringBuilder();
+        for (int tc = 0; tc < t; tc++) {
+            st.nextToken(); long k = (long) st.nval;
+            st.nextToken(); int n = (int) st.nval;
+            st.nextToken(); int m = (int) st.nval;
+            long[] a = new long[n];
+            long[] b = new long[m];
+            for (int i = 0; i < n; i++) { st.nextToken(); a[i] = (long) st.nval; }
+            for (int j = 0; j < m; j++) { st.nextToken(); b[j] = (long) st.nval; }
+            long length = k;
+            int i = 0, j = 0;
+            List<Long> res = new ArrayList<>();
+            boolean ok = true;
+            while (i < n || j < m) {
+                if (i < n && (a[i] == 0 || a[i] <= length)) {
+                    if (a[i] == 0) length++;
+                    res.add(a[i]);
+                    i++;
+                } else if (j < m && (b[j] == 0 || b[j] <= length)) {
+                    if (b[j] == 0) length++;
+                    res.add(b[j]);
+                    j++;
+                } else {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                StringBuilder line = new StringBuilder();
+                for (int x = 0; x < res.size(); x++) {
+                    if (x > 0) line.append(' ');
+                    line.append(res.get(x));
+                }
+                sb.append(line).append('\n');
+            } else {
+                sb.append(-1).append('\n');
+            }
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000141 END ===
+
+=== REQ000142 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+
+/**
+ * Interleaves two partial edit logs into one consistent history.
+ *
+ * <p>An entry may be replayed only if it targets a position that already exists;
+ * a placeholder entry appends a new position. Taking whichever log has a
+ * currently-valid head is safe, because deferring a valid entry can never
+ * unlock anything the other log needs.
+ */
+public class Sol {
+
+    private static final long PLACEHOLDER = 0;
+    private static final String IMPOSSIBLE = "-1";
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int testCount = (int) input.nval;
+
+        StringBuilder answers = new StringBuilder();
+        for (int test = 0; test < testCount; test++) {
+            input.nextToken();
+            long size = (long) input.nval;
+            input.nextToken();
+            int firstLength = (int) input.nval;
+            input.nextToken();
+            int secondLength = (int) input.nval;
+
+            long[] first = readEntries(input, firstLength);
+            long[] second = readEntries(input, secondLength);
+
+            answers.append(mergeLogs(size, first, second)).append('\n');
+        }
+
+        System.out.print(answers);
+    }
+
+    private static long[] readEntries(StreamTokenizer input, int count) throws IOException {
+        long[] entries = new long[count];
+        for (int i = 0; i < count; i++) {
+            input.nextToken();
+            entries[i] = (long) input.nval;
+        }
+        return entries;
+    }
+
+    private static String mergeLogs(long size, long[] first, long[] second) {
+        StringBuilder merged = new StringBuilder();
+        int firstIndex = 0;
+        int secondIndex = 0;
+
+        while (firstIndex < first.length || secondIndex < second.length) {
+            long entry;
+            if (firstIndex < first.length && canReplay(first[firstIndex], size)) {
+                entry = first[firstIndex++];
+            } else if (secondIndex < second.length && canReplay(second[secondIndex], size)) {
+                entry = second[secondIndex++];
+            } else {
+                return IMPOSSIBLE;
+            }
+
+            if (entry == PLACEHOLDER) {
+                size++;
+            }
+            if (merged.length() > 0) {
+                merged.append(' ');
+            }
+            merged.append(entry);
+        }
+
+        return merged.toString();
+    }
+
+    private static boolean canReplay(long entry, long size) {
+        return entry == PLACEHOLDER || entry <= size;
+    }
+}
+=== REQ000142 END ===
+
+=== REQ000143 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin >> t;
+    string out;
+    for (int tc = 0; tc < t; tc++) {
+        long long k;
+        int n, m;
+        cin >> k >> n >> m;
+        vector<long long> a(n), b(m);
+        for (auto &x : a) cin >> x;
+        for (auto &x : b) cin >> x;
+        long long length = k;
+        int i = 0, j = 0;
+        vector<long long> res;
+        bool ok = true;
+        while (i < n || j < m) {
+            if (i < n && (a[i] == 0 || a[i] <= length)) {
+                if (a[i] == 0) length++;
+                res.push_back(a[i]);
+                i++;
+            } else if (j < m && (b[j] == 0 || b[j] <= length)) {
+                if (b[j] == 0) length++;
+                res.push_back(b[j]);
+                j++;
+            } else {
+                ok = false;
+                break;
+            }
+        }
+        if (ok) {
+            for (size_t x = 0; x < res.size(); x++) {
+                if (x > 0) out += ' ';
+                out += to_string(res[x]);
+            }
+            out += '\n';
+        } else {
+            out += "-1\n";
+        }
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000143 END ===
+
+=== REQ000144 START ===
+#include <iostream>
+#include <sstream>
+#include <vector>
+
+namespace {
+
+constexpr long long kPlaceholder = 0;
+
+bool canReplay(long long entry, long long size) {
+    return entry == kPlaceholder || entry <= size;
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int testCount;
+    std::cin >> testCount;
+
+    std::ostringstream answers;
+    while (testCount-- > 0) {
+        long long size;
+        int firstLength, secondLength;
+        std::cin >> size >> firstLength >> secondLength;
+
+        std::vector<long long> first(firstLength), second(secondLength);
+        for (auto& entry : first) std::cin >> entry;
+        for (auto& entry : second) std::cin >> entry;
+
+        // An entry may be replayed only if it targets a position that already
+        // exists; a placeholder appends a new position. Taking whichever log
+        // has a currently-valid head is always safe.
+        std::vector<long long> merged;
+        int firstIndex = 0, secondIndex = 0;
+        bool possible = true;
+
+        while (firstIndex < firstLength || secondIndex < secondLength) {
+            long long entry;
+            if (firstIndex < firstLength && canReplay(first[firstIndex], size)) {
+                entry = first[firstIndex++];
+            } else if (secondIndex < secondLength && canReplay(second[secondIndex], size)) {
+                entry = second[secondIndex++];
+            } else {
+                possible = false;
+                break;
+            }
+
+            if (entry == kPlaceholder) {
+                ++size;
+            }
+            merged.push_back(entry);
+        }
+
+        if (!possible) {
+            answers << "-1\n";
+        } else {
+            for (std::size_t i = 0; i < merged.size(); ++i) {
+                if (i > 0) answers << ' ';
+                answers << merged[i];
+            }
+            answers << '\n';
+        }
+    }
+
+    std::cout << answers.str();
+    return 0;
+}
+=== REQ000144 END ===
+
+=== REQ000145 START ===
+import sys
+from collections import deque
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    x0 = int(data[idx]); y0 = int(data[idx+1]); x1 = int(data[idx+2]); y1 = int(data[idx+3]); idx += 4
+    n = int(data[idx]); idx += 1
+    cells = {}
+    for _ in range(n):
+        r = int(data[idx]); a = int(data[idx+1]); b = int(data[idx+2]); idx += 3
+        for c in range(a, b + 1):
+            cells[(r, c)] = True
+
+    start = (x0, y0)
+    end = (x1, y1)
+    if start not in cells or end not in cells:
+        print(-1)
+        return
+    dist = {start: 0}
+    q = deque([start])
+    dirs = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+    while q:
+        cur = q.popleft()
+        if cur == end:
+            print(dist[cur])
+            return
+        cr, cc = cur
+        for dr, dc in dirs:
+            nxt = (cr+dr, cc+dc)
+            if nxt in cells and nxt not in dist:
+                dist[nxt] = dist[cur] + 1
+                q.append(nxt)
+    print(-1)
+
+main()
+=== REQ000145 END ===
+
+=== REQ000146 START ===
+"""Shortest king's walk across a sparse set of allowed board squares."""
+
+import sys
+from collections import deque
+
+UNREACHABLE = -1
+
+KING_MOVES = [
+    (-1, -1), (-1, 0), (-1, 1),
+    (0, -1),           (0, 1),
+    (1, -1),  (1, 0),  (1, 1),
+]
+
+
+def shortest_walk(
+    start: tuple[int, int], goal: tuple[int, int], allowed: set[tuple[int, int]]
+) -> int:
+    """Breadth-first search over the allowed squares only."""
+    if start not in allowed or goal not in allowed:
+        return UNREACHABLE
+
+    steps_to = {start: 0}
+    frontier = deque([start])
+
+    while frontier:
+        square = frontier.popleft()
+        if square == goal:
+            return steps_to[square]
+
+        row, column = square
+        for row_delta, column_delta in KING_MOVES:
+            neighbour = (row + row_delta, column + column_delta)
+            if neighbour in allowed and neighbour not in steps_to:
+                steps_to[neighbour] = steps_to[square] + 1
+                frontier.append(neighbour)
+
+    return UNREACHABLE
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    start = (int(tokens[0]), int(tokens[1]))
+    goal = (int(tokens[2]), int(tokens[3]))
+    segment_count = int(tokens[4])
+
+    # The board is given as horizontal segments, which is far smaller than the
+    # full coordinate range; only these squares may be stepped on.
+    allowed: set[tuple[int, int]] = set()
+    cursor = 5
+    for _ in range(segment_count):
+        row = int(tokens[cursor])
+        first_column = int(tokens[cursor + 1])
+        last_column = int(tokens[cursor + 2])
+        cursor += 3
+        for column in range(first_column, last_column + 1):
+            allowed.add((row, column))
+
+    print(shortest_walk(start, goal, allowed))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000146 END ===
+
+=== REQ000147 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); long x0 = (long) st.nval;
+        st.nextToken(); long y0 = (long) st.nval;
+        st.nextToken(); long x1 = (long) st.nval;
+        st.nextToken(); long y1 = (long) st.nval;
+        st.nextToken(); int n = (int) st.nval;
+        Map<Long, Boolean> cells = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            st.nextToken(); long r = (long) st.nval;
+            st.nextToken(); long a = (long) st.nval;
+            st.nextToken(); long b = (long) st.nval;
+            for (long c = a; c <= b; c++) {
+                cells.put(r * 2000000000L + c, true);
+            }
+        }
+        long start = x0 * 2000000000L + y0;
+        long end = x1 * 2000000000L + y1;
+        if (!cells.containsKey(start) || !cells.containsKey(end)) {
+            System.out.println(-1);
+            return;
+        }
+        Map<Long, Integer> dist = new HashMap<>();
+        dist.put(start, 0);
+        ArrayDeque<Long> q = new ArrayDeque<>();
+        q.add(start);
+        int[] dr = {-1,-1,-1,0,0,1,1,1};
+        int[] dc = {-1,0,1,-1,1,-1,0,1};
+        while (!q.isEmpty()) {
+            long cur = q.poll();
+            if (cur == end) {
+                System.out.println(dist.get(cur));
+                return;
+            }
+            long cr = cur / 2000000000L;
+            long cc = cur - cr * 2000000000L;
+            for (int d = 0; d < 8; d++) {
+                long nr = cr + dr[d];
+                long nc = cc + dc[d];
+                long nxt = nr * 2000000000L + nc;
+                if (cells.containsKey(nxt) && !dist.containsKey(nxt)) {
+                    dist.put(nxt, dist.get(cur) + 1);
+                    q.add(nxt);
+                }
+            }
+        }
+        System.out.println(-1);
+    }
+}
+=== REQ000147 END ===
+
+=== REQ000148 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * Shortest king's walk across a sparse set of allowed board squares.
+ *
+ * <p>The board arrives as horizontal segments, far smaller than the full
+ * coordinate range, so squares are held in a hash set keyed by a packed
+ * row/column pair rather than a dense grid.
+ */
+public class Sol {
+
+    private static final int UNREACHABLE = -1;
+    private static final long COLUMN_RANGE = 2_000_000_000L;
+
+    private static final int[] ROW_DELTAS = {-1, -1, -1, 0, 0, 1, 1, 1};
+    private static final int[] COLUMN_DELTAS = {-1, 0, 1, -1, 1, -1, 0, 1};
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        long startRow = nextLong(input);
+        long startColumn = nextLong(input);
+        long goalRow = nextLong(input);
+        long goalColumn = nextLong(input);
+        int segmentCount = (int) nextLong(input);
+
+        Set<Long> allowed = new HashSet<>();
+        for (int segment = 0; segment < segmentCount; segment++) {
+            long row = nextLong(input);
+            long firstColumn = nextLong(input);
+            long lastColumn = nextLong(input);
+            for (long column = firstColumn; column <= lastColumn; column++) {
+                allowed.add(pack(row, column));
+            }
+        }
+
+        System.out.println(shortestWalk(
+                pack(startRow, startColumn), pack(goalRow, goalColumn), allowed));
+    }
+
+    /** Breadth-first search over the allowed squares only. */
+    private static int shortestWalk(long start, long goal, Set<Long> allowed) {
+        if (!allowed.contains(start) || !allowed.contains(goal)) {
+            return UNREACHABLE;
+        }
+
+        Map<Long, Integer> stepsTo = new HashMap<>();
+        stepsTo.put(start, 0);
+        ArrayDeque<Long> frontier = new ArrayDeque<>();
+        frontier.add(start);
+
+        while (!frontier.isEmpty()) {
+            long square = frontier.poll();
+            if (square == goal) {
+                return stepsTo.get(square);
+            }
+
+            long row = Math.floorDiv(square, COLUMN_RANGE);
+            long column = square - row * COLUMN_RANGE;
+            int nextSteps = stepsTo.get(square) + 1;
+
+            for (int move = 0; move < ROW_DELTAS.length; move++) {
+                long neighbour = pack(row + ROW_DELTAS[move], column + COLUMN_DELTAS[move]);
+                if (allowed.contains(neighbour) && !stepsTo.containsKey(neighbour)) {
+                    stepsTo.put(neighbour, nextSteps);
+                    frontier.add(neighbour);
+                }
+            }
+        }
+
+        return UNREACHABLE;
+    }
+
+    private static long pack(long row, long column) {
+        return row * COLUMN_RANGE + column;
+    }
+
+    private static long nextLong(StreamTokenizer input) throws IOException {
+        input.nextToken();
+        return (long) input.nval;
+    }
+}
+=== REQ000148 END ===
+
+=== REQ000149 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    long long x0, y0, x1, y1;
+    cin >> x0 >> y0 >> x1 >> y1;
+    int n;
+    cin >> n;
+    unordered_set<long long> cells;
+    auto key = [](long long r, long long c) {
+        return r * 2000000000LL + c;
+    };
+    for (int i = 0; i < n; i++) {
+        long long r, a, b;
+        cin >> r >> a >> b;
+        for (long long c = a; c <= b; c++) {
+            cells.insert(key(r, c));
+        }
+    }
+    long long start = key(x0, y0);
+    long long end_ = key(x1, y1);
+    if (!cells.count(start) || !cells.count(end_)) {
+        cout << -1 << endl;
+        return 0;
+    }
+    unordered_map<long long, int> dist;
+    dist[start] = 0;
+    queue<long long> q;
+    q.push(start);
+    int dr[8] = {-1,-1,-1,0,0,1,1,1};
+    int dc[8] = {-1,0,1,-1,1,-1,0,1};
+    while (!q.empty()) {
+        long long cur = q.front(); q.pop();
+        if (cur == end_) {
+            cout << dist[cur] << endl;
+            return 0;
+        }
+        long long cr = cur / 2000000000LL;
+        long long cc = cur - cr * 2000000000LL;
+        for (int d = 0; d < 8; d++) {
+            long long nr = cr + dr[d];
+            long long nc = cc + dc[d];
+            long long nxt = key(nr, nc);
+            if (cells.count(nxt) && !dist.count(nxt)) {
+                dist[nxt] = dist[cur] + 1;
+                q.push(nxt);
+            }
+        }
+    }
+    cout << -1 << endl;
+    return 0;
+}
+=== REQ000149 END ===
+
+=== REQ000150 START ===
+#include <iostream>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
+
+namespace {
+
+constexpr int kUnreachable = -1;
+constexpr long long kColumnRange = 2000000000LL;
+
+constexpr int kRowDeltas[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+constexpr int kColumnDeltas[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
+
+long long pack(long long row, long long column) {
+    return row * kColumnRange + column;
+}
+
+/// Breadth-first search over the allowed squares only.
+int shortestWalk(long long start, long long goal, const std::unordered_set<long long>& allowed) {
+    if (allowed.count(start) == 0 || allowed.count(goal) == 0) {
+        return kUnreachable;
+    }
+
+    std::unordered_map<long long, int> stepsTo;
+    stepsTo[start] = 0;
+    std::queue<long long> frontier;
+    frontier.push(start);
+
+    while (!frontier.empty()) {
+        const long long square = frontier.front();
+        frontier.pop();
+        if (square == goal) {
+            return stepsTo[square];
+        }
+
+        const long long row = square / kColumnRange;
+        const long long column = square - row * kColumnRange;
+        const int nextSteps = stepsTo[square] + 1;
+
+        for (int move = 0; move < 8; ++move) {
+            const long long neighbour =
+                pack(row + kRowDeltas[move], column + kColumnDeltas[move]);
+            if (allowed.count(neighbour) > 0 && stepsTo.count(neighbour) == 0) {
+                stepsTo[neighbour] = nextSteps;
+                frontier.push(neighbour);
+            }
+        }
+    }
+
+    return kUnreachable;
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    long long startRow, startColumn, goalRow, goalColumn;
+    std::cin >> startRow >> startColumn >> goalRow >> goalColumn;
+
+    int segmentCount;
+    std::cin >> segmentCount;
+
+    // The board arrives as horizontal segments, far smaller than the full
+    // coordinate range, so only these squares may be stepped on.
+    std::unordered_set<long long> allowed;
+    for (int segment = 0; segment < segmentCount; ++segment) {
+        long long row, firstColumn, lastColumn;
+        std::cin >> row >> firstColumn >> lastColumn;
+        for (long long column = firstColumn; column <= lastColumn; ++column) {
+            allowed.insert(pack(row, column));
+        }
+    }
+
+    std::cout << shortestWalk(pack(startRow, startColumn), pack(goalRow, goalColumn), allowed)
+              << '\n';
+    return 0;
+}
+=== REQ000150 END ===

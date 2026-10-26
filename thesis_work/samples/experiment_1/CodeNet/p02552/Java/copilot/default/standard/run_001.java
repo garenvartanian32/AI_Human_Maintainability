@@ -1,0 +1,1 @@
+I don’t see the problem statement. Please paste the full problem (including constraints and sample I/O). If you want a default, say so — otherwise I'll assume a single-class Java solution (class Main) reading from stdin and writing to stdout and produce code accordingly.

@@ -1,0 +1,1 @@
+I don't see the problem statement — please paste the full problem (input format, constraints, sample I/O). If you want, include expected complexity or language version. Once provided, a complete C++17 solution with explanation and tested code will be returned.

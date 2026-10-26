@@ -1,0 +1,578 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000126 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    string line, all;
+    while (getline(cin, line)) all += line;
+    cout << all << endl;
+    return 0;
+}
+
+=== REQ000126 END ===
+
+=== REQ000127 START ===
+def main():
+    x = int(input())
+    print(1 - x)
+
+main()
+
+=== REQ000127 END ===
+
+=== REQ000128 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = sc.nextInt();
+        System.out.println(1 - x);
+    }
+}
+
+=== REQ000128 END ===
+
+=== REQ000129 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int x; cin >> x;
+    cout << (1-x) << endl;
+    return 0;
+}
+
+=== REQ000129 END ===
+
+=== REQ000130 START ===
+import sys
+
+def solve(n, A, S):
+    basis = [0]*64
+    last_pivot_owner = None
+    for i in range(n-1, -1, -1):
+        cur = A[i]
+        for b in range(63, -1, -1):
+            if not (cur >> b) & 1:
+                continue
+            if basis[b] == 0:
+                basis[b] = cur
+                last_pivot_owner = S[i]
+                cur = 0
+                break
+            else:
+                cur ^= basis[b]
+    return last_pivot_owner
+
+def main():
+    data = sys.stdin.read().split('\n')
+    idx = 0
+    t = int(data[idx].strip()); idx += 1
+    out = []
+    for _ in range(t):
+        n = int(data[idx].strip()); idx += 1
+        A = list(map(int, data[idx].split())); idx += 1
+        S = data[idx].strip(); idx += 1
+        out.append(solve(n, A, S))
+    print('\n'.join(out))
+
+main()
+
+=== REQ000130 END ===
+
+=== REQ000131 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    static char solve(int n, long[] A, String S) {
+        long[] basis = new long[64];
+        char lastOwner = '0';
+        for (int i = n-1; i >= 0; i--) {
+            long cur = A[i];
+            for (int b = 63; b >= 0; b--) {
+                if (((cur >> b) & 1) == 0) continue;
+                if (basis[b] == 0) {
+                    basis[b] = cur;
+                    lastOwner = S.charAt(i);
+                    cur = 0;
+                    break;
+                } else {
+                    cur ^= basis[b];
+                }
+            }
+        }
+        return lastOwner;
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < t; i++) {
+            int n = Integer.parseInt(br.readLine().trim());
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            long[] A = new long[n];
+            for (int j = 0; j < n; j++) A[j] = Long.parseLong(st.nextToken());
+            String S = br.readLine().trim();
+            out.append(solve(n, A, S)).append("\n");
+        }
+        System.out.print(out);
+    }
+}
+
+=== REQ000131 END ===
+
+=== REQ000132 START ===
+#include <bits/stdc++.h>
+using namespace std;
+char solve(int n, vector<long long>& A, string& S) {
+    vector<long long> basis(64, 0);
+    char lastOwner = '0';
+    for (int i = n-1; i >= 0; i--) {
+        long long cur = A[i];
+        for (int b = 63; b >= 0; b--) {
+            if (!((cur>>b)&1)) continue;
+            if (basis[b] == 0) {
+                basis[b] = cur;
+                lastOwner = S[i];
+                cur = 0;
+                break;
+            } else {
+                cur ^= basis[b];
+            }
+        }
+    }
+    return lastOwner;
+}
+int main(){
+    int t;
+    cin >> t;
+    string out;
+    for (int i=0;i<t;i++){
+        int n;
+        cin >> n;
+        vector<long long> A(n);
+        for (auto &v: A) cin >> v;
+        string S;
+        cin >> S;
+        out += solve(n, A, S);
+        out += "\n";
+    }
+    cout << out;
+    return 0;
+}
+
+=== REQ000132 END ===
+
+=== REQ000133 START ===
+def main():
+    h1,m1,h2,m2,k = map(int, input().split())
+    total = (h2*60+m2) - (h1*60+m1)
+    print(total - k)
+
+main()
+
+=== REQ000133 END ===
+
+=== REQ000134 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int h1=sc.nextInt(),m1=sc.nextInt(),h2=sc.nextInt(),m2=sc.nextInt(),k=sc.nextInt();
+        int total = (h2*60+m2)-(h1*60+m1);
+        System.out.println(total-k);
+    }
+}
+
+=== REQ000134 END ===
+
+=== REQ000135 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int h1,m1,h2,m2,k;
+    cin >> h1 >> m1 >> h2 >> m2 >> k;
+    int total = (h2*60+m2)-(h1*60+m1);
+    cout << (total-k) << endl;
+    return 0;
+}
+
+=== REQ000135 END ===
+
+=== REQ000136 START ===
+import sys
+
+def main():
+    n = int(input())
+    result = []
+    def rec(s, maxc):
+        if len(s) == n:
+            result.append(''.join(chr(ord('a')+c) for c in s))
+            return
+        for c in range(maxc+2):
+            rec(s+[c], max(maxc, c))
+    rec([], -1)
+    print('\n'.join(result))
+
+main()
+
+=== REQ000136 END ===
+
+=== REQ000137 START ===
+import java.util.*;
+
+public class Main {
+    static int n;
+    static StringBuilder out = new StringBuilder();
+    static void rec(int[] s, int len, int maxc) {
+        if (len == n) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < len; i++) sb.append((char)('a'+s[i]));
+            out.append(sb).append("\n");
+            return;
+        }
+        for (int c = 0; c <= maxc+1; c++) {
+            s[len] = c;
+            rec(s, len+1, Math.max(maxc, c));
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        rec(new int[n], 0, -1);
+        System.out.print(out);
+    }
+}
+
+=== REQ000137 END ===
+
+=== REQ000138 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+string out_s;
+vector<int> s;
+void rec(int len, int maxc){
+    if (len==n) {
+        for (int i=0;i<len;i++) out_s += char('a'+s[i]);
+        out_s += "\n";
+        return;
+    }
+    for (int c=0;c<=maxc+1;c++){
+        s[len]=c;
+        rec(len+1, max(maxc,c));
+    }
+}
+int main(){
+    cin >> n;
+    s.assign(n,0);
+    rec(0,-1);
+    cout << out_s;
+    return 0;
+}
+
+=== REQ000138 END ===
+
+=== REQ000139 START ===
+import sys, heapq
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); idx+=1
+    d = int(data[idx]); idx+=1
+    a = int(data[idx]); idx+=1
+    monsters = []
+    for _ in range(n):
+        x = int(data[idx]); idx+=1
+        h = int(data[idx]); idx+=1
+        monsters.append((x,h))
+    monsters.sort()
+    heap = []  # (end_x, amount)
+    cumulative = 0
+    bombs = 0
+    for x, h in monsters:
+        while heap and heap[0][0] < x:
+            _, amt = heapq.heappop(heap)
+            cumulative -= amt
+        eff = h - cumulative
+        if eff > 0:
+            need = (eff + a - 1)//a
+            bombs += need
+            cumulative += need*a
+            end = x + 2*d
+            heapq.heappush(heap, (end, need*a))
+    print(bombs)
+
+main()
+
+=== REQ000139 END ===
+
+=== REQ000140 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        st.nextToken(); int n=(int)st.nval;
+        st.nextToken(); long d=(long)st.nval;
+        st.nextToken(); long a=(long)st.nval;
+        long[][] monsters = new long[n][2];
+        for (int i=0;i<n;i++){
+            st.nextToken(); monsters[i][0]=(long)st.nval;
+            st.nextToken(); monsters[i][1]=(long)st.nval;
+        }
+        Arrays.sort(monsters, (p,q)->Long.compare(p[0],q[0]));
+        PriorityQueue<long[]> heap = new PriorityQueue<long[]>((p,q)->Long.compare(p[0],q[0]));
+        long cumulative = 0;
+        long bombs = 0;
+        for (long[] m : monsters) {
+            long x = m[0], h = m[1];
+            while (!heap.isEmpty() && heap.peek()[0] < x) {
+                cumulative -= heap.poll()[1];
+            }
+            long eff = h - cumulative;
+            if (eff > 0) {
+                long need = (eff + a - 1)/a;
+                bombs += need;
+                cumulative += need*a;
+                long end = x + 2*d;
+                heap.add(new long[]{end, need*a});
+            }
+        }
+        System.out.println(bombs);
+    }
+}
+
+=== REQ000140 END ===
+
+=== REQ000141 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long n,d,a;
+    cin >> n >> d >> a;
+    vector<pair<long long,long long>> monsters(n);
+    for (auto &m: monsters) cin >> m.first >> m.second;
+    sort(monsters.begin(), monsters.end());
+    priority_queue<pair<long long,long long>, vector<pair<long long,long long>>, greater<>> heap;
+    long long cumulative=0, bombs=0;
+    for (auto &m: monsters) {
+        long long x=m.first, h=m.second;
+        while (!heap.empty() && heap.top().first < x) {
+            cumulative -= heap.top().second;
+            heap.pop();
+        }
+        long long eff = h - cumulative;
+        if (eff > 0) {
+            long long need = (eff + a - 1)/a;
+            bombs += need;
+            cumulative += need*a;
+            long long end = x + 2*d;
+            heap.push({end, need*a});
+        }
+    }
+    cout << bombs << endl;
+    return 0;
+}
+
+=== REQ000141 END ===
+
+=== REQ000142 START ===
+def main():
+    n = int(input())
+    total = 0
+    q = 1
+    while q*q < n:
+        if n % q == 0:
+            m = n // q - 1
+            if q < m:
+                total += m
+        q += 1
+    print(total)
+
+main()
+
+=== REQ000142 END ===
+
+=== REQ000143 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long n = sc.nextLong();
+        long total = 0;
+        long q = 1;
+        while (q*q < n) {
+            if (n % q == 0) {
+                long m = n/q - 1;
+                if (q < m) total += m;
+            }
+            q++;
+        }
+        System.out.println(total);
+    }
+}
+
+=== REQ000143 END ===
+
+=== REQ000144 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long n;
+    cin >> n;
+    long long total=0, q=1;
+    while (q*q < n) {
+        if (n % q == 0) {
+            long long m = n/q - 1;
+            if (q < m) total += m;
+        }
+        q++;
+    }
+    cout << total << endl;
+    return 0;
+}
+
+=== REQ000144 END ===
+
+=== REQ000145 START ===
+def main():
+    n, m = map(int, input().split())
+    stores = []
+    for _ in range(n):
+        a, b = map(int, input().split())
+        stores.append((a,b))
+    stores.sort()
+    total = 0
+    remaining = m
+    for price, cap in stores:
+        take = min(cap, remaining)
+        total += take*price
+        remaining -= take
+        if remaining == 0:
+            break
+    print(total)
+
+main()
+
+=== REQ000145 END ===
+
+=== REQ000146 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        long m = sc.nextLong();
+        long[][] stores = new long[n][2];
+        for (int i = 0; i < n; i++) { stores[i][0]=sc.nextLong(); stores[i][1]=sc.nextLong(); }
+        Arrays.sort(stores, (x,y) -> Long.compare(x[0], y[0]));
+        long total = 0;
+        long remaining = m;
+        for (long[] s : stores) {
+            long take = Math.min(s[1], remaining);
+            total += take*s[0];
+            remaining -= take;
+            if (remaining == 0) break;
+        }
+        System.out.println(total);
+    }
+}
+
+=== REQ000146 END ===
+
+=== REQ000147 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long n,m;
+    cin >> n >> m;
+    vector<pair<long long,long long>> stores(n);
+    for (auto &s: stores) cin >> s.first >> s.second;
+    sort(stores.begin(), stores.end());
+    long long total=0, remaining=m;
+    for (auto &s: stores) {
+        long long take = min(s.second, remaining);
+        total += take*s.first;
+        remaining -= take;
+        if (remaining==0) break;
+    }
+    cout << total << endl;
+    return 0;
+}
+
+=== REQ000147 END ===
+
+=== REQ000148 START ===
+def main():
+    s = int(input())
+    seen = {}
+    a = s
+    i = 1
+    seen[a] = i
+    while True:
+        if a % 2 == 0:
+            a = a // 2
+        else:
+            a = 3*a + 1
+        i += 1
+        if a in seen:
+            print(i)
+            return
+        seen[a] = i
+
+main()
+
+=== REQ000148 END ===
+
+=== REQ000149 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long s = sc.nextLong();
+        Map<Long,Integer> seen = new HashMap<Long,Integer>();
+        long a = s;
+        int i = 1;
+        seen.put(a, i);
+        while (true) {
+            if (a % 2 == 0) a = a/2;
+            else a = 3*a+1;
+            i++;
+            if (seen.containsKey(a)) { System.out.println(i); return; }
+            seen.put(a, i);
+        }
+    }
+}
+
+=== REQ000149 END ===
+
+=== REQ000150 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long s;
+    cin >> s;
+    map<long long,int> seen;
+    long long a = s;
+    int i = 1;
+    seen[a] = i;
+    while (true) {
+        if (a % 2 == 0) a /= 2;
+        else a = 3*a+1;
+        i++;
+        if (seen.count(a)) { cout << i << endl; return 0; }
+        seen[a] = i;
+    }
+}
+
+=== REQ000150 END ===

@@ -1,0 +1,662 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000176 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+Bearland has n cities, numbered 1 through n. Cities are connected via bidirectional roads. Each road connects two distinct cities. No two roads connect the same pair of cities.
+
+Bear Limak was once in a city a and he wanted to go to a city b. There was no direct connection so he decided to take a long walk, visiting each city exactly once. Formally: 
+
+  * There is no road between a and b. 
+  * There exists a sequence (path) of n distinct cities v1, v2, ..., vn that v1 = a, vn = b and there is a road between vi and vi + 1 for <image>. 
+
+
+
+On the other day, the similar thing happened. Limak wanted to travel between a city c and a city d. There is no road between them but there exists a sequence of n distinct cities u1, u2, ..., un that u1 = c, un = d and there is a road between ui and ui + 1 for <image>.
+
+Also, Limak thinks that there are at most k roads in Bearland. He wonders whether he remembers everything correctly.
+
+Given n, k and four distinct cities a, b, c, d, can you find possible paths (v1, ..., vn) and (u1, ..., un) to satisfy all the given conditions? Find any solution or print -1 if it's impossible.
+
+Input
+
+The first line of the input contains two integers n and k (4 ≤ n ≤ 1000, n - 1 ≤ k ≤ 2n - 2) — the number of cities and the maximum allowed number of roads, respectively.
+
+The second line contains four distinct integers a, b, c and d (1 ≤ a, b, c, d ≤ n).
+
+Output
+
+Print -1 if it's impossible to satisfy all the given conditions. Otherwise, print two lines with paths descriptions. The first of these two lines should contain n distinct integers v1, v2, ..., vn where v1 = a and vn = b. The second line should contain n distinct integers u1, u2, ..., un where u1 = c and un = d.
+
+Two paths generate at most 2n - 2 roads: (v1, v2), (v2, v3), ..., (vn - 1, vn), (u1, u2), (u2, u3), ..., (un - 1, un). Your answer will be considered wrong if contains more than k distinct roads or any other condition breaks. Note that (x, y) and (y, x) are the same road.
+
+Examples
+
+Input
+
+7 11
+2 4 7 3
+
+
+Output
+
+2 7 1 3 6 5 4
+7 1 5 4 6 2 3
+
+
+Input
+
+1000 999
+10 20 30 40
+
+
+Output
+
+-1
+
+Note
+
+In the first sample test, there should be 7 cities and at most 11 roads. The provided sample solution generates 10 roads, as in the drawing. You can also see a simple path of length n between 2 and 4, and a path between 7 and 3.
+
+<image>
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000177 PROMPT ===
+Solve the following programming problem in Java.
+
+Bearland has n cities, numbered 1 through n. Cities are connected via bidirectional roads. Each road connects two distinct cities. No two roads connect the same pair of cities.
+
+Bear Limak was once in a city a and he wanted to go to a city b. There was no direct connection so he decided to take a long walk, visiting each city exactly once. Formally: 
+
+  * There is no road between a and b. 
+  * There exists a sequence (path) of n distinct cities v1, v2, ..., vn that v1 = a, vn = b and there is a road between vi and vi + 1 for <image>. 
+
+
+
+On the other day, the similar thing happened. Limak wanted to travel between a city c and a city d. There is no road between them but there exists a sequence of n distinct cities u1, u2, ..., un that u1 = c, un = d and there is a road between ui and ui + 1 for <image>.
+
+Also, Limak thinks that there are at most k roads in Bearland. He wonders whether he remembers everything correctly.
+
+Given n, k and four distinct cities a, b, c, d, can you find possible paths (v1, ..., vn) and (u1, ..., un) to satisfy all the given conditions? Find any solution or print -1 if it's impossible.
+
+Input
+
+The first line of the input contains two integers n and k (4 ≤ n ≤ 1000, n - 1 ≤ k ≤ 2n - 2) — the number of cities and the maximum allowed number of roads, respectively.
+
+The second line contains four distinct integers a, b, c and d (1 ≤ a, b, c, d ≤ n).
+
+Output
+
+Print -1 if it's impossible to satisfy all the given conditions. Otherwise, print two lines with paths descriptions. The first of these two lines should contain n distinct integers v1, v2, ..., vn where v1 = a and vn = b. The second line should contain n distinct integers u1, u2, ..., un where u1 = c and un = d.
+
+Two paths generate at most 2n - 2 roads: (v1, v2), (v2, v3), ..., (vn - 1, vn), (u1, u2), (u2, u3), ..., (un - 1, un). Your answer will be considered wrong if contains more than k distinct roads or any other condition breaks. Note that (x, y) and (y, x) are the same road.
+
+Examples
+
+Input
+
+7 11
+2 4 7 3
+
+
+Output
+
+2 7 1 3 6 5 4
+7 1 5 4 6 2 3
+
+
+Input
+
+1000 999
+10 20 30 40
+
+
+Output
+
+-1
+
+Note
+
+In the first sample test, there should be 7 cities and at most 11 roads. The provided sample solution generates 10 roads, as in the drawing. You can also see a simple path of length n between 2 and 4, and a path between 7 and 3.
+
+<image>
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000178 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+Bearland has n cities, numbered 1 through n. Cities are connected via bidirectional roads. Each road connects two distinct cities. No two roads connect the same pair of cities.
+
+Bear Limak was once in a city a and he wanted to go to a city b. There was no direct connection so he decided to take a long walk, visiting each city exactly once. Formally: 
+
+  * There is no road between a and b. 
+  * There exists a sequence (path) of n distinct cities v1, v2, ..., vn that v1 = a, vn = b and there is a road between vi and vi + 1 for <image>. 
+
+
+
+On the other day, the similar thing happened. Limak wanted to travel between a city c and a city d. There is no road between them but there exists a sequence of n distinct cities u1, u2, ..., un that u1 = c, un = d and there is a road between ui and ui + 1 for <image>.
+
+Also, Limak thinks that there are at most k roads in Bearland. He wonders whether he remembers everything correctly.
+
+Given n, k and four distinct cities a, b, c, d, can you find possible paths (v1, ..., vn) and (u1, ..., un) to satisfy all the given conditions? Find any solution or print -1 if it's impossible.
+
+Input
+
+The first line of the input contains two integers n and k (4 ≤ n ≤ 1000, n - 1 ≤ k ≤ 2n - 2) — the number of cities and the maximum allowed number of roads, respectively.
+
+The second line contains four distinct integers a, b, c and d (1 ≤ a, b, c, d ≤ n).
+
+Output
+
+Print -1 if it's impossible to satisfy all the given conditions. Otherwise, print two lines with paths descriptions. The first of these two lines should contain n distinct integers v1, v2, ..., vn where v1 = a and vn = b. The second line should contain n distinct integers u1, u2, ..., un where u1 = c and un = d.
+
+Two paths generate at most 2n - 2 roads: (v1, v2), (v2, v3), ..., (vn - 1, vn), (u1, u2), (u2, u3), ..., (un - 1, un). Your answer will be considered wrong if contains more than k distinct roads or any other condition breaks. Note that (x, y) and (y, x) are the same road.
+
+Examples
+
+Input
+
+7 11
+2 4 7 3
+
+
+Output
+
+2 7 1 3 6 5 4
+7 1 5 4 6 2 3
+
+
+Input
+
+1000 999
+10 20 30 40
+
+
+Output
+
+-1
+
+Note
+
+In the first sample test, there should be 7 cities and at most 11 roads. The provided sample solution generates 10 roads, as in the drawing. You can also see a simple path of length n between 2 and 4, and a path between 7 and 3.
+
+<image>
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000179 PROMPT ===
+Solve the following programming problem in C++.
+
+Bearland has n cities, numbered 1 through n. Cities are connected via bidirectional roads. Each road connects two distinct cities. No two roads connect the same pair of cities.
+
+Bear Limak was once in a city a and he wanted to go to a city b. There was no direct connection so he decided to take a long walk, visiting each city exactly once. Formally: 
+
+  * There is no road between a and b. 
+  * There exists a sequence (path) of n distinct cities v1, v2, ..., vn that v1 = a, vn = b and there is a road between vi and vi + 1 for <image>. 
+
+
+
+On the other day, the similar thing happened. Limak wanted to travel between a city c and a city d. There is no road between them but there exists a sequence of n distinct cities u1, u2, ..., un that u1 = c, un = d and there is a road between ui and ui + 1 for <image>.
+
+Also, Limak thinks that there are at most k roads in Bearland. He wonders whether he remembers everything correctly.
+
+Given n, k and four distinct cities a, b, c, d, can you find possible paths (v1, ..., vn) and (u1, ..., un) to satisfy all the given conditions? Find any solution or print -1 if it's impossible.
+
+Input
+
+The first line of the input contains two integers n and k (4 ≤ n ≤ 1000, n - 1 ≤ k ≤ 2n - 2) — the number of cities and the maximum allowed number of roads, respectively.
+
+The second line contains four distinct integers a, b, c and d (1 ≤ a, b, c, d ≤ n).
+
+Output
+
+Print -1 if it's impossible to satisfy all the given conditions. Otherwise, print two lines with paths descriptions. The first of these two lines should contain n distinct integers v1, v2, ..., vn where v1 = a and vn = b. The second line should contain n distinct integers u1, u2, ..., un where u1 = c and un = d.
+
+Two paths generate at most 2n - 2 roads: (v1, v2), (v2, v3), ..., (vn - 1, vn), (u1, u2), (u2, u3), ..., (un - 1, un). Your answer will be considered wrong if contains more than k distinct roads or any other condition breaks. Note that (x, y) and (y, x) are the same road.
+
+Examples
+
+Input
+
+7 11
+2 4 7 3
+
+
+Output
+
+2 7 1 3 6 5 4
+7 1 5 4 6 2 3
+
+
+Input
+
+1000 999
+10 20 30 40
+
+
+Output
+
+-1
+
+Note
+
+In the first sample test, there should be 7 cities and at most 11 roads. The provided sample solution generates 10 roads, as in the drawing. You can also see a simple path of length n between 2 and 4, and a path between 7 and 3.
+
+<image>
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000180 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+Bearland has n cities, numbered 1 through n. Cities are connected via bidirectional roads. Each road connects two distinct cities. No two roads connect the same pair of cities.
+
+Bear Limak was once in a city a and he wanted to go to a city b. There was no direct connection so he decided to take a long walk, visiting each city exactly once. Formally: 
+
+  * There is no road between a and b. 
+  * There exists a sequence (path) of n distinct cities v1, v2, ..., vn that v1 = a, vn = b and there is a road between vi and vi + 1 for <image>. 
+
+
+
+On the other day, the similar thing happened. Limak wanted to travel between a city c and a city d. There is no road between them but there exists a sequence of n distinct cities u1, u2, ..., un that u1 = c, un = d and there is a road between ui and ui + 1 for <image>.
+
+Also, Limak thinks that there are at most k roads in Bearland. He wonders whether he remembers everything correctly.
+
+Given n, k and four distinct cities a, b, c, d, can you find possible paths (v1, ..., vn) and (u1, ..., un) to satisfy all the given conditions? Find any solution or print -1 if it's impossible.
+
+Input
+
+The first line of the input contains two integers n and k (4 ≤ n ≤ 1000, n - 1 ≤ k ≤ 2n - 2) — the number of cities and the maximum allowed number of roads, respectively.
+
+The second line contains four distinct integers a, b, c and d (1 ≤ a, b, c, d ≤ n).
+
+Output
+
+Print -1 if it's impossible to satisfy all the given conditions. Otherwise, print two lines with paths descriptions. The first of these two lines should contain n distinct integers v1, v2, ..., vn where v1 = a and vn = b. The second line should contain n distinct integers u1, u2, ..., un where u1 = c and un = d.
+
+Two paths generate at most 2n - 2 roads: (v1, v2), (v2, v3), ..., (vn - 1, vn), (u1, u2), (u2, u3), ..., (un - 1, un). Your answer will be considered wrong if contains more than k distinct roads or any other condition breaks. Note that (x, y) and (y, x) are the same road.
+
+Examples
+
+Input
+
+7 11
+2 4 7 3
+
+
+Output
+
+2 7 1 3 6 5 4
+7 1 5 4 6 2 3
+
+
+Input
+
+1000 999
+10 20 30 40
+
+
+Output
+
+-1
+
+Note
+
+In the first sample test, there should be 7 cities and at most 11 roads. The provided sample solution generates 10 roads, as in the drawing. You can also see a simple path of length n between 2 and 4, and a path between 7 and 3.
+
+<image>
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000181 PROMPT ===
+Solve the following programming problem in Python.
+
+You are given a permutation of the numbers 1, 2, ..., n and m pairs of positions (aj, bj).
+
+At each step you can choose a pair from the given positions and swap the numbers in that positions. What is the lexicographically maximal permutation one can get?
+
+Let p and q be two permutations of the numbers 1, 2, ..., n. p is lexicographically smaller than the q if a number 1 ≤ i ≤ n exists, so pk = qk for 1 ≤ k < i and pi < qi.
+
+Input
+
+The first line contains two integers n and m (1 ≤ n, m ≤ 106) — the length of the permutation p and the number of pairs of positions.
+
+The second line contains n distinct integers pi (1 ≤ pi ≤ n) — the elements of the permutation p.
+
+Each of the last m lines contains two integers (aj, bj) (1 ≤ aj, bj ≤ n) — the pairs of positions to swap. Note that you are given a positions, not the values to swap.
+
+Output
+
+Print the only line with n distinct integers p'i (1 ≤ p'i ≤ n) — the lexicographically maximal permutation one can get.
+
+Example
+
+Input
+
+9 6
+1 2 3 4 5 6 7 8 9
+1 4
+4 7
+2 5
+5 8
+3 6
+6 9
+
+
+Output
+
+7 8 9 4 5 6 1 2 3
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000182 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+You are given a permutation of the numbers 1, 2, ..., n and m pairs of positions (aj, bj).
+
+At each step you can choose a pair from the given positions and swap the numbers in that positions. What is the lexicographically maximal permutation one can get?
+
+Let p and q be two permutations of the numbers 1, 2, ..., n. p is lexicographically smaller than the q if a number 1 ≤ i ≤ n exists, so pk = qk for 1 ≤ k < i and pi < qi.
+
+Input
+
+The first line contains two integers n and m (1 ≤ n, m ≤ 106) — the length of the permutation p and the number of pairs of positions.
+
+The second line contains n distinct integers pi (1 ≤ pi ≤ n) — the elements of the permutation p.
+
+Each of the last m lines contains two integers (aj, bj) (1 ≤ aj, bj ≤ n) — the pairs of positions to swap. Note that you are given a positions, not the values to swap.
+
+Output
+
+Print the only line with n distinct integers p'i (1 ≤ p'i ≤ n) — the lexicographically maximal permutation one can get.
+
+Example
+
+Input
+
+9 6
+1 2 3 4 5 6 7 8 9
+1 4
+4 7
+2 5
+5 8
+3 6
+6 9
+
+
+Output
+
+7 8 9 4 5 6 1 2 3
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000183 PROMPT ===
+Solve the following programming problem in Java.
+
+You are given a permutation of the numbers 1, 2, ..., n and m pairs of positions (aj, bj).
+
+At each step you can choose a pair from the given positions and swap the numbers in that positions. What is the lexicographically maximal permutation one can get?
+
+Let p and q be two permutations of the numbers 1, 2, ..., n. p is lexicographically smaller than the q if a number 1 ≤ i ≤ n exists, so pk = qk for 1 ≤ k < i and pi < qi.
+
+Input
+
+The first line contains two integers n and m (1 ≤ n, m ≤ 106) — the length of the permutation p and the number of pairs of positions.
+
+The second line contains n distinct integers pi (1 ≤ pi ≤ n) — the elements of the permutation p.
+
+Each of the last m lines contains two integers (aj, bj) (1 ≤ aj, bj ≤ n) — the pairs of positions to swap. Note that you are given a positions, not the values to swap.
+
+Output
+
+Print the only line with n distinct integers p'i (1 ≤ p'i ≤ n) — the lexicographically maximal permutation one can get.
+
+Example
+
+Input
+
+9 6
+1 2 3 4 5 6 7 8 9
+1 4
+4 7
+2 5
+5 8
+3 6
+6 9
+
+
+Output
+
+7 8 9 4 5 6 1 2 3
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000184 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+You are given a permutation of the numbers 1, 2, ..., n and m pairs of positions (aj, bj).
+
+At each step you can choose a pair from the given positions and swap the numbers in that positions. What is the lexicographically maximal permutation one can get?
+
+Let p and q be two permutations of the numbers 1, 2, ..., n. p is lexicographically smaller than the q if a number 1 ≤ i ≤ n exists, so pk = qk for 1 ≤ k < i and pi < qi.
+
+Input
+
+The first line contains two integers n and m (1 ≤ n, m ≤ 106) — the length of the permutation p and the number of pairs of positions.
+
+The second line contains n distinct integers pi (1 ≤ pi ≤ n) — the elements of the permutation p.
+
+Each of the last m lines contains two integers (aj, bj) (1 ≤ aj, bj ≤ n) — the pairs of positions to swap. Note that you are given a positions, not the values to swap.
+
+Output
+
+Print the only line with n distinct integers p'i (1 ≤ p'i ≤ n) — the lexicographically maximal permutation one can get.
+
+Example
+
+Input
+
+9 6
+1 2 3 4 5 6 7 8 9
+1 4
+4 7
+2 5
+5 8
+3 6
+6 9
+
+
+Output
+
+7 8 9 4 5 6 1 2 3
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000185 PROMPT ===
+Solve the following programming problem in C++.
+
+You are given a permutation of the numbers 1, 2, ..., n and m pairs of positions (aj, bj).
+
+At each step you can choose a pair from the given positions and swap the numbers in that positions. What is the lexicographically maximal permutation one can get?
+
+Let p and q be two permutations of the numbers 1, 2, ..., n. p is lexicographically smaller than the q if a number 1 ≤ i ≤ n exists, so pk = qk for 1 ≤ k < i and pi < qi.
+
+Input
+
+The first line contains two integers n and m (1 ≤ n, m ≤ 106) — the length of the permutation p and the number of pairs of positions.
+
+The second line contains n distinct integers pi (1 ≤ pi ≤ n) — the elements of the permutation p.
+
+Each of the last m lines contains two integers (aj, bj) (1 ≤ aj, bj ≤ n) — the pairs of positions to swap. Note that you are given a positions, not the values to swap.
+
+Output
+
+Print the only line with n distinct integers p'i (1 ≤ p'i ≤ n) — the lexicographically maximal permutation one can get.
+
+Example
+
+Input
+
+9 6
+1 2 3 4 5 6 7 8 9
+1 4
+4 7
+2 5
+5 8
+3 6
+6 9
+
+
+Output
+
+7 8 9 4 5 6 1 2 3
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000186 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+You are given a permutation of the numbers 1, 2, ..., n and m pairs of positions (aj, bj).
+
+At each step you can choose a pair from the given positions and swap the numbers in that positions. What is the lexicographically maximal permutation one can get?
+
+Let p and q be two permutations of the numbers 1, 2, ..., n. p is lexicographically smaller than the q if a number 1 ≤ i ≤ n exists, so pk = qk for 1 ≤ k < i and pi < qi.
+
+Input
+
+The first line contains two integers n and m (1 ≤ n, m ≤ 106) — the length of the permutation p and the number of pairs of positions.
+
+The second line contains n distinct integers pi (1 ≤ pi ≤ n) — the elements of the permutation p.
+
+Each of the last m lines contains two integers (aj, bj) (1 ≤ aj, bj ≤ n) — the pairs of positions to swap. Note that you are given a positions, not the values to swap.
+
+Output
+
+Print the only line with n distinct integers p'i (1 ≤ p'i ≤ n) — the lexicographically maximal permutation one can get.
+
+Example
+
+Input
+
+9 6
+1 2 3 4 5 6 7 8 9
+1 4
+4 7
+2 5
+5 8
+3 6
+6 9
+
+
+Output
+
+7 8 9 4 5 6 1 2 3
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000187 PROMPT ===
+Solve the following programming problem in Python.
+
+カップゲーム 3 つのカップがふせて置かれています。カップの置かれている場所を、順に A,B,C と呼ぶことにします。最初は A に置かれているカップの中にボールが隠されているとします。カップの位置を入れ替えると、中に入っているボールも一緒に移動します。 入れ替える２つのカップの位置を読み込んで、最終的にどの場所のカップにボールが隠されているかを出力するプログラムを作成してください。 Input 入れ替える２つのカップの位置が順番に複数行にわたり与えられます。各行に、入れ替える２つのカップの位置を表す文字（A, B, または C）がカンマ区切りで与えられます。 入れ替える操作は 50 回を超えません。 Output ボールが入っているカップの場所（A, B, または C）を１行に出力します。 Sample Input B,C A,C C,B A,B C,B Output for the Sample Input A
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000188 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+カップゲーム 3 つのカップがふせて置かれています。カップの置かれている場所を、順に A,B,C と呼ぶことにします。最初は A に置かれているカップの中にボールが隠されているとします。カップの位置を入れ替えると、中に入っているボールも一緒に移動します。 入れ替える２つのカップの位置を読み込んで、最終的にどの場所のカップにボールが隠されているかを出力するプログラムを作成してください。 Input 入れ替える２つのカップの位置が順番に複数行にわたり与えられます。各行に、入れ替える２つのカップの位置を表す文字（A, B, または C）がカンマ区切りで与えられます。 入れ替える操作は 50 回を超えません。 Output ボールが入っているカップの場所（A, B, または C）を１行に出力します。 Sample Input B,C A,C C,B A,B C,B Output for the Sample Input A
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000189 PROMPT ===
+Solve the following programming problem in Java.
+
+カップゲーム 3 つのカップがふせて置かれています。カップの置かれている場所を、順に A,B,C と呼ぶことにします。最初は A に置かれているカップの中にボールが隠されているとします。カップの位置を入れ替えると、中に入っているボールも一緒に移動します。 入れ替える２つのカップの位置を読み込んで、最終的にどの場所のカップにボールが隠されているかを出力するプログラムを作成してください。 Input 入れ替える２つのカップの位置が順番に複数行にわたり与えられます。各行に、入れ替える２つのカップの位置を表す文字（A, B, または C）がカンマ区切りで与えられます。 入れ替える操作は 50 回を超えません。 Output ボールが入っているカップの場所（A, B, または C）を１行に出力します。 Sample Input B,C A,C C,B A,B C,B Output for the Sample Input A
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000190 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+カップゲーム 3 つのカップがふせて置かれています。カップの置かれている場所を、順に A,B,C と呼ぶことにします。最初は A に置かれているカップの中にボールが隠されているとします。カップの位置を入れ替えると、中に入っているボールも一緒に移動します。 入れ替える２つのカップの位置を読み込んで、最終的にどの場所のカップにボールが隠されているかを出力するプログラムを作成してください。 Input 入れ替える２つのカップの位置が順番に複数行にわたり与えられます。各行に、入れ替える２つのカップの位置を表す文字（A, B, または C）がカンマ区切りで与えられます。 入れ替える操作は 50 回を超えません。 Output ボールが入っているカップの場所（A, B, または C）を１行に出力します。 Sample Input B,C A,C C,B A,B C,B Output for the Sample Input A
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000191 PROMPT ===
+Solve the following programming problem in C++.
+
+カップゲーム 3 つのカップがふせて置かれています。カップの置かれている場所を、順に A,B,C と呼ぶことにします。最初は A に置かれているカップの中にボールが隠されているとします。カップの位置を入れ替えると、中に入っているボールも一緒に移動します。 入れ替える２つのカップの位置を読み込んで、最終的にどの場所のカップにボールが隠されているかを出力するプログラムを作成してください。 Input 入れ替える２つのカップの位置が順番に複数行にわたり与えられます。各行に、入れ替える２つのカップの位置を表す文字（A, B, または C）がカンマ区切りで与えられます。 入れ替える操作は 50 回を超えません。 Output ボールが入っているカップの場所（A, B, または C）を１行に出力します。 Sample Input B,C A,C C,B A,B C,B Output for the Sample Input A
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000192 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+カップゲーム 3 つのカップがふせて置かれています。カップの置かれている場所を、順に A,B,C と呼ぶことにします。最初は A に置かれているカップの中にボールが隠されているとします。カップの位置を入れ替えると、中に入っているボールも一緒に移動します。 入れ替える２つのカップの位置を読み込んで、最終的にどの場所のカップにボールが隠されているかを出力するプログラムを作成してください。 Input 入れ替える２つのカップの位置が順番に複数行にわたり与えられます。各行に、入れ替える２つのカップの位置を表す文字（A, B, または C）がカンマ区切りで与えられます。 入れ替える操作は 50 回を超えません。 Output ボールが入っているカップの場所（A, B, または C）を１行に出力します。 Sample Input B,C A,C C,B A,B C,B Output for the Sample Input A
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000193 PROMPT ===
+Solve the following programming problem in Python.
+
+坪面積の計算 土地の面積を表現する「○○坪」という単位を聞いたことはないでしょうか？ 古来、１人の武士が１日に食べるお米を作る面積を言いました。 a ［m］× b ［m］の土地があります。 a と b を入力し、その土地の坪面積 S ［坪］を出力するプログラムを作成してください。 1 坪 = 3.305785 [m 2 ] とし、 a と b は 100 以下の整数とします。 入力 a b １つの空白で区切られた a と b が１行に与えられる。 出力 坪面積 S を１行に出力する。0.0001 以下の誤差が許される。 入力例1 15 25 出力例1 113.437508
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000194 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+坪面積の計算 土地の面積を表現する「○○坪」という単位を聞いたことはないでしょうか？ 古来、１人の武士が１日に食べるお米を作る面積を言いました。 a ［m］× b ［m］の土地があります。 a と b を入力し、その土地の坪面積 S ［坪］を出力するプログラムを作成してください。 1 坪 = 3.305785 [m 2 ] とし、 a と b は 100 以下の整数とします。 入力 a b １つの空白で区切られた a と b が１行に与えられる。 出力 坪面積 S を１行に出力する。0.0001 以下の誤差が許される。 入力例1 15 25 出力例1 113.437508
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000195 PROMPT ===
+Solve the following programming problem in Java.
+
+坪面積の計算 土地の面積を表現する「○○坪」という単位を聞いたことはないでしょうか？ 古来、１人の武士が１日に食べるお米を作る面積を言いました。 a ［m］× b ［m］の土地があります。 a と b を入力し、その土地の坪面積 S ［坪］を出力するプログラムを作成してください。 1 坪 = 3.305785 [m 2 ] とし、 a と b は 100 以下の整数とします。 入力 a b １つの空白で区切られた a と b が１行に与えられる。 出力 坪面積 S を１行に出力する。0.0001 以下の誤差が許される。 入力例1 15 25 出力例1 113.437508
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000196 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+坪面積の計算 土地の面積を表現する「○○坪」という単位を聞いたことはないでしょうか？ 古来、１人の武士が１日に食べるお米を作る面積を言いました。 a ［m］× b ［m］の土地があります。 a と b を入力し、その土地の坪面積 S ［坪］を出力するプログラムを作成してください。 1 坪 = 3.305785 [m 2 ] とし、 a と b は 100 以下の整数とします。 入力 a b １つの空白で区切られた a と b が１行に与えられる。 出力 坪面積 S を１行に出力する。0.0001 以下の誤差が許される。 入力例1 15 25 出力例1 113.437508
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000197 PROMPT ===
+Solve the following programming problem in C++.
+
+坪面積の計算 土地の面積を表現する「○○坪」という単位を聞いたことはないでしょうか？ 古来、１人の武士が１日に食べるお米を作る面積を言いました。 a ［m］× b ［m］の土地があります。 a と b を入力し、その土地の坪面積 S ［坪］を出力するプログラムを作成してください。 1 坪 = 3.305785 [m 2 ] とし、 a と b は 100 以下の整数とします。 入力 a b １つの空白で区切られた a と b が１行に与えられる。 出力 坪面積 S を１行に出力する。0.0001 以下の誤差が許される。 入力例1 15 25 出力例1 113.437508
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000198 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+坪面積の計算 土地の面積を表現する「○○坪」という単位を聞いたことはないでしょうか？ 古来、１人の武士が１日に食べるお米を作る面積を言いました。 a ［m］× b ［m］の土地があります。 a と b を入力し、その土地の坪面積 S ［坪］を出力するプログラムを作成してください。 1 坪 = 3.305785 [m 2 ] とし、 a と b は 100 以下の整数とします。 入力 a b １つの空白で区切られた a と b が１行に与えられる。 出力 坪面積 S を１行に出力する。0.0001 以下の誤差が許される。 入力例1 15 25 出力例1 113.437508
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000199 PROMPT ===
+Solve the following programming problem in Python.
+
+列車 26 両以下の編成の列車があります。それぞれの車両には、英小文字の a から z までの識別記号が付いています。同じ記号が付いている車両はありません。ただし、車両を連結する順番は自由とします。列車の中を車掌が巡回します。車掌は、列車の中を行ったり来たりして巡回するので、同じ車両を何度も通ることがあります。ただし、すべての車両を最低一回は巡回するものとします。また、巡回をはじめる車両や巡回を終える車両が列車の一番端の車両とは限りません。 ある車掌が乗ったすべての列車の巡回記録があります。そこから分かる各列車の編成を先頭車両から出力するプログラムを作成してください。巡回記録は 1 行が 1 つの列車に対応します。各行は、英小文字を 1 文字ずつ または -> で区切った文字列でできています。 は前方の車両への移動、 -> は後方の車両への移動を表します。 例えば、 a->b は車両 a から後方の車両である b に移り、b から前方の a に移り、a から前方の c へ移ったことを表します。この場合の列車の編成は先頭車両から cab となります。 Input １行目に巡回記録の個数 n ( n ≤ 50)、続く n 行に巡回記録 i を表す文字列 s i (1024文字までの半角文字列) が与えられます。 Output 巡回記録 i について、先頭車両からの列車の編成を現す文字列を i 行目に出力してください。 Sample Input 4 a->e->c->b->d b a->c c->d a->c->d->e e a->e d->a c->d Output for the Sample Input aecbd edacb bacde bcdae
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000200 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+列車 26 両以下の編成の列車があります。それぞれの車両には、英小文字の a から z までの識別記号が付いています。同じ記号が付いている車両はありません。ただし、車両を連結する順番は自由とします。列車の中を車掌が巡回します。車掌は、列車の中を行ったり来たりして巡回するので、同じ車両を何度も通ることがあります。ただし、すべての車両を最低一回は巡回するものとします。また、巡回をはじめる車両や巡回を終える車両が列車の一番端の車両とは限りません。 ある車掌が乗ったすべての列車の巡回記録があります。そこから分かる各列車の編成を先頭車両から出力するプログラムを作成してください。巡回記録は 1 行が 1 つの列車に対応します。各行は、英小文字を 1 文字ずつ または -> で区切った文字列でできています。 は前方の車両への移動、 -> は後方の車両への移動を表します。 例えば、 a->b は車両 a から後方の車両である b に移り、b から前方の a に移り、a から前方の c へ移ったことを表します。この場合の列車の編成は先頭車両から cab となります。 Input １行目に巡回記録の個数 n ( n ≤ 50)、続く n 行に巡回記録 i を表す文字列 s i (1024文字までの半角文字列) が与えられます。 Output 巡回記録 i について、先頭車両からの列車の編成を現す文字列を i 行目に出力してください。 Sample Input 4 a->e->c->b->d b a->c c->d a->c->d->e e a->e d->a c->d Output for the Sample Input aecbd edacb bacde bcdae
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

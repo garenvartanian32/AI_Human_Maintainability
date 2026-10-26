@@ -1,0 +1,1059 @@
+=== REQ000176 START ===
+"""Build two Hamiltonian paths that avoid forbidden endpoint adjacencies."""
+
+import sys
+
+IMPOSSIBLE = -1
+MINIMUM_EDGES = 1  # one edge beyond n is always required
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    town_count = int(tokens[0])
+    edge_budget = int(tokens[1])
+    a, b, c, d = (int(tokens[index]) for index in range(2, 6))
+
+    # With only four towns there is no room for a middle section, and the
+    # construction below always spends exactly town_count + 1 edges.
+    if town_count == 4 or edge_budget < town_count + MINIMUM_EDGES:
+        print(IMPOSSIBLE)
+        return
+
+    endpoints = {a, b, c, d}
+    middle = [town for town in range(1, town_count + 1) if town not in endpoints]
+
+    # Both paths share the same middle spine but enter and leave it in a
+    # different order, which keeps each forbidden pair non-adjacent.
+    first_path = [a, c] + middle + [d, b]
+    second_path = [c, a] + middle + [b, d]
+
+    print(" ".join(map(str, first_path)))
+    print(" ".join(map(str, second_path)))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000176 END ===
+
+=== REQ000177 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int k = (int) st.nval;
+        st.nextToken(); int a = (int) st.nval;
+        st.nextToken(); int b = (int) st.nval;
+        st.nextToken(); int c = (int) st.nval;
+        st.nextToken(); int d = (int) st.nval;
+
+        if (n == 4 || (n + 1) > k) {
+            System.out.println(-1);
+            return;
+        }
+
+        Set<Integer> special = new HashSet<>(Arrays.asList(a, b, c, d));
+        List<Integer> middle = new ArrayList<>();
+        for (int x = 1; x <= n; x++) {
+            if (!special.contains(x)) middle.add(x);
+        }
+
+        StringBuilder p1 = new StringBuilder();
+        p1.append(a).append(' ').append(c);
+        for (int x : middle) p1.append(' ').append(x);
+        p1.append(' ').append(d).append(' ').append(b);
+
+        StringBuilder p2 = new StringBuilder();
+        p2.append(c).append(' ').append(a);
+        for (int x : middle) p2.append(' ').append(x);
+        p2.append(' ').append(b).append(' ').append(d);
+
+        System.out.println(p1.toString());
+        System.out.println(p2.toString());
+    }
+}
+=== REQ000177 END ===
+
+=== REQ000178 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Builds two Hamiltonian paths that avoid forbidden endpoint adjacencies.
+ *
+ * <p>Both paths share the same middle spine but enter and leave it in a
+ * different order, which keeps each forbidden pair non-adjacent.
+ */
+public class Sol {
+
+    private static final int IMPOSSIBLE = -1;
+    private static final int MINIMUM_EXTRA_EDGES = 1;
+    private static final int TOO_FEW_TOWNS = 4;
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        int townCount = nextInt(input);
+        int edgeBudget = nextInt(input);
+        int a = nextInt(input);
+        int b = nextInt(input);
+        int c = nextInt(input);
+        int d = nextInt(input);
+
+        // With only four towns there is no room for a middle section, and the
+        // construction always spends exactly townCount + 1 edges.
+        if (townCount == TOO_FEW_TOWNS || edgeBudget < townCount + MINIMUM_EXTRA_EDGES) {
+            System.out.println(IMPOSSIBLE);
+            return;
+        }
+
+        List<Integer> middle = new ArrayList<>();
+        for (int town = 1; town <= townCount; town++) {
+            if (town != a && town != b && town != c && town != d) {
+                middle.add(town);
+            }
+        }
+
+        System.out.println(describePath(a, c, middle, d, b));
+        System.out.println(describePath(c, a, middle, b, d));
+    }
+
+    private static String describePath(
+            int firstHead, int secondHead, List<Integer> middle, int firstTail, int secondTail) {
+        StringBuilder path = new StringBuilder();
+        path.append(firstHead).append(' ').append(secondHead);
+        for (int town : middle) {
+            path.append(' ').append(town);
+        }
+        path.append(' ').append(firstTail).append(' ').append(secondTail);
+        return path.toString();
+    }
+
+    private static int nextInt(StreamTokenizer input) throws IOException {
+        input.nextToken();
+        return (int) input.nval;
+    }
+}
+=== REQ000178 END ===
+
+=== REQ000179 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, k, a, b, c, d;
+    cin >> n >> k >> a >> b >> c >> d;
+
+    if (n == 4 || (n + 1) > k) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    set<int> special = {a, b, c, d};
+    vector<int> middle;
+    for (int x = 1; x <= n; x++) {
+        if (!special.count(x)) middle.push_back(x);
+    }
+
+    string p1 = to_string(a) + " " + to_string(c);
+    for (int x : middle) p1 += " " + to_string(x);
+    p1 += " " + to_string(d) + " " + to_string(b);
+
+    string p2 = to_string(c) + " " + to_string(a);
+    for (int x : middle) p2 += " " + to_string(x);
+    p2 += " " + to_string(b) + " " + to_string(d);
+
+    cout << p1 << "\n" << p2 << "\n";
+    return 0;
+}
+=== REQ000179 END ===
+
+=== REQ000180 START ===
+#include <iostream>
+#include <sstream>
+#include <vector>
+
+namespace {
+
+constexpr int kImpossible = -1;
+constexpr int kMinimumExtraEdges = 1;
+constexpr int kTooFewTowns = 4;
+
+std::string describePath(int firstHead, int secondHead, const std::vector<int>& middle,
+                         int firstTail, int secondTail) {
+    std::ostringstream path;
+    path << firstHead << ' ' << secondHead;
+    for (int town : middle) {
+        path << ' ' << town;
+    }
+    path << ' ' << firstTail << ' ' << secondTail;
+    return path.str();
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int townCount, edgeBudget, a, b, c, d;
+    std::cin >> townCount >> edgeBudget >> a >> b >> c >> d;
+
+    // With only four towns there is no room for a middle section, and the
+    // construction always spends exactly townCount + 1 edges.
+    if (townCount == kTooFewTowns || edgeBudget < townCount + kMinimumExtraEdges) {
+        std::cout << kImpossible << '\n';
+        return 0;
+    }
+
+    std::vector<int> middle;
+    for (int town = 1; town <= townCount; ++town) {
+        if (town != a && town != b && town != c && town != d) {
+            middle.push_back(town);
+        }
+    }
+
+    // Both paths share the same middle spine but enter and leave it in a
+    // different order, keeping each forbidden pair non-adjacent.
+    std::cout << describePath(a, c, middle, d, b) << '\n';
+    std::cout << describePath(c, a, middle, b, d) << '\n';
+    return 0;
+}
+=== REQ000180 END ===
+
+=== REQ000181 START ===
+import sys
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    idx = 0
+    n = int(data[idx]); m = int(data[idx+1]); idx += 2
+    p = [int(data[idx+i]) for i in range(n)]; idx += n
+    parent = list(range(n+1))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for _ in range(m):
+        aj = int(data[idx]); bj = int(data[idx+1]); idx += 2
+        ra, rb = find(aj), find(bj)
+        if ra != rb:
+            parent[ra] = rb
+
+    groups = {}
+    for i in range(1, n+1):
+        r = find(i)
+        groups.setdefault(r, []).append(i)
+
+    ans = [0]*(n+1)
+    for r, positions in groups.items():
+        positions_sorted = sorted(positions)
+        values = sorted((p[i-1] for i in positions_sorted), reverse=True)
+        for pos, val in zip(positions_sorted, values):
+            ans[pos] = val
+
+    print(' '.join(map(str, ans[1:n+1])))
+
+main()
+=== REQ000181 END ===
+
+=== REQ000182 START ===
+"""Largest permutation reachable using an allowed set of position swaps."""
+
+import sys
+from collections import defaultdict
+
+
+class DisjointSet:
+    """Union-find over positions, with path compression."""
+
+    def __init__(self, size: int) -> None:
+        self._parent = list(range(size + 1))
+
+    def find(self, position: int) -> int:
+        root = position
+        while self._parent[root] != root:
+            root = self._parent[root]
+        while self._parent[position] != root:
+            self._parent[position], position = root, self._parent[position]
+        return root
+
+    def union(self, first: int, second: int) -> None:
+        first_root, second_root = self.find(first), self.find(second)
+        if first_root != second_root:
+            self._parent[first_root] = second_root
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    size = int(tokens[0])
+    swap_count = int(tokens[1])
+    values = [int(token) for token in tokens[2 : 2 + size]]
+
+    # Swaps are freely composable, so within one connected component the values
+    # can be permuted arbitrarily. Placing them largest-first at the smallest
+    # positions therefore gives the lexicographic maximum.
+    positions = DisjointSet(size)
+    cursor = 2 + size
+    for _ in range(swap_count):
+        positions.union(int(tokens[cursor]), int(tokens[cursor + 1]))
+        cursor += 2
+
+    component_positions = defaultdict(list)
+    for position in range(1, size + 1):
+        component_positions[positions.find(position)].append(position)
+
+    answer = [0] * (size + 1)
+    for member_positions in component_positions.values():
+        available = sorted((values[position - 1] for position in member_positions), reverse=True)
+        for position, value in zip(member_positions, available):
+            answer[position] = value
+
+    print(" ".join(map(str, answer[1:])))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000182 END ===
+
+=== REQ000183 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int[] parent;
+
+    static int find(int x) {
+        while (parent[x] != x) {
+            parent[x] = parent[parent[x]];
+            x = parent[x];
+        }
+        return x;
+    }
+
+    public static void main(String[] args) throws IOException {
+        DataInputStream in = new DataInputStream(new BufferedInputStream(System.in, 1 << 16));
+        int n = nextInt(in), m = nextInt(in);
+        int[] p = new int[n + 1];
+        for (int i = 1; i <= n; i++) p[i] = nextInt(in);
+        parent = new int[n + 1];
+        for (int i = 0; i <= n; i++) parent[i] = i;
+        for (int i = 0; i < m; i++) {
+            int aj = nextInt(in), bj = nextInt(in);
+            int ra = find(aj), rb = find(bj);
+            if (ra != rb) parent[ra] = rb;
+        }
+        List<List<Integer>> groups = new ArrayList<>();
+        Map<Integer, Integer> rootToGroup = new HashMap<>();
+        for (int i = 1; i <= n; i++) {
+            int r = find(i);
+            Integer gi = rootToGroup.get(r);
+            if (gi == null) {
+                gi = groups.size();
+                rootToGroup.put(r, gi);
+                groups.add(new ArrayList<>());
+            }
+            groups.get(gi).add(i);
+        }
+        int[] ans = new int[n + 1];
+        for (List<Integer> positions : groups) {
+            List<Integer> values = new ArrayList<>();
+            for (int pos : positions) values.add(p[pos]);
+            Collections.sort(values, Collections.reverseOrder());
+            for (int k = 0; k < positions.size(); k++) {
+                ans[positions.get(k)] = values.get(k);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= n; i++) {
+            if (i > 1) sb.append(' ');
+            sb.append(ans[i]);
+        }
+        System.out.println(sb);
+    }
+
+    private static int nextInt(DataInputStream in) throws IOException {
+        int ret = 0;
+        int b = in.read();
+        while (b < '0' || b > '9') {
+            if (b == '-') break;
+            b = in.read();
+        }
+        boolean neg = false;
+        if (b == '-') { neg = true; b = in.read(); }
+        while (b >= '0' && b <= '9') {
+            ret = ret * 10 + (b - '0');
+            b = in.read();
+        }
+        return neg ? -ret : ret;
+    }
+}
+=== REQ000183 END ===
+
+=== REQ000184 START ===
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Largest permutation reachable using an allowed set of position swaps.
+ *
+ * <p>Swaps are freely composable, so within one connected component the values
+ * can be permuted arbitrarily. Placing them largest-first at the smallest
+ * positions therefore gives the lexicographic maximum.
+ */
+public class Sol {
+
+    /** Union-find over positions, with path compression. */
+    private static final class DisjointSet {
+        private final int[] parent;
+
+        DisjointSet(int size) {
+            parent = new int[size + 1];
+            for (int position = 0; position <= size; position++) {
+                parent[position] = position;
+            }
+        }
+
+        int find(int position) {
+            while (parent[position] != position) {
+                parent[position] = parent[parent[position]];
+                position = parent[position];
+            }
+            return position;
+        }
+
+        void union(int first, int second) {
+            int firstRoot = find(first);
+            int secondRoot = find(second);
+            if (firstRoot != secondRoot) {
+                parent[firstRoot] = secondRoot;
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        DataInputStream input = new DataInputStream(new BufferedInputStream(System.in, 1 << 16));
+
+        int size = nextInt(input);
+        int swapCount = nextInt(input);
+
+        int[] values = new int[size + 1];
+        for (int position = 1; position <= size; position++) {
+            values[position] = nextInt(input);
+        }
+
+        DisjointSet positions = new DisjointSet(size);
+        for (int swap = 0; swap < swapCount; swap++) {
+            positions.union(nextInt(input), nextInt(input));
+        }
+
+        List<List<Integer>> components = groupByComponent(positions, size);
+
+        int[] answer = new int[size + 1];
+        for (List<Integer> memberPositions : components) {
+            List<Integer> available = new ArrayList<>();
+            for (int position : memberPositions) {
+                available.add(values[position]);
+            }
+            available.sort(Collections.reverseOrder());
+            for (int i = 0; i < memberPositions.size(); i++) {
+                answer[memberPositions.get(i)] = available.get(i);
+            }
+        }
+
+        StringBuilder output = new StringBuilder();
+        for (int position = 1; position <= size; position++) {
+            if (position > 1) {
+                output.append(' ');
+            }
+            output.append(answer[position]);
+        }
+        System.out.println(output);
+    }
+
+    private static List<List<Integer>> groupByComponent(DisjointSet positions, int size) {
+        int[] componentIndex = new int[size + 1];
+        Arrays.fill(componentIndex, -1);
+
+        List<List<Integer>> components = new ArrayList<>();
+        for (int position = 1; position <= size; position++) {
+            int root = positions.find(position);
+            if (componentIndex[root] < 0) {
+                componentIndex[root] = components.size();
+                components.add(new ArrayList<>());
+            }
+            components.get(componentIndex[root]).add(position);
+        }
+        return components;
+    }
+
+    private static int nextInt(DataInputStream input) throws IOException {
+        int value = 0;
+        int character = input.read();
+        while (character < '0' || character > '9') {
+            character = input.read();
+        }
+        while (character >= '0' && character <= '9') {
+            value = value * 10 + (character - '0');
+            character = input.read();
+        }
+        return value;
+    }
+}
+=== REQ000184 END ===
+
+=== REQ000185 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> parent_;
+
+int find(int x) {
+    while (parent_[x] != x) {
+        parent_[x] = parent_[parent_[x]];
+        x = parent_[x];
+    }
+    return x;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin >> n >> m;
+    vector<int> p(n + 1);
+    for (int i = 1; i <= n; i++) cin >> p[i];
+    parent_.resize(n + 1);
+    iota(parent_.begin(), parent_.end(), 0);
+    for (int i = 0; i < m; i++) {
+        int aj, bj;
+        cin >> aj >> bj;
+        int ra = find(aj), rb = find(bj);
+        if (ra != rb) parent_[ra] = rb;
+    }
+    vector<vector<int>> groupsByRoot(n + 1);
+    for (int i = 1; i <= n; i++) {
+        int r = find(i);
+        groupsByRoot[r].push_back(i);
+    }
+    vector<int> ans(n + 1);
+    for (int r = 1; r <= n; r++) {
+        if (groupsByRoot[r].empty()) continue;
+        vector<int> &positions = groupsByRoot[r];
+        vector<int> values;
+        for (int pos : positions) values.push_back(p[pos]);
+        sort(values.rbegin(), values.rend());
+        for (size_t k = 0; k < positions.size(); k++) {
+            ans[positions[k]] = values[k];
+        }
+    }
+    string out;
+    for (int i = 1; i <= n; i++) {
+        if (i > 1) out += ' ';
+        out += to_string(ans[i]);
+    }
+    cout << out << "\n";
+    return 0;
+}
+=== REQ000185 END ===
+
+=== REQ000186 START ===
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <vector>
+
+namespace {
+
+/// Union-find over positions, with path compression.
+class DisjointSet {
+public:
+    explicit DisjointSet(int size) : parent_(size + 1) {
+        std::iota(parent_.begin(), parent_.end(), 0);
+    }
+
+    int find(int position) {
+        while (parent_[position] != position) {
+            parent_[position] = parent_[parent_[position]];
+            position = parent_[position];
+        }
+        return position;
+    }
+
+    void unite(int first, int second) {
+        const int firstRoot = find(first);
+        const int secondRoot = find(second);
+        if (firstRoot != secondRoot) {
+            parent_[firstRoot] = secondRoot;
+        }
+    }
+
+private:
+    std::vector<int> parent_;
+};
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int size, swapCount;
+    std::cin >> size >> swapCount;
+
+    std::vector<int> values(size + 1);
+    for (int position = 1; position <= size; ++position) {
+        std::cin >> values[position];
+    }
+
+    // Swaps are freely composable, so within one connected component the values
+    // can be permuted arbitrarily; largest-first at the smallest positions then
+    // gives the lexicographic maximum.
+    DisjointSet positions(size);
+    for (int swap = 0; swap < swapCount; ++swap) {
+        int first, second;
+        std::cin >> first >> second;
+        positions.unite(first, second);
+    }
+
+    std::vector<std::vector<int>> componentPositions(size + 1);
+    for (int position = 1; position <= size; ++position) {
+        componentPositions[positions.find(position)].push_back(position);
+    }
+
+    std::vector<int> answer(size + 1, 0);
+    for (int root = 1; root <= size; ++root) {
+        const std::vector<int>& memberPositions = componentPositions[root];
+        if (memberPositions.empty()) {
+            continue;
+        }
+
+        std::vector<int> available;
+        available.reserve(memberPositions.size());
+        for (int position : memberPositions) {
+            available.push_back(values[position]);
+        }
+        std::sort(available.rbegin(), available.rend());
+
+        for (std::size_t i = 0; i < memberPositions.size(); ++i) {
+            answer[memberPositions[i]] = available[i];
+        }
+    }
+
+    for (int position = 1; position <= size; ++position) {
+        if (position > 1) {
+            std::cout << ' ';
+        }
+        std::cout << answer[position];
+    }
+    std::cout << '\n';
+    return 0;
+}
+=== REQ000186 END ===
+
+=== REQ000187 START ===
+import sys
+
+def main():
+    ball = 'A'
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        x, y = line.split(',')
+        if ball == x:
+            ball = y
+        elif ball == y:
+            ball = x
+    print(ball)
+
+main()
+=== REQ000187 END ===
+
+=== REQ000188 START ===
+"""Track which cup hides the ball through a sequence of swaps."""
+
+import sys
+
+STARTING_CUP = "A"
+
+
+def main() -> None:
+    ball_location = STARTING_CUP
+
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+
+        left_cup, right_cup = line.split(",")
+
+        # The ball only moves when its own cup is one of the two swapped.
+        if ball_location == left_cup:
+            ball_location = right_cup
+        elif ball_location == right_cup:
+            ball_location = left_cup
+
+    print(ball_location)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000188 END ===
+
+=== REQ000189 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        char ball = 'A';
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            String[] parts = line.split(",");
+            char x = parts[0].charAt(0);
+            char y = parts[1].charAt(0);
+            if (ball == x) ball = y;
+            else if (ball == y) ball = x;
+        }
+        System.out.println(ball);
+    }
+}
+=== REQ000189 END ===
+
+=== REQ000190 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Tracks which cup hides the ball through a sequence of swaps.
+ */
+public class Sol {
+
+    private static final char STARTING_CUP = 'A';
+    private static final String SEPARATOR = ",";
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        char ballLocation = STARTING_CUP;
+        String line;
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) {
+                continue;
+            }
+
+            String[] swappedCups = line.split(SEPARATOR);
+            char leftCup = swappedCups[0].charAt(0);
+            char rightCup = swappedCups[1].charAt(0);
+
+            // The ball only moves when its own cup is one of the two swapped.
+            if (ballLocation == leftCup) {
+                ballLocation = rightCup;
+            } else if (ballLocation == rightCup) {
+                ballLocation = leftCup;
+            }
+        }
+
+        System.out.println(ballLocation);
+    }
+}
+=== REQ000190 END ===
+
+=== REQ000191 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    char ball = 'A';
+    string line;
+    while (getline(cin, line)) {
+        if (line.empty()) continue;
+        char x = line[0];
+        char y = line[2];
+        if (ball == x) ball = y;
+        else if (ball == y) ball = x;
+    }
+    cout << ball << endl;
+    return 0;
+}
+=== REQ000191 END ===
+
+=== REQ000192 START ===
+#include <iostream>
+#include <string>
+
+namespace {
+
+constexpr char kStartingCup = 'A';
+constexpr std::size_t kLeftCupIndex = 0;
+constexpr std::size_t kRightCupIndex = 2;  // "X,Y" places the second cup here
+
+}  // namespace
+
+int main() {
+    char ballLocation = kStartingCup;
+
+    std::string line;
+    while (std::getline(std::cin, line)) {
+        if (line.size() <= kRightCupIndex) {
+            continue;
+        }
+
+        const char leftCup = line[kLeftCupIndex];
+        const char rightCup = line[kRightCupIndex];
+
+        // The ball only moves when its own cup is one of the two swapped.
+        if (ballLocation == leftCup) {
+            ballLocation = rightCup;
+        } else if (ballLocation == rightCup) {
+            ballLocation = leftCup;
+        }
+    }
+
+    std::cout << ballLocation << '\n';
+    return 0;
+}
+=== REQ000192 END ===
+
+=== REQ000193 START ===
+import sys
+
+def main():
+    a, b = map(int, sys.stdin.read().split())
+    s = (a * b) / 3.305785
+    print(f"{s:.6f}")
+
+main()
+=== REQ000193 END ===
+
+=== REQ000194 START ===
+"""Convert a room's area from square metres to tsubo."""
+
+import sys
+
+SQUARE_METRES_PER_TSUBO = 3.305785
+DECIMAL_PLACES = 6
+
+
+def main() -> None:
+    width, depth = map(float, sys.stdin.read().split())
+
+    area_in_tsubo = (width * depth) / SQUARE_METRES_PER_TSUBO
+    print(f"{area_in_tsubo:.{DECIMAL_PLACES}f}")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000194 END ===
+
+=== REQ000195 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int a = (int) st.nval;
+        st.nextToken(); int b = (int) st.nval;
+        double s = (a * b) / 3.305785;
+        System.out.printf("%.6f%n", s);
+    }
+}
+=== REQ000195 END ===
+
+=== REQ000196 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ * Converts a room's area from square metres to tsubo.
+ */
+public class Sol {
+
+    private static final double SQUARE_METRES_PER_TSUBO = 3.305785;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer line = new StringTokenizer(reader.readLine());
+
+        double width = Double.parseDouble(line.nextToken());
+        double depth = Double.parseDouble(line.nextToken());
+
+        double areaInTsubo = (width * depth) / SQUARE_METRES_PER_TSUBO;
+        System.out.printf("%.6f%n", areaInTsubo);
+    }
+}
+=== REQ000196 END ===
+
+=== REQ000197 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    double a, b;
+    cin >> a >> b;
+    double s = (a * b) / 3.305785;
+    printf("%.6f\n", s);
+    return 0;
+}
+=== REQ000197 END ===
+
+=== REQ000198 START ===
+#include <cstdio>
+#include <iostream>
+
+namespace {
+
+constexpr double kSquareMetresPerTsubo = 3.305785;
+
+}  // namespace
+
+int main() {
+    double width, depth;
+    std::cin >> width >> depth;
+
+    const double areaInTsubo = (width * depth) / kSquareMetresPerTsubo;
+    std::printf("%.6f\n", areaInTsubo);
+    return 0;
+}
+=== REQ000198 END ===
+
+=== REQ000199 START ===
+import sys
+
+def parse_record(s):
+    prev = s[0]
+    prev_node = {'char': prev, 'next': None, 'prev': None}
+    nodes = {prev: prev_node}
+    i = 1
+    while i < len(s):
+        if s[i:i+2] == '->':
+            direction = 'back'
+            i += 2
+        else:
+            direction = 'fwd'
+        cur = s[i]
+        i += 1
+        if cur not in nodes:
+            nodes[cur] = {'char': cur, 'next': None, 'prev': None}
+        if direction == 'back':
+            nodes[prev]['next'] = cur
+            nodes[cur]['prev'] = prev
+        else:
+            nodes[prev]['prev'] = cur
+            nodes[cur]['next'] = prev
+        prev = cur
+    # find head (prev is None)
+    head = None
+    for ch, node in nodes.items():
+        if node['prev'] is None:
+            head = ch
+            break
+    result = []
+    cur = head
+    while cur is not None:
+        result.append(cur)
+        cur = nodes[cur]['next']
+    return ''.join(result)
+
+def main():
+    data = sys.stdin.read().split('\n')
+    n = int(data[0].strip())
+    out = []
+    for i in range(1, n+1):
+        s = data[i].strip()
+        out.append(parse_record(s))
+    print('\n'.join(out))
+
+main()
+=== REQ000199 END ===
+
+=== REQ000200 START ===
+"""Reconstruct a train's carriage order from a conductor's walk record."""
+
+import sys
+
+BACKWARD_MARKER = "->"
+
+
+def rebuild_train(record: str) -> str:
+    """Return the carriages from the front, given one walk record.
+
+    The record is a chain of moves; each move links the current carriage to the
+    next one either behind it (``->``) or in front of it. Recording both links
+    builds a doubly linked list, and the front carriage is the only one with
+    nothing ahead of it.
+    """
+    carriage_behind: dict[str, str] = {}
+    carriage_ahead: dict[str, str] = {}
+    seen: list[str] = []
+
+    current = record[0]
+    seen.append(current)
+
+    position = 1
+    while position < len(record):
+        moved_backward = record[position : position + len(BACKWARD_MARKER)] == BACKWARD_MARKER
+        if moved_backward:
+            position += len(BACKWARD_MARKER)
+
+        next_carriage = record[position]
+        position += 1
+        if next_carriage not in seen:
+            seen.append(next_carriage)
+
+        if moved_backward:
+            carriage_behind[current] = next_carriage
+            carriage_ahead[next_carriage] = current
+        else:
+            carriage_ahead[current] = next_carriage
+            carriage_behind[next_carriage] = current
+
+        current = next_carriage
+
+    front = next(carriage for carriage in seen if carriage not in carriage_ahead)
+
+    order = []
+    carriage = front
+    while carriage is not None:
+        order.append(carriage)
+        carriage = carriage_behind.get(carriage)
+    return "".join(order)
+
+
+def main() -> None:
+    lines = sys.stdin.read().split("\n")
+    record_count = int(lines[0].strip())
+
+    trains = [rebuild_train(lines[index].strip()) for index in range(1, record_count + 1)]
+    sys.stdout.write("\n".join(trains) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000200 END ===

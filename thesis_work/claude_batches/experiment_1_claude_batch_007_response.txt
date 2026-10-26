@@ -1,0 +1,702 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000151 START ===
+def main():
+    a, b = map(int, input().split())
+    print((a-1)*(b-1))
+
+main()
+
+=== REQ000151 END ===
+
+=== REQ000152 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long a = sc.nextLong(), b = sc.nextLong();
+        System.out.println((a-1)*(b-1));
+    }
+}
+
+=== REQ000152 END ===
+
+=== REQ000153 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long a,b;
+    cin >> a >> b;
+    cout << (a-1)*(b-1) << endl;
+    return 0;
+}
+
+=== REQ000153 END ===
+
+=== REQ000154 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); c = int(data[idx+1]); idx += 2
+    D = [[0]*(c+1) for _ in range(c+1)]
+    for i in range(1, c+1):
+        for j in range(1, c+1):
+            D[i][j] = int(data[idx]); idx += 1
+    grid = []
+    for i in range(n):
+        row = [int(data[idx+k]) for k in range(n)]
+        idx += n
+        grid.append(row)
+    hist = [[0]*(c+1) for _ in range(3)]
+    for i in range(n):
+        for j in range(n):
+            g = ((i+1)+(j+1)) % 3
+            hist[g][grid[i][j]] += 1
+    cost = [[0]*(c+1) for _ in range(3)]
+    for g in range(3):
+        for k in range(1, c+1):
+            s = 0
+            for col in range(1, c+1):
+                s += hist[g][col] * D[col][k]
+            cost[g][k] = s
+    best = float('inf')
+    for k0 in range(1, c+1):
+        for k1 in range(1, c+1):
+            if k1 == k0:
+                continue
+            for k2 in range(1, c+1):
+                if k2 == k0 or k2 == k1:
+                    continue
+                total = cost[0][k0] + cost[1][k1] + cost[2][k2]
+                best = min(best, total)
+    print(best)
+
+main()
+
+=== REQ000154 END ===
+
+=== REQ000155 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int c = (int) st.nval;
+        long[][] D = new long[c+1][c+1];
+        for (int i = 1; i <= c; i++)
+            for (int j = 1; j <= c; j++) { st.nextToken(); D[i][j] = (long) st.nval; }
+        int[][] grid = new int[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) { st.nextToken(); grid[i][j] = (int) st.nval; }
+        long[][] hist = new long[3][c+1];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) {
+                int g = ((i+1)+(j+1)) % 3;
+                hist[g][grid[i][j]]++;
+            }
+        long[][] cost = new long[3][c+1];
+        for (int g = 0; g < 3; g++)
+            for (int k = 1; k <= c; k++) {
+                long s = 0;
+                for (int col = 1; col <= c; col++) s += hist[g][col] * D[col][k];
+                cost[g][k] = s;
+            }
+        long best = Long.MAX_VALUE;
+        for (int k0 = 1; k0 <= c; k0++)
+            for (int k1 = 1; k1 <= c; k1++) {
+                if (k1 == k0) continue;
+                for (int k2 = 1; k2 <= c; k2++) {
+                    if (k2 == k0 || k2 == k1) continue;
+                    long total = cost[0][k0] + cost[1][k1] + cost[2][k2];
+                    best = Math.min(best, total);
+                }
+            }
+        System.out.println(best);
+    }
+}
+
+=== REQ000155 END ===
+
+=== REQ000156 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n, c;
+    cin >> n >> c;
+    vector<vector<long long>> D(c+1, vector<long long>(c+1));
+    for (int i = 1; i <= c; i++) for (int j = 1; j <= c; j++) cin >> D[i][j];
+    vector<vector<int>> grid(n, vector<int>(n));
+    for (auto &row : grid) for (auto &v : row) cin >> v;
+    vector<vector<long long>> hist(3, vector<long long>(c+1, 0));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) {
+            int g = ((i+1)+(j+1)) % 3;
+            hist[g][grid[i][j]]++;
+        }
+    vector<vector<long long>> cost(3, vector<long long>(c+1, 0));
+    for (int g = 0; g < 3; g++)
+        for (int k = 1; k <= c; k++) {
+            long long s = 0;
+            for (int col = 1; col <= c; col++) s += hist[g][col] * D[col][k];
+            cost[g][k] = s;
+        }
+    long long best = LLONG_MAX;
+    for (int k0 = 1; k0 <= c; k0++)
+        for (int k1 = 1; k1 <= c; k1++) {
+            if (k1 == k0) continue;
+            for (int k2 = 1; k2 <= c; k2++) {
+                if (k2 == k0 || k2 == k1) continue;
+                long long total = cost[0][k0] + cost[1][k1] + cost[2][k2];
+                best = min(best, total);
+            }
+        }
+    cout << best << endl;
+    return 0;
+}
+
+=== REQ000156 END ===
+
+=== REQ000157 START ===
+def main():
+    a, b = map(int, input().split())
+    print((a+b+1)//2)
+
+main()
+
+=== REQ000157 END ===
+
+=== REQ000158 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt(), b = sc.nextInt();
+        System.out.println((a+b+1)/2);
+    }
+}
+
+=== REQ000158 END ===
+
+=== REQ000159 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int a,b;
+    cin >> a >> b;
+    cout << (a+b+1)/2 << endl;
+    return 0;
+}
+
+=== REQ000159 END ===
+
+=== REQ000160 START ===
+import math
+
+def main():
+    x1, y1, x2, y2 = map(int, input().split())
+    n = int(input())
+    fountains = []
+    for _ in range(n):
+        X, Y = map(int, input().split())
+        fountains.append((X, Y))
+    fset = set(fountains)
+    base = abs(x1-x2)*100 + abs(y1-y2)*100
+    corner1 = (x1, y2)
+    corner2 = (x2, y1)
+    if corner1 not in fset and corner2 not in fset:
+        print(float(base))
+        return
+    extra = (math.pi/2 - 2) * 10
+    print(base + extra)
+
+main()
+
+=== REQ000160 END ===
+
+=== REQ000161 START ===
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long x1 = sc.nextLong(), y1 = sc.nextLong(), x2 = sc.nextLong(), y2 = sc.nextLong();
+        int n = sc.nextInt();
+        Set<Long> fset = new HashSet<Long>();
+        for (int i = 0; i < n; i++) {
+            long X = sc.nextLong(), Y = sc.nextLong();
+            fset.add(X * 200000000L + Y);
+        }
+        double base = Math.abs(x1-x2)*100.0 + Math.abs(y1-y2)*100.0;
+        boolean c1 = fset.contains(x1 * 200000000L + y2);
+        boolean c2 = fset.contains(x2 * 200000000L + y1);
+        if (!c1 && !c2) {
+            System.out.println(base);
+            return;
+        }
+        double extra = (Math.PI/2 - 2) * 10;
+        System.out.println(base + extra);
+    }
+}
+
+=== REQ000161 END ===
+
+=== REQ000162 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long x1,y1,x2,y2;
+    cin >> x1 >> y1 >> x2 >> y2;
+    int n;
+    cin >> n;
+    set<pair<long long,long long>> fset;
+    for (int i=0;i<n;i++){
+        long long X,Y;
+        cin >> X >> Y;
+        fset.insert({X,Y});
+    }
+    double base = fabs((double)(x1-x2))*100.0 + fabs((double)(y1-y2))*100.0;
+    bool c1 = fset.count({x1,y2});
+    bool c2 = fset.count({x2,y1});
+    if (!c1 && !c2) {
+        printf("%.12f\n", base);
+        return 0;
+    }
+    double extra = (M_PI/2 - 2) * 10;
+    printf("%.12f\n", base + extra);
+    return 0;
+}
+
+=== REQ000162 END ===
+
+=== REQ000163 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); m = int(data[idx+1]); idx += 2
+    edges = []
+    INF = float('inf')
+    dist = [[INF]*(n+1) for _ in range(n+1)]
+    for i in range(1, n+1):
+        dist[i][i] = 0
+    for _ in range(m):
+        a = int(data[idx]); b = int(data[idx+1]); c = int(data[idx+2])
+        idx += 3
+        edges.append((a,b,c))
+        if c < dist[a][b]:
+            dist[a][b] = c
+            dist[b][a] = c
+    for k in range(1, n+1):
+        for i in range(1, n+1):
+            dik = dist[i][k]
+            if dik == INF:
+                continue
+            for j in range(1, n+1):
+                if dik + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dik + dist[k][j]
+    count = 0
+    for a, b, c in edges:
+        if dist[a][b] != c:
+            count += 1
+    print(count)
+
+main()
+
+=== REQ000163 END ===
+
+=== REQ000164 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int m = (int) st.nval;
+        int[][] edges = new int[m][3];
+        long INF = Long.MAX_VALUE/4;
+        long[][] dist = new long[n+1][n+1];
+        for (long[] row : dist) Arrays.fill(row, INF);
+        for (int i = 1; i <= n; i++) dist[i][i] = 0;
+        for (int i = 0; i < m; i++) {
+            st.nextToken(); int a = (int) st.nval;
+            st.nextToken(); int b = (int) st.nval;
+            st.nextToken(); int c = (int) st.nval;
+            edges[i] = new int[]{a,b,c};
+            if (c < dist[a][b]) { dist[a][b] = c; dist[b][a] = c; }
+        }
+        for (int k = 1; k <= n; k++) {
+            for (int i = 1; i <= n; i++) {
+                if (dist[i][k] >= INF) continue;
+                for (int j = 1; j <= n; j++) {
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) dist[i][j] = dist[i][k] + dist[k][j];
+                }
+            }
+        }
+        int count = 0;
+        for (int[] e : edges) {
+            if (dist[e[0]][e[1]] != e[2]) count++;
+        }
+        System.out.println(count);
+    }
+}
+
+=== REQ000164 END ===
+
+=== REQ000165 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n, m;
+    cin >> n >> m;
+    vector<array<int,3>> edges(m);
+    const long long INF = LLONG_MAX/4;
+    vector<vector<long long>> dist(n+1, vector<long long>(n+1, INF));
+    for (int i = 1; i <= n; i++) dist[i][i] = 0;
+    for (auto &e : edges) {
+        cin >> e[0] >> e[1] >> e[2];
+        if (e[2] < dist[e[0]][e[1]]) { dist[e[0]][e[1]] = e[2]; dist[e[1]][e[0]] = e[2]; }
+    }
+    for (int k = 1; k <= n; k++)
+        for (int i = 1; i <= n; i++) {
+            if (dist[i][k] >= INF) continue;
+            for (int j = 1; j <= n; j++)
+                if (dist[i][k] + dist[k][j] < dist[i][j]) dist[i][j] = dist[i][k] + dist[k][j];
+        }
+    int count = 0;
+    for (auto &e : edges) if (dist[e[0]][e[1]] != e[2]) count++;
+    cout << count << endl;
+    return 0;
+}
+
+=== REQ000165 END ===
+
+=== REQ000166 START ===
+def main():
+    a, b = map(int, input().split())
+    if a > 0:
+        print("Positive")
+    elif b < 0:
+        cnt = b - a + 1
+        print("Negative" if cnt % 2 == 1 else "Positive")
+    else:
+        print("Zero")
+
+main()
+
+=== REQ000166 END ===
+
+=== REQ000167 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long a = sc.nextLong(), b = sc.nextLong();
+        if (a > 0) System.out.println("Positive");
+        else if (b < 0) {
+            long cnt = b - a + 1;
+            System.out.println(cnt % 2 == 1 ? "Negative" : "Positive");
+        } else {
+            System.out.println("Zero");
+        }
+    }
+}
+
+=== REQ000167 END ===
+
+=== REQ000168 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long a,b;
+    cin >> a >> b;
+    if (a > 0) cout << "Positive" << endl;
+    else if (b < 0) {
+        long long cnt = b - a + 1;
+        cout << (cnt % 2 == 1 ? "Negative" : "Positive") << endl;
+    } else {
+        cout << "Zero" << endl;
+    }
+    return 0;
+}
+
+=== REQ000168 END ===
+
+=== REQ000169 START ===
+
+def max_fill(grid, capacity):
+    import math
+    """
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+    Example 1:
+        Input: 
+            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
+            bucket_capacity : 1
+        Output: 6
+
+    Example 2:
+        Input: 
+            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
+            bucket_capacity : 2
+        Output: 5
+    
+    Example 3:
+        Input: 
+            grid : [[0,0,0], [0,0,0]]
+            bucket_capacity : 5
+        Output: 0
+
+    Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """
+    import math
+    total = 0
+    for row in grid:
+        total += math.ceil(sum(row) / capacity)
+    return total
+
+=== REQ000169 END ===
+
+=== REQ000170 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a rectangular grid of wells. Each row represents a single well,
+    // and each 1 in a row represents a single unit of water.
+    // Each well has a corresponding bucket that can be used to extract water from it, 
+    // and all buckets have the same capacity.
+    // Your task is to use the buckets to empty the wells.
+    // Output the number of times you need to lower the buckets.
+    // Example 1:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l))))), (1l))
+    // (6l)
+    // Example 2:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)1l, (long)1l))))), (2l))
+    // (5l)
+    // Example 3:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l))))), (5l))
+    // (0l)
+    // Constraints:
+    // * all wells have the same length
+    // * 1 <= grid.length <= 10^2
+    // * 1 <= grid[:,1].length <= 10^2
+    // * grid[i][j] -> 0 | 1
+    // * 1 <= capacity <= 10
+    public static long maxFill(ArrayList<ArrayList<Long>> grid, long capacity) {
+
+        long total = 0;
+        for (ArrayList<Long> row : grid) {
+            long sum = 0;
+            for (long v : row) sum += v;
+            total += (sum + capacity - 1) / capacity;
+        }
+        return total;
+    }
+}
+
+=== REQ000170 END ===
+
+=== REQ000171 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a rectangular grid of wells. Each row represents a single well,
+// and each 1 in a row represents a single unit of water.
+// Each well has a corresponding bucket that can be used to extract water from it, 
+// and all buckets have the same capacity.
+// Your task is to use the buckets to empty the wells.
+// Output the number of times you need to lower the buckets.
+// Example 1:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1})})), (1))
+// (6)
+// Example 2:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)1, (long)1})})), (2))
+// (5)
+// Example 3:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0})})), (5))
+// (0)
+// Constraints:
+// * all wells have the same length
+// * 1 <= grid.length <= 10^2
+// * 1 <= grid[:,1].length <= 10^2
+// * grid[i][j] -> 0 | 1
+// * 1 <= capacity <= 10
+long max_fill(std::vector<std::vector<long>> grid, long capacity) {
+
+    long total = 0;
+    for (auto &row : grid) {
+        long sum = 0;
+        for (long v : row) sum += v;
+        total += (sum + capacity - 1) / capacity;
+    }
+    return total;
+}
+
+=== REQ000171 END ===
+
+=== REQ000172 START ===
+
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+    def check(s):
+        depth = 0
+        for c in s:
+            depth += 1 if c == '(' else -1
+            if depth < 0:
+                return False
+        return depth == 0
+    a, b = lst[0], lst[1]
+    if check(a + b) or check(b + a):
+        return "Yes"
+    return "No"
+
+=== REQ000172 END ===
+
+=== REQ000173 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list of two strings, both strings consist of open
+    // parentheses '(' or close parentheses ')' only.
+    // Your job is to check if it is possible to concatenate the two strings in
+    // some order, that the resulting string will be good.
+    // A string S is considered to be good if and only if all parentheses in S
+    // are balanced. For example: the string '(())()' is good, while the string
+    // '())' is not.
+    // Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+    // Examples:
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)"()(", (String)")"))))
+    // ("Yes")
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)")", (String)")"))))
+    // ("No")
+    public static String matchParens(ArrayList<String> lst) {
+
+        String a = lst.get(0), b = lst.get(1);
+        if (checkBal119(a + b) || checkBal119(b + a)) return "Yes";
+        return "No";
+    }
+    public static boolean checkBal119(String s) {
+        int depth = 0;
+        for (char c : s.toCharArray()) {
+            depth += (c == '(') ? 1 : -1;
+            if (depth < 0) return false;
+        }
+        return depth == 0;
+    }
+}
+
+=== REQ000173 END ===
+
+=== REQ000174 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector of two strings, both strings consist of open
+// parentheses '(' or close parentheses ')' only.
+// Your job is to check if it is possible to concatenate the two strings in
+// some order, that the resulting string will be good.
+// A string S is considered to be good if and only if all parentheses in S
+// are balanced. For example: the string '(())()' is good, while the string
+// '())' is not.
+// Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+// Examples:
+// >>> match_parens((std::vector<std::string>({(std::string)"()(", (std::string)")"})))
+// ("Yes")
+// >>> match_parens((std::vector<std::string>({(std::string)")", (std::string)")"})))
+// ("No")
+std::string match_parens(std::vector<std::string> lst) {
+
+    auto check = [](const std::string &s) {
+        int depth = 0;
+        for (char c : s) {
+            depth += (c == '(') ? 1 : -1;
+            if (depth < 0) return false;
+        }
+        return depth == 0;
+    };
+    std::string a = lst[0], b = lst[1];
+    if (check(a+b) || check(b+a)) return "Yes";
+    return "No";
+}
+
+=== REQ000174 END ===
+
+=== REQ000175 START ===
+
+def intersection(interval1, interval2):
+    """You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return "YES",
+    otherwise, return "NO".
+    If the two intervals don't intersect, return "NO".
+
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> "NO"
+    intersection((-1, 1), (0, 4)) ==> "NO"
+    intersection((-3, -1), (-5, 5)) ==> "YES"
+    """
+    lo = max(interval1[0], interval2[0])
+    hi = min(interval1[1], interval2[1])
+    length = hi - lo
+    if length <= 0:
+        return "NO"
+    def is_p(x):
+        if x < 2:
+            return False
+        for i in range(2, int(x**0.5)+1):
+            if x % i == 0:
+                return False
+        return True
+    return "YES" if is_p(length) else "NO"
+
+=== REQ000175 END ===

@@ -1,0 +1,1 @@
+You didn’t include the problem statement. Please paste the full problem (constraints, input/output format, and any sample I/O). If you want, mention limits (N, value ranges) and whether to optimize for speed or memory. I’ll then produce a complete, tested C++ solution.

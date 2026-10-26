@@ -1,0 +1,1 @@
+Please paste the full programming problem statement, including input/output format and constraints. I don’t have the actual problem text yet, and the workspace shell is currently blocked by a Windows access-denied error, so I can’t infer it from local files.

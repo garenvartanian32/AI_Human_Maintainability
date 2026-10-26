@@ -1,0 +1,1 @@
+The problem statement is missing. Please paste the full problem (including input/output format, constraints, and sample I/O). If you want, include target complexity or any special requirements (e.g., memory limits, Python version). I'll then provide a complete Python solution with explanation and tests.

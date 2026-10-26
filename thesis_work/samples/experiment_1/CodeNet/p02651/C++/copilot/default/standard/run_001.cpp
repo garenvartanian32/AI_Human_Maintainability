@@ -1,0 +1,1 @@
+I don’t see the problem statement. Please paste the full problem (including input/output format, constraints, and sample I/O). If you prefer, mention any limits (n, value ranges) or required complexity and I’ll produce a complete, tested C++ solution.

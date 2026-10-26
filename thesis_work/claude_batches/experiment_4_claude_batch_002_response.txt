@@ -1,0 +1,1207 @@
+=== REQ000026 START ===
+"""Maximum score obtainable by choosing k subarrays greedily by value."""
+
+MODULUS = 10**9 + 7
+MAX_VALUE = 100_001
+
+
+def _build_distinct_prime_counts(limit: int) -> list[int]:
+    """Sieve giving, for every n < limit, its number of distinct prime factors."""
+    counts = [0] * limit
+    for candidate in range(2, limit):
+        if counts[candidate] == 0:  # candidate is prime
+            for multiple in range(candidate, limit, candidate):
+                counts[multiple] += 1
+    return counts
+
+
+DISTINCT_PRIME_COUNTS = _build_distinct_prime_counts(MAX_VALUE)
+
+
+class Solution:
+    def maximumScore(self, nums: list[int], k: int) -> int:
+        """Return the maximum score achievable with exactly k operations.
+
+        Each element may be chosen as the "dominant" element of any subarray
+        where its prime score is strictly greater than everything to its left
+        and greater-or-equal to everything on its right. Counting those
+        subarrays tells us how many times an element can be used; we then spend
+        the k operations on the largest values first.
+        """
+        prime_scores = [DISTINCT_PRIME_COUNTS[value] for value in nums]
+        reach = self._count_dominated_subarrays(prime_scores)
+
+        score = 1
+        operations_left = k
+        for index in sorted(range(len(nums)), key=lambda i: nums[i], reverse=True):
+            if operations_left == 0:
+                break
+            uses = min(reach[index], operations_left)
+            score = score * pow(nums[index], uses, MODULUS) % MODULUS
+            operations_left -= uses
+
+        return score
+
+    @staticmethod
+    def _count_dominated_subarrays(prime_scores: list[int]) -> list[int]:
+        """For each index, how many subarrays it dominates by prime score."""
+        length = len(prime_scores)
+
+        # Nearest index to the left with a strictly greater score.
+        previous_greater = [-1] * length
+        stack: list[int] = []
+        for index in range(length):
+            while stack and prime_scores[stack[-1]] < prime_scores[index]:
+                stack.pop()
+            previous_greater[index] = stack[-1] if stack else -1
+            stack.append(index)
+
+        # Nearest index to the right with a greater-or-equal score.
+        next_greater_or_equal = [length] * length
+        stack.clear()
+        for index in reversed(range(length)):
+            while stack and prime_scores[stack[-1]] <= prime_scores[index]:
+                stack.pop()
+            next_greater_or_equal[index] = stack[-1] if stack else length
+            stack.append(index)
+
+        return [
+            (index - previous_greater[index]) * (next_greater_or_equal[index] - index)
+            for index in range(length)
+        ]
+=== REQ000026 END ===
+
+=== REQ000027 START ===
+import java.util.*;
+
+class Solution {
+    static final int MOD = 1_000_000_007;
+
+    public int maximumScore(List<Integer> nums, int k) {
+        int n = nums.size();
+        int maxVal = 0;
+        for (int x : nums) maxVal = Math.max(maxVal, x);
+        int[] spf = new int[maxVal + 1];
+        for (int i = 2; i <= maxVal; i++) {
+            if (spf[i] == 0) {
+                for (int j = i; j <= maxVal; j += i) {
+                    if (spf[j] == 0) spf[j] = i;
+                }
+            }
+        }
+        int[] scores = new int[n];
+        for (int i = 0; i < n; i++) {
+            int x = nums.get(i);
+            int s = 0, last = -1;
+            while (x > 1) {
+                int p = spf[x];
+                if (p != last) { s++; last = p; }
+                x /= p;
+            }
+            scores[i] = s;
+        }
+        int[] left = new int[n];
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && scores[stack.peek()] < scores[i]) stack.pop();
+            left[i] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(i);
+        }
+        int[] right = new int[n];
+        stack.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && scores[stack.peek()] <= scores[i]) stack.pop();
+            right[i] = stack.isEmpty() ? n : stack.peek();
+            stack.push(i);
+        }
+        Integer[] order = new Integer[n];
+        for (int i = 0; i < n; i++) order[i] = i;
+        Arrays.sort(order, (a, b) -> nums.get(b) - nums.get(a));
+
+        long ans = 1;
+        long remaining = k;
+        for (int idx : order) {
+            if (remaining <= 0) break;
+            long cnt = (long) (idx - left[idx]) * (right[idx] - idx);
+            cnt = Math.min(cnt, remaining);
+            ans = ans * power(nums.get(idx), cnt) % MOD;
+            remaining -= cnt;
+        }
+        return (int) ans;
+    }
+
+    private long power(long base, long exp) {
+        base %= MOD;
+        long result = 1;
+        while (exp > 0) {
+            if ((exp & 1) == 1) result = result * base % MOD;
+            base = base * base % MOD;
+            exp >>= 1;
+        }
+        return result;
+    }
+}
+=== REQ000027 END ===
+
+=== REQ000028 START ===
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.List;
+
+/**
+ * Maximum score obtainable by choosing k subarrays greedily by value.
+ */
+class Solution {
+
+    private static final long MODULUS = 1_000_000_007L;
+
+    /**
+     * Returns the maximum score achievable with exactly k operations.
+     *
+     * <p>Each element may be chosen as the dominant element of any subarray
+     * where its prime score beats everything to its left and ties-or-beats
+     * everything to its right. We spend the k operations on the largest values
+     * first, limited by how many subarrays each element dominates.
+     */
+    public int maximumScore(List<Integer> nums, int k) {
+        int[] primeScores = computePrimeScores(nums);
+        long[] reach = countDominatedSubarrays(primeScores);
+
+        Integer[] byValueDescending = new Integer[nums.size()];
+        Arrays.setAll(byValueDescending, i -> i);
+        Arrays.sort(byValueDescending, (a, b) -> Integer.compare(nums.get(b), nums.get(a)));
+
+        long score = 1;
+        long operationsLeft = k;
+        for (int index : byValueDescending) {
+            if (operationsLeft == 0) {
+                break;
+            }
+            long uses = Math.min(reach[index], operationsLeft);
+            score = score * modularPower(nums.get(index), uses) % MODULUS;
+            operationsLeft -= uses;
+        }
+
+        return (int) score;
+    }
+
+    /** Number of distinct prime factors for every value, via a sieve. */
+    private int[] computePrimeScores(List<Integer> nums) {
+        int limit = 0;
+        for (int value : nums) {
+            limit = Math.max(limit, value);
+        }
+        limit++;
+
+        int[] distinctPrimeCounts = new int[limit];
+        for (int candidate = 2; candidate < limit; candidate++) {
+            if (distinctPrimeCounts[candidate] == 0) { // candidate is prime
+                for (int multiple = candidate; multiple < limit; multiple += candidate) {
+                    distinctPrimeCounts[multiple]++;
+                }
+            }
+        }
+
+        int[] primeScores = new int[nums.size()];
+        for (int i = 0; i < nums.size(); i++) {
+            primeScores[i] = distinctPrimeCounts[nums.get(i)];
+        }
+        return primeScores;
+    }
+
+    /** For each index, how many subarrays it dominates by prime score. */
+    private long[] countDominatedSubarrays(int[] primeScores) {
+        int length = primeScores.length;
+
+        int[] previousGreater = new int[length];
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int index = 0; index < length; index++) {
+            while (!stack.isEmpty() && primeScores[stack.peek()] < primeScores[index]) {
+                stack.pop();
+            }
+            previousGreater[index] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(index);
+        }
+
+        int[] nextGreaterOrEqual = new int[length];
+        stack.clear();
+        for (int index = length - 1; index >= 0; index--) {
+            while (!stack.isEmpty() && primeScores[stack.peek()] <= primeScores[index]) {
+                stack.pop();
+            }
+            nextGreaterOrEqual[index] = stack.isEmpty() ? length : stack.peek();
+            stack.push(index);
+        }
+
+        long[] reach = new long[length];
+        for (int index = 0; index < length; index++) {
+            reach[index] = (long) (index - previousGreater[index])
+                    * (nextGreaterOrEqual[index] - index);
+        }
+        return reach;
+    }
+
+    /** Computes base^exponent modulo {@link #MODULUS}. */
+    private long modularPower(long base, long exponent) {
+        long result = 1;
+        long factor = base % MODULUS;
+        for (long remaining = exponent; remaining > 0; remaining >>= 1) {
+            if ((remaining & 1L) == 1L) {
+                result = result * factor % MODULUS;
+            }
+            factor = factor * factor % MODULUS;
+        }
+        return result;
+    }
+}
+=== REQ000028 END ===
+
+=== REQ000029 START ===
+#include <vector>
+#include <algorithm>
+#include <numeric>
+using namespace std;
+
+class Solution {
+public:
+    int maximumScore(vector<int>& nums, int k) {
+        const long long MOD = 1'000'000'007LL;
+        int n = nums.size();
+        int maxVal = *max_element(nums.begin(), nums.end());
+        vector<int> spf(maxVal + 1, 0);
+        for (int i = 2; i <= maxVal; i++) {
+            if (spf[i] == 0) {
+                for (int j = i; j <= maxVal; j += i) {
+                    if (spf[j] == 0) spf[j] = i;
+                }
+            }
+        }
+        vector<int> scores(n);
+        for (int i = 0; i < n; i++) {
+            int x = nums[i], s = 0, last = -1;
+            while (x > 1) {
+                int p = spf[x];
+                if (p != last) { s++; last = p; }
+                x /= p;
+            }
+            scores[i] = s;
+        }
+        vector<int> left(n), right(n);
+        vector<int> stack;
+        for (int i = 0; i < n; i++) {
+            while (!stack.empty() && scores[stack.back()] < scores[i]) stack.pop_back();
+            left[i] = stack.empty() ? -1 : stack.back();
+            stack.push_back(i);
+        }
+        stack.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.empty() && scores[stack.back()] <= scores[i]) stack.pop_back();
+            right[i] = stack.empty() ? n : stack.back();
+            stack.push_back(i);
+        }
+        vector<int> order(n);
+        iota(order.begin(), order.end(), 0);
+        sort(order.begin(), order.end(), [&](int a, int b) { return nums[a] > nums[b]; });
+
+        auto power = [&](long long base, long long exp) {
+            base %= MOD;
+            long long result = 1;
+            while (exp > 0) {
+                if (exp & 1) result = result * base % MOD;
+                base = base * base % MOD;
+                exp >>= 1;
+            }
+            return result;
+        };
+
+        long long ans = 1;
+        long long remaining = k;
+        for (int idx : order) {
+            if (remaining <= 0) break;
+            long long cnt = (long long)(idx - left[idx]) * (right[idx] - idx);
+            cnt = min(cnt, remaining);
+            ans = ans * power(nums[idx], cnt) % MOD;
+            remaining -= cnt;
+        }
+        return (int) ans;
+    }
+};
+=== REQ000029 END ===
+
+=== REQ000030 START ===
+#include <algorithm>
+#include <numeric>
+#include <vector>
+
+/**
+ * Maximum score obtainable by choosing k subarrays greedily by value.
+ */
+class Solution {
+public:
+    /**
+     * Returns the maximum score achievable with exactly k operations.
+     *
+     * Each element may be chosen as the dominant element of any subarray where
+     * its prime score beats everything to its left and ties-or-beats everything
+     * to its right. We spend the k operations on the largest values first.
+     */
+    int maximumScore(std::vector<int>& nums, int k) {
+        const std::vector<int> primeScores = computePrimeScores(nums);
+        const std::vector<long long> reach = countDominatedSubarrays(primeScores);
+
+        std::vector<int> byValueDescending(nums.size());
+        std::iota(byValueDescending.begin(), byValueDescending.end(), 0);
+        std::sort(byValueDescending.begin(), byValueDescending.end(),
+                  [&nums](int a, int b) { return nums[a] > nums[b]; });
+
+        long long score = 1;
+        long long operationsLeft = k;
+        for (int index : byValueDescending) {
+            if (operationsLeft == 0) {
+                break;
+            }
+            const long long uses = std::min(reach[index], operationsLeft);
+            score = score * modularPower(nums[index], uses) % kModulus;
+            operationsLeft -= uses;
+        }
+
+        return static_cast<int>(score);
+    }
+
+private:
+    static constexpr long long kModulus = 1000000007LL;
+
+    /// Number of distinct prime factors for every value, via a sieve.
+    static std::vector<int> computePrimeScores(const std::vector<int>& nums) {
+        const int limit = *std::max_element(nums.begin(), nums.end()) + 1;
+
+        std::vector<int> distinctPrimeCounts(limit, 0);
+        for (int candidate = 2; candidate < limit; ++candidate) {
+            if (distinctPrimeCounts[candidate] == 0) {  // candidate is prime
+                for (int multiple = candidate; multiple < limit; multiple += candidate) {
+                    distinctPrimeCounts[multiple]++;
+                }
+            }
+        }
+
+        std::vector<int> primeScores;
+        primeScores.reserve(nums.size());
+        for (int value : nums) {
+            primeScores.push_back(distinctPrimeCounts[value]);
+        }
+        return primeScores;
+    }
+
+    /// For each index, how many subarrays it dominates by prime score.
+    static std::vector<long long> countDominatedSubarrays(const std::vector<int>& primeScores) {
+        const int length = static_cast<int>(primeScores.size());
+
+        std::vector<int> previousGreater(length, -1);
+        std::vector<int> stack;
+        for (int index = 0; index < length; ++index) {
+            while (!stack.empty() && primeScores[stack.back()] < primeScores[index]) {
+                stack.pop_back();
+            }
+            previousGreater[index] = stack.empty() ? -1 : stack.back();
+            stack.push_back(index);
+        }
+
+        std::vector<int> nextGreaterOrEqual(length, length);
+        stack.clear();
+        for (int index = length - 1; index >= 0; --index) {
+            while (!stack.empty() && primeScores[stack.back()] <= primeScores[index]) {
+                stack.pop_back();
+            }
+            nextGreaterOrEqual[index] = stack.empty() ? length : stack.back();
+            stack.push_back(index);
+        }
+
+        std::vector<long long> reach(length);
+        for (int index = 0; index < length; ++index) {
+            reach[index] = static_cast<long long>(index - previousGreater[index])
+                         * (nextGreaterOrEqual[index] - index);
+        }
+        return reach;
+    }
+
+    /// Computes base^exponent modulo `kModulus`.
+    static long long modularPower(long long base, long long exponent) {
+        long long result = 1;
+        long long factor = base % kModulus;
+        for (long long remaining = exponent; remaining > 0; remaining >>= 1) {
+            if (remaining & 1LL) {
+                result = result * factor % kModulus;
+            }
+            factor = factor * factor % kModulus;
+        }
+        return result;
+    }
+};
+=== REQ000030 END ===
+
+=== REQ000031 START ===
+class Solution:
+    def findMaximumElegance(self, items, k):
+        items = sorted(items, key=lambda it: -it[0])
+        n = len(items)
+        total = sum(items[i][0] for i in range(k))
+        seen = set()
+        dup = []
+        for i in range(k):
+            profit, cat = items[i]
+            if cat in seen:
+                dup.append(profit)
+            else:
+                seen.add(cat)
+        ans = total + len(seen) ** 2
+        for i in range(k, n):
+            if not dup:
+                break
+            profit, cat = items[i]
+            if cat in seen:
+                continue
+            total += profit - dup.pop()
+            seen.add(cat)
+            ans = max(ans, total + len(seen) ** 2)
+        return ans
+=== REQ000031 END ===
+
+=== REQ000032 START ===
+"""Maximum elegance of a k-item selection (total profit + distinct categories squared)."""
+
+
+class Solution:
+    def findMaximumElegance(self, items: list[list[int]], k: int) -> int:
+        """Return the best elegance over all subsets of exactly k items.
+
+        Start with the k most profitable items. Then repeatedly trade the least
+        profitable *duplicate-category* item for the most profitable item of a
+        brand-new category: profit can only fall, but the distinct-category term
+        grows quadratically, so the trade is sometimes worth it.
+        """
+        by_profit_descending = sorted(items, key=lambda item: item[0], reverse=True)
+
+        total_profit = 0
+        seen_categories: set[int] = set()
+        # Profits of chosen items whose category was already represented,
+        # kept smallest-last so pop() removes the cheapest to give up.
+        droppable_profits: list[int] = []
+
+        for profit, category in by_profit_descending[:k]:
+            total_profit += profit
+            if category in seen_categories:
+                droppable_profits.append(profit)
+            else:
+                seen_categories.add(category)
+
+        best_elegance = total_profit + len(seen_categories) ** 2
+
+        for profit, category in by_profit_descending[k:]:
+            if not droppable_profits:
+                break
+            if category in seen_categories:
+                continue
+
+            total_profit += profit - droppable_profits.pop()
+            seen_categories.add(category)
+            best_elegance = max(best_elegance, total_profit + len(seen_categories) ** 2)
+
+        return best_elegance
+=== REQ000032 END ===
+
+=== REQ000033 START ===
+import java.util.*;
+
+class Solution {
+    public long findMaximumElegance(int[][] items, int k) {
+        Arrays.sort(items, (a, b) -> b[0] - a[0]);
+        int n = items.length;
+        long total = 0;
+        for (int i = 0; i < k; i++) total += items[i][0];
+        Set<Integer> seen = new HashSet<>();
+        Deque<Integer> dup = new ArrayDeque<>();
+        for (int i = 0; i < k; i++) {
+            int profit = items[i][0], cat = items[i][1];
+            if (!seen.add(cat)) {
+                dup.push(profit);
+            }
+        }
+        long ans = total + (long) seen.size() * seen.size();
+        for (int i = k; i < n; i++) {
+            if (dup.isEmpty()) break;
+            int profit = items[i][0], cat = items[i][1];
+            if (seen.contains(cat)) continue;
+            total += profit - dup.pop();
+            seen.add(cat);
+            ans = Math.max(ans, total + (long) seen.size() * seen.size());
+        }
+        return ans;
+    }
+}
+=== REQ000033 END ===
+
+=== REQ000034 START ===
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Maximum elegance of a k-item selection (total profit + distinct categories squared).
+ */
+class Solution {
+
+    private static final int PROFIT = 0;
+    private static final int CATEGORY = 1;
+
+    /**
+     * Returns the best elegance over all subsets of exactly k items.
+     *
+     * <p>Start with the k most profitable items, then repeatedly trade the least
+     * profitable duplicate-category item for the most profitable item of a
+     * brand-new category. Profit can only fall, but the distinct-category term
+     * grows quadratically, so the trade is sometimes worth it.
+     */
+    public long findMaximumElegance(int[][] items, int k) {
+        Arrays.sort(items, (left, right) -> Integer.compare(right[PROFIT], left[PROFIT]));
+
+        long totalProfit = 0;
+        Set<Integer> seenCategories = new HashSet<>();
+        // Profits of chosen items whose category was already represented;
+        // a stack so pop() yields the cheapest one to give up.
+        Deque<Integer> droppableProfits = new ArrayDeque<>();
+
+        for (int i = 0; i < k; i++) {
+            totalProfit += items[i][PROFIT];
+            boolean categoryIsNew = seenCategories.add(items[i][CATEGORY]);
+            if (!categoryIsNew) {
+                droppableProfits.push(items[i][PROFIT]);
+            }
+        }
+
+        long bestElegance = totalProfit + square(seenCategories.size());
+
+        for (int i = k; i < items.length; i++) {
+            if (droppableProfits.isEmpty()) {
+                break;
+            }
+            if (seenCategories.contains(items[i][CATEGORY])) {
+                continue;
+            }
+
+            totalProfit += items[i][PROFIT] - droppableProfits.pop();
+            seenCategories.add(items[i][CATEGORY]);
+            bestElegance = Math.max(bestElegance, totalProfit + square(seenCategories.size()));
+        }
+
+        return bestElegance;
+    }
+
+    private static long square(int value) {
+        return (long) value * value;
+    }
+}
+=== REQ000034 END ===
+
+=== REQ000035 START ===
+#include <vector>
+#include <algorithm>
+#include <unordered_set>
+using namespace std;
+
+class Solution {
+public:
+    long long findMaximumElegance(vector<vector<int>>& items, int k) {
+        sort(items.begin(), items.end(), [](const vector<int>& a, const vector<int>& b) {
+            return a[0] > b[0];
+        });
+        int n = items.size();
+        long long total = 0;
+        for (int i = 0; i < k; i++) total += items[i][0];
+        unordered_set<int> seen;
+        vector<int> dup;
+        for (int i = 0; i < k; i++) {
+            int profit = items[i][0], cat = items[i][1];
+            if (seen.count(cat)) {
+                dup.push_back(profit);
+            } else {
+                seen.insert(cat);
+            }
+        }
+        long long sz = (long long) seen.size();
+        long long ans = total + sz * sz;
+        for (int i = k; i < n; i++) {
+            if (dup.empty()) break;
+            int profit = items[i][0], cat = items[i][1];
+            if (seen.count(cat)) continue;
+            total += profit - dup.back();
+            dup.pop_back();
+            seen.insert(cat);
+            sz = (long long) seen.size();
+            ans = max(ans, total + sz * sz);
+        }
+        return ans;
+    }
+};
+=== REQ000035 END ===
+
+=== REQ000036 START ===
+#include <algorithm>
+#include <unordered_set>
+#include <vector>
+
+/**
+ * Maximum elegance of a k-item selection (total profit + distinct categories squared).
+ */
+class Solution {
+public:
+    /**
+     * Returns the best elegance over all subsets of exactly k items.
+     *
+     * Start with the k most profitable items, then repeatedly trade the least
+     * profitable duplicate-category item for the most profitable item of a
+     * brand-new category. Profit can only fall, but the distinct-category term
+     * grows quadratically, so the trade is sometimes worth it.
+     */
+    long long findMaximumElegance(std::vector<std::vector<int>>& items, int k) {
+        std::sort(items.begin(), items.end(),
+                  [](const std::vector<int>& left, const std::vector<int>& right) {
+                      return left[kProfit] > right[kProfit];
+                  });
+
+        long long totalProfit = 0;
+        std::unordered_set<int> seenCategories;
+        // Profits of chosen items whose category was already represented;
+        // used as a stack so back() is the cheapest one to give up.
+        std::vector<int> droppableProfits;
+
+        for (int i = 0; i < k; ++i) {
+            totalProfit += items[i][kProfit];
+            const bool categoryIsNew = seenCategories.insert(items[i][kCategory]).second;
+            if (!categoryIsNew) {
+                droppableProfits.push_back(items[i][kProfit]);
+            }
+        }
+
+        long long bestElegance = totalProfit + square(seenCategories.size());
+
+        for (std::size_t i = k; i < items.size(); ++i) {
+            if (droppableProfits.empty()) {
+                break;
+            }
+            if (seenCategories.count(items[i][kCategory]) > 0) {
+                continue;
+            }
+
+            totalProfit += items[i][kProfit] - droppableProfits.back();
+            droppableProfits.pop_back();
+            seenCategories.insert(items[i][kCategory]);
+            bestElegance = std::max(bestElegance, totalProfit + square(seenCategories.size()));
+        }
+
+        return bestElegance;
+    }
+
+private:
+    static constexpr int kProfit = 0;
+    static constexpr int kCategory = 1;
+
+    static long long square(std::size_t value) {
+        return static_cast<long long>(value) * static_cast<long long>(value);
+    }
+};
+=== REQ000036 END ===
+
+=== REQ000037 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    q = int(data[idx]); idx += 1
+    out = []
+    for _ in range(q):
+        l = int(data[idx]); r = int(data[idx+1]); d = int(data[idx+2])
+        idx += 3
+        if d < l or d > r:
+            out.append(str(d))
+        else:
+            out.append(str(((r // d) + 1) * d))
+    print('\n'.join(out))
+
+main()
+=== REQ000037 END ===
+
+=== REQ000038 START ===
+"""For each query, find the smallest positive multiple of d outside [l, r]."""
+
+import sys
+
+
+def smallest_multiple_outside(l: int, r: int, d: int) -> int:
+    """Return the least positive multiple of ``d`` that is not within [l, r].
+
+    If ``d`` itself already falls outside the forbidden range it is the answer.
+    Otherwise every multiple up to ``r`` is blocked, so the first free one is
+    the next multiple after ``r``.
+    """
+    if d < l or d > r:
+        return d
+    return (r // d + 1) * d
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    query_count = int(tokens[0])
+
+    answers = []
+    cursor = 1
+    for _ in range(query_count):
+        l, r, d = (int(tokens[cursor + offset]) for offset in range(3))
+        cursor += 3
+        answers.append(smallest_multiple_outside(l, r, d))
+
+    sys.stdout.write("\n".join(map(str, answers)) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000038 END ===
+
+=== REQ000039 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken();
+        int q = (int) st.nval;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            st.nextToken(); long l = (long) st.nval;
+            st.nextToken(); long r = (long) st.nval;
+            st.nextToken(); long d = (long) st.nval;
+            long ans;
+            if (d < l || d > r) {
+                ans = d;
+            } else {
+                ans = ((r / d) + 1) * d;
+            }
+            sb.append(ans).append('\n');
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000039 END ===
+
+=== REQ000040 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+
+/**
+ * For each query, finds the smallest positive multiple of d outside [l, r].
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int queryCount = (int) input.nval;
+
+        StringBuilder answers = new StringBuilder();
+        for (int query = 0; query < queryCount; query++) {
+            input.nextToken();
+            long l = (long) input.nval;
+            input.nextToken();
+            long r = (long) input.nval;
+            input.nextToken();
+            long d = (long) input.nval;
+
+            answers.append(smallestMultipleOutside(l, r, d)).append('\n');
+        }
+
+        System.out.print(answers);
+    }
+
+    /**
+     * Returns the least positive multiple of {@code d} not within [l, r].
+     *
+     * <p>If {@code d} itself already falls outside the forbidden range it is the
+     * answer; otherwise the first free multiple is the next one after {@code r}.
+     */
+    private static long smallestMultipleOutside(long l, long r, long d) {
+        if (d < l || d > r) {
+            return d;
+        }
+        return (r / d + 1) * d;
+    }
+}
+=== REQ000040 END ===
+
+=== REQ000041 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int q;
+    cin >> q;
+    string out;
+    out.reserve(q * 8);
+    for (int i = 0; i < q; i++) {
+        long long l, r, d;
+        cin >> l >> r >> d;
+        long long ans;
+        if (d < l || d > r) {
+            ans = d;
+        } else {
+            ans = (r / d + 1) * d;
+        }
+        out += to_string(ans);
+        out += '\n';
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000041 END ===
+
+=== REQ000042 START ===
+#include <iostream>
+#include <sstream>
+#include <string>
+
+/**
+ * Returns the least positive multiple of `d` that is not within [l, r].
+ *
+ * If `d` itself already falls outside the forbidden range it is the answer;
+ * otherwise the first free multiple is the next one after `r`.
+ */
+static long long smallestMultipleOutside(long long l, long long r, long long d) {
+    if (d < l || d > r) {
+        return d;
+    }
+    return (r / d + 1) * d;
+}
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int queryCount;
+    std::cin >> queryCount;
+
+    std::ostringstream answers;
+    for (int query = 0; query < queryCount; ++query) {
+        long long l, r, d;
+        std::cin >> l >> r >> d;
+        answers << smallestMultipleOutside(l, r, d) << '\n';
+    }
+
+    std::cout << answers.str();
+    return 0;
+}
+=== REQ000042 END ===
+
+=== REQ000043 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); idx += 1
+    deg = [0] * (n + 1)
+    for _ in range(n - 1):
+        u = int(data[idx]); v = int(data[idx+1]); idx += 2
+        deg[u] += 1
+        deg[v] += 1
+    for i in range(1, n + 1):
+        if deg[i] == 2:
+            print("NO")
+            return
+    print("YES")
+
+main()
+=== REQ000043 END ===
+
+=== REQ000044 START ===
+"""Decide whether a tree admits the required edge configuration."""
+
+import sys
+
+DEGREE_THAT_BLOCKS = 2
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    vertex_count = int(tokens[0])
+
+    degrees = [0] * (vertex_count + 1)
+    cursor = 1
+    for _ in range(vertex_count - 1):
+        first_endpoint = int(tokens[cursor])
+        second_endpoint = int(tokens[cursor + 1])
+        cursor += 2
+        degrees[first_endpoint] += 1
+        degrees[second_endpoint] += 1
+
+    # A vertex of degree exactly two cannot be satisfied, so its presence
+    # rules the whole configuration out.
+    has_blocking_vertex = any(
+        degrees[vertex] == DEGREE_THAT_BLOCKS for vertex in range(1, vertex_count + 1)
+    )
+
+    print("NO" if has_blocking_vertex else "YES")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000044 END ===
+
+=== REQ000045 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken();
+        int n = (int) st.nval;
+        int[] deg = new int[n + 1];
+        for (int i = 0; i < n - 1; i++) {
+            st.nextToken(); int u = (int) st.nval;
+            st.nextToken(); int v = (int) st.nval;
+            deg[u]++;
+            deg[v]++;
+        }
+        for (int i = 1; i <= n; i++) {
+            if (deg[i] == 2) {
+                System.out.println("NO");
+                return;
+            }
+        }
+        System.out.println("YES");
+    }
+}
+=== REQ000045 END ===
+
+=== REQ000046 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+
+/**
+ * Decides whether a tree admits the required edge configuration.
+ *
+ * <p>A vertex whose degree is exactly two cannot be satisfied, so the presence
+ * of any such vertex rules the whole configuration out.
+ */
+public class Sol {
+
+    private static final int DEGREE_THAT_BLOCKS = 2;
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int vertexCount = (int) input.nval;
+
+        int[] degrees = new int[vertexCount + 1];
+        for (int edge = 0; edge < vertexCount - 1; edge++) {
+            input.nextToken();
+            degrees[(int) input.nval]++;
+            input.nextToken();
+            degrees[(int) input.nval]++;
+        }
+
+        System.out.println(hasBlockingVertex(degrees, vertexCount) ? "NO" : "YES");
+    }
+
+    private static boolean hasBlockingVertex(int[] degrees, int vertexCount) {
+        for (int vertex = 1; vertex <= vertexCount; vertex++) {
+            if (degrees[vertex] == DEGREE_THAT_BLOCKS) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+=== REQ000046 END ===
+
+=== REQ000047 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
+    vector<int> deg(n + 1, 0);
+    for (int i = 0; i < n - 1; i++) {
+        int u, v;
+        cin >> u >> v;
+        deg[u]++;
+        deg[v]++;
+    }
+    for (int i = 1; i <= n; i++) {
+        if (deg[i] == 2) {
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+    cout << "YES" << endl;
+    return 0;
+}
+=== REQ000047 END ===
+
+=== REQ000048 START ===
+#include <iostream>
+#include <vector>
+
+namespace {
+
+constexpr int kDegreeThatBlocks = 2;
+
+/// A vertex of degree exactly two cannot be satisfied.
+bool hasBlockingVertex(const std::vector<int>& degrees) {
+    for (std::size_t vertex = 1; vertex < degrees.size(); ++vertex) {
+        if (degrees[vertex] == kDegreeThatBlocks) {
+            return true;
+        }
+    }
+    return false;
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int vertexCount;
+    std::cin >> vertexCount;
+
+    std::vector<int> degrees(vertexCount + 1, 0);
+    for (int edge = 0; edge < vertexCount - 1; ++edge) {
+        int firstEndpoint, secondEndpoint;
+        std::cin >> firstEndpoint >> secondEndpoint;
+        degrees[firstEndpoint]++;
+        degrees[secondEndpoint]++;
+    }
+
+    std::cout << (hasBlockingVertex(degrees) ? "NO" : "YES") << '\n';
+    return 0;
+}
+=== REQ000048 END ===
+
+=== REQ000049 START ===
+import sys
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    idx = 0
+    n = int(data[idx]); idx += 1
+    xs = [int(data[idx+i]) for i in range(n)]; idx += n
+    vs = [int(data[idx+i]) for i in range(n)]; idx += n
+
+    pts = sorted(zip(xs, vs), key=lambda p: p[0])
+    sorted_v = sorted(set(vs))
+    rank = {v: i + 1 for i, v in enumerate(sorted_v)}
+    m = len(sorted_v)
+    cnt = [0] * (m + 1)
+    sumx = [0] * (m + 1)
+
+    def update(pos, c, s):
+        while pos <= m:
+            cnt[pos] += c
+            sumx[pos] += s
+            pos += pos & (-pos)
+
+    def query(pos):
+        c = 0
+        s = 0
+        while pos > 0:
+            c += cnt[pos]
+            s += sumx[pos]
+            pos -= pos & (-pos)
+        return c, s
+
+    total = 0
+    for x, v in pts:
+        r = rank[v]
+        c, s = query(r)
+        total += c * x - s
+        update(r, 1, x)
+
+    print(total)
+
+main()
+=== REQ000049 END ===
+
+=== REQ000050 START ===
+"""Sum of minimum pairwise distances between points that eventually meet."""
+
+import sys
+
+
+class FenwickTree:
+    """Binary indexed tree tracking both a count and a sum of coordinates."""
+
+    def __init__(self, size: int) -> None:
+        self._size = size
+        self._counts = [0] * (size + 1)
+        self._coordinate_sums = [0] * (size + 1)
+
+    def add(self, position: int, coordinate: int) -> None:
+        """Record one point with the given coordinate at ``position``."""
+        while position <= self._size:
+            self._counts[position] += 1
+            self._coordinate_sums[position] += coordinate
+            position += position & -position
+
+    def prefix(self, position: int) -> tuple[int, int]:
+        """Return (count, coordinate sum) over ranks 1..``position``."""
+        count = 0
+        coordinate_sum = 0
+        while position > 0:
+            count += self._counts[position]
+            coordinate_sum += self._coordinate_sums[position]
+            position -= position & -position
+        return count, coordinate_sum
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    point_count = int(tokens[0])
+    coordinates = [int(value) for value in tokens[1 : 1 + point_count]]
+    velocities = [int(value) for value in tokens[1 + point_count : 1 + 2 * point_count]]
+
+    # Two points converge exactly when the left one is not slower than the
+    # right one, so we sweep by coordinate and query smaller-or-equal speeds.
+    velocity_rank = {speed: rank for rank, speed in enumerate(sorted(set(velocities)), start=1)}
+    tree = FenwickTree(len(velocity_rank))
+
+    total_distance = 0
+    for coordinate, velocity in sorted(zip(coordinates, velocities)):
+        earlier_count, earlier_sum = tree.prefix(velocity_rank[velocity])
+        total_distance += earlier_count * coordinate - earlier_sum
+        tree.add(velocity_rank[velocity], coordinate)
+
+    print(total_distance)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000050 END ===

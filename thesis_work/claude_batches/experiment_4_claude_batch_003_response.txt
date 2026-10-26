@@ -1,0 +1,1480 @@
+=== REQ000051 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int[] cnt;
+    static long[] sumx;
+    static int m;
+
+    static void update(int pos, int c, long s) {
+        while (pos <= m) {
+            cnt[pos] += c;
+            sumx[pos] += s;
+            pos += pos & (-pos);
+        }
+    }
+
+    static long[] query(int pos) {
+        long c = 0, s = 0;
+        while (pos > 0) {
+            c += cnt[pos];
+            s += sumx[pos];
+            pos -= pos & (-pos);
+        }
+        return new long[]{c, s};
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken();
+        int n = (int) st.nval;
+        long[] xs = new long[n];
+        long[] vs = new long[n];
+        for (int i = 0; i < n; i++) { st.nextToken(); xs[i] = (long) st.nval; }
+        for (int i = 0; i < n; i++) { st.nextToken(); vs[i] = (long) st.nval; }
+
+        Integer[] order = new Integer[n];
+        for (int i = 0; i < n; i++) order[i] = i;
+        Arrays.sort(order, (a, b) -> Long.compare(xs[a], xs[b]));
+
+        long[] sortedV = vs.clone();
+        Arrays.sort(sortedV);
+        int uniq = 0;
+        long[] compact = new long[n];
+        for (int i = 0; i < n; i++) {
+            if (i == 0 || sortedV[i] != sortedV[i - 1]) {
+                compact[uniq++] = sortedV[i];
+            }
+        }
+        m = uniq;
+        cnt = new int[m + 1];
+        sumx = new long[m + 1];
+
+        long total = 0;
+        for (int idx : order) {
+            long v = vs[idx];
+            long x = xs[idx];
+            int r = lowerBound(compact, uniq, v) + 1; // 1-indexed rank
+            long[] cs = query(r);
+            total += cs[0] * x - cs[1];
+            update(r, 1, x);
+        }
+        System.out.println(total);
+    }
+
+    static int lowerBound(long[] arr, int len, long key) {
+        int lo = 0, hi = len;
+        while (lo < hi) {
+            int mid = (lo + hi) >>> 1;
+            if (arr[mid] < key) lo = mid + 1;
+            else hi = mid;
+        }
+        return lo;
+    }
+}
+=== REQ000051 END ===
+
+=== REQ000052 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.Arrays;
+
+/**
+ * Sum of minimum pairwise distances between points that eventually meet.
+ *
+ * <p>Two points converge exactly when the left one is not slower than the right
+ * one, so we sweep by coordinate and query for smaller-or-equal speeds.
+ */
+public class Sol {
+
+    /** Binary indexed tree tracking both a count and a sum of coordinates. */
+    private static final class FenwickTree {
+        private final int size;
+        private final long[] counts;
+        private final long[] coordinateSums;
+
+        FenwickTree(int size) {
+            this.size = size;
+            this.counts = new long[size + 1];
+            this.coordinateSums = new long[size + 1];
+        }
+
+        /** Records one point with the given coordinate at {@code position}. */
+        void add(int position, long coordinate) {
+            for (int i = position; i <= size; i += i & -i) {
+                counts[i]++;
+                coordinateSums[i] += coordinate;
+            }
+        }
+
+        /** Returns {count, coordinate sum} over ranks 1..{@code position}. */
+        long[] prefix(int position) {
+            long count = 0;
+            long coordinateSum = 0;
+            for (int i = position; i > 0; i -= i & -i) {
+                count += counts[i];
+                coordinateSum += coordinateSums[i];
+            }
+            return new long[] {count, coordinateSum};
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int pointCount = (int) input.nval;
+
+        long[] coordinates = new long[pointCount];
+        long[] velocities = new long[pointCount];
+        for (int i = 0; i < pointCount; i++) {
+            input.nextToken();
+            coordinates[i] = (long) input.nval;
+        }
+        for (int i = 0; i < pointCount; i++) {
+            input.nextToken();
+            velocities[i] = (long) input.nval;
+        }
+
+        long[] distinctVelocities = distinctSorted(velocities);
+        FenwickTree tree = new FenwickTree(distinctVelocities.length);
+
+        Integer[] byCoordinate = new Integer[pointCount];
+        Arrays.setAll(byCoordinate, i -> i);
+        Arrays.sort(byCoordinate, (a, b) -> Long.compare(coordinates[a], coordinates[b]));
+
+        long totalDistance = 0;
+        for (int index : byCoordinate) {
+            int rank = rankOf(distinctVelocities, velocities[index]) + 1;
+            long[] earlier = tree.prefix(rank);
+            totalDistance += earlier[0] * coordinates[index] - earlier[1];
+            tree.add(rank, coordinates[index]);
+        }
+
+        System.out.println(totalDistance);
+    }
+
+    private static long[] distinctSorted(long[] values) {
+        long[] sorted = values.clone();
+        Arrays.sort(sorted);
+        int distinctCount = 0;
+        for (int i = 0; i < sorted.length; i++) {
+            if (i == 0 || sorted[i] != sorted[i - 1]) {
+                sorted[distinctCount++] = sorted[i];
+            }
+        }
+        return Arrays.copyOf(sorted, distinctCount);
+    }
+
+    private static int rankOf(long[] sortedDistinct, long value) {
+        int low = 0;
+        int high = sortedDistinct.length;
+        while (low < high) {
+            int middle = (low + high) >>> 1;
+            if (sortedDistinct[middle] < value) {
+                low = middle + 1;
+            } else {
+                high = middle;
+            }
+        }
+        return low;
+    }
+}
+=== REQ000052 END ===
+
+=== REQ000053 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int m;
+vector<long long> cnt_, sumx_;
+
+void update(int pos, long long c, long long s) {
+    while (pos <= m) {
+        cnt_[pos] += c;
+        sumx_[pos] += s;
+        pos += pos & (-pos);
+    }
+}
+
+pair<long long,long long> query(int pos) {
+    long long c = 0, s = 0;
+    while (pos > 0) {
+        c += cnt_[pos];
+        s += sumx_[pos];
+        pos -= pos & (-pos);
+    }
+    return {c, s};
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
+    vector<long long> xs(n), vs(n);
+    for (auto &x : xs) cin >> x;
+    for (auto &v : vs) cin >> v;
+
+    vector<int> order(n);
+    iota(order.begin(), order.end(), 0);
+    sort(order.begin(), order.end(), [&](int a, int b) { return xs[a] < xs[b]; });
+
+    vector<long long> sortedV = vs;
+    sort(sortedV.begin(), sortedV.end());
+    sortedV.erase(unique(sortedV.begin(), sortedV.end()), sortedV.end());
+    m = sortedV.size();
+    cnt_.assign(m + 1, 0);
+    sumx_.assign(m + 1, 0);
+
+    long long total = 0;
+    for (int idx : order) {
+        long long v = vs[idx];
+        long long x = xs[idx];
+        int r = (int)(lower_bound(sortedV.begin(), sortedV.end(), v) - sortedV.begin()) + 1;
+        auto [c, s] = query(r);
+        total += c * x - s;
+        update(r, 1, x);
+    }
+    cout << total << endl;
+    return 0;
+}
+=== REQ000053 END ===
+
+=== REQ000054 START ===
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <utility>
+#include <vector>
+
+namespace {
+
+/// Binary indexed tree tracking both a count and a sum of coordinates.
+class FenwickTree {
+public:
+    explicit FenwickTree(int size)
+        : size_(size), counts_(size + 1, 0), coordinateSums_(size + 1, 0) {}
+
+    /// Records one point with the given coordinate at `position`.
+    void add(int position, long long coordinate) {
+        for (int i = position; i <= size_; i += i & -i) {
+            counts_[i]++;
+            coordinateSums_[i] += coordinate;
+        }
+    }
+
+    /// Returns (count, coordinate sum) over ranks 1..`position`.
+    std::pair<long long, long long> prefix(int position) const {
+        long long count = 0;
+        long long coordinateSum = 0;
+        for (int i = position; i > 0; i -= i & -i) {
+            count += counts_[i];
+            coordinateSum += coordinateSums_[i];
+        }
+        return {count, coordinateSum};
+    }
+
+private:
+    int size_;
+    std::vector<long long> counts_;
+    std::vector<long long> coordinateSums_;
+};
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int pointCount;
+    std::cin >> pointCount;
+
+    std::vector<long long> coordinates(pointCount);
+    std::vector<long long> velocities(pointCount);
+    for (auto& value : coordinates) std::cin >> value;
+    for (auto& value : velocities) std::cin >> value;
+
+    // Two points converge exactly when the left one is not slower than the
+    // right one, so we sweep by coordinate and query smaller-or-equal speeds.
+    std::vector<long long> distinctVelocities = velocities;
+    std::sort(distinctVelocities.begin(), distinctVelocities.end());
+    distinctVelocities.erase(
+        std::unique(distinctVelocities.begin(), distinctVelocities.end()),
+        distinctVelocities.end());
+
+    std::vector<int> byCoordinate(pointCount);
+    std::iota(byCoordinate.begin(), byCoordinate.end(), 0);
+    std::sort(byCoordinate.begin(), byCoordinate.end(),
+              [&coordinates](int a, int b) { return coordinates[a] < coordinates[b]; });
+
+    FenwickTree tree(static_cast<int>(distinctVelocities.size()));
+    long long totalDistance = 0;
+
+    for (int index : byCoordinate) {
+        const int rank = static_cast<int>(std::lower_bound(distinctVelocities.begin(),
+                                                           distinctVelocities.end(),
+                                                           velocities[index])
+                                          - distinctVelocities.begin()) + 1;
+        const auto [earlierCount, earlierSum] = tree.prefix(rank);
+        totalDistance += earlierCount * coordinates[index] - earlierSum;
+        tree.add(rank, coordinates[index]);
+    }
+
+    std::cout << totalDistance << '\n';
+    return 0;
+}
+=== REQ000054 END ===
+
+=== REQ000055 START ===
+import sys
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    idx = 0
+    n = int(data[idx]); k = int(data[idx+1]); idx += 2
+    dual = []
+    only_a = []
+    only_b = []
+    for _ in range(n):
+        t = int(data[idx]); a = int(data[idx+1]); b = int(data[idx+2])
+        idx += 3
+        if a == 1 and b == 1:
+            dual.append(t)
+        elif a == 1:
+            only_a.append(t)
+        elif b == 1:
+            only_b.append(t)
+    dual.sort()
+    only_a.sort()
+    only_b.sort()
+    pre_dual = [0] * (len(dual) + 1)
+    for i, t in enumerate(dual):
+        pre_dual[i + 1] = pre_dual[i] + t
+    pre_a = [0] * (len(only_a) + 1)
+    for i, t in enumerate(only_a):
+        pre_a[i + 1] = pre_a[i] + t
+    pre_b = [0] * (len(only_b) + 1)
+    for i, t in enumerate(only_b):
+        pre_b[i + 1] = pre_b[i] + t
+
+    best = -1
+    for j in range(0, len(dual) + 1):
+        need = max(k - j, 0)
+        if need > len(only_a) or need > len(only_b):
+            continue
+        cost = pre_dual[j] + pre_a[need] + pre_b[need]
+        if best == -1 or cost < best:
+            best = cost
+    print(best)
+
+main()
+=== REQ000055 END ===
+
+=== REQ000056 START ===
+"""Cheapest way to give Alice and Bob each at least k liked books."""
+
+import sys
+from itertools import accumulate
+
+NOT_POSSIBLE = -1
+
+
+def prefix_sums(times: list[int]) -> list[int]:
+    """Return cumulative reading times after sorting ascending."""
+    times.sort()
+    return [0] + list(accumulate(times))
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    book_count = int(tokens[0])
+    required_likes = int(tokens[1])
+
+    liked_by_both: list[int] = []
+    liked_by_alice_only: list[int] = []
+    liked_by_bob_only: list[int] = []
+
+    cursor = 2
+    for _ in range(book_count):
+        reading_time = int(tokens[cursor])
+        alice_likes = int(tokens[cursor + 1])
+        bob_likes = int(tokens[cursor + 2])
+        cursor += 3
+
+        if alice_likes and bob_likes:
+            liked_by_both.append(reading_time)
+        elif alice_likes:
+            liked_by_alice_only.append(reading_time)
+        elif bob_likes:
+            liked_by_bob_only.append(reading_time)
+
+    both_prefix = prefix_sums(liked_by_both)
+    alice_prefix = prefix_sums(liked_by_alice_only)
+    bob_prefix = prefix_sums(liked_by_bob_only)
+
+    # Choosing `shared` of the both-liked books covers that many likes for each
+    # reader; the shortfall must be topped up from each single-reader pile.
+    best_time = NOT_POSSIBLE
+    for shared in range(len(liked_by_both) + 1):
+        shortfall = max(required_likes - shared, 0)
+        if shortfall > len(liked_by_alice_only) or shortfall > len(liked_by_bob_only):
+            continue
+
+        total_time = both_prefix[shared] + alice_prefix[shortfall] + bob_prefix[shortfall]
+        if best_time == NOT_POSSIBLE or total_time < best_time:
+            best_time = total_time
+
+    print(best_time)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000056 END ===
+
+=== REQ000057 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int k = (int) st.nval;
+        List<Integer> dual = new ArrayList<>();
+        List<Integer> onlyA = new ArrayList<>();
+        List<Integer> onlyB = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            st.nextToken(); int t = (int) st.nval;
+            st.nextToken(); int a = (int) st.nval;
+            st.nextToken(); int b = (int) st.nval;
+            if (a == 1 && b == 1) dual.add(t);
+            else if (a == 1) onlyA.add(t);
+            else if (b == 1) onlyB.add(t);
+        }
+        Collections.sort(dual);
+        Collections.sort(onlyA);
+        Collections.sort(onlyB);
+        long[] preDual = new long[dual.size() + 1];
+        for (int i = 0; i < dual.size(); i++) preDual[i + 1] = preDual[i] + dual.get(i);
+        long[] preA = new long[onlyA.size() + 1];
+        for (int i = 0; i < onlyA.size(); i++) preA[i + 1] = preA[i] + onlyA.get(i);
+        long[] preB = new long[onlyB.size() + 1];
+        for (int i = 0; i < onlyB.size(); i++) preB[i + 1] = preB[i] + onlyB.get(i);
+
+        long best = -1;
+        for (int j = 0; j <= dual.size(); j++) {
+            int need = Math.max(k - j, 0);
+            if (need > onlyA.size() || need > onlyB.size()) continue;
+            long cost = preDual[j] + preA[need] + preB[need];
+            if (best == -1 || cost < best) best = cost;
+        }
+        System.out.println(best);
+    }
+}
+=== REQ000057 END ===
+
+=== REQ000058 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Cheapest way to give Alice and Bob each at least k liked books.
+ *
+ * <p>Choosing some number of both-liked books covers that many likes for each
+ * reader; any shortfall must be topped up from each single-reader pile.
+ */
+public class Sol {
+
+    private static final long NOT_POSSIBLE = -1;
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int bookCount = (int) input.nval;
+        input.nextToken();
+        int requiredLikes = (int) input.nval;
+
+        List<Integer> likedByBoth = new ArrayList<>();
+        List<Integer> likedByAliceOnly = new ArrayList<>();
+        List<Integer> likedByBobOnly = new ArrayList<>();
+
+        for (int book = 0; book < bookCount; book++) {
+            input.nextToken();
+            int readingTime = (int) input.nval;
+            input.nextToken();
+            boolean aliceLikes = input.nval == 1;
+            input.nextToken();
+            boolean bobLikes = input.nval == 1;
+
+            if (aliceLikes && bobLikes) {
+                likedByBoth.add(readingTime);
+            } else if (aliceLikes) {
+                likedByAliceOnly.add(readingTime);
+            } else if (bobLikes) {
+                likedByBobOnly.add(readingTime);
+            }
+        }
+
+        long[] bothPrefix = prefixSums(likedByBoth);
+        long[] alicePrefix = prefixSums(likedByAliceOnly);
+        long[] bobPrefix = prefixSums(likedByBobOnly);
+
+        long bestTime = NOT_POSSIBLE;
+        for (int shared = 0; shared <= likedByBoth.size(); shared++) {
+            int shortfall = Math.max(requiredLikes - shared, 0);
+            if (shortfall > likedByAliceOnly.size() || shortfall > likedByBobOnly.size()) {
+                continue;
+            }
+
+            long totalTime = bothPrefix[shared] + alicePrefix[shortfall] + bobPrefix[shortfall];
+            if (bestTime == NOT_POSSIBLE || totalTime < bestTime) {
+                bestTime = totalTime;
+            }
+        }
+
+        System.out.println(bestTime);
+    }
+
+    /** Returns cumulative reading times after sorting ascending. */
+    private static long[] prefixSums(List<Integer> times) {
+        Collections.sort(times);
+        long[] prefix = new long[times.size() + 1];
+        for (int i = 0; i < times.size(); i++) {
+            prefix[i + 1] = prefix[i] + times.get(i);
+        }
+        return prefix;
+    }
+}
+=== REQ000058 END ===
+
+=== REQ000059 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, k;
+    cin >> n >> k;
+    vector<long long> dual, onlyA, onlyB;
+    for (int i = 0; i < n; i++) {
+        long long t, a, b;
+        cin >> t >> a >> b;
+        if (a == 1 && b == 1) dual.push_back(t);
+        else if (a == 1) onlyA.push_back(t);
+        else if (b == 1) onlyB.push_back(t);
+    }
+    sort(dual.begin(), dual.end());
+    sort(onlyA.begin(), onlyA.end());
+    sort(onlyB.begin(), onlyB.end());
+    vector<long long> preDual(dual.size() + 1, 0), preA(onlyA.size() + 1, 0), preB(onlyB.size() + 1, 0);
+    for (size_t i = 0; i < dual.size(); i++) preDual[i + 1] = preDual[i] + dual[i];
+    for (size_t i = 0; i < onlyA.size(); i++) preA[i + 1] = preA[i] + onlyA[i];
+    for (size_t i = 0; i < onlyB.size(); i++) preB[i + 1] = preB[i] + onlyB[i];
+
+    long long best = -1;
+    for (size_t j = 0; j <= dual.size(); j++) {
+        long long need = max((long long)k - (long long)j, 0LL);
+        if (need > (long long)onlyA.size() || need > (long long)onlyB.size()) continue;
+        long long cost = preDual[j] + preA[need] + preB[need];
+        if (best == -1 || cost < best) best = cost;
+    }
+    cout << best << endl;
+    return 0;
+}
+=== REQ000059 END ===
+
+=== REQ000060 START ===
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+namespace {
+
+constexpr long long kNotPossible = -1;
+
+/// Returns cumulative reading times after sorting ascending.
+std::vector<long long> prefixSums(std::vector<long long> times) {
+    std::sort(times.begin(), times.end());
+    std::vector<long long> prefix(times.size() + 1, 0);
+    for (std::size_t i = 0; i < times.size(); ++i) {
+        prefix[i + 1] = prefix[i] + times[i];
+    }
+    return prefix;
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int bookCount, requiredLikes;
+    std::cin >> bookCount >> requiredLikes;
+
+    std::vector<long long> likedByBoth, likedByAliceOnly, likedByBobOnly;
+    for (int book = 0; book < bookCount; ++book) {
+        long long readingTime, aliceLikes, bobLikes;
+        std::cin >> readingTime >> aliceLikes >> bobLikes;
+
+        if (aliceLikes && bobLikes) {
+            likedByBoth.push_back(readingTime);
+        } else if (aliceLikes) {
+            likedByAliceOnly.push_back(readingTime);
+        } else if (bobLikes) {
+            likedByBobOnly.push_back(readingTime);
+        }
+    }
+
+    const std::size_t bothCount = likedByBoth.size();
+    const std::size_t aliceCount = likedByAliceOnly.size();
+    const std::size_t bobCount = likedByBobOnly.size();
+
+    const std::vector<long long> bothPrefix = prefixSums(likedByBoth);
+    const std::vector<long long> alicePrefix = prefixSums(likedByAliceOnly);
+    const std::vector<long long> bobPrefix = prefixSums(likedByBobOnly);
+
+    // Choosing `shared` both-liked books covers that many likes for each reader;
+    // the shortfall must be topped up from each single-reader pile.
+    long long bestTime = kNotPossible;
+    for (std::size_t shared = 0; shared <= bothCount; ++shared) {
+        const long long shortfall =
+            std::max<long long>(static_cast<long long>(requiredLikes) - static_cast<long long>(shared), 0);
+        if (shortfall > static_cast<long long>(aliceCount)
+            || shortfall > static_cast<long long>(bobCount)) {
+            continue;
+        }
+
+        const long long totalTime =
+            bothPrefix[shared] + alicePrefix[shortfall] + bobPrefix[shortfall];
+        if (bestTime == kNotPossible || totalTime < bestTime) {
+            bestTime = totalTime;
+        }
+    }
+
+    std::cout << bestTime << '\n';
+    return 0;
+}
+=== REQ000060 END ===
+
+=== REQ000061 START ===
+import sys
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    idx = 0
+    n = int(data[idx]); m = int(data[idx+1]); idx += 2
+    parent = list(range(m + 1))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    basis = []
+    for i in range(1, n + 1):
+        kk = int(data[idx]); idx += 1
+        if kk == 1:
+            u = 0
+            v = int(data[idx]); idx += 1
+        else:
+            u = int(data[idx]); v = int(data[idx+1]); idx += 2
+        ru, rv = find(u), find(v)
+        if ru != rv:
+            parent[ru] = rv
+            basis.append(i)
+
+    MOD = 10 ** 9 + 7
+    rank = len(basis)
+    total = pow(2, rank, MOD)
+    print(total, rank)
+    print(' '.join(map(str, basis)))
+
+main()
+=== REQ000061 END ===
+
+=== REQ000062 START ===
+"""Size and minimal basis of the span of sparse GF(2) vectors."""
+
+import sys
+
+MODULUS = 10**9 + 7
+GROUND = 0  # virtual node standing in for "no second coordinate"
+
+
+class DisjointSet:
+    """Union-find over coordinate nodes, with path compression."""
+
+    def __init__(self, size: int) -> None:
+        self._parent = list(range(size + 1))
+
+    def find(self, node: int) -> int:
+        root = node
+        while self._parent[root] != root:
+            root = self._parent[root]
+        while self._parent[node] != root:
+            self._parent[node], node = root, self._parent[node]
+        return root
+
+    def union(self, first: int, second: int) -> bool:
+        """Merge the two components; return True when they were distinct."""
+        first_root, second_root = self.find(first), self.find(second)
+        if first_root == second_root:
+            return False
+        self._parent[first_root] = second_root
+        return True
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    vector_count = int(tokens[0])
+    coordinate_count = int(tokens[1])
+
+    # Each vector has one or two set coordinates, so it behaves like an edge in
+    # a graph. Independence over GF(2) is then exactly acyclicity, which
+    # union-find decides directly.
+    components = DisjointSet(coordinate_count)
+    basis_indices: list[int] = []
+
+    cursor = 2
+    for vector_index in range(1, vector_count + 1):
+        set_coordinates = int(tokens[cursor])
+        cursor += 1
+
+        if set_coordinates == 1:
+            first, second = GROUND, int(tokens[cursor])
+            cursor += 1
+        else:
+            first, second = int(tokens[cursor]), int(tokens[cursor + 1])
+            cursor += 2
+
+        if components.union(first, second):
+            basis_indices.append(vector_index)
+
+    span_size = pow(2, len(basis_indices), MODULUS)
+    print(span_size, len(basis_indices))
+    print(" ".join(map(str, basis_indices)))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000062 END ===
+
+=== REQ000063 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int[] parent;
+
+    static int find(int x) {
+        while (parent[x] != x) {
+            parent[x] = parent[parent[x]];
+            x = parent[x];
+        }
+        return x;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int m = (int) st.nval;
+        parent = new int[m + 1];
+        for (int i = 0; i <= m; i++) parent[i] = i;
+
+        List<Integer> basis = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            st.nextToken(); int kk = (int) st.nval;
+            int u, v;
+            if (kk == 1) {
+                u = 0;
+                st.nextToken(); v = (int) st.nval;
+            } else {
+                st.nextToken(); u = (int) st.nval;
+                st.nextToken(); v = (int) st.nval;
+            }
+            int ru = find(u), rv = find(v);
+            if (ru != rv) {
+                parent[ru] = rv;
+                basis.add(i);
+            }
+        }
+
+        final long MOD = 1_000_000_007L;
+        int rank = basis.size();
+        long total = 1;
+        long base = 2;
+        int e = rank;
+        while (e > 0) {
+            if ((e & 1) == 1) total = total * base % MOD;
+            base = base * base % MOD;
+            e >>= 1;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(total).append(' ').append(rank).append('\n');
+        for (int i = 0; i < basis.size(); i++) {
+            if (i > 0) sb.append(' ');
+            sb.append(basis.get(i));
+        }
+        System.out.println(sb);
+    }
+}
+=== REQ000063 END ===
+
+=== REQ000064 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Size and minimal basis of the span of sparse GF(2) vectors.
+ *
+ * <p>Each vector has one or two set coordinates, so it behaves like an edge in a
+ * graph. Independence over GF(2) is then exactly acyclicity, which union-find
+ * decides directly.
+ */
+public class Sol {
+
+    private static final long MODULUS = 1_000_000_007L;
+    private static final int GROUND = 0;
+
+    /** Union-find over coordinate nodes, with path compression. */
+    private static final class DisjointSet {
+        private final int[] parent;
+
+        DisjointSet(int size) {
+            parent = new int[size + 1];
+            for (int node = 0; node <= size; node++) {
+                parent[node] = node;
+            }
+        }
+
+        int find(int node) {
+            while (parent[node] != node) {
+                parent[node] = parent[parent[node]];
+                node = parent[node];
+            }
+            return node;
+        }
+
+        /** Merges the two components; returns true when they were distinct. */
+        boolean union(int first, int second) {
+            int firstRoot = find(first);
+            int secondRoot = find(second);
+            if (firstRoot == secondRoot) {
+                return false;
+            }
+            parent[firstRoot] = secondRoot;
+            return true;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int vectorCount = (int) input.nval;
+        input.nextToken();
+        int coordinateCount = (int) input.nval;
+
+        DisjointSet components = new DisjointSet(coordinateCount);
+        List<Integer> basisIndices = new ArrayList<>();
+
+        for (int vectorIndex = 1; vectorIndex <= vectorCount; vectorIndex++) {
+            input.nextToken();
+            int setCoordinates = (int) input.nval;
+
+            int first;
+            int second;
+            if (setCoordinates == 1) {
+                first = GROUND;
+                input.nextToken();
+                second = (int) input.nval;
+            } else {
+                input.nextToken();
+                first = (int) input.nval;
+                input.nextToken();
+                second = (int) input.nval;
+            }
+
+            if (components.union(first, second)) {
+                basisIndices.add(vectorIndex);
+            }
+        }
+
+        StringBuilder output = new StringBuilder();
+        output.append(modularPowerOfTwo(basisIndices.size()))
+              .append(' ')
+              .append(basisIndices.size())
+              .append('\n');
+        for (int i = 0; i < basisIndices.size(); i++) {
+            if (i > 0) {
+                output.append(' ');
+            }
+            output.append(basisIndices.get(i));
+        }
+        System.out.println(output);
+    }
+
+    private static long modularPowerOfTwo(int exponent) {
+        long result = 1;
+        long factor = 2;
+        for (int remaining = exponent; remaining > 0; remaining >>= 1) {
+            if ((remaining & 1) == 1) {
+                result = result * factor % MODULUS;
+            }
+            factor = factor * factor % MODULUS;
+        }
+        return result;
+    }
+}
+=== REQ000064 END ===
+
+=== REQ000065 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> parent_;
+
+int find(int x) {
+    while (parent_[x] != x) {
+        parent_[x] = parent_[parent_[x]];
+        x = parent_[x];
+    }
+    return x;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin >> n >> m;
+    parent_.resize(m + 1);
+    iota(parent_.begin(), parent_.end(), 0);
+
+    vector<int> basis;
+    for (int i = 1; i <= n; i++) {
+        int k;
+        cin >> k;
+        int u, v;
+        if (k == 1) {
+            u = 0;
+            cin >> v;
+        } else {
+            cin >> u >> v;
+        }
+        int ru = find(u), rv = find(v);
+        if (ru != rv) {
+            parent_[ru] = rv;
+            basis.push_back(i);
+        }
+    }
+
+    const long long MOD = 1'000'000'007LL;
+    int rank = basis.size();
+    long long total = 1, base = 2;
+    int e = rank;
+    while (e > 0) {
+        if (e & 1) total = total * base % MOD;
+        base = base * base % MOD;
+        e >>= 1;
+    }
+    cout << total << " " << rank << "\n";
+    for (size_t i = 0; i < basis.size(); i++) {
+        if (i > 0) cout << " ";
+        cout << basis[i];
+    }
+    cout << "\n";
+    return 0;
+}
+=== REQ000065 END ===
+
+=== REQ000066 START ===
+#include <iostream>
+#include <numeric>
+#include <vector>
+
+namespace {
+
+constexpr long long kModulus = 1000000007LL;
+constexpr int kGround = 0;  // virtual node for "no second coordinate"
+
+/// Union-find over coordinate nodes, with path compression.
+class DisjointSet {
+public:
+    explicit DisjointSet(int size) : parent_(size + 1) {
+        std::iota(parent_.begin(), parent_.end(), 0);
+    }
+
+    int find(int node) {
+        while (parent_[node] != node) {
+            parent_[node] = parent_[parent_[node]];
+            node = parent_[node];
+        }
+        return node;
+    }
+
+    /// Merges the two components; returns true when they were distinct.
+    bool unite(int first, int second) {
+        const int firstRoot = find(first);
+        const int secondRoot = find(second);
+        if (firstRoot == secondRoot) {
+            return false;
+        }
+        parent_[firstRoot] = secondRoot;
+        return true;
+    }
+
+private:
+    std::vector<int> parent_;
+};
+
+long long modularPowerOfTwo(int exponent) {
+    long long result = 1;
+    long long factor = 2;
+    for (int remaining = exponent; remaining > 0; remaining >>= 1) {
+        if (remaining & 1) {
+            result = result * factor % kModulus;
+        }
+        factor = factor * factor % kModulus;
+    }
+    return result;
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int vectorCount, coordinateCount;
+    std::cin >> vectorCount >> coordinateCount;
+
+    // Each vector has one or two set coordinates, so it behaves like a graph
+    // edge; independence over GF(2) is exactly acyclicity.
+    DisjointSet components(coordinateCount);
+    std::vector<int> basisIndices;
+
+    for (int vectorIndex = 1; vectorIndex <= vectorCount; ++vectorIndex) {
+        int setCoordinates;
+        std::cin >> setCoordinates;
+
+        int first, second;
+        if (setCoordinates == 1) {
+            first = kGround;
+            std::cin >> second;
+        } else {
+            std::cin >> first >> second;
+        }
+
+        if (components.unite(first, second)) {
+            basisIndices.push_back(vectorIndex);
+        }
+    }
+
+    std::cout << modularPowerOfTwo(static_cast<int>(basisIndices.size()))
+              << ' ' << basisIndices.size() << '\n';
+    for (std::size_t i = 0; i < basisIndices.size(); ++i) {
+        if (i > 0) {
+            std::cout << ' ';
+        }
+        std::cout << basisIndices[i];
+    }
+    std::cout << '\n';
+    return 0;
+}
+=== REQ000066 END ===
+
+=== REQ000067 START ===
+import sys
+
+MOD = 10 ** 9 + 7
+MAXM = 200001
+
+def build_L():
+    L = [0] * (MAXM + 1)
+    L[0] = 1
+    for t in range(1, MAXM + 1):
+        term1 = 1 if t <= 8 else L[t - 9]
+        term2 = 1 if t <= 9 else L[t - 10]
+        L[t] = (term1 + term2) % MOD
+    return L
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    idx = 0
+    t = int(data[idx]); idx += 1
+    L = build_L()
+    out = []
+    for _ in range(t):
+        n = data[idx].decode(); m = int(data[idx+1]); idx += 2
+        total = 0
+        for ch in n:
+            d = int(ch)
+            rem = 9 - d
+            if m < rem:
+                total += 1
+            else:
+                total += L[m - rem]
+            total %= MOD
+        out.append(str(total))
+    print('\n'.join(out))
+
+main()
+=== REQ000067 END ===
+
+=== REQ000068 START ===
+"""Length of a number after repeatedly replacing each digit d with d+1."""
+
+import sys
+
+MODULUS = 10**9 + 7
+MAX_OPERATIONS = 200_001
+
+# A digit only matters through how many operations remain once it first
+# overflows past 9. `LENGTH_AFTER[t]` is the length that a freshly created
+# digit 0 grows to after t further operations: it becomes "1" after 9 more
+# steps and splits into "10" after 10 more.
+_SPLIT_DELAY_ONE = 9
+_SPLIT_DELAY_TWO = 10
+
+
+def _build_length_table() -> list[int]:
+    lengths = [0] * (MAX_OPERATIONS + 1)
+    lengths[0] = 1
+    for steps in range(1, MAX_OPERATIONS + 1):
+        first = 1 if steps <= _SPLIT_DELAY_ONE - 1 else lengths[steps - _SPLIT_DELAY_ONE]
+        second = 1 if steps <= _SPLIT_DELAY_TWO - 1 else lengths[steps - _SPLIT_DELAY_TWO]
+        lengths[steps] = (first + second) % MODULUS
+    return lengths
+
+
+LENGTH_AFTER = _build_length_table()
+
+
+def grown_length(digit: int, operations: int) -> int:
+    """Length that a single ``digit`` reaches after ``operations`` steps."""
+    steps_until_overflow = 9 - digit
+    if operations < steps_until_overflow:
+        return 1
+    return LENGTH_AFTER[operations - steps_until_overflow]
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    test_count = int(tokens[0])
+
+    answers = []
+    cursor = 1
+    for _ in range(test_count):
+        digits = tokens[cursor].decode()
+        operations = int(tokens[cursor + 1])
+        cursor += 2
+
+        total = sum(grown_length(int(character), operations) for character in digits)
+        answers.append(total % MODULUS)
+
+    sys.stdout.write("\n".join(map(str, answers)) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000068 END ===
+
+=== REQ000069 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static final long MOD = 1_000_000_007L;
+    static final int MAXM = 200001;
+
+    public static void main(String[] args) throws IOException {
+        long[] L = new long[MAXM + 1];
+        L[0] = 1;
+        for (int t = 1; t <= MAXM; t++) {
+            long term1 = (t <= 8) ? 1 : L[t - 9];
+            long term2 = (t <= 9) ? 1 : L[t - 10];
+            L[t] = (term1 + term2) % MOD;
+        }
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < t; i++) {
+            StringTokenizer stk = new StringTokenizer(br.readLine());
+            String n = stk.nextToken();
+            int m = Integer.parseInt(stk.nextToken());
+            long total = 0;
+            for (int j = 0; j < n.length(); j++) {
+                int d = n.charAt(j) - '0';
+                int rem = 9 - d;
+                if (m < rem) total += 1;
+                else total += L[m - rem];
+                total %= MOD;
+            }
+            sb.append(total).append('\n');
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000069 END ===
+
+=== REQ000070 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ * Length of a number after repeatedly replacing each digit d with d+1.
+ *
+ * <p>A digit only matters through how many operations remain once it first
+ * overflows past 9, so one shared table answers every digit of every query.
+ */
+public class Sol {
+
+    private static final long MODULUS = 1_000_000_007L;
+    private static final int MAX_OPERATIONS = 200_001;
+    private static final int SPLIT_DELAY_ONE = 9;
+    private static final int SPLIT_DELAY_TWO = 10;
+
+    public static void main(String[] args) throws IOException {
+        long[] lengthAfter = buildLengthTable();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int testCount = Integer.parseInt(reader.readLine().trim());
+
+        StringBuilder answers = new StringBuilder();
+        for (int test = 0; test < testCount; test++) {
+            StringTokenizer line = new StringTokenizer(reader.readLine());
+            String digits = line.nextToken();
+            int operations = Integer.parseInt(line.nextToken());
+
+            long total = 0;
+            for (int i = 0; i < digits.length(); i++) {
+                total += grownLength(lengthAfter, digits.charAt(i) - '0', operations);
+                total %= MODULUS;
+            }
+            answers.append(total).append('\n');
+        }
+
+        System.out.print(answers);
+    }
+
+    /** Length a freshly created digit 0 grows to after t further operations. */
+    private static long[] buildLengthTable() {
+        long[] lengths = new long[MAX_OPERATIONS + 1];
+        lengths[0] = 1;
+        for (int steps = 1; steps <= MAX_OPERATIONS; steps++) {
+            long first = (steps <= SPLIT_DELAY_ONE - 1) ? 1 : lengths[steps - SPLIT_DELAY_ONE];
+            long second = (steps <= SPLIT_DELAY_TWO - 1) ? 1 : lengths[steps - SPLIT_DELAY_TWO];
+            lengths[steps] = (first + second) % MODULUS;
+        }
+        return lengths;
+    }
+
+    /** Length that a single {@code digit} reaches after {@code operations} steps. */
+    private static long grownLength(long[] lengthAfter, int digit, int operations) {
+        int stepsUntilOverflow = 9 - digit;
+        if (operations < stepsUntilOverflow) {
+            return 1;
+        }
+        return lengthAfter[operations - stepsUntilOverflow];
+    }
+}
+=== REQ000070 END ===
+
+=== REQ000071 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+const long long MOD = 1'000'000'007LL;
+const int MAXM = 200001;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    vector<long long> L(MAXM + 1);
+    L[0] = 1;
+    for (int t = 1; t <= MAXM; t++) {
+        long long term1 = (t <= 8) ? 1 : L[t - 9];
+        long long term2 = (t <= 9) ? 1 : L[t - 10];
+        L[t] = (term1 + term2) % MOD;
+    }
+
+    int t;
+    cin >> t;
+    string out;
+    for (int i = 0; i < t; i++) {
+        string n;
+        long long m;
+        cin >> n >> m;
+        long long total = 0;
+        for (char ch : n) {
+            int d = ch - '0';
+            long long rem = 9 - d;
+            if (m < rem) total += 1;
+            else total += L[m - rem];
+            total %= MOD;
+        }
+        out += to_string(total);
+        out += '\n';
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000071 END ===
+
+=== REQ000072 START ===
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+namespace {
+
+constexpr long long kModulus = 1000000007LL;
+constexpr int kMaxOperations = 200001;
+constexpr int kSplitDelayOne = 9;
+constexpr int kSplitDelayTwo = 10;
+
+/// Length a freshly created digit 0 grows to after t further operations.
+std::vector<long long> buildLengthTable() {
+    std::vector<long long> lengths(kMaxOperations + 1, 0);
+    lengths[0] = 1;
+    for (int steps = 1; steps <= kMaxOperations; ++steps) {
+        const long long first =
+            (steps <= kSplitDelayOne - 1) ? 1 : lengths[steps - kSplitDelayOne];
+        const long long second =
+            (steps <= kSplitDelayTwo - 1) ? 1 : lengths[steps - kSplitDelayTwo];
+        lengths[steps] = (first + second) % kModulus;
+    }
+    return lengths;
+}
+
+/// Length that a single `digit` reaches after `operations` steps.
+long long grownLength(const std::vector<long long>& lengthAfter, int digit, long long operations) {
+    const long long stepsUntilOverflow = 9 - digit;
+    if (operations < stepsUntilOverflow) {
+        return 1;
+    }
+    return lengthAfter[operations - stepsUntilOverflow];
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    const std::vector<long long> lengthAfter = buildLengthTable();
+
+    int testCount;
+    std::cin >> testCount;
+
+    std::ostringstream answers;
+    for (int test = 0; test < testCount; ++test) {
+        std::string digits;
+        long long operations;
+        std::cin >> digits >> operations;
+
+        long long total = 0;
+        for (char character : digits) {
+            total += grownLength(lengthAfter, character - '0', operations);
+            total %= kModulus;
+        }
+        answers << total << '\n';
+    }
+
+    std::cout << answers.str();
+    return 0;
+}
+=== REQ000072 END ===
+
+=== REQ000073 START ===
+import sys
+
+def main():
+    a, b = map(int, sys.stdin.read().split())
+    total = a
+    leftover = a
+    while leftover >= b:
+        new = leftover // b
+        total += new
+        leftover = leftover % b + new
+    print(total)
+
+main()
+=== REQ000073 END ===
+
+=== REQ000074 START ===
+"""Total candles burned when spent stubs can be recycled into new candles."""
+
+import sys
+
+
+def total_candles_burned(initial_candles: int, stubs_per_candle: int) -> int:
+    """Return how many candles burn in total, recycling stubs as we go."""
+    burned = initial_candles
+    stubs_on_hand = initial_candles
+
+    while stubs_on_hand >= stubs_per_candle:
+        recycled = stubs_on_hand // stubs_per_candle
+        burned += recycled
+        # The recycled candles burn down into stubs of their own.
+        stubs_on_hand = stubs_on_hand % stubs_per_candle + recycled
+
+    return burned
+
+
+def main() -> None:
+    initial_candles, stubs_per_candle = map(int, sys.stdin.buffer.read().split())
+    print(total_candles_burned(initial_candles, stubs_per_candle))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000074 END ===
+
+=== REQ000075 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int a = (int) st.nval;
+        st.nextToken(); int b = (int) st.nval;
+        long total = a;
+        long leftover = a;
+        while (leftover >= b) {
+            long add = leftover / b;
+            total += add;
+            leftover = leftover % b + add;
+        }
+        System.out.println(total);
+    }
+}
+=== REQ000075 END ===

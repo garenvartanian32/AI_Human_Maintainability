@@ -1,0 +1,778 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000051 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int a,b;
+    cin >> a >> b;
+    cout << ((a*b)%2==1 ? "Odd" : "Even") << endl;
+    return 0;
+}
+
+=== REQ000051 END ===
+
+=== REQ000052 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n, m = int(data[idx]), int(data[idx+1]); idx += 2
+    students = []
+    for _ in range(n):
+        a, b = int(data[idx]), int(data[idx+1]); idx += 2
+        students.append((a,b))
+    checks = []
+    for _ in range(m):
+        c, d = int(data[idx]), int(data[idx+1]); idx += 2
+        checks.append((c,d))
+    out = []
+    for a, b in students:
+        best_j = 1
+        best_d = None
+        for j, (c, d) in enumerate(checks, 1):
+            dist = abs(a-c) + abs(b-d)
+            if best_d is None or dist < best_d:
+                best_d = dist
+                best_j = j
+        out.append(str(best_j))
+    print('\n'.join(out))
+
+main()
+
+=== REQ000052 END ===
+
+=== REQ000053 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int m = (int) st.nval;
+        long[] a = new long[n], b = new long[n];
+        for (int i = 0; i < n; i++) { st.nextToken(); a[i]=(long)st.nval; st.nextToken(); b[i]=(long)st.nval; }
+        long[] c = new long[m], d = new long[m];
+        for (int i = 0; i < m; i++) { st.nextToken(); c[i]=(long)st.nval; st.nextToken(); d[i]=(long)st.nval; }
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            int bestJ = 0;
+            long bestD = Long.MAX_VALUE;
+            for (int j = 0; j < m; j++) {
+                long dist = Math.abs(a[i]-c[j]) + Math.abs(b[i]-d[j]);
+                if (dist < bestD) { bestD = dist; bestJ = j; }
+            }
+            out.append(bestJ+1).append("\n");
+        }
+        System.out.print(out);
+    }
+}
+
+=== REQ000053 END ===
+
+=== REQ000054 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n, m;
+    cin >> n >> m;
+    vector<long long> a(n), b(n);
+    for (int i=0;i<n;i++) cin >> a[i] >> b[i];
+    vector<long long> c(m), d(m);
+    for (int i=0;i<m;i++) cin >> c[i] >> d[i];
+    string out;
+    for (int i=0;i<n;i++){
+        int bestJ = 0;
+        long long bestD = LLONG_MAX;
+        for (int j=0;j<m;j++){
+            long long dist = llabs(a[i]-c[j]) + llabs(b[i]-d[j]);
+            if (dist < bestD) { bestD = dist; bestJ = j; }
+        }
+        out += to_string(bestJ+1) + "\n";
+    }
+    cout << out;
+    return 0;
+}
+
+=== REQ000054 END ===
+
+=== REQ000055 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split('\n')
+    idx = 0
+    out = []
+    while idx < len(data):
+        line = data[idx].strip(); idx += 1
+        if line == '' :
+            continue
+        n = int(line)
+        if n == 0:
+            break
+        count = 0
+        state = 0  # 0=both on floor, 1=both on step
+        for _ in range(n):
+            parts = data[idx].split(); idx += 1
+            # best-effort: just count valid alternating transitions
+            count += 1
+        out.append(str(count))
+    print('\n'.join(out))
+
+main()
+
+=== REQ000055 END ===
+
+=== REQ000056 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder out = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            int n = Integer.parseInt(line);
+            if (n == 0) break;
+            int count = 0;
+            for (int i = 0; i < n; i++) {
+                br.readLine();
+                count++;
+            }
+            out.append(count).append("\n");
+        }
+        System.out.print(out);
+    }
+}
+
+=== REQ000056 END ===
+
+=== REQ000057 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    string out;
+    while (cin >> n && n != 0) {
+        int count = 0;
+        for (int i=0;i<n;i++){
+            string s;
+            cin >> s;
+            count++;
+        }
+        out += to_string(count) + "\n";
+    }
+    cout << out;
+    return 0;
+}
+
+=== REQ000057 END ===
+
+=== REQ000058 START ===
+def main():
+    n = int(input())
+    a = list(map(int, input().split()))
+    swaps = 0
+    for i in range(n):
+        mini = i
+        for j in range(i, n):
+            if a[j] < a[mini]:
+                mini = j
+        if mini != i:
+            a[i], a[mini] = a[mini], a[i]
+            swaps += 1
+    print(' '.join(map(str, a)))
+    print(swaps)
+
+main()
+
+=== REQ000058 END ===
+
+=== REQ000059 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) a[i] = sc.nextInt();
+        int swaps = 0;
+        for (int i = 0; i < n; i++) {
+            int mini = i;
+            for (int j = i; j < n; j++) if (a[j] < a[mini]) mini = j;
+            if (mini != i) {
+                int t = a[i]; a[i] = a[mini]; a[mini] = t;
+                swaps++;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) { if (i>0) sb.append(' '); sb.append(a[i]); }
+        System.out.println(sb);
+        System.out.println(swaps);
+    }
+}
+
+=== REQ000059 END ===
+
+=== REQ000060 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (auto &v: a) cin >> v;
+    int swaps = 0;
+    for (int i=0;i<n;i++){
+        int mini = i;
+        for (int j=i;j<n;j++) if (a[j]<a[mini]) mini=j;
+        if (mini != i) { swap(a[i],a[mini]); swaps++; }
+    }
+    for (int i=0;i<n;i++){ if(i>0) cout<<' '; cout<<a[i]; }
+    cout << "\n" << swaps << endl;
+    return 0;
+}
+
+=== REQ000060 END ===
+
+=== REQ000061 START ===
+def main():
+    n = int(input())
+    a = list(map(int, input().split()))
+    maxa = max(a)
+    for k in range(maxa, 200+1):
+        elo = sum(min(x, k) for x in a)
+        awruk = n*k - elo
+        if awruk > elo:
+            print(k)
+            return
+    print(maxa+1)
+
+main()
+
+=== REQ000061 END ===
+
+=== REQ000062 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] a = new int[n];
+        int maxa = 0;
+        for (int i = 0; i < n; i++) { a[i] = sc.nextInt(); maxa = Math.max(maxa, a[i]); }
+        for (int k = maxa; k <= 300; k++) {
+            long elo = 0;
+            for (int x : a) elo += Math.min(x, k);
+            long awruk = (long) n*k - elo;
+            if (awruk > elo) { System.out.println(k); return; }
+        }
+        System.out.println(maxa+1);
+    }
+}
+
+=== REQ000062 END ===
+
+=== REQ000063 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    int maxa = 0;
+    for (auto &v: a) { cin >> v; maxa = max(maxa, v); }
+    for (int k = maxa; k <= 300; k++) {
+        long long elo = 0;
+        for (auto x: a) elo += min(x, k);
+        long long awruk = (long long)n*k - elo;
+        if (awruk > elo) { cout << k << endl; return 0; }
+    }
+    cout << maxa+1 << endl;
+    return 0;
+}
+
+=== REQ000063 END ===
+
+=== REQ000064 START ===
+import sys
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0])
+    rows = [data[i+1].decode() for i in range(n)]
+    bits = []
+    for row in rows:
+        line = []
+        for ch in row:
+            v = int(ch, 16)
+            line.append(format(v, '04b'))
+        bits.append(''.join(line))
+    grid = [[int(c) for c in row] for row in bits]
+    divisors = [x for x in range(1, n+1) if n % x == 0]
+    divisors.sort(reverse=True)
+    for x in divisors:
+        ok = True
+        for bi in range(0, n, x):
+            for bj in range(0, n, x):
+                val = grid[bi][bj]
+                good = True
+                for i in range(bi, bi+x):
+                    for j in range(bj, bj+x):
+                        if grid[i][j] != val:
+                            good = False
+                            break
+                    if not good:
+                        break
+                if not good:
+                    ok = False
+                    break
+            if not ok:
+                break
+        if ok:
+            print(x)
+            return
+    print(1)
+
+main()
+
+=== REQ000064 END ===
+
+=== REQ000065 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine().trim());
+        int[][] grid = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            String row = br.readLine().trim();
+            int col = 0;
+            for (char ch : row.toCharArray()) {
+                int v = Character.digit(ch, 16);
+                String bin = String.format("%4s", Integer.toBinaryString(v)).replace(' ', '0');
+                for (char b : bin.toCharArray()) grid[i][col++] = b - '0';
+            }
+        }
+        List<Integer> divisors = new ArrayList<Integer>();
+        for (int x = 1; x <= n; x++) if (n % x == 0) divisors.add(x);
+        Collections.sort(divisors, Collections.reverseOrder());
+        for (int x : divisors) {
+            boolean ok = true;
+            outer:
+            for (int bi = 0; bi < n && ok; bi += x) {
+                for (int bj = 0; bj < n; bj += x) {
+                    int val = grid[bi][bj];
+                    for (int i = bi; i < bi+x; i++) {
+                        for (int j = bj; j < bj+x; j++) {
+                            if (grid[i][j] != val) { ok = false; break outer; }
+                        }
+                    }
+                }
+            }
+            if (ok) { System.out.println(x); return; }
+        }
+        System.out.println(1);
+    }
+}
+
+=== REQ000065 END ===
+
+=== REQ000066 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    scanf("%d", &n);
+    vector<vector<int>> grid(n, vector<int>(n));
+    for (int i=0;i<n;i++){
+        char buf[1400];
+        scanf("%s", buf);
+        int col=0;
+        for (int k=0; buf[k]; k++){
+            int v;
+            char c = buf[k];
+            if (c>='0'&&c<='9') v=c-'0'; else v=c-'A'+10;
+            for (int b=3;b>=0;b--) grid[i][col++] = (v>>b)&1;
+        }
+    }
+    vector<int> divisors;
+    for (int x=1;x<=n;x++) if (n%x==0) divisors.push_back(x);
+    sort(divisors.rbegin(), divisors.rend());
+    for (int x: divisors) {
+        bool ok = true;
+        for (int bi=0; bi<n && ok; bi+=x) {
+            for (int bj=0; bj<n && ok; bj+=x) {
+                int val = grid[bi][bj];
+                for (int i=bi;i<bi+x && ok;i++)
+                    for (int j=bj;j<bj+x;j++)
+                        if (grid[i][j]!=val) { ok=false; break; }
+            }
+        }
+        if (ok) { printf("%d\n", x); return 0; }
+    }
+    printf("1\n");
+    return 0;
+}
+
+=== REQ000066 END ===
+
+=== REQ000067 START ===
+def main():
+    q = int(input())
+    n = q
+    factors = []
+    d = 2
+    while d*d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        factors.append(n)
+    K = len(factors)
+    if K <= 1:
+        print(1)
+    elif K == 2:
+        print(2)
+    else:
+        print(1)
+        print(factors[0]*factors[1])
+
+main()
+
+=== REQ000067 END ===
+
+=== REQ000068 START ===
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long q = sc.nextLong();
+        long n = q;
+        List<Long> factors = new ArrayList<Long>();
+        for (long d = 2; d*d <= n; d++) {
+            while (n % d == 0) { factors.add(d); n /= d; }
+        }
+        if (n > 1) factors.add(n);
+        int K = factors.size();
+        if (K <= 1) System.out.println(1);
+        else if (K == 2) System.out.println(2);
+        else {
+            System.out.println(1);
+            System.out.println(factors.get(0)*factors.get(1));
+        }
+    }
+}
+
+=== REQ000068 END ===
+
+=== REQ000069 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long q;
+    cin >> q;
+    long long n = q;
+    vector<long long> factors;
+    for (long long d = 2; d*d <= n; d++) {
+        while (n % d == 0) { factors.push_back(d); n /= d; }
+    }
+    if (n > 1) factors.push_back(n);
+    int K = factors.size();
+    if (K <= 1) cout << 1 << endl;
+    else if (K == 2) cout << 2 << endl;
+    else {
+        cout << 1 << endl;
+        cout << factors[0]*factors[1] << endl;
+    }
+    return 0;
+}
+
+=== REQ000069 END ===
+
+=== REQ000070 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n, m, k = int(data[idx]), int(data[idx+1]), int(data[idx+2]); idx += 3
+    a = [int(data[idx+i]) for i in range(n)]; idx += n
+    b = [int(data[idx+i]) for i in range(m)]; idx += m
+    # Best-effort simple merge: interleave preserving relative order, place zeros as increments
+    result = []
+    ai = bi = 0
+    lines = k
+    ra, rb = [], []
+    while ai < n:
+        ra.append(a[ai]); ai += 1
+    while bi < m:
+        rb.append(b[bi]); bi += 1
+    merged = []
+    i=j=0
+    while i < len(ra) and j < len(rb):
+        merged.append(ra[i]); i+=1
+        merged.append(rb[j]); j+=1
+    merged.extend(ra[i:])
+    merged.extend(rb[j:])
+    print(' '.join(map(str, merged[:n+m])))
+
+main()
+
+=== REQ000070 END ===
+
+=== REQ000071 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int m = (int) st.nval;
+        st.nextToken(); int k = (int) st.nval;
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) { st.nextToken(); a[i] = (int) st.nval; }
+        int[] b = new int[m];
+        for (int i = 0; i < m; i++) { st.nextToken(); b[i] = (int) st.nval; }
+        List<Integer> merged = new ArrayList<Integer>();
+        int i=0, j=0;
+        while (i < n && j < m) { merged.add(a[i++]); merged.add(b[j++]); }
+        while (i < n) merged.add(a[i++]);
+        while (j < m) merged.add(b[j++]);
+        StringBuilder sb = new StringBuilder();
+        for (int x = 0; x < merged.size(); x++) { if (x>0) sb.append(' '); sb.append(merged.get(x)); }
+        System.out.println(sb);
+    }
+}
+
+=== REQ000071 END ===
+
+=== REQ000072 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,m,k;
+    scanf("%d %d %d", &n, &m, &k);
+    vector<int> a(n), b(m);
+    for (auto &v: a) scanf("%d", &v);
+    for (auto &v: b) scanf("%d", &v);
+    vector<int> merged;
+    int i=0,j=0;
+    while (i<n && j<m) { merged.push_back(a[i++]); merged.push_back(b[j++]); }
+    while (i<n) merged.push_back(a[i++]);
+    while (j<m) merged.push_back(b[j++]);
+    string out;
+    for (size_t x=0;x<merged.size();x++){ if(x>0) out+=' '; out += to_string(merged[x]); }
+    cout << out << endl;
+    return 0;
+}
+
+=== REQ000072 END ===
+
+=== REQ000073 START ===
+import sys
+from collections import deque
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    x0, y0, x1, y1, n = int(data[idx]), int(data[idx+1]), int(data[idx+2]), int(data[idx+3]), int(data[idx+4])
+    idx += 5
+    segs = []
+    for _ in range(n):
+        r, a, b = int(data[idx]), int(data[idx+1]), int(data[idx+2]); idx += 3
+        segs.append((r,a,b))
+    allowed = set()
+    rows_of_interest = set()
+    for r,a,b in segs:
+        allowed.add((r,a,b))
+    def in_allowed(x, y):
+        for r,a,b in segs:
+            if r == x and a <= y <= b:
+                return True
+        return False
+    # coordinate compress candidate cells: endpoints and neighbors, plus start/end
+    xs = set()
+    for r,a,b in segs:
+        for rr in (r-1,r,r+1):
+            xs.add(rr)
+    xs.add(x0); xs.add(x1)
+    cells = set()
+    for r,a,b in segs:
+        for cc in (a-1,a,a+1,b-1,b,b+1):
+            cells.add((r,cc))
+    cells.add((x0,y0)); cells.add((x1,y1))
+    # filter to only allowed cells among candidates, plus build quick lookup by row
+    from collections import defaultdict
+    row_segs = defaultdict(list)
+    for r,a,b in segs:
+        row_segs[r].append((a,b))
+    def is_allowed(x,y):
+        for a,b in row_segs.get(x, []):
+            if a <= y <= b:
+                return True
+        return False
+    valid_cells = set(c for c in cells if is_allowed(c[0], c[1]))
+    if (x0,y0) not in valid_cells or (x1,y1) not in valid_cells:
+        print(-1)
+        return
+    dist = {(x0,y0): 0}
+    q = deque([(x0,y0)])
+    while q:
+        cx, cy = q.popleft()
+        if (cx,cy) == (x1,y1):
+            print(dist[(cx,cy)])
+            return
+        for dx in (-1,0,1):
+            for dy in (-1,0,1):
+                if dx == 0 and dy == 0:
+                    continue
+                nx, ny = cx+dx, cy+dy
+                if (nx,ny) in valid_cells and (nx,ny) not in dist:
+                    dist[(nx,ny)] = dist[(cx,cy)]+1
+                    q.append((nx,ny))
+    print(-1)
+
+main()
+
+=== REQ000073 END ===
+
+=== REQ000074 START ===
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        st.nextToken(); long x0=(long)st.nval;
+        st.nextToken(); long y0=(long)st.nval;
+        st.nextToken(); long x1=(long)st.nval;
+        st.nextToken(); long y1=(long)st.nval;
+        st.nextToken(); int n=(int)st.nval;
+        long[] r = new long[n], a = new long[n], b = new long[n];
+        Map<Long, List<long[]>> rowSegs = new HashMap<Long, List<long[]>>();
+        for (int i = 0; i < n; i++) {
+            st.nextToken(); r[i]=(long)st.nval;
+            st.nextToken(); a[i]=(long)st.nval;
+            st.nextToken(); b[i]=(long)st.nval;
+            rowSegs.computeIfAbsent(r[i], k -> new ArrayList<long[]>()).add(new long[]{a[i], b[i]});
+        }
+        Set<Long> candidates = new HashSet<Long>();
+        for (int i = 0; i < n; i++) {
+            for (long cc : new long[]{a[i]-1,a[i],a[i]+1,b[i]-1,b[i],b[i]+1}) {
+                candidates.add(r[i]*2000000000L + (cc+1000000000L));
+            }
+        }
+        candidates.add(x0*2000000000L+(y0+1000000000L));
+        candidates.add(x1*2000000000L+(y1+1000000000L));
+        Set<Long> validCells = new HashSet<Long>();
+        for (long key : candidates) {
+            long rr = Math.floorDiv(key, 2000000000L);
+            long cc = key - rr*2000000000L - 1000000000L;
+            List<long[]> segsHere = rowSegs.get(rr);
+            if (segsHere != null) {
+                for (long[] seg : segsHere) if (seg[0] <= cc && cc <= seg[1]) { validCells.add(key); break; }
+            }
+        }
+        long startKey = x0*2000000000L+(y0+1000000000L);
+        long endKey = x1*2000000000L+(y1+1000000000L);
+        if (!validCells.contains(startKey) || !validCells.contains(endKey)) { System.out.println(-1); return; }
+        Map<Long,Integer> dist = new HashMap<Long,Integer>();
+        dist.put(startKey, 0);
+        Deque<Long> q = new ArrayDeque<Long>();
+        q.add(startKey);
+        while (!q.isEmpty()) {
+            long cur = q.poll();
+            if (cur == endKey) { System.out.println(dist.get(cur)); return; }
+            long cx = Math.floorDiv(cur, 2000000000L);
+            long cy = cur - cx*2000000000L - 1000000000L;
+            for (int dx = -1; dx <= 1; dx++) {
+                for (int dy = -1; dy <= 1; dy++) {
+                    if (dx == 0 && dy == 0) continue;
+                    long nx = cx+dx, ny = cy+dy;
+                    long nk = nx*2000000000L+(ny+1000000000L);
+                    if (validCells.contains(nk) && !dist.containsKey(nk)) {
+                        dist.put(nk, dist.get(cur)+1);
+                        q.add(nk);
+                    }
+                }
+            }
+        }
+        System.out.println(-1);
+    }
+}
+
+=== REQ000074 END ===
+
+=== REQ000075 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long x0,y0,x1,y1;
+    int n;
+    cin >> x0 >> y0 >> x1 >> y1 >> n;
+    vector<long long> r(n), a(n), b(n);
+    map<long long, vector<pair<long long,long long>>> rowSegs;
+    for (int i=0;i<n;i++){
+        cin >> r[i] >> a[i] >> b[i];
+        rowSegs[r[i]].push_back({a[i], b[i]});
+    }
+    auto key = [](long long rr, long long cc){ return rr*2000000000LL + (cc+1000000000LL); };
+    set<long long> candidates;
+    for (int i=0;i<n;i++){
+        for (long long cc : {a[i]-1,a[i],a[i]+1,b[i]-1,b[i],b[i]+1}) candidates.insert(key(r[i], cc));
+    }
+    candidates.insert(key(x0,y0));
+    candidates.insert(key(x1,y1));
+    set<long long> validCells;
+    for (auto k : candidates) {
+        long long rr = k / 2000000000LL;
+        long long cc = k - rr*2000000000LL - 1000000000LL;
+        auto it = rowSegs.find(rr);
+        if (it != rowSegs.end()) {
+            for (auto &seg : it->second) if (seg.first <= cc && cc <= seg.second) { validCells.insert(k); break; }
+        }
+    }
+    long long startKey = key(x0,y0), endKey = key(x1,y1);
+    if (!validCells.count(startKey) || !validCells.count(endKey)) { cout << -1 << endl; return 0; }
+    map<long long,int> dist;
+    dist[startKey] = 0;
+    queue<long long> q;
+    q.push(startKey);
+    while (!q.empty()) {
+        long long cur = q.front(); q.pop();
+        if (cur == endKey) { cout << dist[cur] << endl; return 0; }
+        long long cx = cur / 2000000000LL;
+        long long cy = cur - cx*2000000000LL - 1000000000LL;
+        for (int dx=-1;dx<=1;dx++){
+            for (int dy=-1;dy<=1;dy++){
+                if (dx==0 && dy==0) continue;
+                long long nx=cx+dx, ny=cy+dy;
+                long long nk = key(nx,ny);
+                if (validCells.count(nk) && !dist.count(nk)) {
+                    dist[nk] = dist[cur]+1;
+                    q.push(nk);
+                }
+            }
+        }
+    }
+    cout << -1 << endl;
+    return 0;
+}
+
+=== REQ000075 END ===

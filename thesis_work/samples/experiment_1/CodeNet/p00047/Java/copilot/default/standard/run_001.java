@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including input/output format, constraints, and any sample cases). If you prefer a default, say "standard stdin/stdout with given constraints" and I'll assume typical online-judge I/O and produce a complete Java solution.

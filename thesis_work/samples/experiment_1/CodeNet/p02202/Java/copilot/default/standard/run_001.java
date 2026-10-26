@@ -1,0 +1,1 @@
+I don't see the problem statement — please paste the full problem (with input/output format and constraints). Once provided, a complete Java solution will be returned.

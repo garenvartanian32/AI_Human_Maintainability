@@ -1,0 +1,663 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000201 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Return length of given string
+// >>> string_length((""))
+// (0)
+// >>> string_length(("abc"))
+// (3)
+long string_length(std::string string) {
+
+    return string.size();
+}
+
+=== REQ000201 END ===
+
+=== REQ000202 START ===
+from typing import List
+
+
+def concatenate(strings: List[str]) -> str:
+    """ Concatenate list of strings into a single string
+    >>> concatenate([])
+    ''
+    >>> concatenate(['a', 'b', 'c'])
+    'abc'
+    """
+    return ''.join(strings)
+
+=== REQ000202 END ===
+
+=== REQ000203 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Concatenate array list of strings into a single string
+    // >>> concatenate((new ArrayList<String>(Arrays.asList())))
+    // ("")
+    // >>> concatenate((new ArrayList<String>(Arrays.asList((String)"a", (String)"b", (String)"c"))))
+    // ("abc")
+    public static String concatenate(ArrayList<String> strings) {
+
+        StringBuilder sb = new StringBuilder();
+        for (String s : strings) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }
+}
+
+=== REQ000203 END ===
+
+=== REQ000204 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Concatenate vector of strings into a single string
+// >>> concatenate((std::vector<std::string>()))
+// ("")
+// >>> concatenate((std::vector<std::string>({(std::string)"a", (std::string)"b", (std::string)"c"})))
+// ("abc")
+std::string concatenate(std::vector<std::string> strings) {
+
+    std::string result;
+    for (auto &s : strings) result += s;
+    return result;
+}
+
+=== REQ000204 END ===
+
+=== REQ000205 START ===
+
+
+def sort_third(l: list):
+    """This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but sorted.
+    >>> sort_third([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_third([5, 6, 3, 4, 8, 9, 2])
+    [2, 6, 3, 4, 8, 9, 5]
+    """
+    res = list(l)
+    idx = sorted(range(0, len(l), 3), key=lambda i: l[i])
+    vals = sorted(l[i] for i in range(0, len(l), 3))
+    for pos, v in zip(range(0, len(l), 3), vals):
+        res[pos] = v
+    return res
+
+=== REQ000205 END ===
+
+=== REQ000206 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // This function takes an array array list l and returns an array array list l' such that
+    // l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    // to the values of the corresponding indicies of l, but sorted.
+    // >>> sortThird((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l))))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l)))
+    // >>> sortThird((new ArrayList<Long>(Arrays.asList((long)5l, (long)6l, (long)3l, (long)4l, (long)8l, (long)9l, (long)2l))))
+    // (new ArrayList<Long>(Arrays.asList((long)2l, (long)6l, (long)3l, (long)4l, (long)8l, (long)9l, (long)5l)))
+    public static ArrayList<Long> sortThird(ArrayList<Long> l) {
+
+        ArrayList<Long> result = new ArrayList<Long>(l);
+        ArrayList<Long> vals = new ArrayList<Long>();
+        for (int i = 0; i < l.size(); i += 3) vals.add(l.get(i));
+        Collections.sort(vals);
+        int idx = 0;
+        for (int i = 0; i < l.size(); i += 3) {
+            result.set(i, vals.get(idx));
+            idx++;
+        }
+        return result;
+    }
+}
+
+=== REQ000206 END ===
+
+=== REQ000207 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// This function takes a vector l and returns a vector l' such that
+// l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+// to the values of the corresponding indicies of l, but sorted.
+// >>> sort_third((std::vector<long>({(long)1, (long)2, (long)3})))
+// (std::vector<long>({(long)1, (long)2, (long)3}))
+// >>> sort_third((std::vector<long>({(long)5, (long)6, (long)3, (long)4, (long)8, (long)9, (long)2})))
+// (std::vector<long>({(long)2, (long)6, (long)3, (long)4, (long)8, (long)9, (long)5}))
+std::vector<long> sort_third(std::vector<long> l) {
+
+    using namespace std;
+    vector<long> result = l;
+    vector<long> vals;
+    for (size_t i = 0; i < l.size(); i += 3) vals.push_back(l[i]);
+    sort(vals.begin(), vals.end());
+    size_t idx = 0;
+    for (size_t i = 0; i < l.size(); i += 3) result[i] = vals[idx++];
+    return result;
+}
+
+=== REQ000207 END ===
+
+=== REQ000208 START ===
+
+
+def triples_sum_to_zero(l: list):
+    """
+    triples_sum_to_zero takes a list of integers as an input.
+    it returns True if there are three distinct elements in the list that
+    sum to zero, and False otherwise.
+
+    >>> triples_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> triples_sum_to_zero([1, 3, -2, 1])
+    True
+    >>> triples_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])
+    True
+    >>> triples_sum_to_zero([1])
+    False
+    """
+    l = sorted(l)
+    n = len(l)
+    for i in range(n-2):
+        lo, hi = i+1, n-1
+        while lo < hi:
+            s = l[i] + l[lo] + l[hi]
+            if s == 0:
+                return True
+            elif s < 0:
+                lo += 1
+            else:
+                hi -= 1
+    return False
+
+=== REQ000208 END ===
+
+=== REQ000209 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // triples_sum_to_zero takes an array array list of integers as an input.
+    // it returns true if there are three distinct elements in the array list that
+    // sum to zero, and false otherwise.
+    // >>> triplesSumToZero((new ArrayList<Long>(Arrays.asList((long)1l, (long)3l, (long)5l, (long)0l))))
+    // (false)
+    // >>> triplesSumToZero((new ArrayList<Long>(Arrays.asList((long)1l, (long)3l, (long)-2l, (long)1l))))
+    // (true)
+    // >>> triplesSumToZero((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)7l))))
+    // (false)
+    // >>> triplesSumToZero((new ArrayList<Long>(Arrays.asList((long)2l, (long)4l, (long)-5l, (long)3l, (long)9l, (long)7l))))
+    // (true)
+    // >>> triplesSumToZero((new ArrayList<Long>(Arrays.asList((long)1l))))
+    // (false)
+    public static boolean triplesSumToZero(ArrayList<Long> l) {
+
+        ArrayList<Long> s = new ArrayList<Long>(l);
+        Collections.sort(s);
+        int n = s.size();
+        for (int i = 0; i < n - 2; i++) {
+            int lo = i + 1, hi = n - 1;
+            while (lo < hi) {
+                long sum = s.get(i) + s.get(lo) + s.get(hi);
+                if (sum == 0) return true;
+                else if (sum < 0) lo++;
+                else hi--;
+            }
+        }
+        return false;
+    }
+}
+
+=== REQ000209 END ===
+
+=== REQ000210 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// triples_sum_to_zero takes a vector of integers as an input.
+// it returns true if there are three distinct elements in the vector that
+// sum to zero, and false otherwise.
+// >>> triples_sum_to_zero((std::vector<long>({(long)1, (long)3, (long)5, (long)0})))
+// (false)
+// >>> triples_sum_to_zero((std::vector<long>({(long)1, (long)3, (long)-2, (long)1})))
+// (true)
+// >>> triples_sum_to_zero((std::vector<long>({(long)1, (long)2, (long)3, (long)7})))
+// (false)
+// >>> triples_sum_to_zero((std::vector<long>({(long)2, (long)4, (long)-5, (long)3, (long)9, (long)7})))
+// (true)
+// >>> triples_sum_to_zero((std::vector<long>({(long)1})))
+// (false)
+bool triples_sum_to_zero(std::vector<long> l) {
+
+    using namespace std;
+    vector<long> s = l;
+    sort(s.begin(), s.end());
+    int n = s.size();
+    for (int i = 0; i < n - 2; i++) {
+        int lo = i+1, hi = n-1;
+        while (lo < hi) {
+            long sum = s[i] + s[lo] + s[hi];
+            if (sum == 0) return true;
+            else if (sum < 0) lo++;
+            else hi--;
+        }
+    }
+    return false;
+}
+
+=== REQ000210 END ===
+
+=== REQ000211 START ===
+
+
+def is_palindrome(text: str):
+    """
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """
+    return text == text[::-1]
+
+=== REQ000211 END ===
+
+=== REQ000212 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Checks if given string is a palindrome
+    // >>> isPalindrome((""))
+    // (true)
+    // >>> isPalindrome(("aba"))
+    // (true)
+    // >>> isPalindrome(("aaaaa"))
+    // (true)
+    // >>> isPalindrome(("zbcd"))
+    // (false)
+    public static boolean isPalindrome(String text) {
+
+        String rev = new StringBuilder(text).reverse().toString();
+        return text.equals(rev);
+    }
+}
+
+=== REQ000212 END ===
+
+=== REQ000213 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Checks if given string is a palindrome
+// >>> is_palindrome((""))
+// (true)
+// >>> is_palindrome(("aba"))
+// (true)
+// >>> is_palindrome(("aaaaa"))
+// (true)
+// >>> is_palindrome(("zbcd"))
+// (false)
+bool is_palindrome(std::string text) {
+
+    std::string rev(text.rbegin(), text.rend());
+    return text == rev;
+}
+
+=== REQ000213 END ===
+
+=== REQ000214 START ===
+
+
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "(" and ")".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("(")
+    False
+    >>> correct_bracketing("()")
+    True
+    >>> correct_bracketing("(()())")
+    True
+    >>> correct_bracketing(")(()")
+    False
+    """
+    depth = 0
+    for c in brackets:
+        if c == '(':
+            depth += 1
+        else:
+            depth -= 1
+        if depth < 0:
+            return False
+    return depth == 0
+
+=== REQ000214 END ===
+
+=== REQ000215 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // brackets is a string of "(" and ")".
+    // return true if every opening bracket has a corresponding closing bracket.
+    // >>> correctBracketing(("("))
+    // (false)
+    // >>> correctBracketing(("()"))
+    // (true)
+    // >>> correctBracketing(("(()())"))
+    // (true)
+    // >>> correctBracketing((")(()"))
+    // (false)
+    public static boolean correctBracketing(String brackets) {
+
+        int depth = 0;
+        for (char c : brackets.toCharArray()) {
+            if (c == '(') depth++;
+            else depth--;
+            if (depth < 0) return false;
+        }
+        return depth == 0;
+    }
+}
+
+=== REQ000215 END ===
+
+=== REQ000216 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// brackets is a string of "(" and ")".
+// return true if every opening bracket has a corresponding closing bracket.
+// >>> correct_bracketing(("("))
+// (false)
+// >>> correct_bracketing(("()"))
+// (true)
+// >>> correct_bracketing(("(()())"))
+// (true)
+// >>> correct_bracketing((")(()"))
+// (false)
+bool correct_bracketing(std::string brackets) {
+
+    int depth = 0;
+    for (char c : brackets) {
+        depth += (c == '(') ? 1 : -1;
+        if (depth < 0) return false;
+    }
+    return depth == 0;
+}
+
+=== REQ000216 END ===
+
+=== REQ000217 START ===
+
+def digitSum(s):
+    """Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("") => 0
+        digitSum("abAB") => 131
+        digitSum("abcCd") => 67
+        digitSum("helloE") => 69
+        digitSum("woArBld") => 131
+        digitSum("aAaaaXa") => 153
+    """
+    return sum(ord(c) for c in s if c.isupper())
+
+=== REQ000217 END ===
+
+=== REQ000218 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Task
+    // Write a function that takes a string as input and returns the sum of the upper characters only'
+    // ASCII codes.
+    // Examples:
+    // >>> digitSum((""))
+    // (0l)
+    // >>> digitSum(("abAB"))
+    // (131l)
+    // >>> digitSum(("abcCd"))
+    // (67l)
+    // >>> digitSum(("helloE"))
+    // (69l)
+    // >>> digitSum(("woArBld"))
+    // (131l)
+    // >>> digitSum(("aAaaaXa"))
+    // (153l)
+    public static long digitSum(String s) {
+
+        long sum = 0;
+        for (char c : s.toCharArray()) {
+            if (Character.isUpperCase(c)) sum += (long) c;
+        }
+        return sum;
+    }
+}
+
+=== REQ000218 END ===
+
+=== REQ000219 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Task
+// Write a function that takes a string as input and returns the sum of the upper characters only'
+// ASCII codes.
+// Examples:
+// >>> digitSum((""))
+// (0)
+// >>> digitSum(("abAB"))
+// (131)
+// >>> digitSum(("abcCd"))
+// (67)
+// >>> digitSum(("helloE"))
+// (69)
+// >>> digitSum(("woArBld"))
+// (131)
+// >>> digitSum(("aAaaaXa"))
+// (153)
+long digitSum(std::string s) {
+
+    long sum = 0;
+    for (char c : s) if (isupper(c)) sum += (long) c;
+    return sum;
+}
+
+=== REQ000219 END ===
+
+=== REQ000220 START ===
+
+def search(lst):
+    '''
+    You are given a non-empty list of positive integers. Return the greatest integer that is greater than 
+    zero, and has a frequency greater than or equal to the value of the integer itself. 
+    The frequency of an integer is the number of times it appears in the list.
+    If no such a value exist, return -1.
+    Examples:
+        search([4, 1, 2, 2, 3, 1]) == 2
+        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3
+        search([5, 5, 4, 4, 4]) == -1
+    '''
+    from collections import Counter
+    c = Counter(lst)
+    best = -1
+    for v, freq in c.items():
+        if freq >= v and v > best:
+            best = v
+    return best
+
+=== REQ000220 END ===
+
+=== REQ000221 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a non-empty array list of positive integers. Return the greatest integer that is greater than 
+    // zero, and has a frequency greater than or equal to the value of the integer itself. 
+    // The frequency of an integer is the number of times it appears in the array list.
+    // If no such a value exist, return -1.
+    // Examples:
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)4l, (long)1l, (long)2l, (long)2l, (long)3l, (long)1l))))
+    // (2l)
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)2l, (long)3l, (long)3l, (long)3l, (long)4l, (long)4l, (long)4l))))
+    // (3l)
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)5l, (long)5l, (long)4l, (long)4l, (long)4l))))
+    // (-1l)
+    public static long search(ArrayList<Long> lst) {
+
+        Map<Long, Long> freq = new HashMap<Long, Long>();
+        for (long x : lst) freq.put(x, freq.getOrDefault(x, 0l) + 1);
+        long best = -1;
+        for (Map.Entry<Long, Long> e : freq.entrySet()) {
+            if (e.getValue() >= e.getKey() && e.getKey() > best) {
+                best = e.getKey();
+            }
+        }
+        return best;
+    }
+}
+
+=== REQ000221 END ===
+
+=== REQ000222 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a non-empty vector of positive integers. Return the greatest integer that is greater than 
+// zero, and has a frequency greater than or equal to the value of the integer itself. 
+// The frequency of an integer is the number of times it appears in the vector.
+// If no such a value exist, return -1.
+// Examples:
+// >>> search((std::vector<long>({(long)4, (long)1, (long)2, (long)2, (long)3, (long)1})))
+// (2)
+// >>> search((std::vector<long>({(long)1, (long)2, (long)2, (long)3, (long)3, (long)3, (long)4, (long)4, (long)4})))
+// (3)
+// >>> search((std::vector<long>({(long)5, (long)5, (long)4, (long)4, (long)4})))
+// (-1)
+long search(std::vector<long> lst) {
+
+    using namespace std;
+    map<long,long> freq;
+    for (long x : lst) freq[x]++;
+    long best = -1;
+    for (auto &p : freq) {
+        if (p.second >= p.first && p.first > best) best = p.first;
+    }
+    return best;
+}
+
+=== REQ000222 END ===
+
+=== REQ000223 START ===
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """ For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.
+    >>> sum_product([])
+    (0, 1)
+    >>> sum_product([1, 2, 3, 4])
+    (10, 24)
+    """
+    s = 0
+    p = 1
+    for n in numbers:
+        s += n
+        p *= n
+    return (s, p)
+
+=== REQ000223 END ===
+
+=== REQ000224 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // For a given array list of integers, return a pair consisting of a sum and a product of all the integers in an array array list.
+    // Empty sum should be equal to 0 and empty product should be equal to 1.
+    // >>> sumProduct((new ArrayList<Long>(Arrays.asList())))
+    // (Pair.with(0l, 1l))
+    // >>> sumProduct((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l))))
+    // (Pair.with(10l, 24l))
+    public static Pair<Long, Long> sumProduct(ArrayList<Long> numbers) {
+
+        long sum = 0;
+        long product = 1;
+        for (long n : numbers) {
+            sum += n;
+            product *= n;
+        }
+        return Pair.with(sum, product);
+    }
+}
+
+=== REQ000224 END ===
+
+=== REQ000225 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// For a given vector of integers, return a tuple consisting of a sum and a product of all the integers in a vector.
+// Empty sum should be equal to 0 and empty product should be equal to 1.
+// >>> sum_product((std::vector<long>()))
+// (std::make_tuple(0, 1))
+// >>> sum_product((std::vector<long>({(long)1, (long)2, (long)3, (long)4})))
+// (std::make_tuple(10, 24))
+std::tuple<long, long> sum_product(std::vector<long> numbers) {
+
+    long sum = 0, prod = 1;
+    for (long n : numbers) { sum += n; prod *= n; }
+    return std::make_tuple(sum, prod);
+}
+
+=== REQ000225 END ===

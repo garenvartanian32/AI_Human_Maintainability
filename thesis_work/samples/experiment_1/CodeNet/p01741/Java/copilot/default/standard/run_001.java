@@ -1,0 +1,1 @@
+I don't see the problem statement — please paste the full problem (with input/output format and constraints). If you want a default: say "use standard CP I/O (stdin/stdout)" and I will assume typical formats and produce a Java solution. If you meant a common problem, name it (e.g., Two Sum, LIS, Dijkstra) and I'll implement it.

@@ -1,0 +1,16 @@
+{
+  "experiment": 2,
+  "dataset": "CodeContests",
+  "problem_id": "CodeContests_0057",
+  "language": "Java",
+  "source": "Human",
+  "provider": "",
+  "model": "",
+  "model_group": "human",
+  "prompt_type": "original",
+  "run": 2,
+  "correctness": "dataset_provided",
+  "difficulty": 10,
+  "scenario": "",
+  "original_file": "thesis_work\\extracted\\codecontests\\CodeContests_0057\\Java\\human_002.java"
+}

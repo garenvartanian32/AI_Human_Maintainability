@@ -1,0 +1,1088 @@
+=== REQ000351 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given two intervals,
+    // where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    // The given intervals are closed which means that the interval (start, end)
+    // includes both start and end.
+    // For each given interval, it is assumed that its start is less or equal its end.
+    // Your task is to determine whether the length of intersection of these two 
+    // intervals is a prime number.
+    // Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    // which its length is 1, which not a prime number.
+    // If the length of the intersection is a prime number, return "YES",
+    // otherwise, return "NO".
+    // If the two intervals don't intersect, return "NO".
+    // [input/output] samples:
+    // >>> intersection((Pair.with(1l, 2l)), (Pair.with(2l, 3l)))
+    // ("NO")
+    // >>> intersection((Pair.with(-1l, 1l)), (Pair.with(0l, 4l)))
+    // ("NO")
+    // >>> intersection((Pair.with(-3l, -1l)), (Pair.with(-5l, 5l)))
+    // ("YES")
+    public static String intersection(Pair<Long, Long> interval1, Pair<Long, Long> interval2) {
+        long lo = Math.max(interval1.getValue0(), interval2.getValue0());
+        long hi = Math.min(interval1.getValue1(), interval2.getValue1());
+        long length = hi - lo;
+        if (length < 2) return "NO";
+        for (long i = 2; i * i <= length; i++) {
+            if (length % i == 0) return "NO";
+        }
+        return "YES";
+    }
+}
+=== REQ000351 END ===
+
+=== REQ000352 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given two intervals,
+    // where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    // The given intervals are closed which means that the interval (start, end)
+    // includes both start and end.
+    // For each given interval, it is assumed that its start is less or equal its end.
+    // Your task is to determine whether the length of intersection of these two 
+    // intervals is a prime number.
+    // Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    // which its length is 1, which not a prime number.
+    // If the length of the intersection is a prime number, return "YES",
+    // otherwise, return "NO".
+    // If the two intervals don't intersect, return "NO".
+    // [input/output] samples:
+    // >>> intersection((Pair.with(1l, 2l)), (Pair.with(2l, 3l)))
+    // ("NO")
+    // >>> intersection((Pair.with(-1l, 1l)), (Pair.with(0l, 4l)))
+    // ("NO")
+    // >>> intersection((Pair.with(-3l, -1l)), (Pair.with(-5l, 5l)))
+    // ("YES")
+    public static String intersection(Pair<Long, Long> interval1, Pair<Long, Long> interval2) {
+        // The overlap runs from the later start to the earlier end; a negative
+        // or zero span means the intervals miss each other entirely.
+        long overlapStart = Math.max(interval1.getValue0(), interval2.getValue0());
+        long overlapEnd = Math.min(interval1.getValue1(), interval2.getValue1());
+        long overlapLength = overlapEnd - overlapStart;
+
+        return isPrime(overlapLength) ? "YES" : "NO";
+    }
+
+    private static boolean isPrime(long value) {
+        if (value < 2) {
+            return false;
+        }
+        for (long divisor = 2; divisor * divisor <= value; divisor++) {
+            if (value % divisor == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+=== REQ000352 END ===
+
+=== REQ000353 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given two intervals,
+// where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+// The given intervals are closed which means that the interval (start, end)
+// includes both start and end.
+// For each given interval, it is assumed that its start is less or equal its end.
+// Your task is to determine whether the length of intersection of these two 
+// intervals is a prime number.
+// Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+// which its length is 1, which not a prime number.
+// If the length of the intersection is a prime number, return "YES",
+// otherwise, return "NO".
+// If the two intervals don't intersect, return "NO".
+// [input/output] samples:
+// >>> intersection((std::make_tuple(1, 2)), (std::make_tuple(2, 3)))
+// ("NO")
+// >>> intersection((std::make_tuple(-1, 1)), (std::make_tuple(0, 4)))
+// ("NO")
+// >>> intersection((std::make_tuple(-3, -1)), (std::make_tuple(-5, 5)))
+// ("YES")
+std::string intersection(std::tuple<long, long> interval1, std::tuple<long, long> interval2) {
+    long lo = std::max(std::get<0>(interval1), std::get<0>(interval2));
+    long hi = std::min(std::get<1>(interval1), std::get<1>(interval2));
+    long length = hi - lo;
+    if (length < 2) return "NO";
+    for (long i = 2; i * i <= length; i++) {
+        if (length % i == 0) return "NO";
+    }
+    return "YES";
+}
+
+int main() {
+    std::cout << intersection(std::make_tuple(1,2), std::make_tuple(2,3)) << std::endl;
+    std::cout << intersection(std::make_tuple(-1,1), std::make_tuple(0,4)) << std::endl;
+    std::cout << intersection(std::make_tuple(-3,-1), std::make_tuple(-5,5)) << std::endl;
+    return 0;
+}
+=== REQ000353 END ===
+
+=== REQ000354 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given two intervals,
+// where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+// The given intervals are closed which means that the interval (start, end)
+// includes both start and end.
+// For each given interval, it is assumed that its start is less or equal its end.
+// Your task is to determine whether the length of intersection of these two 
+// intervals is a prime number.
+// Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+// which its length is 1, which not a prime number.
+// If the length of the intersection is a prime number, return "YES",
+// otherwise, return "NO".
+// If the two intervals don't intersect, return "NO".
+// [input/output] samples:
+// >>> intersection((std::make_tuple(1, 2)), (std::make_tuple(2, 3)))
+// ("NO")
+// >>> intersection((std::make_tuple(-1, 1)), (std::make_tuple(0, 4)))
+// ("NO")
+// >>> intersection((std::make_tuple(-3, -1)), (std::make_tuple(-5, 5)))
+// ("YES")
+static bool isPrime(long value) {
+    if (value < 2) {
+        return false;
+    }
+    for (long divisor = 2; divisor * divisor <= value; divisor++) {
+        if (value % divisor == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::string intersection(std::tuple<long, long> interval1, std::tuple<long, long> interval2) {
+    // The overlap runs from the later start to the earlier end; a negative or
+    // zero span means the intervals miss each other entirely.
+    const long overlapStart = std::max(std::get<0>(interval1), std::get<0>(interval2));
+    const long overlapEnd = std::min(std::get<1>(interval1), std::get<1>(interval2));
+    const long overlapLength = overlapEnd - overlapStart;
+
+    return isPrime(overlapLength) ? "YES" : "NO";
+}
+=== REQ000354 END ===
+
+=== REQ000355 START ===
+def prod_signs(arr):
+    """
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+    of each number in the array, represented by 1, -1 or 0.
+    Note: return None for empty arr.
+
+    Example:
+    >>> prod_signs([1, 2, 2, -4]) == -9
+    >>> prod_signs([0, 1]) == 0
+    >>> prod_signs([]) == None
+    """
+    if not arr:
+        return None
+    total = 0
+    sign = 1
+    for x in arr:
+        total += abs(x)
+        if x < 0:
+            sign = -sign
+        elif x == 0:
+            sign = 0
+    return total * sign
+=== REQ000355 END ===
+
+=== REQ000356 START ===
+def prod_signs(arr):
+    """
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+    of each number in the array, represented by 1, -1 or 0.
+    Note: return None for empty arr.
+
+    Example:
+    >>> prod_signs([1, 2, 2, -4]) == -9
+    >>> prod_signs([0, 1]) == 0
+    >>> prod_signs([]) == None
+    """
+    if not arr:
+        return None
+
+    # A single zero makes the whole sign product zero.
+    if any(value == 0 for value in arr):
+        return 0
+
+    # Otherwise the sign is negative exactly when an odd number of factors are.
+    negative_count = sum(1 for value in arr if value < 0)
+    total_magnitude = sum(abs(value) for value in arr)
+
+    return -total_magnitude if negative_count % 2 else total_magnitude
+=== REQ000356 END ===
+
+=== REQ000357 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list arr of integers and you need to return
+    // sum of magnitudes of integers multiplied by product of all signs
+    // of each number in the array array list, represented by 1, -1 or 0.
+    // Note: return null for empty arr.
+    // Example:
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)2l, (long)-4l))))
+    // Optional.of(9l)
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList((long)0l, (long)1l))))
+    // Optional.of(0l)
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList())))
+    // Optional.empty()
+    public static Optional<Long> prodSigns(ArrayList<Long> arr) {
+        if (arr.isEmpty()) return Optional.empty();
+        long total = 0;
+        int sign = 1;
+        for (long x : arr) {
+            total += Math.abs(x);
+            if (x < 0) sign = -sign;
+            else if (x == 0) sign = 0;
+        }
+        return Optional.of(total * sign);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(prodSigns(new ArrayList<>(Arrays.asList(1L,2L,2L,-4L))));
+        System.out.println(prodSigns(new ArrayList<>(Arrays.asList(0L,1L))));
+        System.out.println(prodSigns(new ArrayList<>()));
+    }
+}
+=== REQ000357 END ===
+
+=== REQ000358 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list arr of integers and you need to return
+    // sum of magnitudes of integers multiplied by product of all signs
+    // of each number in the array array list, represented by 1, -1 or 0.
+    // Note: return null for empty arr.
+    // Example:
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)2l, (long)-4l))))
+    // Optional.of(9l)
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList((long)0l, (long)1l))))
+    // Optional.of(0l)
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList())))
+    // Optional.empty()
+    public static Optional<Long> prodSigns(ArrayList<Long> arr) {
+        if (arr.isEmpty()) {
+            return Optional.empty();
+        }
+
+        long totalMagnitude = 0;
+        int negativeCount = 0;
+
+        for (long value : arr) {
+            // A single zero makes the whole sign product zero.
+            if (value == 0) {
+                return Optional.of(0L);
+            }
+            if (value < 0) {
+                negativeCount++;
+            }
+            totalMagnitude += Math.abs(value);
+        }
+
+        // The sign is negative exactly when an odd number of factors are.
+        return Optional.of(negativeCount % 2 == 0 ? totalMagnitude : -totalMagnitude);
+    }
+}
+=== REQ000358 END ===
+
+=== REQ000359 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector arr of integers and you need to return
+// sum of magnitudes of integers multiplied by product of all signs
+// of each number in the vector, represented by 1, -1 or 0.
+// Note: return None for empty arr.
+// Example:
+// >>> prod_signs((std::vector<long>({(long)1, (long)2, (long)2, (long)-4})))
+// 9
+// >>> prod_signs((std::vector<long>({(long)0, (long)1})))
+// 0
+// >>> prod_signs((std::vector<long>()))
+// std::nullopt
+std::optional<long> prod_signs(std::vector<long> arr) {
+    if (arr.empty()) return std::nullopt;
+    long total = 0;
+    int sign = 1;
+    for (long x : arr) {
+        total += std::abs(x);
+        if (x < 0) sign = -sign;
+        else if (x == 0) sign = 0;
+    }
+    return total * sign;
+}
+
+int main() {
+    auto r1 = prod_signs({1,2,2,-4});
+    std::cout << (r1.has_value() ? std::to_string(*r1) : "none") << std::endl;
+    auto r2 = prod_signs({0,1});
+    std::cout << (r2.has_value() ? std::to_string(*r2) : "none") << std::endl;
+    auto r3 = prod_signs({});
+    std::cout << (r3.has_value() ? std::to_string(*r3) : "none") << std::endl;
+    return 0;
+}
+=== REQ000359 END ===
+
+=== REQ000360 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector arr of integers and you need to return
+// sum of magnitudes of integers multiplied by product of all signs
+// of each number in the vector, represented by 1, -1 or 0.
+// Note: return None for empty arr.
+// Example:
+// >>> prod_signs((std::vector<long>({(long)1, (long)2, (long)2, (long)-4})))
+// 9
+// >>> prod_signs((std::vector<long>({(long)0, (long)1})))
+// 0
+// >>> prod_signs((std::vector<long>()))
+// std::nullopt
+std::optional<long> prod_signs(std::vector<long> arr) {
+    if (arr.empty()) {
+        return std::nullopt;
+    }
+
+    long totalMagnitude = 0;
+    int negativeCount = 0;
+
+    for (long value : arr) {
+        // A single zero makes the whole sign product zero.
+        if (value == 0) {
+            return 0L;
+        }
+        if (value < 0) {
+            negativeCount++;
+        }
+        totalMagnitude += std::labs(value);
+    }
+
+    // The sign is negative exactly when an odd number of factors are.
+    return (negativeCount % 2 == 0) ? totalMagnitude : -totalMagnitude;
+}
+=== REQ000360 END ===
+
+=== REQ000361 START ===
+def minPath(grid, k):
+    """
+    Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    each cell of the grid contains a value. Every integer in the range [1, N * N]
+    inclusive appears exactly once on the cells of the grid.
+
+    You have to find the minimum path of length k in the grid. You can start
+    from any cell, and in each step you can move to any of the neighbor cells,
+    in other words, you can go to cells which share an edge with you current
+    cell.
+    Please note that a path of length k means visiting exactly k cells (not
+    necessarily distinct).
+    You CANNOT go off the grid.
+    A path A (of length k) is considered less than a path B (of length k) if
+    after making the ordered lists of the values on the cells that A and B go
+    through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    lst_A[j] = lst_B[j].
+    It is guaranteed that the answer is unique.
+    Return an ordered list of the values on the cells that the minimum path go through.
+
+    Examples:
+
+        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3
+        Output: [1, 2, 1]
+
+        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
+        Output: [1]
+    """
+    n = len(grid)
+    pos = None
+    for i in range(n):
+        for j in range(n):
+            if grid[i][j] == 1:
+                pos = (i, j)
+    i, j = pos
+    neighbors = []
+    for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+        ni, nj = i + di, j + dj
+        if 0 <= ni < n and 0 <= nj < n:
+            neighbors.append(grid[ni][nj])
+    m = min(neighbors)
+    result = []
+    for idx in range(k):
+        result.append(1 if idx % 2 == 0 else m)
+    return result
+=== REQ000361 END ===
+
+=== REQ000362 START ===
+def minPath(grid, k):
+    """
+    Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    each cell of the grid contains a value. Every integer in the range [1, N * N]
+    inclusive appears exactly once on the cells of the grid.
+
+    You have to find the minimum path of length k in the grid. You can start
+    from any cell, and in each step you can move to any of the neighbor cells,
+    in other words, you can go to cells which share an edge with you current
+    cell.
+    Please note that a path of length k means visiting exactly k cells (not
+    necessarily distinct).
+    You CANNOT go off the grid.
+    A path A (of length k) is considered less than a path B (of length k) if
+    after making the ordered lists of the values on the cells that A and B go
+    through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    lst_A[j] = lst_B[j].
+    It is guaranteed that the answer is unique.
+    Return an ordered list of the values on the cells that the minimum path go through.
+
+    Examples:
+
+        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3
+        Output: [1, 2, 1]
+
+        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
+        Output: [1]
+    """
+    size = len(grid)
+
+    # The smallest value on the board is 1, so the best path must sit on it and
+    # then bounce between it and its cheapest neighbour.
+    one_row, one_column = next(
+        (row, column)
+        for row in range(size)
+        for column in range(size)
+        if grid[row][column] == 1
+    )
+
+    cheapest_neighbour = min(
+        grid[one_row + row_step][one_column + column_step]
+        for row_step, column_step in ((-1, 0), (1, 0), (0, -1), (0, 1))
+        if 0 <= one_row + row_step < size and 0 <= one_column + column_step < size
+    )
+
+    return [1 if step % 2 == 0 else cheapest_neighbour for step in range(k)]
+=== REQ000362 END ===
+
+=== REQ000363 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    // each cell of the grid contains a value. Every integer in the range [1, N * N]
+    // inclusive appears exactly once on the cells of the grid.
+    // You have to find the minimum path of length k in the grid. You can start
+    // from any cell, and in each step you can move to any of the neighbor cells,
+    // in other words, you can go to cells which share an edge with you current
+    // cell.
+    // Please note that a path of length k means visiting exactly k cells (not
+    // necessarily distinct).
+    // You CANNOT go off the grid.
+    // A path A (of length k) is considered less than a path B (of length k) if
+    // after making the ordered array lists of the values on the cells that A and B go
+    // through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    // than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    // such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    // lst_A[j] = lst_B[j].
+    // It is guaranteed that the answer is unique.
+    // Return an ordered array list of the values on the cells that the minimum path go through.
+    // Examples:    
+    // >>> minPath((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)7l, (long)8l, (long)9l))))), (3l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)1l)))
+    // >>> minPath((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)5l, (long)9l, (long)3l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)7l, (long)8l, (long)2l))))), (1l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l)))
+    public static ArrayList<Long> minPath(ArrayList<ArrayList<Long>> grid, long k) {
+        int n = grid.size();
+        int pi = -1, pj = -1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid.get(i).get(j) == 1L) { pi = i; pj = j; }
+            }
+        }
+        int[] di = {-1, 1, 0, 0};
+        int[] dj = {0, 0, -1, 1};
+        long m = Long.MAX_VALUE;
+        for (int d = 0; d < 4; d++) {
+            int ni = pi + di[d], nj = pj + dj[d];
+            if (ni >= 0 && ni < n && nj >= 0 && nj < n) {
+                m = Math.min(m, grid.get(ni).get(nj));
+            }
+        }
+        ArrayList<Long> result = new ArrayList<>();
+        for (int idx = 0; idx < k; idx++) {
+            result.add(idx % 2 == 0 ? 1L : m);
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<ArrayList<Long>> g1 = new ArrayList<>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(1L,2L,3L)),
+            new ArrayList<>(Arrays.asList(4L,5L,6L)),
+            new ArrayList<>(Arrays.asList(7L,8L,9L))));
+        System.out.println(minPath(g1, 3L));
+        ArrayList<ArrayList<Long>> g2 = new ArrayList<>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(5L,9L,3L)),
+            new ArrayList<>(Arrays.asList(4L,1L,6L)),
+            new ArrayList<>(Arrays.asList(7L,8L,2L))));
+        System.out.println(minPath(g2, 1L));
+    }
+}
+=== REQ000363 END ===
+
+=== REQ000364 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    // each cell of the grid contains a value. Every integer in the range [1, N * N]
+    // inclusive appears exactly once on the cells of the grid.
+    // You have to find the minimum path of length k in the grid. You can start
+    // from any cell, and in each step you can move to any of the neighbor cells,
+    // in other words, you can go to cells which share an edge with you current
+    // cell.
+    // Please note that a path of length k means visiting exactly k cells (not
+    // necessarily distinct).
+    // You CANNOT go off the grid.
+    // A path A (of length k) is considered less than a path B (of length k) if
+    // after making the ordered array lists of the values on the cells that A and B go
+    // through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    // than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    // such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    // lst_A[j] = lst_B[j].
+    // It is guaranteed that the answer is unique.
+    // Return an ordered array list of the values on the cells that the minimum path go through.
+    // Examples:    
+    // >>> minPath((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)7l, (long)8l, (long)9l))))), (3l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)1l)))
+    // >>> minPath((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)5l, (long)9l, (long)3l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)7l, (long)8l, (long)2l))))), (1l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l)))
+    private static final int[] ROW_STEPS = {-1, 1, 0, 0};
+    private static final int[] COLUMN_STEPS = {0, 0, -1, 1};
+
+    public static ArrayList<Long> minPath(ArrayList<ArrayList<Long>> grid, long k) {
+        int size = grid.size();
+
+        // The smallest value on the board is 1, so the best path must sit on it
+        // and then bounce between it and its cheapest neighbour.
+        int oneRow = 0;
+        int oneColumn = 0;
+        for (int row = 0; row < size; row++) {
+            for (int column = 0; column < size; column++) {
+                if (grid.get(row).get(column) == 1L) {
+                    oneRow = row;
+                    oneColumn = column;
+                }
+            }
+        }
+
+        long cheapestNeighbour = Long.MAX_VALUE;
+        for (int move = 0; move < ROW_STEPS.length; move++) {
+            int row = oneRow + ROW_STEPS[move];
+            int column = oneColumn + COLUMN_STEPS[move];
+            if (row >= 0 && row < size && column >= 0 && column < size) {
+                cheapestNeighbour = Math.min(cheapestNeighbour, grid.get(row).get(column));
+            }
+        }
+
+        ArrayList<Long> path = new ArrayList<>();
+        for (long step = 0; step < k; step++) {
+            path.add(step % 2 == 0 ? 1L : cheapestNeighbour);
+        }
+        return path;
+    }
+}
+=== REQ000364 END ===
+
+=== REQ000365 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+// each cell of the grid contains a value. Every integer in the range [1, N * N]
+// inclusive appears exactly once on the cells of the grid.
+// You have to find the minimum path of length k in the grid. You can start
+// from any cell, and in each step you can move to any of the neighbor cells,
+// in other words, you can go to cells which share an edge with you current
+// cell.
+// Please note that a path of length k means visiting exactly k cells (not
+// necessarily distinct).
+// You CANNOT go off the grid.
+// A path A (of length k) is considered less than a path B (of length k) if
+// after making the ordered vectors of the values on the cells that A and B go
+// through (let's call them lst_A and lst_B), lst_A is lexicographically less
+// than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+// such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+// lst_A[j] = lst_B[j].
+// It is guaranteed that the answer is unique.
+// Return an ordered vector of the values on the cells that the minimum path go through.
+// Examples:    
+// >>> minPath((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3}), (std::vector<long>)std::vector<long>({(long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)7, (long)8, (long)9})})), (3))
+// (std::vector<long>({(long)1, (long)2, (long)1}))
+// >>> minPath((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)5, (long)9, (long)3}), (std::vector<long>)std::vector<long>({(long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)7, (long)8, (long)2})})), (1))
+// (std::vector<long>({(long)1}))
+std::vector<long> minPath(std::vector<std::vector<long>> grid, long k) {
+    int n = grid.size();
+    int pi = -1, pj = -1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (grid[i][j] == 1) { pi = i; pj = j; }
+        }
+    }
+    int di[4] = {-1,1,0,0};
+    int dj[4] = {0,0,-1,1};
+    long m = LONG_MAX;
+    for (int d = 0; d < 4; d++) {
+        int ni = pi + di[d], nj = pj + dj[d];
+        if (ni >= 0 && ni < n && nj >= 0 && nj < n) {
+            m = std::min(m, grid[ni][nj]);
+        }
+    }
+    std::vector<long> result;
+    for (long idx = 0; idx < k; idx++) {
+        result.push_back(idx % 2 == 0 ? 1 : m);
+    }
+    return result;
+}
+
+int main() {
+    std::vector<std::vector<long>> g1 = {{1,2,3},{4,5,6},{7,8,9}};
+    for (long v : minPath(g1, 3)) std::cout << v << " ";
+    std::cout << std::endl;
+    std::vector<std::vector<long>> g2 = {{5,9,3},{4,1,6},{7,8,2}};
+    for (long v : minPath(g2, 1)) std::cout << v << " ";
+    std::cout << std::endl;
+    return 0;
+}
+=== REQ000365 END ===
+
+=== REQ000366 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+// each cell of the grid contains a value. Every integer in the range [1, N * N]
+// inclusive appears exactly once on the cells of the grid.
+// You have to find the minimum path of length k in the grid. You can start
+// from any cell, and in each step you can move to any of the neighbor cells,
+// in other words, you can go to cells which share an edge with you current
+// cell.
+// Please note that a path of length k means visiting exactly k cells (not
+// necessarily distinct).
+// You CANNOT go off the grid.
+// A path A (of length k) is considered less than a path B (of length k) if
+// after making the ordered vectors of the values on the cells that A and B go
+// through (let's call them lst_A and lst_B), lst_A is lexicographically less
+// than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+// such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+// lst_A[j] = lst_B[j].
+// It is guaranteed that the answer is unique.
+// Return an ordered vector of the values on the cells that the minimum path go through.
+// Examples:    
+// >>> minPath((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3}), (std::vector<long>)std::vector<long>({(long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)7, (long)8, (long)9})})), (3))
+// (std::vector<long>({(long)1, (long)2, (long)1}))
+// >>> minPath((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)5, (long)9, (long)3}), (std::vector<long>)std::vector<long>({(long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)7, (long)8, (long)2})})), (1))
+// (std::vector<long>({(long)1}))
+std::vector<long> minPath(std::vector<std::vector<long>> grid, long k) {
+    const int size = static_cast<int>(grid.size());
+    const int rowSteps[4] = {-1, 1, 0, 0};
+    const int columnSteps[4] = {0, 0, -1, 1};
+
+    // The smallest value on the board is 1, so the best path must sit on it and
+    // then bounce between it and its cheapest neighbour.
+    int oneRow = 0, oneColumn = 0;
+    for (int row = 0; row < size; ++row) {
+        for (int column = 0; column < size; ++column) {
+            if (grid[row][column] == 1) {
+                oneRow = row;
+                oneColumn = column;
+            }
+        }
+    }
+
+    long cheapestNeighbour = LONG_MAX;
+    for (int move = 0; move < 4; ++move) {
+        const int row = oneRow + rowSteps[move];
+        const int column = oneColumn + columnSteps[move];
+        if (row >= 0 && row < size && column >= 0 && column < size) {
+            cheapestNeighbour = std::min(cheapestNeighbour, grid[row][column]);
+        }
+    }
+
+    std::vector<long> path;
+    path.reserve(static_cast<std::size_t>(k));
+    for (long step = 0; step < k; ++step) {
+        path.push_back(step % 2 == 0 ? 1L : cheapestNeighbour);
+    }
+    return path;
+}
+=== REQ000366 END ===
+
+=== REQ000367 START ===
+def tri(n):
+    """Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    the last couple centuries. However, what people don't know is Tribonacci sequence.
+    Tribonacci sequence is defined by the recurrence:
+    tri(1) = 3
+    tri(n) = 1 + n / 2, if n is even.
+    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    For example:
+    tri(2) = 1 + (2 / 2) = 2
+    tri(4) = 3
+    tri(3) = tri(2) + tri(1) + tri(4)
+           = 2 + 3 + 3 = 8 
+    You are given a non-negative integer number n, you have to a return a list of the 
+    first n + 1 numbers of the Tribonacci sequence.
+    Examples:
+    tri(3) = [1, 3, 2, 8]
+    """
+    result = [0] * (n + 1)
+    result[0] = 1
+    for i in range(1, n + 1):
+        if i == 1:
+            result[i] = 3
+        elif i % 2 == 0:
+            result[i] = 1 + i // 2
+        else:
+            next_val = 1 + (i + 1) // 2
+            result[i] = result[i - 1] + result[i - 2] + next_val
+    return result
+=== REQ000367 END ===
+
+=== REQ000368 START ===
+def tri(n):
+    """Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    the last couple centuries. However, what people don't know is Tribonacci sequence.
+    Tribonacci sequence is defined by the recurrence:
+    tri(1) = 3
+    tri(n) = 1 + n / 2, if n is even.
+    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    For example:
+    tri(2) = 1 + (2 / 2) = 2
+    tri(4) = 3
+    tri(3) = tri(2) + tri(1) + tri(4)
+           = 2 + 3 + 3 = 8 
+    You are given a non-negative integer number n, you have to a return a list of the 
+    first n + 1 numbers of the Tribonacci sequence.
+    Examples:
+    tri(3) = [1, 3, 2, 8]
+    """
+    def even_term(index: int) -> int:
+        """Even positions have a closed form, so no recursion is needed."""
+        return 1 + index // 2
+
+    sequence = [1]
+    for index in range(1, n + 1):
+        if index == 1:
+            sequence.append(3)
+        elif index % 2 == 0:
+            sequence.append(even_term(index))
+        else:
+            # The forward reference tri(index + 1) is even, hence known outright.
+            sequence.append(sequence[index - 1] + sequence[index - 2] + even_term(index + 1))
+
+    return sequence
+=== REQ000368 END ===
+
+=== REQ000369 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    // the last couple centuries. However, what people don't know is Tribonacci sequence.
+    // Tribonacci sequence is defined by the recurrence:
+    // tri(1) = 3
+    // tri(n) = 1 + n / 2, if n is even.
+    // tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    // For example:
+    // tri(2) = 1 + (2 / 2) = 2
+    // tri(4) = 3
+    // tri(3) = tri(2) + tri(1) + tri(4)
+    // = 2 + 3 + 3 = 8 
+    // You are given a non-negative integer number n, you have to a return an array array list of the 
+    // first n + 1 numbers of the Tribonacci sequence.
+    // Examples:
+    // >>> tri((3l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)3l, (long)2l, (long)8l)))
+    public static ArrayList<Long> tri(long n) {
+        int nn = (int) n;
+        long[] result = new long[nn + 1];
+        if (nn >= 0) result[0] = 1;
+        for (int i = 1; i <= nn; i++) {
+            if (i == 1) {
+                result[i] = 3;
+            } else if (i % 2 == 0) {
+                result[i] = 1 + i / 2;
+            } else {
+                long nextVal = 1 + (i + 1) / 2;
+                result[i] = result[i - 1] + result[i - 2] + nextVal;
+            }
+        }
+        ArrayList<Long> res = new ArrayList<>();
+        for (long v : result) res.add(v);
+        return res;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(tri(3L));
+    }
+}
+=== REQ000369 END ===
+
+=== REQ000370 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    // the last couple centuries. However, what people don't know is Tribonacci sequence.
+    // Tribonacci sequence is defined by the recurrence:
+    // tri(1) = 3
+    // tri(n) = 1 + n / 2, if n is even.
+    // tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    // For example:
+    // tri(2) = 1 + (2 / 2) = 2
+    // tri(4) = 3
+    // tri(3) = tri(2) + tri(1) + tri(4)
+    // = 2 + 3 + 3 = 8 
+    // You are given a non-negative integer number n, you have to a return an array array list of the 
+    // first n + 1 numbers of the Tribonacci sequence.
+    // Examples:
+    // >>> tri((3l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)3l, (long)2l, (long)8l)))
+    public static ArrayList<Long> tri(long n) {
+        ArrayList<Long> sequence = new ArrayList<>();
+        sequence.add(1L);
+
+        for (int index = 1; index <= n; index++) {
+            if (index == 1) {
+                sequence.add(3L);
+            } else if (index % 2 == 0) {
+                sequence.add(evenTerm(index));
+            } else {
+                // The forward reference tri(index + 1) is even, hence known outright.
+                sequence.add(sequence.get(index - 1)
+                        + sequence.get(index - 2)
+                        + evenTerm(index + 1));
+            }
+        }
+
+        return sequence;
+    }
+
+    /** Even positions have a closed form, so no recursion is needed. */
+    private static long evenTerm(long index) {
+        return 1 + index / 2;
+    }
+}
+=== REQ000370 END ===
+
+=== REQ000371 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+// the last couple centuries. However, what people don't know is Tribonacci sequence.
+// Tribonacci sequence is defined by the recurrence:
+// tri(1) = 3
+// tri(n) = 1 + n / 2, if n is even.
+// tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+// For example:
+// tri(2) = 1 + (2 / 2) = 2
+// tri(4) = 3
+// tri(3) = tri(2) + tri(1) + tri(4)
+// = 2 + 3 + 3 = 8 
+// You are given a non-negative integer number n, you have to a return a vector of the 
+// first n + 1 numbers of the Tribonacci sequence.
+// Examples:
+// >>> tri((3))
+// (std::vector<long>({(long)1, (long)3, (long)2, (long)8}))
+std::vector<long> tri(long n) {
+    std::vector<long> result(n + 1, 0);
+    result[0] = 1;
+    for (long i = 1; i <= n; i++) {
+        if (i == 1) {
+            result[i] = 3;
+        } else if (i % 2 == 0) {
+            result[i] = 1 + i / 2;
+        } else {
+            long nextVal = 1 + (i + 1) / 2;
+            result[i] = result[i - 1] + result[i - 2] + nextVal;
+        }
+    }
+    return result;
+}
+
+int main() {
+    for (long v : tri(3)) std::cout << v << " ";
+    std::cout << std::endl;
+    return 0;
+}
+=== REQ000371 END ===
+
+=== REQ000372 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+// the last couple centuries. However, what people don't know is Tribonacci sequence.
+// Tribonacci sequence is defined by the recurrence:
+// tri(1) = 3
+// tri(n) = 1 + n / 2, if n is even.
+// tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+// For example:
+// tri(2) = 1 + (2 / 2) = 2
+// tri(4) = 3
+// tri(3) = tri(2) + tri(1) + tri(4)
+// = 2 + 3 + 3 = 8 
+// You are given a non-negative integer number n, you have to a return a vector of the 
+// first n + 1 numbers of the Tribonacci sequence.
+// Examples:
+// >>> tri((3))
+// (std::vector<long>({(long)1, (long)3, (long)2, (long)8}))
+
+/// Even positions have a closed form, so no recursion is needed.
+static long evenTerm(long index) {
+    return 1 + index / 2;
+}
+
+std::vector<long> tri(long n) {
+    std::vector<long> sequence;
+    sequence.push_back(1);
+
+    for (long index = 1; index <= n; ++index) {
+        if (index == 1) {
+            sequence.push_back(3);
+        } else if (index % 2 == 0) {
+            sequence.push_back(evenTerm(index));
+        } else {
+            // The forward reference tri(index + 1) is even, hence known outright.
+            sequence.push_back(sequence[index - 1] + sequence[index - 2] + evenTerm(index + 1));
+        }
+    }
+
+    return sequence;
+}
+=== REQ000372 END ===
+
+=== REQ000373 START ===
+def digits(n):
+    """Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    digits(4)  == 0
+    digits(235) == 15
+    """
+    result = 1
+    has_odd = False
+    for ch in str(n):
+        d = int(ch)
+        if d % 2 == 1:
+            result *= d
+            has_odd = True
+    return result if has_odd else 0
+=== REQ000373 END ===
+
+=== REQ000374 START ===
+def digits(n):
+    """Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    digits(4)  == 0
+    digits(235) == 15
+    """
+    odd_digits = [int(character) for character in str(n) if int(character) % 2 == 1]
+
+    # An empty product would be 1, but the specification asks for 0 instead.
+    if not odd_digits:
+        return 0
+
+    product = 1
+    for digit in odd_digits:
+        product *= digit
+    return product
+=== REQ000374 END ===
+
+=== REQ000375 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the product of the odd digits.
+    // Return 0 if all digits are even.
+    // For example:
+    // >>> digits((1l))
+    // (1l)
+    // >>> digits((4l))
+    // (0l)
+    // >>> digits((235l))
+    // (15l)
+    public static long digits(long n) {
+        long result = 1;
+        boolean hasOdd = false;
+        String s = Long.toString(n);
+        for (char c : s.toCharArray()) {
+            int d = c - '0';
+            if (d % 2 == 1) {
+                result *= d;
+                hasOdd = true;
+            }
+        }
+        return hasOdd ? result : 0;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(digits(1L));
+        System.out.println(digits(4L));
+        System.out.println(digits(235L));
+    }
+}
+=== REQ000375 END ===

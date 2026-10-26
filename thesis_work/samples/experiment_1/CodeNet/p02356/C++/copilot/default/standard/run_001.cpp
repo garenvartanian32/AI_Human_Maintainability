@@ -1,0 +1,1 @@
+You didn't include the problem statement. Please paste the full problem (input format, constraints, and sample I/O). If you want, include any required complexity bounds or special edge-cases to handle. Once provided, I'll produce a complete, tested C++ solution with brief explanation and sample usage.

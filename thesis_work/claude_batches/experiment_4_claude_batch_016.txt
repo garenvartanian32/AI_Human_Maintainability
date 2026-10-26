@@ -1,0 +1,603 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000376 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the product of the odd digits.
+    // Return 0 if all digits are even.
+    // For example:
+    // >>> digits((1l))
+    // (1l)
+    // >>> digits((4l))
+    // (0l)
+    // >>> digits((235l))
+    // (15l)
+    public static long digits(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000377 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the product of the odd digits.
+// Return 0 if all digits are even.
+// For example:
+// >>> digits((1))
+// (1)
+// >>> digits((4))
+// (0)
+// >>> digits((235))
+// (15)
+long digits(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000378 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the product of the odd digits.
+// Return 0 if all digits are even.
+// For example:
+// >>> digits((1))
+// (1)
+// >>> digits((4))
+// (0)
+// >>> digits((235))
+// (15)
+long digits(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000379 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def int_to_mini_roman(number):
+    """
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000380 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def int_to_mini_roman(number):
+    """
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000381 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer, obtain its roman numeral equivalent as a string,
+    // and return it in lowercase.
+    // Restrictions: 1 <= num <= 1000
+    // Examples:
+    // >>> intToMiniRoman((19l))
+    // ("xix")
+    // >>> intToMiniRoman((152l))
+    // ("clii")
+    // >>> intToMiniRoman((426l))
+    // ("cdxxvi")
+    public static String intToMiniRoman(long number) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000382 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer, obtain its roman numeral equivalent as a string,
+    // and return it in lowercase.
+    // Restrictions: 1 <= num <= 1000
+    // Examples:
+    // >>> intToMiniRoman((19l))
+    // ("xix")
+    // >>> intToMiniRoman((152l))
+    // ("clii")
+    // >>> intToMiniRoman((426l))
+    // ("cdxxvi")
+    public static String intToMiniRoman(long number) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000383 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer, obtain its roman numeral equivalent as a string,
+// and return it in lowercase.
+// Restrictions: 1 <= num <= 1000
+// Examples:
+// >>> int_to_mini_roman((19))
+// ("xix")
+// >>> int_to_mini_roman((152))
+// ("clii")
+// >>> int_to_mini_roman((426))
+// ("cdxxvi")
+std::string int_to_mini_roman(long number) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000384 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer, obtain its roman numeral equivalent as a string,
+// and return it in lowercase.
+// Restrictions: 1 <= num <= 1000
+// Examples:
+// >>> int_to_mini_roman((19))
+// ("xix")
+// >>> int_to_mini_roman((152))
+// ("clii")
+// >>> int_to_mini_roman((426))
+// ("cdxxvi")
+std::string int_to_mini_roman(long number) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000385 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def do_algebra(operator, operand):
+    """
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000386 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def do_algebra(operator, operand):
+    """
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000387 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given two array lists operator, and operand. The first array list has basic algebra operations, and 
+    // the second array list is an array array list of integers. Use the two given array lists to build the algebric 
+    // expression and return the evaluation of this expression.
+    // The basic algebra operations:
+    // Addition ( + ) 
+    // Subtraction ( - ) 
+    // Multiplication ( * ) 
+    // Floor division ( // ) 
+    // Exponentiation ( ** ) 
+    // Example:
+    // operator['+', '*', '-']
+    // array array list = [2, 3, 4, 5]
+    // result = 2 + 3 * 4 - 5
+    // => result = 9
+    // Note:
+    // The length of operator array list is equal to the length of operand array list minus one.
+    // Operand is an array array list of of non-negative integers.
+    // Operator array list has at least one operator, and operand array list has at least two operands.
+    public static long doAlgebra(ArrayList<String> op, ArrayList<Long> operand) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000388 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given two array lists operator, and operand. The first array list has basic algebra operations, and 
+    // the second array list is an array array list of integers. Use the two given array lists to build the algebric 
+    // expression and return the evaluation of this expression.
+    // The basic algebra operations:
+    // Addition ( + ) 
+    // Subtraction ( - ) 
+    // Multiplication ( * ) 
+    // Floor division ( // ) 
+    // Exponentiation ( ** ) 
+    // Example:
+    // operator['+', '*', '-']
+    // array array list = [2, 3, 4, 5]
+    // result = 2 + 3 * 4 - 5
+    // => result = 9
+    // Note:
+    // The length of operator array list is equal to the length of operand array list minus one.
+    // Operand is an array array list of of non-negative integers.
+    // Operator array list has at least one operator, and operand array list has at least two operands.
+    public static long doAlgebra(ArrayList<String> op, ArrayList<Long> operand) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000389 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given two vectors operator, and operand. The first vector has basic algebra operations, and 
+// the second vector is a vector of integers. Use the two given vectors to build the algebric 
+// expression and return the evaluation of this expression.
+// The basic algebra operations:
+// Addition ( + ) 
+// Subtraction ( - ) 
+// Multiplication ( * ) 
+// Floor division ( // ) 
+// Exponentiation ( ** ) 
+// Example:
+// operator['+', '*', '-']
+// vector = [2, 3, 4, 5]
+// result = 2 + 3 * 4 - 5
+// => result = 9
+// Note:
+// The length of operator vector is equal to the length of operand vector minus one.
+// Operand is a vector of of non-negative integers.
+// Operator vector has at least one operator, and operand vector has at least two operands.
+long do_algebra(std::vector<std::string> op, std::vector<long> operand) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000390 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given two vectors operator, and operand. The first vector has basic algebra operations, and 
+// the second vector is a vector of integers. Use the two given vectors to build the algebric 
+// expression and return the evaluation of this expression.
+// The basic algebra operations:
+// Addition ( + ) 
+// Subtraction ( - ) 
+// Multiplication ( * ) 
+// Floor division ( // ) 
+// Exponentiation ( ** ) 
+// Example:
+// operator['+', '*', '-']
+// vector = [2, 3, 4, 5]
+// result = 2 + 3 * 4 - 5
+// => result = 9
+// Note:
+// The length of operator vector is equal to the length of operand vector minus one.
+// Operand is a vector of of non-negative integers.
+// Operator vector has at least one operator, and operand vector has at least two operands.
+long do_algebra(std::vector<std::string> op, std::vector<long> operand) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000391 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def solve(s):
+    """You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve("1234") = "4321"
+    solve("ab") = "AB"
+    solve("#a@C") = "#A@c"
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000392 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def solve(s):
+    """You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve("1234") = "4321"
+    solve("ab") = "AB"
+    solve("#a@C") = "#A@c"
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000393 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a string s.
+    // if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    // otherwise keep it as it is.
+    // If the string contains no letters, reverse the string.
+    // The function should return the resulted string.
+    // Examples
+    // >>> solve(("1234"))
+    // ("4321")
+    // >>> solve(("ab"))
+    // ("AB")
+    // >>> solve(("#a@C"))
+    // ("#A@c")
+    public static String solve(String s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000394 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a string s.
+    // if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    // otherwise keep it as it is.
+    // If the string contains no letters, reverse the string.
+    // The function should return the resulted string.
+    // Examples
+    // >>> solve(("1234"))
+    // ("4321")
+    // >>> solve(("ab"))
+    // ("AB")
+    // >>> solve(("#a@C"))
+    // ("#A@c")
+    public static String solve(String s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000395 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a string s.
+// if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+// otherwise keep it as it is.
+// If the string contains no letters, reverse the string.
+// The function should return the resulted string.
+// Examples
+// >>> solve(("1234"))
+// ("4321")
+// >>> solve(("ab"))
+// ("AB")
+// >>> solve(("#a@C"))
+// ("#A@c")
+std::string solve(std::string s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000396 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a string s.
+// if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+// otherwise keep it as it is.
+// If the string contains no letters, reverse the string.
+// The function should return the resulted string.
+// Examples
+// >>> solve(("1234"))
+// ("4321")
+// >>> solve(("ab"))
+// ("AB")
+// >>> solve(("#a@C"))
+// ("#A@c")
+std::string solve(std::string s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000397 PROMPT ===
+Solve the following programming problem in Python.
+
+
+
+def strlen(string: str) -> int:
+    """ Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000398 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+
+def strlen(string: str) -> int:
+    """ Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000399 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Return length of given string
+    // >>> stringLength((""))
+    // (0l)
+    // >>> stringLength(("abc"))
+    // (3l)
+    public static long strlen(String string) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000400 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Return length of given string
+    // >>> stringLength((""))
+    // (0l)
+    // >>> stringLength(("abc"))
+    // (3l)
+    public static long strlen(String string) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

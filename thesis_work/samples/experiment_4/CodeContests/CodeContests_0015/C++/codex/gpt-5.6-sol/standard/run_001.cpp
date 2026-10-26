@@ -1,0 +1,1 @@
+Please provide the full problem statement, including input/output format, constraints, and sample cases. I’ll then produce a C++ solution with the algorithm, correctness argument, complexity, and code.

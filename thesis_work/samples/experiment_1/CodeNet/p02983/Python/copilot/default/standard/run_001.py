@@ -1,0 +1,1 @@
+I'm ready to help you solve a programming problem in Python! However, I don't see the problem statement in your message. Could you please provide the specific programming problem you'd like me to solve?

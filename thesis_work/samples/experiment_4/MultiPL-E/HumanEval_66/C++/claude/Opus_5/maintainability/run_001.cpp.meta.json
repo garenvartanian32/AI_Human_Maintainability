@@ -1,0 +1,13 @@
+{
+  "experiment": 4,
+  "dataset": "MultiPL-E",
+  "problem_id": "HumanEval_66",
+  "language": "C++",
+  "source": "AI",
+  "provider": "claude",
+  "model": "Opus 5",
+  "model_group": "Opus 5",
+  "prompt_type": "maintainability",
+  "run": 1,
+  "correctness": "not_tested"
+}

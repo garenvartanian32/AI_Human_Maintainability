@@ -1,0 +1,1 @@
+Please paste the full programming problem statement, including input/output format and constraints. I don’t have the statement in the conversation, and the workspace shell is currently blocked by an access error, so I can’t inspect local files for it.

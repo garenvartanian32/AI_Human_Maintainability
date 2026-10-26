@@ -1,0 +1,11 @@
+def main():
+    a, b = map(int, input().split())
+    total = a
+    stubs = a
+    while stubs >= b:
+        new = stubs // b
+        total += new
+        stubs = stubs % b + new
+    print(total)
+
+main()

@@ -1,0 +1,989 @@
+=== REQ000026 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int size;
+    static long[] cnt;
+    static long[] tot;
+
+    static void add(int i, long x) {
+        while (i <= size) {
+            cnt[i]++;
+            tot[i] += x;
+            i += i & -i;
+        }
+    }
+
+    static long[] query(int i) {
+        long c = 0, t = 0;
+        while (i > 0) {
+            c += cnt[i];
+            t += tot[i];
+            i -= i & -i;
+        }
+        return new long[]{c, t};
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        in.nextToken();
+        int n = (int) in.nval;
+        long[] xs = new long[n];
+        long[] vs = new long[n];
+        for (int i = 0; i < n; i++) { in.nextToken(); xs[i] = (long) in.nval; }
+        for (int i = 0; i < n; i++) { in.nextToken(); vs[i] = (long) in.nval; }
+
+        long[] sortedV = vs.clone();
+        Arrays.sort(sortedV);
+        int distinct = 0;
+        for (int i = 0; i < n; i++) {
+            if (i == 0 || sortedV[i] != sortedV[i - 1]) {
+                sortedV[distinct++] = sortedV[i];
+            }
+        }
+
+        size = distinct;
+        cnt = new long[size + 1];
+        tot = new long[size + 1];
+
+        Integer[] order = new Integer[n];
+        for (int i = 0; i < n; i++) order[i] = i;
+        Arrays.sort(order, (a, b) -> Long.compare(xs[a], xs[b]));
+
+        long total = 0;
+        for (int idx : order) {
+            int rank = lowerBound(sortedV, distinct, vs[idx]) + 1;
+            long[] res = query(rank);
+            total += res[0] * xs[idx] - res[1];
+            add(rank, xs[idx]);
+        }
+        System.out.println(total);
+    }
+
+    static int lowerBound(long[] arr, int len, long key) {
+        int lo = 0, hi = len;
+        while (lo < hi) {
+            int mid = (lo + hi) >>> 1;
+            if (arr[mid] < key) lo = mid + 1;
+            else hi = mid;
+        }
+        return lo;
+    }
+}
+=== REQ000026 END ===
+
+=== REQ000027 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Fenwick {
+    int size;
+    vector<long long> cnt, tot;
+    Fenwick(int n) : size(n), cnt(n + 1, 0), tot(n + 1, 0) {}
+
+    void add(int i, long long x) {
+        for (; i <= size; i += i & -i) {
+            cnt[i]++;
+            tot[i] += x;
+        }
+    }
+
+    pair<long long, long long> query(int i) const {
+        long long c = 0, t = 0;
+        for (; i > 0; i -= i & -i) {
+            c += cnt[i];
+            t += tot[i];
+        }
+        return {c, t};
+    }
+};
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+    vector<long long> xs(n), vs(n);
+    for (auto &x : xs) cin >> x;
+    for (auto &v : vs) cin >> v;
+
+    vector<long long> comp = vs;
+    sort(comp.begin(), comp.end());
+    comp.erase(unique(comp.begin(), comp.end()), comp.end());
+
+    vector<int> order(n);
+    iota(order.begin(), order.end(), 0);
+    sort(order.begin(), order.end(), [&](int a, int b) { return xs[a] < xs[b]; });
+
+    Fenwick tree((int) comp.size());
+    long long total = 0;
+    for (int idx : order) {
+        int rank = (int)(lower_bound(comp.begin(), comp.end(), vs[idx]) - comp.begin()) + 1;
+        auto [c, t] = tree.query(rank);
+        total += c * xs[idx] - t;
+        tree.add(rank, xs[idx]);
+    }
+    cout << total << '\n';
+    return 0;
+}
+=== REQ000027 END ===
+
+=== REQ000028 START ===
+import sys
+from itertools import accumulate
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0]); k = int(data[1])
+
+    both, only_a, only_b = [], [], []
+    pos = 2
+    for _ in range(n):
+        t = int(data[pos]); a = int(data[pos + 1]); b = int(data[pos + 2])
+        pos += 3
+        if a and b:
+            both.append(t)
+        elif a:
+            only_a.append(t)
+        elif b:
+            only_b.append(t)
+
+    both.sort(); only_a.sort(); only_b.sort()
+    pre_both = [0] + list(accumulate(both))
+    pre_a = [0] + list(accumulate(only_a))
+    pre_b = [0] + list(accumulate(only_b))
+
+    best = -1
+    for taken in range(len(both) + 1):
+        need = max(k - taken, 0)
+        if need > len(only_a) or need > len(only_b):
+            continue
+        cost = pre_both[taken] + pre_a[need] + pre_b[need]
+        if best < 0 or cost < best:
+            best = cost
+    print(best)
+
+
+main()
+=== REQ000028 END ===
+
+=== REQ000029 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        in.nextToken(); int n = (int) in.nval;
+        in.nextToken(); int k = (int) in.nval;
+
+        List<Integer> both = new ArrayList<>();
+        List<Integer> onlyA = new ArrayList<>();
+        List<Integer> onlyB = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            in.nextToken(); int t = (int) in.nval;
+            in.nextToken(); int a = (int) in.nval;
+            in.nextToken(); int b = (int) in.nval;
+            if (a == 1 && b == 1) both.add(t);
+            else if (a == 1) onlyA.add(t);
+            else if (b == 1) onlyB.add(t);
+        }
+        Collections.sort(both);
+        Collections.sort(onlyA);
+        Collections.sort(onlyB);
+
+        long[] preBoth = prefix(both);
+        long[] preA = prefix(onlyA);
+        long[] preB = prefix(onlyB);
+
+        long best = -1;
+        for (int taken = 0; taken <= both.size(); taken++) {
+            int need = Math.max(k - taken, 0);
+            if (need > onlyA.size() || need > onlyB.size()) continue;
+            long cost = preBoth[taken] + preA[need] + preB[need];
+            if (best < 0 || cost < best) best = cost;
+        }
+        System.out.println(best);
+    }
+
+    static long[] prefix(List<Integer> values) {
+        long[] pre = new long[values.size() + 1];
+        for (int i = 0; i < values.size(); i++) {
+            pre[i + 1] = pre[i] + values.get(i);
+        }
+        return pre;
+    }
+}
+=== REQ000029 END ===
+
+=== REQ000030 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+static vector<long long> prefix(vector<long long> values) {
+    sort(values.begin(), values.end());
+    vector<long long> pre(values.size() + 1, 0);
+    for (size_t i = 0; i < values.size(); i++) {
+        pre[i + 1] = pre[i] + values[i];
+    }
+    return pre;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, k;
+    cin >> n >> k;
+    vector<long long> both, onlyA, onlyB;
+    for (int i = 0; i < n; i++) {
+        long long t, a, b;
+        cin >> t >> a >> b;
+        if (a == 1 && b == 1) both.push_back(t);
+        else if (a == 1) onlyA.push_back(t);
+        else if (b == 1) onlyB.push_back(t);
+    }
+
+    size_t countBoth = both.size(), countA = onlyA.size(), countB = onlyB.size();
+    vector<long long> preBoth = prefix(both), preA = prefix(onlyA), preB = prefix(onlyB);
+
+    long long best = -1;
+    for (size_t taken = 0; taken <= countBoth; taken++) {
+        long long need = max<long long>((long long) k - (long long) taken, 0);
+        if (need > (long long) countA || need > (long long) countB) continue;
+        long long cost = preBoth[taken] + preA[need] + preB[need];
+        if (best < 0 || cost < best) best = cost;
+    }
+    cout << best << '\n';
+    return 0;
+}
+=== REQ000030 END ===
+
+=== REQ000031 START ===
+import sys
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0]); m = int(data[1])
+
+    parent = list(range(m + 1))
+    rank_ = [0] * (m + 1)
+
+    def find(x):
+        root = x
+        while parent[root] != root:
+            root = parent[root]
+        while parent[x] != root:
+            parent[x], x = root, parent[x]
+        return root
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra == rb:
+            return False
+        if rank_[ra] < rank_[rb]:
+            ra, rb = rb, ra
+        parent[rb] = ra
+        if rank_[ra] == rank_[rb]:
+            rank_[ra] += 1
+        return True
+
+    basis = []
+    pos = 2
+    for i in range(1, n + 1):
+        cnt = int(data[pos]); pos += 1
+        if cnt == 1:
+            u, v = 0, int(data[pos]); pos += 1
+        else:
+            u, v = int(data[pos]), int(data[pos + 1]); pos += 2
+        if union(u, v):
+            basis.append(i)
+
+    print(pow(2, len(basis), 10 ** 9 + 7), len(basis))
+    print(' '.join(map(str, basis)))
+
+
+main()
+=== REQ000031 END ===
+
+=== REQ000032 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int[] parent;
+    static int[] rank_;
+
+    static int find(int x) {
+        while (parent[x] != x) {
+            parent[x] = parent[parent[x]];
+            x = parent[x];
+        }
+        return x;
+    }
+
+    static boolean union(int a, int b) {
+        int ra = find(a), rb = find(b);
+        if (ra == rb) return false;
+        if (rank_[ra] < rank_[rb]) { int tmp = ra; ra = rb; rb = tmp; }
+        parent[rb] = ra;
+        if (rank_[ra] == rank_[rb]) rank_[ra]++;
+        return true;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        in.nextToken(); int n = (int) in.nval;
+        in.nextToken(); int m = (int) in.nval;
+
+        parent = new int[m + 1];
+        rank_ = new int[m + 1];
+        for (int i = 0; i <= m; i++) parent[i] = i;
+
+        List<Integer> basis = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            in.nextToken();
+            int cnt = (int) in.nval;
+            int u, v;
+            if (cnt == 1) {
+                u = 0;
+                in.nextToken(); v = (int) in.nval;
+            } else {
+                in.nextToken(); u = (int) in.nval;
+                in.nextToken(); v = (int) in.nval;
+            }
+            if (union(u, v)) basis.add(i);
+        }
+
+        final long MOD = 1_000_000_007L;
+        long total = 1, base = 2;
+        int exp = basis.size();
+        while (exp > 0) {
+            if ((exp & 1) == 1) total = total * base % MOD;
+            base = base * base % MOD;
+            exp >>= 1;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(total).append(' ').append(basis.size()).append('\n');
+        for (int i = 0; i < basis.size(); i++) {
+            if (i > 0) sb.append(' ');
+            sb.append(basis.get(i));
+        }
+        System.out.println(sb);
+    }
+}
+=== REQ000032 END ===
+
+=== REQ000033 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> parent_, rank_;
+
+int find(int x) {
+    while (parent_[x] != x) {
+        parent_[x] = parent_[parent_[x]];
+        x = parent_[x];
+    }
+    return x;
+}
+
+bool unite(int a, int b) {
+    int ra = find(a), rb = find(b);
+    if (ra == rb) return false;
+    if (rank_[ra] < rank_[rb]) swap(ra, rb);
+    parent_[rb] = ra;
+    if (rank_[ra] == rank_[rb]) rank_[ra]++;
+    return true;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, m;
+    cin >> n >> m;
+    parent_.resize(m + 1);
+    rank_.assign(m + 1, 0);
+    iota(parent_.begin(), parent_.end(), 0);
+
+    vector<int> basis;
+    for (int i = 1; i <= n; i++) {
+        int cnt;
+        cin >> cnt;
+        int u, v;
+        if (cnt == 1) {
+            u = 0;
+            cin >> v;
+        } else {
+            cin >> u >> v;
+        }
+        if (unite(u, v)) basis.push_back(i);
+    }
+
+    const long long MOD = 1000000007LL;
+    long long total = 1, base = 2;
+    int exp = (int) basis.size();
+    while (exp > 0) {
+        if (exp & 1) total = total * base % MOD;
+        base = base * base % MOD;
+        exp >>= 1;
+    }
+
+    cout << total << ' ' << basis.size() << '\n';
+    for (size_t i = 0; i < basis.size(); i++) {
+        if (i) cout << ' ';
+        cout << basis[i];
+    }
+    cout << '\n';
+    return 0;
+}
+=== REQ000033 END ===
+
+=== REQ000034 START ===
+import sys
+
+MOD = 10 ** 9 + 7
+LIMIT = 200001
+
+
+def build_table():
+    length = [0] * (LIMIT + 1)
+    length[0] = 1
+    for step in range(1, LIMIT + 1):
+        a = 1 if step <= 8 else length[step - 9]
+        b = 1 if step <= 9 else length[step - 10]
+        length[step] = (a + b) % MOD
+    return length
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    table = build_table()
+    t = int(data[0])
+    out = []
+    pos = 1
+    for _ in range(t):
+        digits = data[pos].decode(); m = int(data[pos + 1])
+        pos += 2
+        total = 0
+        for ch in digits:
+            gap = 9 - (ord(ch) - 48)
+            total += 1 if m < gap else table[m - gap]
+        out.append(total % MOD)
+    sys.stdout.write('\n'.join(map(str, out)) + '\n')
+
+
+main()
+=== REQ000034 END ===
+
+=== REQ000035 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        final long MOD = 1_000_000_007L;
+        final int LIMIT = 200001;
+
+        long[] length = new long[LIMIT + 1];
+        length[0] = 1;
+        for (int step = 1; step <= LIMIT; step++) {
+            long a = (step <= 8) ? 1 : length[step - 9];
+            long b = (step <= 9) ? 1 : length[step - 10];
+            length[step] = (a + b) % MOD;
+        }
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < t; i++) {
+            StringTokenizer tk = new StringTokenizer(br.readLine());
+            String digits = tk.nextToken();
+            int m = Integer.parseInt(tk.nextToken());
+            long total = 0;
+            for (int j = 0; j < digits.length(); j++) {
+                int gap = 9 - (digits.charAt(j) - '0');
+                total += (m < gap) ? 1 : length[m - gap];
+                total %= MOD;
+            }
+            sb.append(total).append('\n');
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000035 END ===
+
+=== REQ000036 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    const long long MOD = 1000000007LL;
+    const int LIMIT = 200001;
+
+    vector<long long> length(LIMIT + 1);
+    length[0] = 1;
+    for (int step = 1; step <= LIMIT; step++) {
+        long long a = (step <= 8) ? 1 : length[step - 9];
+        long long b = (step <= 9) ? 1 : length[step - 10];
+        length[step] = (a + b) % MOD;
+    }
+
+    int t;
+    cin >> t;
+    ostringstream out;
+    while (t--) {
+        string digits;
+        long long m;
+        cin >> digits >> m;
+        long long total = 0;
+        for (char ch : digits) {
+            long long gap = 9 - (ch - '0');
+            total += (m < gap) ? 1 : length[m - gap];
+            total %= MOD;
+        }
+        out << total << '\n';
+    }
+    cout << out.str();
+    return 0;
+}
+=== REQ000036 END ===
+
+=== REQ000037 START ===
+import sys
+
+
+def main():
+    a, b = map(int, sys.stdin.buffer.read().split())
+    burned = a
+    stubs = a
+    while stubs >= b:
+        made = stubs // b
+        burned += made
+        stubs = stubs - made * b + made
+    print(burned)
+
+
+main()
+=== REQ000037 END ===
+
+=== REQ000038 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer tk = new StringTokenizer(br.readLine());
+        long a = Long.parseLong(tk.nextToken());
+        long b = Long.parseLong(tk.nextToken());
+
+        long burned = a;
+        long stubs = a;
+        while (stubs >= b) {
+            long made = stubs / b;
+            burned += made;
+            stubs = stubs - made * b + made;
+        }
+        System.out.println(burned);
+    }
+}
+=== REQ000038 END ===
+
+=== REQ000039 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long a, b;
+    cin >> a >> b;
+
+    long long burned = a;
+    long long stubs = a;
+    while (stubs >= b) {
+        long long made = stubs / b;
+        burned += made;
+        stubs = stubs - made * b + made;
+    }
+    cout << burned << '\n';
+    return 0;
+}
+=== REQ000039 END ===
+
+=== REQ000040 START ===
+import sys
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0]); m = int(data[1])
+    lit = [False] * (m + 1)
+    pos = 2
+    for _ in range(n):
+        cnt = int(data[pos]); pos += 1
+        for _ in range(cnt):
+            lit[int(data[pos])] = True
+            pos += 1
+    print("YES" if all(lit[1:]) else "NO")
+
+
+main()
+=== REQ000040 END ===
+
+=== REQ000041 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        in.nextToken(); int n = (int) in.nval;
+        in.nextToken(); int m = (int) in.nval;
+
+        boolean[] lit = new boolean[m + 1];
+        for (int i = 0; i < n; i++) {
+            in.nextToken();
+            int cnt = (int) in.nval;
+            for (int j = 0; j < cnt; j++) {
+                in.nextToken();
+                lit[(int) in.nval] = true;
+            }
+        }
+        for (int bulb = 1; bulb <= m; bulb++) {
+            if (!lit[bulb]) {
+                System.out.println("NO");
+                return;
+            }
+        }
+        System.out.println("YES");
+    }
+}
+=== REQ000041 END ===
+
+=== REQ000042 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, m;
+    cin >> n >> m;
+    vector<bool> lit(m + 1, false);
+    for (int i = 0; i < n; i++) {
+        int cnt;
+        cin >> cnt;
+        for (int j = 0; j < cnt; j++) {
+            int bulb;
+            cin >> bulb;
+            lit[bulb] = true;
+        }
+    }
+    for (int bulb = 1; bulb <= m; bulb++) {
+        if (!lit[bulb]) {
+            cout << "NO\n";
+            return 0;
+        }
+    }
+    cout << "YES\n";
+    return 0;
+}
+=== REQ000042 END ===
+
+=== REQ000043 START ===
+import sys
+
+
+def main():
+    lines = sys.stdin.read().split('\n')
+    header = lines[0].split()
+    t, m = int(header[0]), int(header[1])
+
+    memory = [0] * m
+    live = set()
+    next_id = 1
+    out = []
+
+    for i in range(1, t + 1):
+        parts = lines[i].split()
+        if not parts:
+            continue
+        cmd = parts[0]
+
+        if cmd == 'alloc':
+            need = int(parts[1])
+            start = -1
+            run = 0
+            for j in range(m):
+                run = run + 1 if memory[j] == 0 else 0
+                if run == need:
+                    start = j - need + 1
+                    break
+            if start < 0:
+                out.append('NULL')
+            else:
+                memory[start:start + need] = [next_id] * need
+                live.add(next_id)
+                out.append(str(next_id))
+                next_id += 1
+
+        elif cmd == 'erase':
+            target = int(parts[1])
+            if target in live:
+                live.discard(target)
+                for j in range(m):
+                    if memory[j] == target:
+                        memory[j] = 0
+            else:
+                out.append('ILLEGAL_ERASE_ARGUMENT')
+
+        elif cmd == 'defragment':
+            packed = [b for b in memory if b != 0]
+            memory = packed + [0] * (m - len(packed))
+
+    sys.stdout.write('\n'.join(out) + ('\n' if out else ''))
+
+
+main()
+=== REQ000043 END ===
+
+=== REQ000044 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer header = new StringTokenizer(br.readLine());
+        int t = Integer.parseInt(header.nextToken());
+        int m = Integer.parseInt(header.nextToken());
+
+        int[] memory = new int[m];
+        Set<Integer> live = new HashSet<>();
+        int nextId = 1;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < t; i++) {
+            StringTokenizer tk = new StringTokenizer(br.readLine());
+            String cmd = tk.nextToken();
+
+            if (cmd.equals("alloc")) {
+                int need = Integer.parseInt(tk.nextToken());
+                int start = -1, run = 0;
+                for (int j = 0; j < m; j++) {
+                    run = (memory[j] == 0) ? run + 1 : 0;
+                    if (run == need) { start = j - need + 1; break; }
+                }
+                if (start < 0) {
+                    sb.append("NULL").append('\n');
+                } else {
+                    Arrays.fill(memory, start, start + need, nextId);
+                    live.add(nextId);
+                    sb.append(nextId).append('\n');
+                    nextId++;
+                }
+            } else if (cmd.equals("erase")) {
+                int target = Integer.parseInt(tk.nextToken());
+                if (live.remove(target)) {
+                    for (int j = 0; j < m; j++) {
+                        if (memory[j] == target) memory[j] = 0;
+                    }
+                } else {
+                    sb.append("ILLEGAL_ERASE_ARGUMENT").append('\n');
+                }
+            } else if (cmd.equals("defragment")) {
+                int write = 0;
+                for (int j = 0; j < m; j++) {
+                    if (memory[j] != 0) memory[write++] = memory[j];
+                }
+                Arrays.fill(memory, write, m, 0);
+            }
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000044 END ===
+
+=== REQ000045 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t, m;
+    cin >> t >> m;
+    cin.ignore();
+
+    vector<int> memory(m, 0);
+    set<int> live;
+    int nextId = 1;
+    ostringstream out;
+
+    for (int i = 0; i < t; i++) {
+        string line;
+        if (!getline(cin, line)) break;
+        istringstream iss(line);
+        string cmd;
+        if (!(iss >> cmd)) { i--; continue; }
+
+        if (cmd == "alloc") {
+            int need;
+            iss >> need;
+            int start = -1, run = 0;
+            for (int j = 0; j < m; j++) {
+                run = (memory[j] == 0) ? run + 1 : 0;
+                if (run == need) { start = j - need + 1; break; }
+            }
+            if (start < 0) {
+                out << "NULL\n";
+            } else {
+                fill(memory.begin() + start, memory.begin() + start + need, nextId);
+                live.insert(nextId);
+                out << nextId << '\n';
+                nextId++;
+            }
+        } else if (cmd == "erase") {
+            int target;
+            iss >> target;
+            if (live.erase(target)) {
+                for (int j = 0; j < m; j++) {
+                    if (memory[j] == target) memory[j] = 0;
+                }
+            } else {
+                out << "ILLEGAL_ERASE_ARGUMENT\n";
+            }
+        } else if (cmd == "defragment") {
+            int write = 0;
+            for (int j = 0; j < m; j++) {
+                if (memory[j] != 0) memory[write++] = memory[j];
+            }
+            fill(memory.begin() + write, memory.end(), 0);
+        }
+    }
+    cout << out.str();
+    return 0;
+}
+=== REQ000045 END ===
+
+=== REQ000046 START ===
+import sys
+
+
+def main():
+    n = int(sys.stdin.buffer.read().split()[0])
+    out = []
+    buf = ['a'] * n
+
+    def build(pos, ceiling):
+        if pos == n:
+            out.append(''.join(buf))
+            return
+        for c in range(ceiling + 1):
+            buf[pos] = chr(97 + c)
+            build(pos + 1, ceiling + 1 if c == ceiling else ceiling)
+
+    build(0, 0)
+    sys.stdout.write('\n'.join(out) + '\n')
+
+
+main()
+=== REQ000046 END ===
+
+=== REQ000047 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int n;
+    static char[] buf;
+    static StringBuilder out = new StringBuilder();
+
+    static void build(int pos, int ceiling) {
+        if (pos == n) {
+            out.append(buf, 0, n).append('\n');
+            return;
+        }
+        for (int c = 0; c <= ceiling; c++) {
+            buf[pos] = (char) ('a' + c);
+            build(pos + 1, c == ceiling ? ceiling + 1 : ceiling);
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine().trim());
+        buf = new char[n];
+        build(0, 0);
+        System.out.print(out);
+    }
+}
+=== REQ000047 END ===
+
+=== REQ000048 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+string buf;
+string out;
+
+void build(int pos, int ceiling) {
+    if (pos == n) {
+        out += buf;
+        out += '\n';
+        return;
+    }
+    for (int c = 0; c <= ceiling; c++) {
+        buf[pos] = (char)('a' + c);
+        build(pos + 1, c == ceiling ? ceiling + 1 : ceiling);
+    }
+}
+
+int main() {
+    cin >> n;
+    buf.assign(n, 'a');
+    build(0, 0);
+    cout << out;
+    return 0;
+}
+=== REQ000048 END ===
+
+=== REQ000049 START ===
+import sys
+
+
+def main():
+    a, b = map(int, sys.stdin.buffer.read().split())
+    print("Odd" if (a * b) % 2 else "Even")
+
+
+main()
+=== REQ000049 END ===
+
+=== REQ000050 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer tk = new StringTokenizer(br.readLine());
+        long a = Long.parseLong(tk.nextToken());
+        long b = Long.parseLong(tk.nextToken());
+        System.out.println((a * b) % 2 == 0 ? "Even" : "Odd");
+    }
+}
+=== REQ000050 END ===

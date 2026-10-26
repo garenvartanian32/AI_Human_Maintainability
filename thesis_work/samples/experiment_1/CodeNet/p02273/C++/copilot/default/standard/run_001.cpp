@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (input/output format, constraints, and sample I/O). If you prefer, say "use typical contest format" and give constraints (n up to?), and I will produce a complete, tested C++ solution with complexity notes.

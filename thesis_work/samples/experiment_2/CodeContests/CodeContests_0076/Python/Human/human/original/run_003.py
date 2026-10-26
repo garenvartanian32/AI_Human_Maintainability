@@ -1,0 +1,11 @@
+n=int(input())
+x=list(map(int,input().split()))
+a=x.count(100)
+b=x.count(200)
+if a%2==1:
+    print("NO")
+else:
+    if b%2==1 and a<2:
+        print("NO")
+    else:
+        print("YES")

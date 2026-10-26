@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full programming problem (input/output format and constraints). I'll then provide a complete Python solution with a short explanation and example tests.

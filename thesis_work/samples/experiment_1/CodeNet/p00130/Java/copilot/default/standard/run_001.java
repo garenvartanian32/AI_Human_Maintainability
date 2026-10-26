@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (input/output format and constraints). If you want a common task (e.g., Two Sum, Dijkstra, longest common subsequence), name it and I'll provide a complete Java solution with explanation and tests.

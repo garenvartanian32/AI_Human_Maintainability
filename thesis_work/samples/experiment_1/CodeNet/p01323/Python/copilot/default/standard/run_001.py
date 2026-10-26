@@ -1,0 +1,1 @@
+I don't see the problem statement — please paste the full programming problem (including input/output format and any sample tests). If you prefer, state constraints (N range, time/space limits) and I will provide a complete, tested Python solution and brief explanation.

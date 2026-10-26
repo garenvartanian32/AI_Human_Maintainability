@@ -1,0 +1,1 @@
+Please provide the full problem statement, including input/output format, constraints, and examples. Then I’ll produce a complete Java solution with an explanation and complexity analysis.

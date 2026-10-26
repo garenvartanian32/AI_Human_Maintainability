@@ -1,0 +1,122 @@
+{
+  "source_manifest": "thesis_work\\manifests\\all_datasets.jsonl",
+  "output_manifest": "thesis_work\\manifests\\study_sample.jsonl",
+  "seed": 4050,
+  "problems_per_dataset": 25,
+  "required_languages": [
+    "Python",
+    "Java",
+    "C++"
+  ],
+  "datasets": {
+    "Back3474": {
+      "eligible_problem_count": 6,
+      "selected_problem_count": 6,
+      "selected_problem_ids": [
+        "problem_1",
+        "problem_2",
+        "problem_3",
+        "problem_4",
+        "problem_5",
+        "problem_6"
+      ],
+      "selected_row_count": 18
+    },
+    "CodeContests": {
+      "eligible_problem_count": 100,
+      "selected_problem_count": 25,
+      "selected_problem_ids": [
+        "CodeContests_0002",
+        "CodeContests_0003",
+        "CodeContests_0006",
+        "CodeContests_0009",
+        "CodeContests_0013",
+        "CodeContests_0015",
+        "CodeContests_0021",
+        "CodeContests_0027",
+        "CodeContests_0031",
+        "CodeContests_0039",
+        "CodeContests_0044",
+        "CodeContests_0046",
+        "CodeContests_0052",
+        "CodeContests_0054",
+        "CodeContests_0056",
+        "CodeContests_0057",
+        "CodeContests_0065",
+        "CodeContests_0066",
+        "CodeContests_0069",
+        "CodeContests_0071",
+        "CodeContests_0073",
+        "CodeContests_0076",
+        "CodeContests_0080",
+        "CodeContests_0084",
+        "CodeContests_0086"
+      ],
+      "selected_row_count": 75
+    },
+    "CodeNet": {
+      "eligible_problem_count": 100,
+      "selected_problem_count": 25,
+      "selected_problem_ids": [
+        "p00047",
+        "p00094",
+        "p00130",
+        "p00275",
+        "p00344",
+        "p00456",
+        "p01620",
+        "p01741",
+        "p02202",
+        "p02353",
+        "p02506",
+        "p02552",
+        "p02651",
+        "p02663",
+        "p02744",
+        "p02788",
+        "p03050",
+        "p03103",
+        "p03146",
+        "p03280",
+        "p03330",
+        "p03485",
+        "p03619",
+        "p03837",
+        "p04033"
+      ],
+      "selected_row_count": 75
+    },
+    "MultiPL-E": {
+      "eligible_problem_count": 158,
+      "selected_problem_count": 25,
+      "selected_problem_ids": [
+        "HumanEval_115",
+        "HumanEval_119",
+        "HumanEval_127",
+        "HumanEval_128",
+        "HumanEval_129",
+        "HumanEval_130",
+        "HumanEval_131",
+        "HumanEval_156",
+        "HumanEval_160",
+        "HumanEval_161",
+        "HumanEval_23",
+        "HumanEval_28",
+        "HumanEval_33",
+        "HumanEval_40",
+        "HumanEval_48",
+        "HumanEval_61",
+        "HumanEval_66",
+        "HumanEval_69",
+        "HumanEval_8",
+        "HumanEval_82",
+        "HumanEval_83",
+        "HumanEval_87",
+        "HumanEval_91",
+        "HumanEval_97",
+        "HumanEval_99"
+      ],
+      "selected_row_count": 75
+    }
+  }
+}

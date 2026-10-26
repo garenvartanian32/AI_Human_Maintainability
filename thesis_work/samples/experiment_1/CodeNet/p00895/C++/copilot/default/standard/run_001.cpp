@@ -1,0 +1,1 @@
+I don't see the problem statement—please paste the full problem (input/output format and constraints). If you prefer, say "give me a template" and I'll provide a ready-to-use C++ contest template or solve a common problem (e.g., shortest path, DSU, segment tree).

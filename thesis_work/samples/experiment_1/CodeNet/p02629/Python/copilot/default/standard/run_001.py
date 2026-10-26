@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including sample input/output and constraints). If you prefer, state expected input format, limits (n, value ranges), and any target complexity—I'll then provide a complete Python solution with brief explanation and tests.

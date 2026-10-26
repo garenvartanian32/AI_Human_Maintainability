@@ -1,0 +1,16 @@
+{
+  "experiment": 1,
+  "dataset": "Back3474",
+  "problem_id": "problem_5",
+  "language": "Java",
+  "source": "Human",
+  "provider": "",
+  "model": "",
+  "model_group": "human",
+  "prompt_type": "original",
+  "run": 1,
+  "correctness": "dataset_provided",
+  "difficulty": "hard",
+  "scenario": "",
+  "original_file": "C:\\Users\\garen\\OneDrive\\Desktop\\UNI - Garen\\COMP4093\\ThesisB\\thesis_work\\extracted\\Back3474\\problem_5\\Java\\human\\human_reference.java"
+}

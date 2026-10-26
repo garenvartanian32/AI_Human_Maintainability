@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including input/output format and constraints). If you prefer, say “assume standard CP I/O” and I’ll make reasonable assumptions (stdin, stdout, typical constraints) and provide a complete Java solution with explanation and sample tests.

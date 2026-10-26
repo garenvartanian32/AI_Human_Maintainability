@@ -1,0 +1,1 @@
+I don't see the problem text — please paste the full problem statement (including input/output format and constraints). If you want, say whether you prefer a concise script, a function for online judges, or annotated code; otherwise I'll provide a ready-to-run solution for the given problem.

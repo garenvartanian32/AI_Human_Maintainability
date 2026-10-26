@@ -1,0 +1,927 @@
+=== REQ000276 START ===
+#include <iostream>
+#include <string>
+
+namespace {
+
+constexpr char kFirstLetter = 'a';
+
+int gLength;
+std::string gBuffer;
+std::string gResults;
+
+/**
+ * Extends the buffer at `position`, given how many distinct letters are in use.
+ *
+ * Each letter may be at most one past the largest used so far, which keeps
+ * exactly one representative of every partition of the positions and emits the
+ * strings already sorted.
+ */
+void extend(int position, int lettersUsed) {
+    if (position == gLength) {
+        gResults += gBuffer;
+        gResults += '\n';
+        return;
+    }
+
+    for (int letterIndex = 0; letterIndex <= lettersUsed; ++letterIndex) {
+        gBuffer[position] = static_cast<char>(kFirstLetter + letterIndex);
+        const int nextUsed = (letterIndex == lettersUsed) ? lettersUsed + 1 : lettersUsed;
+        extend(position + 1, nextUsed);
+    }
+}
+
+}  // namespace
+
+int main() {
+    std::cin >> gLength;
+    gBuffer.assign(gLength, kFirstLetter);
+
+    extend(0, 0);
+    std::cout << gResults;
+    return 0;
+}
+=== REQ000276 END ===
+
+=== REQ000277 START ===
+import sys
+import bisect
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); d = int(data[idx+1]); a = int(data[idx+2]); idx += 3
+    monsters = []
+    for _ in range(n):
+        x = int(data[idx]); h = int(data[idx+1]); idx += 2
+        monsters.append((x, h))
+    monsters.sort()
+    xs = [m[0] for m in monsters]
+    hs = [m[1] for m in monsters]
+
+    diff = [0] * (n + 1)
+    current = 0
+    total_bombs = 0
+    for i in range(n):
+        current += diff[i]
+        remaining = hs[i] - current
+        if remaining > 0:
+            bombs = (remaining + a - 1) // a
+            total_bombs += bombs
+            current += bombs * a
+            # find furthest index covered: X[r] <= xs[i] + 2*d
+            limit = xs[i] + 2*d
+            r = bisect.bisect_right(xs, limit) - 1
+            if r + 1 <= n:
+                diff[r+1] -= bombs * a
+    print(total_bombs)
+
+main()
+=== REQ000277 END ===
+
+=== REQ000278 START ===
+"""Fewest bombs needed to clear a line of monsters."""
+
+import sys
+from bisect import bisect_right
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    monster_count = int(tokens[0])
+    blast_radius = int(tokens[1])
+    blast_damage = int(tokens[2])
+
+    monsters = []
+    cursor = 3
+    for _ in range(monster_count):
+        monsters.append((int(tokens[cursor]), int(tokens[cursor + 1])))
+        cursor += 2
+    monsters.sort()
+
+    positions = [position for position, _ in monsters]
+
+    # Sweeping left to right, every monster must die at its own turn, so bombs
+    # are always centred as far right as still covers it. `expiring` records
+    # where each blast stops contributing, letting us carry a running total.
+    expiring = [0] * (monster_count + 1)
+    damage_in_effect = 0
+    bombs_used = 0
+
+    for index, (position, health) in enumerate(monsters):
+        damage_in_effect -= expiring[index]
+
+        remaining_health = health - damage_in_effect
+        if remaining_health <= 0:
+            continue
+
+        bombs = -(-remaining_health // blast_damage)
+        bombs_used += bombs
+        damage_in_effect += bombs * blast_damage
+
+        last_covered = bisect_right(positions, position + 2 * blast_radius)
+        if last_covered <= monster_count:
+            expiring[last_covered] += bombs * blast_damage
+
+    print(bombs_used)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000278 END ===
+
+=== REQ000279 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); long d = (long) st.nval;
+        st.nextToken(); long a = (long) st.nval;
+        long[][] monsters = new long[n][2];
+        for (int i = 0; i < n; i++) {
+            st.nextToken(); monsters[i][0] = (long) st.nval;
+            st.nextToken(); monsters[i][1] = (long) st.nval;
+        }
+        Arrays.sort(monsters, (p, q) -> Long.compare(p[0], q[0]));
+        long[] xs = new long[n];
+        long[] hs = new long[n];
+        for (int i = 0; i < n; i++) { xs[i] = monsters[i][0]; hs[i] = monsters[i][1]; }
+
+        long[] diff = new long[n + 1];
+        long current = 0;
+        long totalBombs = 0;
+        for (int i = 0; i < n; i++) {
+            current += diff[i];
+            long remaining = hs[i] - current;
+            if (remaining > 0) {
+                long bombs = (remaining + a - 1) / a;
+                totalBombs += bombs;
+                current += bombs * a;
+                long limit = xs[i] + 2 * d;
+                int r = upperBound(xs, limit) - 1;
+                if (r + 1 <= n - 1 + 1) {
+                    if (r + 1 < diff.length) diff[r+1] -= bombs * a;
+                }
+            }
+        }
+        System.out.println(totalBombs);
+    }
+
+    static int upperBound(long[] arr, long key) {
+        int lo = 0, hi = arr.length;
+        while (lo < hi) {
+            int mid = (lo + hi) >>> 1;
+            if (arr[mid] <= key) lo = mid + 1;
+            else hi = mid;
+        }
+        return lo;
+    }
+}
+=== REQ000279 END ===
+
+=== REQ000280 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.Arrays;
+
+/**
+ * Fewest bombs needed to clear a line of monsters.
+ *
+ * <p>Sweeping left to right, every monster must die at its own turn, so bombs
+ * are always centred as far right as still covers it. An expiry array records
+ * where each blast stops contributing, letting us carry a running total.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int monsterCount = (int) input.nval;
+        input.nextToken();
+        long blastRadius = (long) input.nval;
+        input.nextToken();
+        long blastDamage = (long) input.nval;
+
+        long[][] monsters = new long[monsterCount][2];
+        for (int i = 0; i < monsterCount; i++) {
+            input.nextToken();
+            monsters[i][0] = (long) input.nval;
+            input.nextToken();
+            monsters[i][1] = (long) input.nval;
+        }
+        Arrays.sort(monsters, (left, right) -> Long.compare(left[0], right[0]));
+
+        long[] positions = new long[monsterCount];
+        for (int i = 0; i < monsterCount; i++) {
+            positions[i] = monsters[i][0];
+        }
+
+        long[] expiring = new long[monsterCount + 1];
+        long damageInEffect = 0;
+        long bombsUsed = 0;
+
+        for (int index = 0; index < monsterCount; index++) {
+            damageInEffect -= expiring[index];
+
+            long remainingHealth = monsters[index][1] - damageInEffect;
+            if (remainingHealth <= 0) {
+                continue;
+            }
+
+            long bombs = (remainingHealth + blastDamage - 1) / blastDamage;
+            bombsUsed += bombs;
+            damageInEffect += bombs * blastDamage;
+
+            int lastCovered = upperBound(positions, monsters[index][0] + 2 * blastRadius);
+            if (lastCovered <= monsterCount) {
+                expiring[lastCovered] += bombs * blastDamage;
+            }
+        }
+
+        System.out.println(bombsUsed);
+    }
+
+    /** First index whose position exceeds {@code key}. */
+    private static int upperBound(long[] positions, long key) {
+        int low = 0;
+        int high = positions.length;
+        while (low < high) {
+            int middle = (low + high) >>> 1;
+            if (positions[middle] <= key) {
+                low = middle + 1;
+            } else {
+                high = middle;
+            }
+        }
+        return low;
+    }
+}
+=== REQ000280 END ===
+
+=== REQ000281 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    long long n, d, a;
+    cin >> n >> d >> a;
+    vector<pair<long long,long long>> monsters(n);
+    for (auto &m : monsters) cin >> m.first >> m.second;
+    sort(monsters.begin(), monsters.end());
+    vector<long long> xs(n), hs(n);
+    for (int i = 0; i < n; i++) { xs[i] = monsters[i].first; hs[i] = monsters[i].second; }
+
+    vector<long long> diff(n + 1, 0);
+    long long current = 0, totalBombs = 0;
+    for (int i = 0; i < n; i++) {
+        current += diff[i];
+        long long remaining = hs[i] - current;
+        if (remaining > 0) {
+            long long bombs = (remaining + a - 1) / a;
+            totalBombs += bombs;
+            current += bombs * a;
+            long long limit = xs[i] + 2 * d;
+            int r = (int)(upper_bound(xs.begin(), xs.end(), limit) - xs.begin()) - 1;
+            if (r + 1 <= n) diff[r+1] -= bombs * a;
+        }
+    }
+    cout << totalBombs << endl;
+    return 0;
+}
+=== REQ000281 END ===
+
+=== REQ000282 START ===
+#include <algorithm>
+#include <iostream>
+#include <utility>
+#include <vector>
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    long long monsterCount, blastRadius, blastDamage;
+    std::cin >> monsterCount >> blastRadius >> blastDamage;
+
+    std::vector<std::pair<long long, long long>> monsters(monsterCount);
+    for (auto& monster : monsters) {
+        std::cin >> monster.first >> monster.second;
+    }
+    std::sort(monsters.begin(), monsters.end());
+
+    std::vector<long long> positions(monsterCount);
+    for (long long i = 0; i < monsterCount; ++i) {
+        positions[i] = monsters[i].first;
+    }
+
+    // Sweeping left to right, every monster must die at its own turn, so bombs
+    // are always centred as far right as still covers it. `expiring` records
+    // where each blast stops contributing, letting us carry a running total.
+    std::vector<long long> expiring(monsterCount + 1, 0);
+    long long damageInEffect = 0;
+    long long bombsUsed = 0;
+
+    for (long long index = 0; index < monsterCount; ++index) {
+        damageInEffect -= expiring[index];
+
+        const long long remainingHealth = monsters[index].second - damageInEffect;
+        if (remainingHealth <= 0) {
+            continue;
+        }
+
+        const long long bombs = (remainingHealth + blastDamage - 1) / blastDamage;
+        bombsUsed += bombs;
+        damageInEffect += bombs * blastDamage;
+
+        const long long lastCovered =
+            std::upper_bound(positions.begin(), positions.end(),
+                             monsters[index].first + 2 * blastRadius)
+            - positions.begin();
+        if (lastCovered <= monsterCount) {
+            expiring[lastCovered] += bombs * blastDamage;
+        }
+    }
+
+    std::cout << bombsUsed << '\n';
+    return 0;
+}
+=== REQ000282 END ===
+
+=== REQ000283 START ===
+import sys
+
+def main():
+    n = int(sys.stdin.read().strip())
+    total = 0
+    d = 1
+    while d * d <= n:
+        if n % d == 0:
+            divisors = {d, n // d}
+            for dd in divisors:
+                m = dd - 1
+                if m >= 1:
+                    q = n // dd
+                    if q < m:
+                        total += m
+        d += 1
+    print(total)
+
+main()
+=== REQ000283 END ===
+
+=== REQ000284 START ===
+"""Sum of every m where floor(n/m) equals n mod m."""
+
+import sys
+
+
+def main() -> None:
+    n = int(sys.stdin.read().strip())
+
+    # Writing q for the shared value, n = q*m + q = q*(m + 1), so m + 1 must
+    # divide n. Enumerating divisors of n therefore enumerates all candidates.
+    total = 0
+    divisor = 1
+    while divisor * divisor <= n:
+        if n % divisor == 0:
+            for candidate in {divisor - 1, n // divisor - 1}:
+                if candidate >= 1 and n // candidate == n % candidate:
+                    total += candidate
+        divisor += 1
+
+    print(total)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000284 END ===
+
+=== REQ000285 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        long n = Long.parseLong(br.readLine().trim());
+        long total = 0;
+        for (long d = 1; d * d <= n; d++) {
+            if (n % d == 0) {
+                Set<Long> divisors = new HashSet<>();
+                divisors.add(d);
+                divisors.add(n / d);
+                for (long dd : divisors) {
+                    long m = dd - 1;
+                    if (m >= 1) {
+                        long q = n / dd;
+                        if (q < m) total += m;
+                    }
+                }
+            }
+        }
+        System.out.println(total);
+    }
+}
+=== REQ000285 END ===
+
+=== REQ000286 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Sum of every m where floor(n/m) equals n mod m.
+ *
+ * <p>Writing q for the shared value, n = q*m + q = q*(m + 1), so m + 1 must
+ * divide n. Enumerating divisors of n therefore enumerates all candidates.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        long n = Long.parseLong(reader.readLine().trim());
+
+        long total = 0;
+        for (long divisor = 1; divisor * divisor <= n; divisor++) {
+            if (n % divisor != 0) {
+                continue;
+            }
+
+            // A divisor pairs with n / divisor; a set avoids double counting
+            // when they coincide at a perfect square.
+            Set<Long> candidates = new HashSet<>();
+            candidates.add(divisor - 1);
+            candidates.add(n / divisor - 1);
+
+            for (long candidate : candidates) {
+                if (candidate >= 1 && n / candidate == n % candidate) {
+                    total += candidate;
+                }
+            }
+        }
+
+        System.out.println(total);
+    }
+}
+=== REQ000286 END ===
+
+=== REQ000287 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long n;
+    cin >> n;
+    long long total = 0;
+    for (long long d = 1; d * d <= n; d++) {
+        if (n % d == 0) {
+            set<long long> divisors = {d, n / d};
+            for (long long dd : divisors) {
+                long long m = dd - 1;
+                if (m >= 1) {
+                    long long q = n / dd;
+                    if (q < m) total += m;
+                }
+            }
+        }
+    }
+    cout << total << endl;
+    return 0;
+}
+=== REQ000287 END ===
+
+=== REQ000288 START ===
+#include <iostream>
+#include <set>
+
+int main() {
+    long long n;
+    std::cin >> n;
+
+    // Writing q for the shared value, n = q*m + q = q*(m + 1), so m + 1 must
+    // divide n. Enumerating divisors of n therefore enumerates all candidates.
+    long long total = 0;
+    for (long long divisor = 1; divisor * divisor <= n; ++divisor) {
+        if (n % divisor != 0) {
+            continue;
+        }
+
+        // A divisor pairs with n / divisor; a set avoids double counting when
+        // they coincide at a perfect square.
+        const std::set<long long> candidates{divisor - 1, n / divisor - 1};
+        for (long long candidate : candidates) {
+            if (candidate >= 1 && n / candidate == n % candidate) {
+                total += candidate;
+            }
+        }
+    }
+
+    std::cout << total << '\n';
+    return 0;
+}
+=== REQ000288 END ===
+
+=== REQ000289 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); m = int(data[idx+1]); idx += 2
+    stores = []
+    for _ in range(n):
+        a = int(data[idx]); b = int(data[idx+1]); idx += 2
+        stores.append((a, b))
+    stores.sort()
+    total_cost = 0
+    remaining = m
+    for a, b in stores:
+        take = min(b, remaining)
+        total_cost += take * a
+        remaining -= take
+        if remaining == 0:
+            break
+    print(total_cost)
+
+main()
+=== REQ000289 END ===
+
+=== REQ000290 START ===
+"""Cheapest way to buy a fixed number of drinks across several shops."""
+
+import sys
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    shop_count = int(tokens[0])
+    drinks_wanted = int(tokens[1])
+
+    shops = []
+    cursor = 2
+    for _ in range(shop_count):
+        price = int(tokens[cursor])
+        stock = int(tokens[cursor + 1])
+        cursor += 2
+        shops.append((price, stock))
+
+    # Drinks are interchangeable, so exhausting the cheapest shop before moving
+    # on is optimal.
+    shops.sort()
+
+    total_cost = 0
+    still_needed = drinks_wanted
+    for price, stock in shops:
+        if still_needed == 0:
+            break
+        bought = min(stock, still_needed)
+        total_cost += bought * price
+        still_needed -= bought
+
+    print(total_cost)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000290 END ===
+
+=== REQ000291 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); long m = (long) st.nval;
+        long[][] stores = new long[n][2];
+        for (int i = 0; i < n; i++) {
+            st.nextToken(); stores[i][0] = (long) st.nval;
+            st.nextToken(); stores[i][1] = (long) st.nval;
+        }
+        Arrays.sort(stores, (a, b) -> Long.compare(a[0], b[0]));
+        long totalCost = 0;
+        long remaining = m;
+        for (long[] store : stores) {
+            long a = store[0], b = store[1];
+            long take = Math.min(b, remaining);
+            totalCost += take * a;
+            remaining -= take;
+            if (remaining == 0) break;
+        }
+        System.out.println(totalCost);
+    }
+}
+=== REQ000291 END ===
+
+=== REQ000292 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.Arrays;
+
+/**
+ * Cheapest way to buy a fixed number of drinks across several shops.
+ *
+ * <p>Drinks are interchangeable, so exhausting the cheapest shop before moving
+ * on is optimal.
+ */
+public class Sol {
+
+    private static final int PRICE = 0;
+    private static final int STOCK = 1;
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int shopCount = (int) input.nval;
+        input.nextToken();
+        long drinksWanted = (long) input.nval;
+
+        long[][] shops = new long[shopCount][2];
+        for (int i = 0; i < shopCount; i++) {
+            input.nextToken();
+            shops[i][PRICE] = (long) input.nval;
+            input.nextToken();
+            shops[i][STOCK] = (long) input.nval;
+        }
+        Arrays.sort(shops, (left, right) -> Long.compare(left[PRICE], right[PRICE]));
+
+        long totalCost = 0;
+        long stillNeeded = drinksWanted;
+        for (long[] shop : shops) {
+            if (stillNeeded == 0) {
+                break;
+            }
+            long bought = Math.min(shop[STOCK], stillNeeded);
+            totalCost += bought * shop[PRICE];
+            stillNeeded -= bought;
+        }
+
+        System.out.println(totalCost);
+    }
+}
+=== REQ000292 END ===
+
+=== REQ000293 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long n, m;
+    cin >> n >> m;
+    vector<pair<long long,long long>> stores(n);
+    for (auto &s : stores) cin >> s.first >> s.second;
+    sort(stores.begin(), stores.end());
+    long long totalCost = 0, remaining = m;
+    for (auto &s : stores) {
+        long long take = min(s.second, remaining);
+        totalCost += take * s.first;
+        remaining -= take;
+        if (remaining == 0) break;
+    }
+    cout << totalCost << endl;
+    return 0;
+}
+=== REQ000293 END ===
+
+=== REQ000294 START ===
+#include <algorithm>
+#include <iostream>
+#include <utility>
+#include <vector>
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    long long shopCount, drinksWanted;
+    std::cin >> shopCount >> drinksWanted;
+
+    // Each shop is (price, stock); sorting by price puts the cheapest first.
+    std::vector<std::pair<long long, long long>> shops(shopCount);
+    for (auto& shop : shops) {
+        std::cin >> shop.first >> shop.second;
+    }
+    std::sort(shops.begin(), shops.end());
+
+    // Drinks are interchangeable, so exhausting the cheapest shop before
+    // moving on is optimal.
+    long long totalCost = 0;
+    long long stillNeeded = drinksWanted;
+    for (const auto& shop : shops) {
+        if (stillNeeded == 0) {
+            break;
+        }
+        const long long bought = std::min(shop.second, stillNeeded);
+        totalCost += bought * shop.first;
+        stillNeeded -= bought;
+    }
+
+    std::cout << totalCost << '\n';
+    return 0;
+}
+=== REQ000294 END ===
+
+=== REQ000295 START ===
+import sys
+
+def main():
+    s = int(sys.stdin.read().strip())
+    seen = {}
+    seq = []
+    cur = s
+    i = 1
+    seen[cur] = 1
+    seq.append(cur)
+    while True:
+        if cur % 2 == 0:
+            cur = cur // 2
+        else:
+            cur = 3 * cur + 1
+        i += 1
+        if cur in seen:
+            print(i)
+            return
+        seen[cur] = i
+
+main()
+=== REQ000295 END ===
+
+=== REQ000296 START ===
+"""First index at which a Collatz-style sequence revisits an earlier term."""
+
+import sys
+
+
+def next_term(value: int) -> int:
+    """Halve an even term; otherwise triple it and add one."""
+    return value // 2 if value % 2 == 0 else 3 * value + 1
+
+
+def main() -> None:
+    start = int(sys.stdin.read().strip())
+
+    # The sequence is deterministic, so the first repeated value is the point
+    # at which it has entered a cycle.
+    seen = {start}
+    value = start
+    index = 1
+
+    while True:
+        value = next_term(value)
+        index += 1
+        if value in seen:
+            print(index)
+            return
+        seen.add(value)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000296 END ===
+
+=== REQ000297 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        long s = Long.parseLong(br.readLine().trim());
+        Map<Long, Integer> seen = new HashMap<>();
+        long cur = s;
+        int i = 1;
+        seen.put(cur, 1);
+        while (true) {
+            if (cur % 2 == 0) cur = cur / 2;
+            else cur = 3 * cur + 1;
+            i++;
+            if (seen.containsKey(cur)) {
+                System.out.println(i);
+                return;
+            }
+            seen.put(cur, i);
+        }
+    }
+}
+=== REQ000297 END ===
+
+=== REQ000298 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * First index at which a Collatz-style sequence revisits an earlier term.
+ *
+ * <p>The sequence is deterministic, so the first repeated value is the point at
+ * which it has entered a cycle.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        long start = Long.parseLong(reader.readLine().trim());
+
+        Set<Long> seen = new HashSet<>();
+        seen.add(start);
+
+        long value = start;
+        int index = 1;
+
+        while (true) {
+            value = nextTerm(value);
+            index++;
+            if (!seen.add(value)) {
+                System.out.println(index);
+                return;
+            }
+        }
+    }
+
+    /** Halves an even term; otherwise triples it and adds one. */
+    private static long nextTerm(long value) {
+        return (value % 2 == 0) ? value / 2 : 3 * value + 1;
+    }
+}
+=== REQ000298 END ===
+
+=== REQ000299 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long s;
+    cin >> s;
+    unordered_map<long long, int> seen;
+    long long cur = s;
+    int i = 1;
+    seen[cur] = 1;
+    while (true) {
+        if (cur % 2 == 0) cur = cur / 2;
+        else cur = 3 * cur + 1;
+        i++;
+        if (seen.count(cur)) {
+            cout << i << endl;
+            return 0;
+        }
+        seen[cur] = i;
+    }
+    return 0;
+}
+=== REQ000299 END ===
+
+=== REQ000300 START ===
+#include <iostream>
+#include <unordered_set>
+
+namespace {
+
+/// Halves an even term; otherwise triples it and adds one.
+long long nextTerm(long long value) {
+    return (value % 2 == 0) ? value / 2 : 3 * value + 1;
+}
+
+}  // namespace
+
+int main() {
+    long long start;
+    std::cin >> start;
+
+    // The sequence is deterministic, so the first repeated value is the point
+    // at which it has entered a cycle.
+    std::unordered_set<long long> seen;
+    seen.insert(start);
+
+    long long value = start;
+    int index = 1;
+
+    while (true) {
+        value = nextTerm(value);
+        ++index;
+        if (!seen.insert(value).second) {
+            std::cout << index << '\n';
+            return 0;
+        }
+    }
+}
+=== REQ000300 END ===

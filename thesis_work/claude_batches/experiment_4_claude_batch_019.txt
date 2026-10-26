@@ -1,0 +1,534 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000451 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def prime_length(string):
+    """Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    prime_length('Hello') == True
+    prime_length('abcdcba') == True
+    prime_length('kittens') == True
+    prime_length('orange') == False
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000452 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def prime_length(string):
+    """Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    prime_length('Hello') == True
+    prime_length('abcdcba') == True
+    prime_length('kittens') == True
+    prime_length('orange') == False
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000453 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Write a function that takes a string and returns true if the string
+    // length is a prime number or false otherwise
+    // Examples
+    // >>> primeLength(("Hello"))
+    // (true)
+    // >>> primeLength(("abcdcba"))
+    // (true)
+    // >>> primeLength(("kittens"))
+    // (true)
+    // >>> primeLength(("orange"))
+    // (false)
+    public static boolean primeLength(String string) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000454 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Write a function that takes a string and returns true if the string
+    // length is a prime number or false otherwise
+    // Examples
+    // >>> primeLength(("Hello"))
+    // (true)
+    // >>> primeLength(("abcdcba"))
+    // (true)
+    // >>> primeLength(("kittens"))
+    // (true)
+    // >>> primeLength(("orange"))
+    // (false)
+    public static boolean primeLength(String string) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000455 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Write a function that takes a string and returns true if the string
+// length is a prime number or false otherwise
+// Examples
+// >>> prime_length(("Hello"))
+// (true)
+// >>> prime_length(("abcdcba"))
+// (true)
+// >>> prime_length(("kittens"))
+// (true)
+// >>> prime_length(("orange"))
+// (false)
+bool prime_length(std::string string) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000456 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Write a function that takes a string and returns true if the string
+// length is a prime number or false otherwise
+// Examples
+// >>> prime_length(("Hello"))
+// (true)
+// >>> prime_length(("abcdcba"))
+// (true)
+// >>> prime_length(("kittens"))
+// (true)
+// >>> prime_length(("orange"))
+// (false)
+bool prime_length(std::string string) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000457 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def starts_one_ends(n):
+    """
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000458 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def starts_one_ends(n):
+    """
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000459 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the count of the numbers of n-digit
+    // positive integers that start or end with 1.
+    public static long startsOneEnds(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000460 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the count of the numbers of n-digit
+    // positive integers that start or end with 1.
+    public static long startsOneEnds(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000461 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the count of the numbers of n-digit
+// positive integers that start or end with 1.
+long starts_one_ends(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000462 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the count of the numbers of n-digit
+// positive integers that start or end with 1.
+long starts_one_ends(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000463 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def get_row(lst, x):
+    """
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000464 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def get_row(lst, x):
+    """
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000465 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a 2 dimensional data, as a nested array lists,
+    // which is similar to matrix, however, unlike matrices,
+    // each row may contain a different number of columns.
+    // Given lst, and integer x, find integers x in the array list,
+    // and return array list of pairs, [(x1, y1), (x2, y2) ...] such that
+    // each pair is a coordinate - (row, columns), starting with 0.
+    // Sort coordinates initially by rows in ascending order.
+    // Also, sort coordinates of the row by columns in descending order.
+    // Examples:
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)1l))))), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(0l, 0l), (Pair<Long, Long>)Pair.with(1l, 4l), (Pair<Long, Long>)Pair.with(1l, 0l), (Pair<Long, Long>)Pair.with(2l, 5l), (Pair<Long, Long>)Pair.with(2l, 0l))))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList())), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList()))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList()), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l))))), (3l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(2l, 2l))))
+    public static ArrayList<Pair<Long, Long>> getRow(ArrayList<ArrayList<Long>> lst, long x) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000466 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a 2 dimensional data, as a nested array lists,
+    // which is similar to matrix, however, unlike matrices,
+    // each row may contain a different number of columns.
+    // Given lst, and integer x, find integers x in the array list,
+    // and return array list of pairs, [(x1, y1), (x2, y2) ...] such that
+    // each pair is a coordinate - (row, columns), starting with 0.
+    // Sort coordinates initially by rows in ascending order.
+    // Also, sort coordinates of the row by columns in descending order.
+    // Examples:
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)1l))))), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(0l, 0l), (Pair<Long, Long>)Pair.with(1l, 4l), (Pair<Long, Long>)Pair.with(1l, 0l), (Pair<Long, Long>)Pair.with(2l, 5l), (Pair<Long, Long>)Pair.with(2l, 0l))))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList())), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList()))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList()), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l))))), (3l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(2l, 2l))))
+    public static ArrayList<Pair<Long, Long>> getRow(ArrayList<ArrayList<Long>> lst, long x) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000467 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a 2 dimensional data, as a nested vectors,
+// which is similar to matrix, however, unlike matrices,
+// each row may contain a different number of columns.
+// Given lst, and integer x, find integers x in the vector,
+// and return vector of tuples, [(x1, y1), (x2, y2) ...] such that
+// each tuple is a coordinate - (row, columns), starting with 0.
+// Sort coordinates initially by rows in ascending order.
+// Also, sort coordinates of the row by columns in descending order.
+// Examples:
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)1})})), (1))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(0, 0), (std::tuple<long, long>)std::make_tuple(1, 4), (std::tuple<long, long>)std::make_tuple(1, 0), (std::tuple<long, long>)std::make_tuple(2, 5), (std::tuple<long, long>)std::make_tuple(2, 0)}))
+// >>> get_row((std::vector<std::vector<long>>()), (1))
+// (std::vector<std::tuple<long, long>>())
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>(), (std::vector<long>)std::vector<long>({(long)1}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3})})), (3))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(2, 2)}))
+std::vector<std::tuple<long, long>> get_row(std::vector<std::vector<long>> lst, long x) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000468 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a 2 dimensional data, as a nested vectors,
+// which is similar to matrix, however, unlike matrices,
+// each row may contain a different number of columns.
+// Given lst, and integer x, find integers x in the vector,
+// and return vector of tuples, [(x1, y1), (x2, y2) ...] such that
+// each tuple is a coordinate - (row, columns), starting with 0.
+// Sort coordinates initially by rows in ascending order.
+// Also, sort coordinates of the row by columns in descending order.
+// Examples:
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)1})})), (1))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(0, 0), (std::tuple<long, long>)std::make_tuple(1, 4), (std::tuple<long, long>)std::make_tuple(1, 0), (std::tuple<long, long>)std::make_tuple(2, 5), (std::tuple<long, long>)std::make_tuple(2, 0)}))
+// >>> get_row((std::vector<std::vector<long>>()), (1))
+// (std::vector<std::tuple<long, long>>())
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>(), (std::vector<long>)std::vector<long>({(long)1}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3})})), (3))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(2, 2)}))
+std::vector<std::tuple<long, long>> get_row(std::vector<std::vector<long>> lst, long x) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000469 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def is_bored(S):
+    """
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word "I".
+    Sentences are delimited by '.', '?' or '!'.
+   
+    For example:
+    >>> is_bored("Hello world")
+    0
+    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
+    1
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000470 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def is_bored(S):
+    """
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word "I".
+    Sentences are delimited by '.', '?' or '!'.
+   
+    For example:
+    >>> is_bored("Hello world")
+    0
+    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
+    1
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000471 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You'll be given a string of words, and your task is to count the number
+    // of boredoms. A boredom is a sentence that starts with the word "I".
+    // Sentences are delimited by '.', '?' or '!'.
+    // For example:
+    // >>> isBored(("Hello world"))
+    // (0l)
+    // >>> isBored(("The sky is blue. The sun is shining. I love this weather"))
+    // (1l)
+    public static long isBored(String S) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000472 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You'll be given a string of words, and your task is to count the number
+    // of boredoms. A boredom is a sentence that starts with the word "I".
+    // Sentences are delimited by '.', '?' or '!'.
+    // For example:
+    // >>> isBored(("Hello world"))
+    // (0l)
+    // >>> isBored(("The sky is blue. The sun is shining. I love this weather"))
+    // (1l)
+    public static long isBored(String S) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000473 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You'll be given a string of words, and your task is to count the number
+// of boredoms. A boredom is a sentence that starts with the word "I".
+// Sentences are delimited by '.', '?' or '!'.
+// For example:
+// >>> is_bored(("Hello world"))
+// (0)
+// >>> is_bored(("The sky is blue. The sun is shining. I love this weather"))
+// (1)
+long is_bored(std::string S) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000474 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You'll be given a string of words, and your task is to count the number
+// of boredoms. A boredom is a sentence that starts with the word "I".
+// Sentences are delimited by '.', '?' or '!'.
+// For example:
+// >>> is_bored(("Hello world"))
+// (0)
+// >>> is_bored(("The sky is blue. The sun is shining. I love this weather"))
+// (1)
+long is_bored(std::string S) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000475 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def multiply(a, b):
+    """Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

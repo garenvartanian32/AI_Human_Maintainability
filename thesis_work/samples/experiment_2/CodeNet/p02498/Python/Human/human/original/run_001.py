@@ -1,0 +1,1 @@
+print "".join([r.lower() if r.isupper() else r.upper() for r in raw_input()])

@@ -1,0 +1,16 @@
+{
+  "experiment": 1,
+  "dataset": "CodeContests",
+  "problem_id": "CodeContests_0006",
+  "language": "Python",
+  "source": "Human",
+  "provider": "",
+  "model": "",
+  "model_group": "human",
+  "prompt_type": "original",
+  "run": 1,
+  "correctness": "dataset_provided",
+  "difficulty": 12,
+  "scenario": "",
+  "original_file": "thesis_work\\extracted\\codecontests\\CodeContests_0006\\Python\\human_001.py"
+}

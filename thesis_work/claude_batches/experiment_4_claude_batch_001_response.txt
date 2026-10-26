@@ -1,0 +1,857 @@
+=== REQ000001 START ===
+class Solution:
+    def maxSum(self, nums):
+        best = [-1] * 10
+        ans = -1
+        for x in nums:
+            d = 0
+            t = x
+            while t:
+                d = max(d, t % 10)
+                t //= 10
+            if best[d] != -1:
+                ans = max(ans, best[d] + x)
+            if x > best[d]:
+                best[d] = x
+        return ans
+=== REQ000001 END ===
+
+=== REQ000002 START ===
+"""Maximum sum of a pair of numbers sharing the same largest digit."""
+
+
+def largest_digit(number: int) -> int:
+    """Return the greatest decimal digit appearing in ``number``."""
+    return max(int(character) for character in str(number))
+
+
+class Solution:
+    def maxSum(self, nums: list[int]) -> int:
+        """Return the best pair sum among numbers with equal largest digit.
+
+        Numbers are grouped by their largest digit. Within a group any two
+        members form a valid pair, so the best pair is simply the two
+        largest members of that group.
+        """
+        NO_PAIR_FOUND = -1
+
+        # For each largest digit remember the biggest value seen so far.
+        best_per_digit: dict[int, int] = {}
+        best_sum = NO_PAIR_FOUND
+
+        for value in nums:
+            digit = largest_digit(value)
+            previous_best = best_per_digit.get(digit)
+
+            if previous_best is not None:
+                best_sum = max(best_sum, previous_best + value)
+                best_per_digit[digit] = max(previous_best, value)
+            else:
+                best_per_digit[digit] = value
+
+        return best_sum
+=== REQ000002 END ===
+
+=== REQ000003 START ===
+import java.util.*;
+
+class Solution {
+    public int maxSum(int[] nums) {
+        int[] best = new int[10];
+        Arrays.fill(best, -1);
+        int ans = -1;
+        for (int x : nums) {
+            int d = 0, t = x;
+            while (t > 0) {
+                d = Math.max(d, t % 10);
+                t /= 10;
+            }
+            if (best[d] != -1) {
+                ans = Math.max(ans, best[d] + x);
+            }
+            if (x > best[d]) best[d] = x;
+        }
+        return ans;
+    }
+}
+=== REQ000003 END ===
+
+=== REQ000004 START ===
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Finds the maximum sum of a pair of numbers whose largest decimal digit matches.
+ */
+class Solution {
+
+    private static final int NO_PAIR_FOUND = -1;
+
+    public int maxSum(int[] nums) {
+        // For each largest digit, remember the biggest value seen so far.
+        Map<Integer, Integer> bestPerDigit = new HashMap<>();
+        int bestSum = NO_PAIR_FOUND;
+
+        for (int value : nums) {
+            int digit = largestDigit(value);
+            Integer previousBest = bestPerDigit.get(digit);
+
+            if (previousBest != null) {
+                bestSum = Math.max(bestSum, previousBest + value);
+                bestPerDigit.put(digit, Math.max(previousBest, value));
+            } else {
+                bestPerDigit.put(digit, value);
+            }
+        }
+
+        return bestSum;
+    }
+
+    /** Returns the greatest decimal digit appearing in {@code number}. */
+    private int largestDigit(int number) {
+        int largest = 0;
+        for (int remaining = number; remaining > 0; remaining /= 10) {
+            largest = Math.max(largest, remaining % 10);
+        }
+        return largest;
+    }
+}
+=== REQ000004 END ===
+
+=== REQ000005 START ===
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    int maxSum(vector<int>& nums) {
+        vector<int> best(10, -1);
+        int ans = -1;
+        for (int x : nums) {
+            int d = 0, t = x;
+            while (t > 0) {
+                d = max(d, t % 10);
+                t /= 10;
+            }
+            if (best[d] != -1) ans = max(ans, best[d] + x);
+            best[d] = max(best[d], x);
+        }
+        return ans;
+    }
+};
+=== REQ000005 END ===
+
+=== REQ000006 START ===
+#include <algorithm>
+#include <unordered_map>
+#include <vector>
+
+/**
+ * Finds the maximum sum of a pair of numbers whose largest decimal digit matches.
+ */
+class Solution {
+public:
+    int maxSum(std::vector<int>& nums) {
+        // For each largest digit, remember the biggest value seen so far.
+        std::unordered_map<int, int> bestPerDigit;
+        int bestSum = kNoPairFound;
+
+        for (int value : nums) {
+            const int digit = largestDigit(value);
+            auto existing = bestPerDigit.find(digit);
+
+            if (existing != bestPerDigit.end()) {
+                bestSum = std::max(bestSum, existing->second + value);
+                existing->second = std::max(existing->second, value);
+            } else {
+                bestPerDigit.emplace(digit, value);
+            }
+        }
+
+        return bestSum;
+    }
+
+private:
+    static constexpr int kNoPairFound = -1;
+
+    /// Returns the greatest decimal digit appearing in `number`.
+    static int largestDigit(int number) {
+        int largest = 0;
+        for (int remaining = number; remaining > 0; remaining /= 10) {
+            largest = std::max(largest, remaining % 10);
+        }
+        return largest;
+    }
+};
+=== REQ000006 END ===
+
+=== REQ000007 START ===
+from collections import deque
+
+class Solution:
+    def finalString(self, s: str) -> str:
+        dq = deque()
+        normal = True
+        for c in s:
+            if c == 'i':
+                normal = not normal
+            else:
+                if normal:
+                    dq.append(c)
+                else:
+                    dq.appendleft(c)
+        if not normal:
+            dq.reverse()
+        return ''.join(dq)
+=== REQ000007 END ===
+
+=== REQ000008 START ===
+"""Simulate typing on a keyboard where 'i' reverses the text written so far."""
+
+from collections import deque
+
+
+REVERSE_KEY = "i"
+
+
+class Solution:
+    def finalString(self, s: str) -> str:
+        """Return the text shown on screen after typing every character of ``s``.
+
+        Rather than reversing the buffer on each ``REVERSE_KEY`` (which is
+        quadratic), the buffer is kept in a deque and a flag tracks whether it
+        is currently stored forwards or backwards. New characters are appended
+        to whichever end represents "the back" at that moment.
+        """
+        characters = deque()
+        stored_forwards = True
+
+        for character in s:
+            if character == REVERSE_KEY:
+                stored_forwards = not stored_forwards
+            elif stored_forwards:
+                characters.append(character)
+            else:
+                characters.appendleft(character)
+
+        if not stored_forwards:
+            characters.reverse()
+
+        return "".join(characters)
+=== REQ000008 END ===
+
+=== REQ000009 START ===
+import java.util.*;
+
+class Solution {
+    public String finalString(String s) {
+        Deque<Character> dq = new ArrayDeque<>();
+        boolean normal = true;
+        for (char c : s.toCharArray()) {
+            if (c == 'i') {
+                normal = !normal;
+            } else {
+                if (normal) dq.addLast(c);
+                else dq.addFirst(c);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        if (normal) {
+            for (char c : dq) sb.append(c);
+        } else {
+            Iterator<Character> it = dq.descendingIterator();
+            while (it.hasNext()) sb.append(it.next());
+        }
+        return sb.toString();
+    }
+}
+=== REQ000009 END ===
+
+=== REQ000010 START ===
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
+
+/**
+ * Simulates typing on a keyboard where the letter 'i' reverses the text so far.
+ */
+class Solution {
+
+    private static final char REVERSE_KEY = 'i';
+
+    /**
+     * Returns the text shown on screen after typing every character of {@code s}.
+     *
+     * <p>Rather than reversing the buffer on each {@code REVERSE_KEY} (which is
+     * quadratic), the buffer is kept in a deque and a flag tracks whether it is
+     * currently stored forwards or backwards.
+     */
+    public String finalString(String s) {
+        Deque<Character> characters = new ArrayDeque<>();
+        boolean storedForwards = true;
+
+        for (char character : s.toCharArray()) {
+            if (character == REVERSE_KEY) {
+                storedForwards = !storedForwards;
+            } else if (storedForwards) {
+                characters.addLast(character);
+            } else {
+                characters.addFirst(character);
+            }
+        }
+
+        return joinInOrder(characters, storedForwards);
+    }
+
+    /** Concatenates the deque, walking backwards when the buffer is reversed. */
+    private String joinInOrder(Deque<Character> characters, boolean storedForwards) {
+        StringBuilder builder = new StringBuilder(characters.size());
+        Iterator<Character> walker =
+                storedForwards ? characters.iterator() : characters.descendingIterator();
+        while (walker.hasNext()) {
+            builder.append(walker.next());
+        }
+        return builder.toString();
+    }
+}
+=== REQ000010 END ===
+
+=== REQ000011 START ===
+#include <string>
+#include <deque>
+using namespace std;
+
+class Solution {
+public:
+    string finalString(string s) {
+        deque<char> dq;
+        bool normal = true;
+        for (char c : s) {
+            if (c == 'i') {
+                normal = !normal;
+            } else {
+                if (normal) dq.push_back(c);
+                else dq.push_front(c);
+            }
+        }
+        string res;
+        if (normal) {
+            for (char c : dq) res += c;
+        } else {
+            for (auto it = dq.rbegin(); it != dq.rend(); ++it) res += *it;
+        }
+        return res;
+    }
+};
+=== REQ000011 END ===
+
+=== REQ000012 START ===
+#include <deque>
+#include <string>
+
+/**
+ * Simulates typing on a keyboard where the letter 'i' reverses the text so far.
+ */
+class Solution {
+public:
+    /**
+     * Returns the text shown on screen after typing every character of `s`.
+     *
+     * Rather than reversing the buffer on each `kReverseKey` (which is
+     * quadratic), the buffer is kept in a deque and a flag tracks whether it is
+     * currently stored forwards or backwards.
+     */
+    std::string finalString(std::string s) {
+        std::deque<char> characters;
+        bool storedForwards = true;
+
+        for (char character : s) {
+            if (character == kReverseKey) {
+                storedForwards = !storedForwards;
+            } else if (storedForwards) {
+                characters.push_back(character);
+            } else {
+                characters.push_front(character);
+            }
+        }
+
+        return joinInOrder(characters, storedForwards);
+    }
+
+private:
+    static constexpr char kReverseKey = 'i';
+
+    /// Concatenates the deque, walking backwards when the buffer is reversed.
+    static std::string joinInOrder(const std::deque<char>& characters, bool storedForwards) {
+        std::string result;
+        result.reserve(characters.size());
+        if (storedForwards) {
+            result.assign(characters.begin(), characters.end());
+        } else {
+            result.assign(characters.rbegin(), characters.rend());
+        }
+        return result;
+    }
+};
+=== REQ000012 END ===
+
+=== REQ000013 START ===
+from sortedcontainers import SortedList
+
+class Solution:
+    def minAbsoluteDifference(self, nums, x):
+        n = len(nums)
+        sl = SortedList()
+        ans = float('inf')
+        for j in range(x, n):
+            sl.add(nums[j - x])
+            cur = nums[j]
+            idx = sl.bisect_left(cur)
+            if idx < len(sl):
+                ans = min(ans, sl[idx] - cur)
+            if idx > 0:
+                ans = min(ans, cur - sl[idx - 1])
+        return ans
+=== REQ000013 END ===
+
+=== REQ000014 START ===
+"""Minimum absolute difference between elements at least x indices apart."""
+
+from bisect import bisect_left, insort
+
+
+class Solution:
+    def minAbsoluteDifference(self, nums: list[int], x: int) -> int:
+        """Return min |nums[i] - nums[j]| over all pairs with |i - j| >= x.
+
+        A sorted window holds every element that is far enough behind the
+        current index. For each position we only need the two window entries
+        that bracket the current value, found by binary search.
+        """
+        if x == 0:
+            return 0
+
+        eligible_values: list[int] = []
+        smallest_difference = float("inf")
+
+        for index in range(x, len(nums)):
+            insort(eligible_values, nums[index - x])
+            current = nums[index]
+
+            insertion_point = bisect_left(eligible_values, current)
+            if insertion_point < len(eligible_values):
+                smallest_difference = min(
+                    smallest_difference, eligible_values[insertion_point] - current
+                )
+            if insertion_point > 0:
+                smallest_difference = min(
+                    smallest_difference, current - eligible_values[insertion_point - 1]
+                )
+
+        return smallest_difference
+=== REQ000014 END ===
+
+=== REQ000015 START ===
+import java.util.*;
+
+class Solution {
+    public int minAbsoluteDifference(int[] nums, int x) {
+        int n = nums.length;
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        int ans = Integer.MAX_VALUE;
+        for (int j = x; j < n; j++) {
+            int add = nums[j - x];
+            map.merge(add, 1, Integer::sum);
+            int cur = nums[j];
+            Integer floor = map.floorKey(cur);
+            Integer ceil = map.ceilingKey(cur);
+            if (floor != null) ans = Math.min(ans, cur - floor);
+            if (ceil != null) ans = Math.min(ans, ceil - cur);
+        }
+        return ans;
+    }
+}
+=== REQ000015 END ===
+
+=== REQ000016 START ===
+import java.util.TreeMap;
+
+/**
+ * Minimum absolute difference between elements at least x indices apart.
+ */
+class Solution {
+
+    /**
+     * Returns min |nums[i] - nums[j]| over all pairs with |i - j| &gt;= x.
+     *
+     * <p>A sorted multiset holds every element that is far enough behind the
+     * current index. For each position we only need the two entries that
+     * bracket the current value.
+     */
+    public int minAbsoluteDifference(int[] nums, int x) {
+        if (x == 0) {
+            return 0;
+        }
+
+        // Value -> how many copies are currently eligible.
+        TreeMap<Integer, Integer> eligibleValues = new TreeMap<>();
+        int smallestDifference = Integer.MAX_VALUE;
+
+        for (int index = x; index < nums.length; index++) {
+            eligibleValues.merge(nums[index - x], 1, Integer::sum);
+            int current = nums[index];
+
+            Integer justBelow = eligibleValues.floorKey(current);
+            if (justBelow != null) {
+                smallestDifference = Math.min(smallestDifference, current - justBelow);
+            }
+
+            Integer justAbove = eligibleValues.ceilingKey(current);
+            if (justAbove != null) {
+                smallestDifference = Math.min(smallestDifference, justAbove - current);
+            }
+        }
+
+        return smallestDifference;
+    }
+}
+=== REQ000016 END ===
+
+=== REQ000017 START ===
+#include <vector>
+#include <set>
+#include <climits>
+using namespace std;
+
+class Solution {
+public:
+    int minAbsoluteDifference(vector<int>& nums, int x) {
+        int n = nums.size();
+        multiset<int> ms;
+        int ans = INT_MAX;
+        for (int j = x; j < n; j++) {
+            ms.insert(nums[j - x]);
+            int cur = nums[j];
+            auto it = ms.lower_bound(cur);
+            if (it != ms.end()) ans = min(ans, *it - cur);
+            if (it != ms.begin()) {
+                auto it2 = prev(it);
+                ans = min(ans, cur - *it2);
+            }
+        }
+        return ans;
+    }
+};
+=== REQ000017 END ===
+
+=== REQ000018 START ===
+#include <algorithm>
+#include <climits>
+#include <set>
+#include <vector>
+
+/**
+ * Minimum absolute difference between elements at least x indices apart.
+ */
+class Solution {
+public:
+    /**
+     * Returns min |nums[i] - nums[j]| over all pairs with |i - j| >= x.
+     *
+     * A sorted multiset holds every element that is far enough behind the
+     * current index. For each position we only need the two entries that
+     * bracket the current value.
+     */
+    int minAbsoluteDifference(std::vector<int>& nums, int x) {
+        if (x == 0) {
+            return 0;
+        }
+
+        std::multiset<int> eligibleValues;
+        int smallestDifference = INT_MAX;
+
+        for (std::size_t index = x; index < nums.size(); ++index) {
+            eligibleValues.insert(nums[index - x]);
+            const int current = nums[index];
+
+            auto justAbove = eligibleValues.lower_bound(current);
+            if (justAbove != eligibleValues.end()) {
+                smallestDifference = std::min(smallestDifference, *justAbove - current);
+            }
+            if (justAbove != eligibleValues.begin()) {
+                const int justBelow = *std::prev(justAbove);
+                smallestDifference = std::min(smallestDifference, current - justBelow);
+            }
+        }
+
+        return smallestDifference;
+    }
+};
+=== REQ000018 END ===
+
+=== REQ000019 START ===
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def doubleIt(self, head):
+        def dfs(node):
+            if node is None:
+                return 0
+            carry = dfs(node.next)
+            total = node.val * 2 + carry
+            node.val = total % 10
+            return total // 10
+        carry = dfs(head)
+        if carry:
+            return ListNode(carry, head)
+        return head
+=== REQ000019 END ===
+
+=== REQ000020 START ===
+"""Double the number represented by a singly linked list of digits."""
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class Solution:
+    def doubleIt(self, head: ListNode) -> ListNode:
+        """Return the list representing twice the original number.
+
+        Doubling has to propagate carries from the least significant digit
+        backwards, so the recursion doubles on the way *out* of the call stack.
+        A leading node is prepended only when the final carry overflows.
+        """
+        overflow = self._double_from(head)
+
+        if overflow:
+            return ListNode(overflow, head)
+        return head
+
+    def _double_from(self, node: ListNode) -> int:
+        """Double ``node`` and everything after it; return the carry produced."""
+        if node is None:
+            return 0
+
+        carry_in = self._double_from(node.next)
+        doubled = node.val * 2 + carry_in
+
+        node.val = doubled % 10
+        return doubled // 10
+=== REQ000020 END ===
+
+=== REQ000021 START ===
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+class Solution {
+    public ListNode doubleIt(ListNode head) {
+        int carry = dfs(head);
+        if (carry > 0) {
+            return new ListNode(carry, head);
+        }
+        return head;
+    }
+
+    private int dfs(ListNode node) {
+        if (node == null) return 0;
+        int carry = dfs(node.next);
+        int total = node.val * 2 + carry;
+        node.val = total % 10;
+        return total / 10;
+    }
+}
+=== REQ000021 END ===
+
+=== REQ000022 START ===
+/** A node of a singly linked list holding one decimal digit. */
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode() {}
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}
+
+/**
+ * Doubles the number represented by a singly linked list of digits.
+ */
+class Solution {
+
+    /**
+     * Returns the list representing twice the original number.
+     *
+     * <p>Doubling has to propagate carries from the least significant digit
+     * backwards, so the recursion doubles on the way out of the call stack.
+     */
+    public ListNode doubleIt(ListNode head) {
+        int overflow = doubleFrom(head);
+
+        if (overflow > 0) {
+            return new ListNode(overflow, head);
+        }
+        return head;
+    }
+
+    /** Doubles {@code node} and everything after it; returns the carry produced. */
+    private int doubleFrom(ListNode node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int carryIn = doubleFrom(node.next);
+        int doubled = node.val * 2 + carryIn;
+
+        node.val = doubled % 10;
+        return doubled / 10;
+    }
+}
+=== REQ000022 END ===
+
+=== REQ000023 START ===
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+class Solution {
+public:
+    ListNode* doubleIt(ListNode* head) {
+        int carry = dfs(head);
+        if (carry > 0) {
+            return new ListNode(carry, head);
+        }
+        return head;
+    }
+private:
+    int dfs(ListNode* node) {
+        if (!node) return 0;
+        int carry = dfs(node->next);
+        int total = node->val * 2 + carry;
+        node->val = total % 10;
+        return total / 10;
+    }
+};
+=== REQ000023 END ===
+
+=== REQ000024 START ===
+/// A node of a singly linked list holding one decimal digit.
+struct ListNode {
+    int val;
+    ListNode* next;
+
+    ListNode() : val(0), next(nullptr) {}
+    explicit ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
+};
+
+/**
+ * Doubles the number represented by a singly linked list of digits.
+ */
+class Solution {
+public:
+    /**
+     * Returns the list representing twice the original number.
+     *
+     * Doubling has to propagate carries from the least significant digit
+     * backwards, so the recursion doubles on the way out of the call stack.
+     */
+    ListNode* doubleIt(ListNode* head) {
+        const int overflow = doubleFrom(head);
+
+        if (overflow > 0) {
+            return new ListNode(overflow, head);
+        }
+        return head;
+    }
+
+private:
+    /// Doubles `node` and everything after it; returns the carry produced.
+    static int doubleFrom(ListNode* node) {
+        if (node == nullptr) {
+            return 0;
+        }
+
+        const int carryIn = doubleFrom(node->next);
+        const int doubled = node->val * 2 + carryIn;
+
+        node->val = doubled % 10;
+        return doubled / 10;
+    }
+};
+=== REQ000024 END ===
+
+=== REQ000025 START ===
+MOD = 10 ** 9 + 7
+_MAXV = 100001
+_spf = list(range(_MAXV))
+for i in range(2, int(_MAXV ** 0.5) + 1):
+    if _spf[i] == i:
+        for j in range(i * i, _MAXV, i):
+            if _spf[j] == j:
+                _spf[j] = i
+
+def _prime_score(x):
+    s = 0
+    last = -1
+    while x > 1:
+        p = _spf[x]
+        if p != last:
+            s += 1
+            last = p
+        x //= p
+    return s
+
+class Solution:
+    def maximumScore(self, nums, k):
+        n = len(nums)
+        scores = [_prime_score(x) for x in nums]
+        left = [-1] * n
+        stack = []
+        for i in range(n):
+            while stack and scores[stack[-1]] < scores[i]:
+                stack.pop()
+            left[i] = stack[-1] if stack else -1
+            stack.append(i)
+        right = [n] * n
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and scores[stack[-1]] <= scores[i]:
+                stack.pop()
+            right[i] = stack[-1] if stack else n
+            stack.append(i)
+        order = sorted(range(n), key=lambda i: -nums[i])
+        ans = 1
+        remaining = k
+        for i in order:
+            if remaining <= 0:
+                break
+            cnt = (i - left[i]) * (right[i] - i)
+            cnt = min(cnt, remaining)
+            ans = ans * pow(nums[i], cnt, MOD) % MOD
+            remaining -= cnt
+        return ans
+=== REQ000025 END ===

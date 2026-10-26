@@ -1,0 +1,876 @@
+=== REQ000101 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine().trim());
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            String s = br.readLine().trim();
+            out.append(parseRecord(s)).append('\n');
+        }
+        System.out.print(out);
+    }
+
+    static String parseRecord(String s) {
+        Map<Character, Character> next = new HashMap<>();
+        Map<Character, Character> prev = new HashMap<>();
+        Set<Character> known = new HashSet<>();
+        char first = s.charAt(0);
+        known.add(first);
+        char curPrev = first;
+        int i = 1;
+        while (i < s.length()) {
+            String dir;
+            if (i + 1 < s.length() && s.charAt(i) == '-' && s.charAt(i+1) == '>') {
+                dir = "back";
+                i += 2;
+            } else {
+                dir = "fwd";
+            }
+            char cur = s.charAt(i);
+            i++;
+            known.add(cur);
+            if (dir.equals("back")) {
+                next.put(curPrev, cur);
+                prev.put(cur, curPrev);
+            } else {
+                prev.put(curPrev, cur);
+                next.put(cur, curPrev);
+            }
+            curPrev = cur;
+        }
+        char head = 0;
+        for (char c : known) {
+            if (!prev.containsKey(c)) { head = c; break; }
+        }
+        StringBuilder sb = new StringBuilder();
+        Character cur = head;
+        while (cur != null) {
+            sb.append((char) cur);
+            cur = next.get(cur);
+        }
+        return sb.toString();
+    }
+}
+=== REQ000101 END ===
+
+=== REQ000102 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+string parseRecord(const string &s) {
+    map<char, char> nxt, prv;
+    set<char> known;
+    char first = s[0];
+    known.insert(first);
+    char curPrev = first;
+    int i = 1;
+    int len = s.size();
+    while (i < len) {
+        bool back = false;
+        if (i + 1 < len && s[i] == '-' && s[i+1] == '>') {
+            back = true;
+            i += 2;
+        }
+        char cur = s[i];
+        i++;
+        known.insert(cur);
+        if (back) {
+            nxt[curPrev] = cur;
+            prv[cur] = curPrev;
+        } else {
+            prv[curPrev] = cur;
+            nxt[cur] = curPrev;
+        }
+        curPrev = cur;
+    }
+    char head = 0;
+    for (char c : known) {
+        if (prv.find(c) == prv.end()) { head = c; break; }
+    }
+    string result;
+    char cur = head;
+    while (true) {
+        result += cur;
+        auto it = nxt.find(cur);
+        if (it == nxt.end()) break;
+        cur = it->second;
+    }
+    return result;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    cin.ignore();
+    string out;
+    for (int i = 0; i < n; i++) {
+        string s;
+        getline(cin, s);
+        // trim whitespace
+        while (!s.empty() && (s.back() == '\r' || s.back() == '\n' || s.back() == ' ')) s.pop_back();
+        out += parseRecord(s) + "\n";
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000102 END ===
+
+=== REQ000103 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    out = []
+    while idx < len(data):
+        n = int(data[idx]); idx += 1
+        if n == 0:
+            break
+        cards = data[idx]; idx += 1
+        hands = [0] * n
+        field = 0
+        for i, c in enumerate(cards):
+            player = i % n
+            if c == 'M':
+                hands[player] += 1
+            elif c == 'S':
+                field += hands[player] + 1
+                hands[player] = 0
+            elif c == 'L':
+                hands[player] += field + 1
+                field = 0
+        hands.sort()
+        out.append(' '.join(map(str, hands)) + ' ' + str(field))
+    print('\n'.join(out))
+
+main()
+=== REQ000103 END ===
+
+=== REQ000104 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.wordChars('A','Z');
+        StringBuilder out = new StringBuilder();
+        while (true) {
+            st.nextToken();
+            int n = (int) st.nval;
+            if (n == 0) break;
+            st.nextToken();
+            String cards = st.sval;
+            int[] hands = new int[n];
+            int field = 0;
+            for (int i = 0; i < cards.length(); i++) {
+                char c = cards.charAt(i);
+                int player = i % n;
+                if (c == 'M') {
+                    hands[player]++;
+                } else if (c == 'S') {
+                    field += hands[player] + 1;
+                    hands[player] = 0;
+                } else if (c == 'L') {
+                    hands[player] += field + 1;
+                    field = 0;
+                }
+            }
+            Arrays.sort(hands);
+            StringBuilder line = new StringBuilder();
+            for (int i = 0; i < n; i++) {
+                if (i > 0) line.append(' ');
+                line.append(hands[i]);
+            }
+            line.append(' ').append(field);
+            out.append(line).append('\n');
+        }
+        System.out.print(out);
+    }
+}
+=== REQ000104 END ===
+
+=== REQ000105 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    string out;
+    while (cin >> n) {
+        if (n == 0) break;
+        string cards;
+        cin >> cards;
+        vector<int> hands(n, 0);
+        int field = 0;
+        for (size_t i = 0; i < cards.size(); i++) {
+            char c = cards[i];
+            int player = i % n;
+            if (c == 'M') {
+                hands[player]++;
+            } else if (c == 'S') {
+                field += hands[player] + 1;
+                hands[player] = 0;
+            } else if (c == 'L') {
+                hands[player] += field + 1;
+                field = 0;
+            }
+        }
+        sort(hands.begin(), hands.end());
+        string line;
+        for (int i = 0; i < n; i++) {
+            if (i > 0) line += ' ';
+            line += to_string(hands[i]);
+        }
+        line += ' ' + to_string(field);
+        out += line + "\n";
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000105 END ===
+
+=== REQ000106 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    a = list(map(int, data[1:1+n]))
+    nxt = [(i + a[i]) % n for i in range(n)]
+    color = [0]*n  # 0=unvisited,1=in progress,2=done
+    on_cycle = [False]*n
+    for i in range(n):
+        if color[i] != 0:
+            continue
+        path = []
+        cur = i
+        while color[cur] == 0:
+            color[cur] = 1
+            path.append(cur)
+            cur = nxt[cur]
+        if color[cur] == 1:
+            # found a new cycle starting at cur
+            idx = path.index(cur)
+            for node in path[idx:]:
+                on_cycle[node] = True
+        for node in path:
+            color[node] = 2
+    print(sum(on_cycle))
+
+main()
+=== REQ000106 END ===
+
+=== REQ000107 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++) { st.nextToken(); a[i] = (long) st.nval; }
+        int[] nxt = new int[n];
+        for (int i = 0; i < n; i++) nxt[i] = (int) ((i + a[i]) % n);
+        int[] color = new int[n];
+        boolean[] onCycle = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            if (color[i] != 0) continue;
+            List<Integer> path = new ArrayList<>();
+            int cur = i;
+            while (color[cur] == 0) {
+                color[cur] = 1;
+                path.add(cur);
+                cur = nxt[cur];
+            }
+            if (color[cur] == 1) {
+                int idx = path.indexOf(cur);
+                for (int k = idx; k < path.size(); k++) onCycle[path.get(k)] = true;
+            }
+            for (int node : path) color[node] = 2;
+        }
+        int count = 0;
+        for (boolean b : onCycle) if (b) count++;
+        System.out.println(count);
+    }
+}
+=== REQ000107 END ===
+
+=== REQ000108 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<long long> a(n);
+    for (auto &x : a) cin >> x;
+    vector<int> nxt(n);
+    for (int i = 0; i < n; i++) nxt[i] = (int)((i + a[i]) % n);
+    vector<int> color(n, 0);
+    vector<bool> onCycle(n, false);
+    for (int i = 0; i < n; i++) {
+        if (color[i] != 0) continue;
+        vector<int> path;
+        int cur = i;
+        while (color[cur] == 0) {
+            color[cur] = 1;
+            path.push_back(cur);
+            cur = nxt[cur];
+        }
+        if (color[cur] == 1) {
+            int idx = -1;
+            for (size_t k = 0; k < path.size(); k++) if (path[k] == cur) { idx = k; break; }
+            for (size_t k = idx; k < path.size(); k++) onCycle[path[k]] = true;
+        }
+        for (int node : path) color[node] = 2;
+    }
+    int count = 0;
+    for (bool b : onCycle) if (b) count++;
+    cout << count << endl;
+    return 0;
+}
+=== REQ000108 END ===
+
+=== REQ000109 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    nums = list(map(int, data))
+    w = nums[0:10]
+    k = nums[10:20]
+    w_score = sum(sorted(w, reverse=True)[:3])
+    k_score = sum(sorted(k, reverse=True)[:3])
+    print(w_score, k_score)
+
+main()
+=== REQ000109 END ===
+
+=== REQ000110 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        int[] w = new int[10], k = new int[10];
+        for (int i = 0; i < 10; i++) { st.nextToken(); w[i] = (int) st.nval; }
+        for (int i = 0; i < 10; i++) { st.nextToken(); k[i] = (int) st.nval; }
+        Integer[] wBox = new Integer[10];
+        Integer[] kBox = new Integer[10];
+        for (int i = 0; i < 10; i++) { wBox[i] = w[i]; kBox[i] = k[i]; }
+        Arrays.sort(wBox, Collections.reverseOrder());
+        Arrays.sort(kBox, Collections.reverseOrder());
+        int wScore = wBox[0] + wBox[1] + wBox[2];
+        int kScore = kBox[0] + kBox[1] + kBox[2];
+        System.out.println(wScore + " " + kScore);
+    }
+}
+=== REQ000110 END ===
+
+=== REQ000111 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<int> w(10), k(10);
+    for (auto &x : w) cin >> x;
+    for (auto &x : k) cin >> x;
+    sort(w.rbegin(), w.rend());
+    sort(k.rbegin(), k.rend());
+    int wScore = w[0]+w[1]+w[2];
+    int kScore = k[0]+k[1]+k[2];
+    cout << wScore << " " << kScore << endl;
+    return 0;
+}
+=== REQ000111 END ===
+
+=== REQ000112 START ===
+import sys
+
+def char_to_idx(c):
+    if c.islower():
+        return ord(c) - ord('a')
+    else:
+        return 26 + ord(c) - ord('A')
+
+def idx_to_char(i):
+    i %= 52
+    if i < 26:
+        return chr(ord('a') + i)
+    else:
+        return chr(ord('A') + i - 26)
+
+def main():
+    data = sys.stdin.read().split('\n')
+    idx = 0
+    out = []
+    while idx < len(data):
+        line = data[idx].strip()
+        idx += 1
+        if line == '':
+            continue
+        n = int(line)
+        if n == 0:
+            break
+        keys = list(map(int, data[idx].split()))
+        idx += 1
+        s = data[idx].strip()
+        idx += 1
+        result = []
+        for i, c in enumerate(s):
+            k = keys[i % n]
+            orig_idx = char_to_idx(c)
+            dec_idx = (orig_idx - k) % 52
+            result.append(idx_to_char(dec_idx))
+        out.append(''.join(result))
+    print('\n'.join(out))
+
+main()
+=== REQ000112 END ===
+
+=== REQ000113 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int charToIdx(char c) {
+        if (Character.isLowerCase(c)) return c - 'a';
+        else return 26 + (c - 'A');
+    }
+
+    static char idxToChar(int i) {
+        i = ((i % 52) + 52) % 52;
+        if (i < 26) return (char) ('a' + i);
+        else return (char) ('A' + i - 26);
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder out = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            int n = Integer.parseInt(line);
+            if (n == 0) break;
+            StringTokenizer stk = new StringTokenizer(br.readLine());
+            int[] keys = new int[n];
+            for (int i = 0; i < n; i++) keys[i] = Integer.parseInt(stk.nextToken());
+            String s = br.readLine().trim();
+            StringBuilder res = new StringBuilder();
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                int k = keys[i % n];
+                int origIdx = charToIdx(c);
+                int decIdx = origIdx - k;
+                res.append(idxToChar(decIdx));
+            }
+            out.append(res).append('\n');
+        }
+        System.out.print(out);
+    }
+}
+=== REQ000113 END ===
+
+=== REQ000114 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int charToIdx(char c) {
+    if (islower(c)) return c - 'a';
+    else return 26 + (c - 'A');
+}
+
+char idxToChar(int i) {
+    i = ((i % 52) + 52) % 52;
+    if (i < 26) return (char)('a' + i);
+    else return (char)('A' + i - 26);
+}
+
+int main() {
+    string out;
+    int n;
+    while (cin >> n) {
+        if (n == 0) break;
+        vector<int> keys(n);
+        for (auto &k : keys) cin >> k;
+        string s;
+        cin >> s;
+        string res;
+        for (size_t i = 0; i < s.size(); i++) {
+            char c = s[i];
+            int k = keys[i % n];
+            int origIdx = charToIdx(c);
+            int decIdx = origIdx - k;
+            res += idxToChar(decIdx);
+        }
+        out += res + "\n";
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000114 END ===
+
+=== REQ000115 START ===
+import sys
+import math
+
+def main():
+    d = float(sys.stdin.read().strip())
+    best = d * math.sqrt(2)
+    floor_d = int(math.floor(d + 1e-9))
+    for k in range(1, floor_d + 1):
+        rem = d*d - k*k
+        if rem < 0:
+            rem = 0
+        dy = math.sqrt(rem)
+        val = k + max(1.0, dy)
+        if val > best:
+            best = val
+    print(f"{best:.12f}")
+
+main()
+=== REQ000115 END ===
+
+=== REQ000116 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        double d = Double.parseDouble(br.readLine().trim());
+        double best = d * Math.sqrt(2);
+        int floorD = (int) Math.floor(d + 1e-9);
+        for (int k = 1; k <= floorD; k++) {
+            double rem = d*d - (double)k*k;
+            if (rem < 0) rem = 0;
+            double dy = Math.sqrt(rem);
+            double val = k + Math.max(1.0, dy);
+            if (val > best) best = val;
+        }
+        System.out.printf("%.12f%n", best);
+    }
+}
+=== REQ000116 END ===
+
+=== REQ000117 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    double d;
+    cin >> d;
+    double best = d * sqrt(2.0);
+    int floorD = (int) floor(d + 1e-9);
+    for (int k = 1; k <= floorD; k++) {
+        double rem = d*d - (double)k*k;
+        if (rem < 0) rem = 0;
+        double dy = sqrt(rem);
+        double val = k + max(1.0, dy);
+        if (val > best) best = val;
+    }
+    printf("%.12f\n", best);
+    return 0;
+}
+=== REQ000117 END ===
+
+=== REQ000118 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    v = list(map(int, data[1:1+n]))
+    total = sum(v) - n*(n+1)//2
+    print(total)
+
+main()
+=== REQ000118 END ===
+
+=== REQ000119 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        long total = 0;
+        for (int i = 0; i < n; i++) {
+            st.nextToken();
+            total += (long) st.nval;
+        }
+        total -= (long) n * (n + 1) / 2;
+        System.out.println(total);
+    }
+}
+=== REQ000119 END ===
+
+=== REQ000120 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long n;
+    cin >> n;
+    long long total = 0;
+    for (int i = 0; i < n; i++) {
+        long long v;
+        cin >> v;
+        total += v;
+    }
+    total -= n * (n + 1) / 2;
+    cout << total << endl;
+    return 0;
+}
+=== REQ000120 END ===
+
+=== REQ000121 START ===
+import sys
+
+def main():
+    input_data = sys.stdin.buffer.read().split()
+    idx = 0
+    n = int(input_data[idx]); q = int(input_data[idx+1]); idx += 2
+
+    size = 1
+    while size < n:
+        size *= 2
+
+    sum_tree = [0] * (2 * size)
+    lazy = [None] * (2 * size)
+
+    def push_down(node, node_len):
+        if lazy[node] is not None:
+            val = lazy[node]
+            left = 2*node
+            right = 2*node+1
+            half = node_len // 2
+            sum_tree[left] = val * half
+            sum_tree[right] = val * half
+            lazy[left] = val
+            lazy[right] = val
+            lazy[node] = None
+
+    def update(node, node_l, node_r, s, t, x):
+        if t < node_l or node_r < s:
+            return
+        if s <= node_l and node_r <= t:
+            sum_tree[node] = x * (node_r - node_l + 1)
+            lazy[node] = x
+            return
+        push_down(node, node_r - node_l + 1)
+        mid = (node_l + node_r) // 2
+        update(2*node, node_l, mid, s, t, x)
+        update(2*node+1, mid+1, node_r, s, t, x)
+        sum_tree[node] = sum_tree[2*node] + sum_tree[2*node+1]
+
+    def query(node, node_l, node_r, s, t):
+        if t < node_l or node_r < s:
+            return 0
+        if s <= node_l and node_r <= t:
+            return sum_tree[node]
+        push_down(node, node_r - node_l + 1)
+        mid = (node_l + node_r) // 2
+        return query(2*node, node_l, mid, s, t) + query(2*node+1, mid+1, node_r, s, t)
+
+    out = []
+    for _ in range(q):
+        typ = int(input_data[idx]); idx += 1
+        if typ == 0:
+            s = int(input_data[idx]); t = int(input_data[idx+1]); x = int(input_data[idx+2]); idx += 3
+            update(1, 0, size-1, s, t, x)
+        else:
+            s = int(input_data[idx]); t = int(input_data[idx+1]); idx += 2
+            out.append(str(query(1, 0, size-1, s, t)))
+
+    print('\n'.join(out))
+
+main()
+=== REQ000121 END ===
+
+=== REQ000122 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static long[] sumTree;
+    static Long[] lazy;
+    static int size;
+
+    static void pushDown(int node, int nodeLen) {
+        if (lazy[node] != null) {
+            long val = lazy[node];
+            int left = 2*node, right = 2*node+1;
+            int half = nodeLen / 2;
+            sumTree[left] = val * half;
+            sumTree[right] = val * half;
+            lazy[left] = val;
+            lazy[right] = val;
+            lazy[node] = null;
+        }
+    }
+
+    static void update(int node, int nodeL, int nodeR, int s, int t, long x) {
+        if (t < nodeL || nodeR < s) return;
+        if (s <= nodeL && nodeR <= t) {
+            sumTree[node] = x * (nodeR - nodeL + 1);
+            lazy[node] = x;
+            return;
+        }
+        pushDown(node, nodeR - nodeL + 1);
+        int mid = (nodeL + nodeR) / 2;
+        update(2*node, nodeL, mid, s, t, x);
+        update(2*node+1, mid+1, nodeR, s, t, x);
+        sumTree[node] = sumTree[2*node] + sumTree[2*node+1];
+    }
+
+    static long query(int node, int nodeL, int nodeR, int s, int t) {
+        if (t < nodeL || nodeR < s) return 0;
+        if (s <= nodeL && nodeR <= t) return sumTree[node];
+        pushDown(node, nodeR - nodeL + 1);
+        int mid = (nodeL + nodeR) / 2;
+        return query(2*node, nodeL, mid, s, t) + query(2*node+1, mid+1, nodeR, s, t);
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int q = (int) st.nval;
+
+        size = 1;
+        while (size < n) size *= 2;
+        sumTree = new long[2 * size];
+        lazy = new Long[2 * size];
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            st.nextToken(); int typ = (int) st.nval;
+            if (typ == 0) {
+                st.nextToken(); int s = (int) st.nval;
+                st.nextToken(); int t = (int) st.nval;
+                st.nextToken(); int x = (int) st.nval;
+                update(1, 0, size-1, s, t, x);
+            } else {
+                st.nextToken(); int s = (int) st.nval;
+                st.nextToken(); int t = (int) st.nval;
+                sb.append(query(1, 0, size-1, s, t)).append('\n');
+            }
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000122 END ===
+
+=== REQ000123 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int sizeN;
+vector<long long> sumTree;
+vector<long long> lazy;
+vector<bool> hasLazy;
+
+void pushDown(int node, int nodeLen) {
+    if (hasLazy[node]) {
+        long long val = lazy[node];
+        int left = 2*node, right = 2*node+1;
+        int half = nodeLen / 2;
+        sumTree[left] = val * half;
+        sumTree[right] = val * half;
+        lazy[left] = val; hasLazy[left] = true;
+        lazy[right] = val; hasLazy[right] = true;
+        hasLazy[node] = false;
+    }
+}
+
+void update(int node, int nodeL, int nodeR, int s, int t, long long x) {
+    if (t < nodeL || nodeR < s) return;
+    if (s <= nodeL && nodeR <= t) {
+        sumTree[node] = x * (long long)(nodeR - nodeL + 1);
+        lazy[node] = x;
+        hasLazy[node] = true;
+        return;
+    }
+    pushDown(node, nodeR - nodeL + 1);
+    int mid = (nodeL + nodeR) / 2;
+    update(2*node, nodeL, mid, s, t, x);
+    update(2*node+1, mid+1, nodeR, s, t, x);
+    sumTree[node] = sumTree[2*node] + sumTree[2*node+1];
+}
+
+long long query(int node, int nodeL, int nodeR, int s, int t) {
+    if (t < nodeL || nodeR < s) return 0;
+    if (s <= nodeL && nodeR <= t) return sumTree[node];
+    pushDown(node, nodeR - nodeL + 1);
+    int mid = (nodeL + nodeR) / 2;
+    return query(2*node, nodeL, mid, s, t) + query(2*node+1, mid+1, nodeR, s, t);
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, q;
+    cin >> n >> q;
+    sizeN = 1;
+    while (sizeN < n) sizeN *= 2;
+    sumTree.assign(2*sizeN, 0);
+    lazy.assign(2*sizeN, 0);
+    hasLazy.assign(2*sizeN, false);
+
+    string out;
+    for (int i = 0; i < q; i++) {
+        int typ;
+        cin >> typ;
+        if (typ == 0) {
+            int s, t;
+            long long x;
+            cin >> s >> t >> x;
+            update(1, 0, sizeN-1, s, t, x);
+        } else {
+            int s, t;
+            cin >> s >> t;
+            out += to_string(query(1, 0, sizeN-1, s, t)) + "\n";
+        }
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000123 END ===
+
+=== REQ000124 START ===
+import sys
+
+def main():
+    data = sys.stdin.read()
+
+main()
+=== REQ000124 END ===
+
+=== REQ000125 START ===
+import java.io.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int c;
+        while ((c = br.read()) != -1) {
+            sb.append((char) c);
+        }
+    }
+}
+=== REQ000125 END ===

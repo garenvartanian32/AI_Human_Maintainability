@@ -1,0 +1,1 @@
+I don't see the problem statement — please paste the full problem (including input/output format and constraints). If you prefer, state a known problem name (e.g., "Two Sum", "Dijkstra", "Longest Increasing Subsequence") and I'll provide a complete Python solution with explanation and tests.

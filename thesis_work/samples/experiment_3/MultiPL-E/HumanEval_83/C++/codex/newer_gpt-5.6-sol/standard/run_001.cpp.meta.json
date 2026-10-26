@@ -1,0 +1,13 @@
+{
+  "experiment": 3,
+  "dataset": "MultiPL-E",
+  "problem_id": "HumanEval_83",
+  "language": "C++",
+  "source": "AI",
+  "provider": "codex",
+  "model": "gpt-5.6-sol",
+  "model_group": "newer",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

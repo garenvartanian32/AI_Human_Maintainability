@@ -1,0 +1,13 @@
+{
+  "experiment": 3,
+  "dataset": "Back3474",
+  "problem_id": "problem_2",
+  "language": "C++",
+  "source": "AI",
+  "provider": "claude",
+  "model": "Opus 4.6",
+  "model_group": "Opus 4.6",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

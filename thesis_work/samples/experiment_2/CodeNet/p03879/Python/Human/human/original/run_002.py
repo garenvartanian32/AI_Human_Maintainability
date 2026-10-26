@@ -1,0 +1,14 @@
+Tri=[]
+x1,y1=map(int,input().split())
+x2,y2=map(int,input().split())
+x3,y3=map(int,input().split())
+a1,a2=x2-x1,y2-y1
+b1,b2=x3-x1,y3-y1
+c1,c2=x3-x2,y3-y2
+S=abs(a1*b2-a2*b1)/2
+a=(a1**2+a2**2)**(1/2)
+b=(b1**2+b2**2)**(1/2)
+c=(c1**2+c2**2)**(1/2)
+h=2*S/max(a,b,c)
+r=S/(h+(a+b+c)/2)
+print(r)

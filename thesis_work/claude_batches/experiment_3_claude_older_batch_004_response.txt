@@ -1,0 +1,783 @@
+=== REQ000076 START ===
+import sys
+
+def main():
+    lines = sys.stdin.read().split('\n')
+    s = lines[0].strip()
+    n = int(lines[1].strip())
+    out = []
+    for c in s:
+        base = c.lower()
+        rank = ord(base) - ord('a') + 1
+        if rank <= n:
+            out.append(base.upper())
+        else:
+            out.append(base)
+    print(''.join(out))
+
+main()
+=== REQ000076 END ===
+
+=== REQ000077 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine().trim();
+        int n = Integer.parseInt(br.readLine().trim());
+        StringBuilder sb = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            char base = Character.toLowerCase(c);
+            int rank = base - 'a' + 1;
+            if (rank <= n) sb.append(Character.toUpperCase(base));
+            else sb.append(base);
+        }
+        System.out.println(sb);
+    }
+}
+=== REQ000077 END ===
+
+=== REQ000078 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string s;
+    int n;
+    getline(cin, s);
+    cin >> n;
+    string out;
+    for (char c : s) {
+        char base = tolower(c);
+        int rank = base - 'a' + 1;
+        if (rank <= n) out += toupper(base);
+        else out += base;
+    }
+    cout << out << endl;
+    return 0;
+}
+=== REQ000078 END ===
+
+=== REQ000079 START ===
+import sys
+
+def main():
+    s = sys.stdin.read().strip()
+    nums = sorted(s.split('+'), key=int)
+    print('+'.join(nums))
+
+main()
+=== REQ000079 END ===
+
+=== REQ000080 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine().trim();
+        String[] parts = s.split("\\+");
+        Integer[] nums = new Integer[parts.length];
+        for (int i = 0; i < parts.length; i++) nums[i] = Integer.parseInt(parts[i]);
+        Arrays.sort(nums);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0) sb.append('+');
+            sb.append(nums[i]);
+        }
+        System.out.println(sb);
+    }
+}
+=== REQ000080 END ===
+
+=== REQ000081 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    vector<int> nums;
+    stringstream ss(s);
+    string token;
+    while (getline(ss, token, '+')) {
+        nums.push_back(stoi(token));
+    }
+    sort(nums.begin(), nums.end());
+    string out;
+    for (size_t i = 0; i < nums.size(); i++) {
+        if (i > 0) out += '+';
+        out += to_string(nums[i]);
+    }
+    cout << out << endl;
+    return 0;
+}
+=== REQ000081 END ===
+
+=== REQ000082 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    w = list(map(int, data[1:1+n]))
+    units = [x // 100 for x in w]
+    total = sum(units)
+    if total % 2 != 0:
+        print("NO")
+        return
+    half = total // 2
+    dp = [False] * (half + 1)
+    dp[0] = True
+    for u in units:
+        for s in range(half, u - 1, -1):
+            if dp[s - u]:
+                dp[s] = True
+    print("YES" if dp[half] else "NO")
+
+main()
+=== REQ000082 END ===
+
+=== REQ000083 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        int[] units = new int[n];
+        int total = 0;
+        for (int i = 0; i < n; i++) {
+            st.nextToken();
+            units[i] = (int) st.nval / 100;
+            total += units[i];
+        }
+        if (total % 2 != 0) {
+            System.out.println("NO");
+            return;
+        }
+        int half = total / 2;
+        boolean[] dp = new boolean[half + 1];
+        dp[0] = true;
+        for (int u : units) {
+            for (int s = half; s >= u; s--) {
+                if (dp[s - u]) dp[s] = true;
+            }
+        }
+        System.out.println(dp[half] ? "YES" : "NO");
+    }
+}
+=== REQ000083 END ===
+
+=== REQ000084 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> units(n);
+    int total = 0;
+    for (auto &u : units) {
+        int w; cin >> w;
+        u = w / 100;
+        total += u;
+    }
+    if (total % 2 != 0) {
+        cout << "NO" << endl;
+        return 0;
+    }
+    int half = total / 2;
+    vector<char> dp(half + 1, 0);
+    dp[0] = 1;
+    for (int u : units) {
+        for (int s = half; s >= u; s--) {
+            if (dp[s - u]) dp[s] = 1;
+        }
+    }
+    cout << (dp[half] ? "YES" : "NO") << endl;
+    return 0;
+}
+=== REQ000084 END ===
+
+=== REQ000085 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split('\n')
+    a = data[0].strip()
+    b = data[1].strip()
+    c = data[2].strip()
+
+    def freq(s):
+        f = [0]*26
+        for ch in s:
+            f[ord(ch)-ord('a')] += 1
+        return f
+
+    fa = freq(a)
+    fb = freq(b)
+    fc = freq(c)
+
+    max_x = len(a)
+    for i in range(26):
+        if fb[i] > 0:
+            max_x = min(max_x, fa[i] // fb[i])
+
+    best_total = -1
+    best_x = 0
+    best_y = 0
+    for x in range(max_x + 1):
+        remaining = [fa[i] - x*fb[i] for i in range(26)]
+        y = len(a)
+        feasible = True
+        for i in range(26):
+            if fc[i] > 0:
+                y = min(y, remaining[i] // fc[i])
+        total = x + y
+        if total > best_total:
+            best_total = total
+            best_x = x
+            best_y = y
+
+    result = []
+    result.append(b * best_x)
+    result.append(c * best_y)
+    used = [0]*26
+    for i in range(26):
+        used[i] = best_x*fb[i] + best_y*fc[i]
+    leftover = []
+    for i in range(26):
+        cnt = fa[i] - used[i]
+        leftover.append(chr(ord('a')+i) * cnt)
+    result.append(''.join(leftover))
+    print(''.join(result))
+
+main()
+=== REQ000085 END ===
+
+=== REQ000086 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String a = br.readLine().trim();
+        String b = br.readLine().trim();
+        String c = br.readLine().trim();
+
+        int[] fa = new int[26], fb = new int[26], fc = new int[26];
+        for (char ch : a.toCharArray()) fa[ch - 'a']++;
+        for (char ch : b.toCharArray()) fb[ch - 'a']++;
+        for (char ch : c.toCharArray()) fc[ch - 'a']++;
+
+        int maxX = a.length();
+        for (int i = 0; i < 26; i++) {
+            if (fb[i] > 0) maxX = Math.min(maxX, fa[i] / fb[i]);
+        }
+
+        int bestTotal = -1, bestX = 0, bestY = 0;
+        for (int x = 0; x <= maxX; x++) {
+            int y = a.length();
+            for (int i = 0; i < 26; i++) {
+                if (fc[i] > 0) {
+                    int remaining = fa[i] - x * fb[i];
+                    y = Math.min(y, remaining / fc[i]);
+                }
+            }
+            int total = x + y;
+            if (total > bestTotal) {
+                bestTotal = total;
+                bestX = x;
+                bestY = y;
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bestX; i++) sb.append(b);
+        for (int i = 0; i < bestY; i++) sb.append(c);
+        int[] used = new int[26];
+        for (int i = 0; i < 26; i++) used[i] = bestX * fb[i] + bestY * fc[i];
+        for (int i = 0; i < 26; i++) {
+            int cnt = fa[i] - used[i];
+            for (int k = 0; k < cnt; k++) sb.append((char) ('a' + i));
+        }
+        System.out.println(sb.toString());
+    }
+}
+=== REQ000086 END ===
+
+=== REQ000087 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string a, b, c;
+    getline(cin, a);
+    getline(cin, b);
+    getline(cin, c);
+
+    int fa[26] = {0}, fb[26] = {0}, fc[26] = {0};
+    for (char ch : a) fa[ch - 'a']++;
+    for (char ch : b) fb[ch - 'a']++;
+    for (char ch : c) fc[ch - 'a']++;
+
+    int maxX = (int) a.size();
+    for (int i = 0; i < 26; i++) {
+        if (fb[i] > 0) maxX = min(maxX, fa[i] / fb[i]);
+    }
+
+    int bestTotal = -1, bestX = 0, bestY = 0;
+    for (int x = 0; x <= maxX; x++) {
+        int y = (int) a.size();
+        for (int i = 0; i < 26; i++) {
+            if (fc[i] > 0) {
+                int remaining = fa[i] - x * fb[i];
+                y = min(y, remaining / fc[i]);
+            }
+        }
+        int total = x + y;
+        if (total > bestTotal) {
+            bestTotal = total;
+            bestX = x;
+            bestY = y;
+        }
+    }
+
+    string result;
+    for (int i = 0; i < bestX; i++) result += b;
+    for (int i = 0; i < bestY; i++) result += c;
+    int used[26];
+    for (int i = 0; i < 26; i++) used[i] = bestX * fb[i] + bestY * fc[i];
+    for (int i = 0; i < 26; i++) {
+        int cnt = fa[i] - used[i];
+        result += string(cnt, (char)('a' + i));
+    }
+    cout << result << endl;
+    return 0;
+}
+=== REQ000087 END ===
+
+=== REQ000088 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    n = int(data[idx]); k = int(data[idx+1]); idx += 2
+    a = int(data[idx]); b = int(data[idx+1]); c = int(data[idx+2]); d = int(data[idx+3]); idx += 4
+
+    if n == 4 or (n + 1) > k:
+        print(-1)
+        return
+
+    special = {a, b, c, d}
+    middle = [x for x in range(1, n+1) if x not in special]
+
+    path1 = [a, c] + middle + [d, b]
+    path2 = [c, a] + middle + [b, d]
+
+    print(' '.join(map(str, path1)))
+    print(' '.join(map(str, path2)))
+
+main()
+=== REQ000088 END ===
+
+=== REQ000089 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int k = (int) st.nval;
+        st.nextToken(); int a = (int) st.nval;
+        st.nextToken(); int b = (int) st.nval;
+        st.nextToken(); int c = (int) st.nval;
+        st.nextToken(); int d = (int) st.nval;
+
+        if (n == 4 || (n + 1) > k) {
+            System.out.println(-1);
+            return;
+        }
+
+        Set<Integer> special = new HashSet<>(Arrays.asList(a, b, c, d));
+        List<Integer> middle = new ArrayList<>();
+        for (int x = 1; x <= n; x++) {
+            if (!special.contains(x)) middle.add(x);
+        }
+
+        StringBuilder p1 = new StringBuilder();
+        p1.append(a).append(' ').append(c);
+        for (int x : middle) p1.append(' ').append(x);
+        p1.append(' ').append(d).append(' ').append(b);
+
+        StringBuilder p2 = new StringBuilder();
+        p2.append(c).append(' ').append(a);
+        for (int x : middle) p2.append(' ').append(x);
+        p2.append(' ').append(b).append(' ').append(d);
+
+        System.out.println(p1.toString());
+        System.out.println(p2.toString());
+    }
+}
+=== REQ000089 END ===
+
+=== REQ000090 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, k, a, b, c, d;
+    cin >> n >> k >> a >> b >> c >> d;
+
+    if (n == 4 || (n + 1) > k) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    set<int> special = {a, b, c, d};
+    vector<int> middle;
+    for (int x = 1; x <= n; x++) {
+        if (!special.count(x)) middle.push_back(x);
+    }
+
+    string p1 = to_string(a) + " " + to_string(c);
+    for (int x : middle) p1 += " " + to_string(x);
+    p1 += " " + to_string(d) + " " + to_string(b);
+
+    string p2 = to_string(c) + " " + to_string(a);
+    for (int x : middle) p2 += " " + to_string(x);
+    p2 += " " + to_string(b) + " " + to_string(d);
+
+    cout << p1 << "\n" << p2 << "\n";
+    return 0;
+}
+=== REQ000090 END ===
+
+=== REQ000091 START ===
+import sys
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    idx = 0
+    n = int(data[idx]); m = int(data[idx+1]); idx += 2
+    p = [int(data[idx+i]) for i in range(n)]; idx += n
+    parent = list(range(n+1))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for _ in range(m):
+        aj = int(data[idx]); bj = int(data[idx+1]); idx += 2
+        ra, rb = find(aj), find(bj)
+        if ra != rb:
+            parent[ra] = rb
+
+    groups = {}
+    for i in range(1, n+1):
+        r = find(i)
+        groups.setdefault(r, []).append(i)
+
+    ans = [0]*(n+1)
+    for r, positions in groups.items():
+        positions_sorted = sorted(positions)
+        values = sorted((p[i-1] for i in positions_sorted), reverse=True)
+        for pos, val in zip(positions_sorted, values):
+            ans[pos] = val
+
+    print(' '.join(map(str, ans[1:n+1])))
+
+main()
+=== REQ000091 END ===
+
+=== REQ000092 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int[] parent;
+
+    static int find(int x) {
+        while (parent[x] != x) {
+            parent[x] = parent[parent[x]];
+            x = parent[x];
+        }
+        return x;
+    }
+
+    public static void main(String[] args) throws IOException {
+        DataInputStream in = new DataInputStream(new BufferedInputStream(System.in, 1 << 16));
+        int n = nextInt(in), m = nextInt(in);
+        int[] p = new int[n + 1];
+        for (int i = 1; i <= n; i++) p[i] = nextInt(in);
+        parent = new int[n + 1];
+        for (int i = 0; i <= n; i++) parent[i] = i;
+        for (int i = 0; i < m; i++) {
+            int aj = nextInt(in), bj = nextInt(in);
+            int ra = find(aj), rb = find(bj);
+            if (ra != rb) parent[ra] = rb;
+        }
+        List<List<Integer>> groups = new ArrayList<>();
+        Map<Integer, Integer> rootToGroup = new HashMap<>();
+        for (int i = 1; i <= n; i++) {
+            int r = find(i);
+            Integer gi = rootToGroup.get(r);
+            if (gi == null) {
+                gi = groups.size();
+                rootToGroup.put(r, gi);
+                groups.add(new ArrayList<>());
+            }
+            groups.get(gi).add(i);
+        }
+        int[] ans = new int[n + 1];
+        for (List<Integer> positions : groups) {
+            List<Integer> values = new ArrayList<>();
+            for (int pos : positions) values.add(p[pos]);
+            Collections.sort(values, Collections.reverseOrder());
+            for (int k = 0; k < positions.size(); k++) {
+                ans[positions.get(k)] = values.get(k);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= n; i++) {
+            if (i > 1) sb.append(' ');
+            sb.append(ans[i]);
+        }
+        System.out.println(sb);
+    }
+
+    private static int nextInt(DataInputStream in) throws IOException {
+        int ret = 0;
+        int b = in.read();
+        while (b < '0' || b > '9') {
+            if (b == '-') break;
+            b = in.read();
+        }
+        boolean neg = false;
+        if (b == '-') { neg = true; b = in.read(); }
+        while (b >= '0' && b <= '9') {
+            ret = ret * 10 + (b - '0');
+            b = in.read();
+        }
+        return neg ? -ret : ret;
+    }
+}
+=== REQ000092 END ===
+
+=== REQ000093 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> parent_;
+
+int find(int x) {
+    while (parent_[x] != x) {
+        parent_[x] = parent_[parent_[x]];
+        x = parent_[x];
+    }
+    return x;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin >> n >> m;
+    vector<int> p(n + 1);
+    for (int i = 1; i <= n; i++) cin >> p[i];
+    parent_.resize(n + 1);
+    iota(parent_.begin(), parent_.end(), 0);
+    for (int i = 0; i < m; i++) {
+        int aj, bj;
+        cin >> aj >> bj;
+        int ra = find(aj), rb = find(bj);
+        if (ra != rb) parent_[ra] = rb;
+    }
+    vector<vector<int>> groupsByRoot(n + 1);
+    for (int i = 1; i <= n; i++) {
+        int r = find(i);
+        groupsByRoot[r].push_back(i);
+    }
+    vector<int> ans(n + 1);
+    for (int r = 1; r <= n; r++) {
+        if (groupsByRoot[r].empty()) continue;
+        vector<int> &positions = groupsByRoot[r];
+        vector<int> values;
+        for (int pos : positions) values.push_back(p[pos]);
+        sort(values.rbegin(), values.rend());
+        for (size_t k = 0; k < positions.size(); k++) {
+            ans[positions[k]] = values[k];
+        }
+    }
+    string out;
+    for (int i = 1; i <= n; i++) {
+        if (i > 1) out += ' ';
+        out += to_string(ans[i]);
+    }
+    cout << out << "\n";
+    return 0;
+}
+=== REQ000093 END ===
+
+=== REQ000094 START ===
+import sys
+
+def main():
+    ball = 'A'
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        x, y = line.split(',')
+        if ball == x:
+            ball = y
+        elif ball == y:
+            ball = x
+    print(ball)
+
+main()
+=== REQ000094 END ===
+
+=== REQ000095 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        char ball = 'A';
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            String[] parts = line.split(",");
+            char x = parts[0].charAt(0);
+            char y = parts[1].charAt(0);
+            if (ball == x) ball = y;
+            else if (ball == y) ball = x;
+        }
+        System.out.println(ball);
+    }
+}
+=== REQ000095 END ===
+
+=== REQ000096 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    char ball = 'A';
+    string line;
+    while (getline(cin, line)) {
+        if (line.empty()) continue;
+        char x = line[0];
+        char y = line[2];
+        if (ball == x) ball = y;
+        else if (ball == y) ball = x;
+    }
+    cout << ball << endl;
+    return 0;
+}
+=== REQ000096 END ===
+
+=== REQ000097 START ===
+import sys
+
+def main():
+    a, b = map(int, sys.stdin.read().split())
+    s = (a * b) / 3.305785
+    print(f"{s:.6f}")
+
+main()
+=== REQ000097 END ===
+
+=== REQ000098 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int a = (int) st.nval;
+        st.nextToken(); int b = (int) st.nval;
+        double s = (a * b) / 3.305785;
+        System.out.printf("%.6f%n", s);
+    }
+}
+=== REQ000098 END ===
+
+=== REQ000099 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    double a, b;
+    cin >> a >> b;
+    double s = (a * b) / 3.305785;
+    printf("%.6f\n", s);
+    return 0;
+}
+=== REQ000099 END ===
+
+=== REQ000100 START ===
+import sys
+
+def parse_record(s):
+    prev = s[0]
+    prev_node = {'char': prev, 'next': None, 'prev': None}
+    nodes = {prev: prev_node}
+    i = 1
+    while i < len(s):
+        if s[i:i+2] == '->':
+            direction = 'back'
+            i += 2
+        else:
+            direction = 'fwd'
+        cur = s[i]
+        i += 1
+        if cur not in nodes:
+            nodes[cur] = {'char': cur, 'next': None, 'prev': None}
+        if direction == 'back':
+            nodes[prev]['next'] = cur
+            nodes[cur]['prev'] = prev
+        else:
+            nodes[prev]['prev'] = cur
+            nodes[cur]['next'] = prev
+        prev = cur
+    # find head (prev is None)
+    head = None
+    for ch, node in nodes.items():
+        if node['prev'] is None:
+            head = ch
+            break
+    result = []
+    cur = head
+    while cur is not None:
+        result.append(cur)
+        cur = nodes[cur]['next']
+    return ''.join(result)
+
+def main():
+    data = sys.stdin.read().split('\n')
+    n = int(data[0].strip())
+    out = []
+    for i in range(1, n+1):
+        s = data[i].strip()
+        out.append(parse_record(s))
+    print('\n'.join(out))
+
+main()
+=== REQ000100 END ===

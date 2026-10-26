@@ -1,0 +1,4413 @@
+{
+  "archive": "C:\\Users\\garen\\OneDrive\\Desktop\\UNI - Garen\\COMP4093\\ThesisB\\datasets\\Project_CodeNet.tar.gz",
+  "problem_count": 100,
+  "languages": [
+    "Python",
+    "Java",
+    "C++"
+  ],
+  "human_per_problem": 3,
+  "seed": 4050,
+  "selected_problems": {
+    "p00047": {
+      "Python": [
+        {
+          "submission_id": "s703882000",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s807829356",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s942454277",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s883857700",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s257716581",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s772632025",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s020763683",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s695905512",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s205327479",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00051": {
+      "Python": [
+        {
+          "submission_id": "s494440881",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s273323435",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s613604476",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s012011139",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s661787944",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s101467459",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s348367115",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s833235944",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s992467273",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00093": {
+      "Python": [
+        {
+          "submission_id": "s950829554",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s589658857",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s179261828",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s266371616",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s235402971",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s436180002",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s828144491",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s842249621",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s066945595",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00094": {
+      "Python": [
+        {
+          "submission_id": "s302437567",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s220649214",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s818757651",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s340896346",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s711838205",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s963165552",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s966090907",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s432965486",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s852292270",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00130": {
+      "Python": [
+        {
+          "submission_id": "s933575413",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s791758940",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s136710781",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s793111823",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s980176728",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s259966192",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s506815490",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s742250083",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s399245078",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00170": {
+      "Python": [
+        {
+          "submission_id": "s150155426",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s942123926",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s760685944",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s584602577",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s781117917",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s454127569",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s552013697",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s024001237",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s886751244",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00275": {
+      "Python": [
+        {
+          "submission_id": "s445758880",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s525081452",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s236305521",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s665449186",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s163218145",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s645148155",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s939988109",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s437477155",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s243781463",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00344": {
+      "Python": [
+        {
+          "submission_id": "s857646290",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s653721953",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s645560520",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s515598600",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s805740488",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s204818841",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s168400105",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s397394499",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s481341960",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00353": {
+      "Python": [
+        {
+          "submission_id": "s558677971",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s979864088",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s870686785",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s388197915",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s071679179",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s977360679",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s772328309",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s794895025",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s665777136",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00456": {
+      "Python": [
+        {
+          "submission_id": "s526450932",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s283283801",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s000560534",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s930983822",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s361912301",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s922871328",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s248692502",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s812898426",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s567920732",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00523": {
+      "Python": [
+        {
+          "submission_id": "s194435693",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s073774257",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s285555359",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s514353221",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s080977234",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s642372534",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s580329587",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s853205575",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s168979527",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00629": {
+      "Python": [
+        {
+          "submission_id": "s539091048",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s228058922",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s332246983",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s086452120",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s991797449",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s036096650",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s067146780",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s180224990",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s851872320",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00654": {
+      "Python": [
+        {
+          "submission_id": "s282355671",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s323263474",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s831418401",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s440077132",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s832884469",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s975564093",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s141500341",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s996280074",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s889537128",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00688": {
+      "Python": [
+        {
+          "submission_id": "s313818588",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s903601214",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s132352594",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s457873393",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s658464122",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s401468897",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s808678589",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s996942418",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s202717564",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00700": {
+      "Python": [
+        {
+          "submission_id": "s622181892",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s156120116",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s001179145",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s576701002",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s411102045",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s330572242",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s349325879",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s187162054",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s049142823",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00725": {
+      "Python": [
+        {
+          "submission_id": "s282896739",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s503422543",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s121036449",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s253204811",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s353919222",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s630598673",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s225418532",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s732245708",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s661266085",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00737": {
+      "Python": [
+        {
+          "submission_id": "s320123586",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s227407304",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s595787613",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s774284121",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s013946797",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s920994140",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s883153335",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s836304448",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s203389450",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00895": {
+      "Python": [
+        {
+          "submission_id": "s419561860",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s378189521",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s555188478",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s991237863",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s951255241",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s547192057",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s348938096",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s217344909",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s182115544",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p00907": {
+      "Python": [
+        {
+          "submission_id": "s720684662",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s113746828",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s871793891",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s712447608",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s865633625",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s198205117",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s922447058",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s559415317",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s202538284",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p01323": {
+      "Python": [
+        {
+          "submission_id": "s077278851",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s851948858",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s024255901",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s921854971",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s540550262",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s690728467",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s896127947",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s674324145",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s619122405",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p01521": {
+      "Python": [
+        {
+          "submission_id": "s001015891",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s937102969",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s338110696",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s792655136",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s964938161",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s275654138",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s672566567",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s866020172",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s197182692",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p01620": {
+      "Python": [
+        {
+          "submission_id": "s116617174",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s266475911",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s289899924",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s752973839",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s078734868",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s334176833",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s332298241",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s020046744",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s908887045",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p01677": {
+      "Python": [
+        {
+          "submission_id": "s065743045",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s877521676",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s837060179",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s850002815",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s869174412",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s428391299",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s778560196",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s276314423",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s564247345",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p01741": {
+      "Python": [
+        {
+          "submission_id": "s693981623",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s218109527",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s649272228",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s441963943",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s382576912",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s127666681",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s376329641",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s815240288",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s637099330",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p01766": {
+      "Python": [
+        {
+          "submission_id": "s664437866",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s464315680",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s279698232",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s018433133",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s499161971",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s331961321",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s388933667",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s400199393",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s601168523",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p01931": {
+      "Python": [
+        {
+          "submission_id": "s914486592",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s634208225",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s430155391",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s550292178",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s481442866",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s468378000",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s427657693",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s764025758",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s157033127",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p01985": {
+      "Python": [
+        {
+          "submission_id": "s578736178",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s627472761",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s274969889",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s403439023",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s087911785",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s878198467",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s899417198",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s873940426",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s336077688",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02124": {
+      "Python": [
+        {
+          "submission_id": "s465031180",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s235041356",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s158569234",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s042715290",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s511166639",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s703390448",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s823692538",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s021561280",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s443406792",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02202": {
+      "Python": [
+        {
+          "submission_id": "s223412184",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s663600771",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s182882920",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s769049559",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s668296272",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s875976790",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s475292274",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s770560725",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s511448566",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02261": {
+      "Python": [
+        {
+          "submission_id": "s516517810",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s221881130",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s456363047",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s476096010",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s044211002",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s064535571",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s845535251",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s354121082",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s767508967",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02273": {
+      "Python": [
+        {
+          "submission_id": "s350833318",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s091662194",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s309408506",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s588002505",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s261994890",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s806039085",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s868940688",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s214771615",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s289193102",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02301": {
+      "Python": [
+        {
+          "submission_id": "s108823075",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s335252735",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s686677680",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s308812699",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s151301888",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s020749936",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s029291139",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s037994106",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s848254625",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02305": {
+      "Python": [
+        {
+          "submission_id": "s616611834",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s063201658",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s196130418",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s720458173",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s249165185",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s937880612",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s912264424",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s709930892",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s166877337",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02329": {
+      "Python": [
+        {
+          "submission_id": "s687983649",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s912345391",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s466645310",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s634557708",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s167940972",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s991409893",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s316267449",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s193017480",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s405642937",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02353": {
+      "Python": [
+        {
+          "submission_id": "s350442363",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s818752862",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s515598712",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s850175003",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s059628493",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s159728548",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s056702527",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s425743872",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s263834556",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02356": {
+      "Python": [
+        {
+          "submission_id": "s019054051",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s998605039",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s021325701",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s389986205",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s225879784",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s939283875",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s351427171",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s925430701",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s890755681",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02373": {
+      "Python": [
+        {
+          "submission_id": "s515124321",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s009694672",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s673639027",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s294255275",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s249814277",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s747782890",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s702803594",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s322720680",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s212006932",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02386": {
+      "Python": [
+        {
+          "submission_id": "s390874760",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s423123786",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s493773382",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s717862347",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s017271161",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s030463328",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s437710373",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s519906760",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s275538622",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02498": {
+      "Python": [
+        {
+          "submission_id": "s837306969",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s210785354",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s821706756",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s314015911",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s069833068",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s296625793",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s136962854",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s273498166",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s412304592",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02506": {
+      "Python": [
+        {
+          "submission_id": "s570105768",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s826076625",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s351059084",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s508235018",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s201047450",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s630226805",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s241770087",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s395376079",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s967455206",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02552": {
+      "Python": [
+        {
+          "submission_id": "s730996880",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s130214737",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s399452690",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s812339451",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s298836668",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s603298915",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s768095691",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s110891670",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s153692067",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02629": {
+      "Python": [
+        {
+          "submission_id": "s001106733",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s943242804",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s805712073",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s839912055",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s827603832",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s014725358",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s825901574",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s385219068",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s846967192",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02635": {
+      "Python": [
+        {
+          "submission_id": "s312681747",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s436237601",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s311582139",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s523663931",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s247524811",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s571544361",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s650039371",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s961779350",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s870942581",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02646": {
+      "Python": [
+        {
+          "submission_id": "s222034162",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s729733440",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s871993977",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s299089008",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s823447170",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s128806762",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s620226358",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s866516137",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s872127946",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02651": {
+      "Python": [
+        {
+          "submission_id": "s898649118",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s837012341",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s767599973",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s713483871",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s053262142",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s715879975",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s285078299",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s937686438",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s407632257",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02658": {
+      "Python": [
+        {
+          "submission_id": "s074374482",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s725759800",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s438612925",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s861567111",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s536720078",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s635305226",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s912581701",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s992276654",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s431244264",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02663": {
+      "Python": [
+        {
+          "submission_id": "s956669427",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s913699815",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s056151356",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s041493322",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s491731880",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s344167311",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s309102255",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s545647259",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s997889723",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02694": {
+      "Python": [
+        {
+          "submission_id": "s450979688",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s697002114",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s764655261",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s616235280",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s249866799",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s834933079",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s151152978",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s218886216",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s317156561",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02727": {
+      "Python": [
+        {
+          "submission_id": "s828901357",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s917301518",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s060899539",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s125120201",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s566592883",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s962920214",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s040021008",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s675221000",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s923667693",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02741": {
+      "Python": [
+        {
+          "submission_id": "s372719291",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s104962222",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s815866061",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s690514132",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s430284284",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s762857195",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s959097022",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s409547671",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s773729192",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02744": {
+      "Python": [
+        {
+          "submission_id": "s733319806",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s723443233",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s442448812",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s113495938",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s275338645",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s473404558",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s849972356",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s962894463",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s133639527",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02788": {
+      "Python": [
+        {
+          "submission_id": "s016108322",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s585531027",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s270156520",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s370610146",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s415001175",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s045302234",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s509401680",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s698181689",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s114845687",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02801": {
+      "Python": [
+        {
+          "submission_id": "s919381253",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s720402666",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s439687684",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s620265942",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s321542740",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s441495657",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s382952634",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s847331862",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s941658375",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02875": {
+      "Python": [
+        {
+          "submission_id": "s139429845",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s775117331",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s085010683",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s981202805",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s886032121",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s531044421",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s756130372",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s363690469",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s313905636",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02905": {
+      "Python": [
+        {
+          "submission_id": "s268193478",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s432310484",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s461543350",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s599738660",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s081908140",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s122356760",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s456394050",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s570766715",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s451750998",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02922": {
+      "Python": [
+        {
+          "submission_id": "s038025832",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s059890288",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s085379335",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s302461495",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s886687732",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s436668301",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s628405800",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s765898217",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s045811320",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p02983": {
+      "Python": [
+        {
+          "submission_id": "s011166592",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s331883930",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s972158938",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s384040085",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s132030954",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s864426603",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s104317534",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s722375576",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s648098872",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03019": {
+      "Python": [
+        {
+          "submission_id": "s435472432",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s173289669",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s987104556",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s827644891",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s650021564",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s098547684",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s315676753",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s996788236",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s438631716",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03020": {
+      "Python": [
+        {
+          "submission_id": "s062716334",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s951104352",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s075915797",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s191692699",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s983164643",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s567145878",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s658621041",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s460343674",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s145165577",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03037": {
+      "Python": [
+        {
+          "submission_id": "s726374520",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s114692547",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s269361566",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s752386632",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s404991026",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s055347042",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s764569449",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s097629883",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s199001165",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03042": {
+      "Python": [
+        {
+          "submission_id": "s292029829",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s667870863",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s446451589",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s329151290",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s057942880",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s252332982",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s282922265",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s507557722",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s784546014",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03050": {
+      "Python": [
+        {
+          "submission_id": "s984047505",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s875486175",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s777095933",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s179535523",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s995472413",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s686388085",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s330381871",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s787921349",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s546462117",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03064": {
+      "Python": [
+        {
+          "submission_id": "s547955976",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s280877521",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s307142218",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s344312266",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s488479081",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s071154380",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s833839265",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s592437634",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s970941785",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03065": {
+      "Python": [
+        {
+          "submission_id": "s038019008",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s956798566",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s904882586",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s021303304",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s702448068",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s819920217",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s070851325",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s157051895",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s489830975",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03103": {
+      "Python": [
+        {
+          "submission_id": "s148625183",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s782677008",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s068585646",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s697148925",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s608343347",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s176186404",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s940770011",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s857648934",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s535467148",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03146": {
+      "Python": [
+        {
+          "submission_id": "s761908773",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s605749461",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s254123919",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s570731363",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s261227428",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s328723445",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s852447084",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s522587477",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s942163341",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03162": {
+      "Python": [
+        {
+          "submission_id": "s758009704",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s927949162",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s349815222",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s094121310",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s955943051",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s599531546",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s833676750",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s355348979",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s203591161",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03170": {
+      "Python": [
+        {
+          "submission_id": "s593579340",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s386705948",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s702562565",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s963398087",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s765492132",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s337816940",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s349971444",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s315239776",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s784799645",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03228": {
+      "Python": [
+        {
+          "submission_id": "s497189655",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s457529868",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s095091869",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s394964570",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s169505391",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s152877513",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s908502668",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s791830889",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s024411473",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03251": {
+      "Python": [
+        {
+          "submission_id": "s295545896",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s158986771",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s880074867",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s510299570",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s165421690",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s302051599",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s630509155",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s837077928",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s449232515",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03265": {
+      "Python": [
+        {
+          "submission_id": "s194134164",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s907934695",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s878927954",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s424922603",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s400735010",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s607528012",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s274723289",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s406796868",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s960947823",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03272": {
+      "Python": [
+        {
+          "submission_id": "s480495226",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s409588577",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s501281666",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s217672663",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s267601654",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s133409137",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s033900061",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s986170694",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s490664631",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03273": {
+      "Python": [
+        {
+          "submission_id": "s560421808",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s011132972",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s076196498",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s787138006",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s652866874",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s086780427",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s785494266",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s523522415",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s603009421",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03280": {
+      "Python": [
+        {
+          "submission_id": "s445779759",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s820654721",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s992640825",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s391291296",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s419296944",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s203686521",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s827341139",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s885101402",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s636751267",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03291": {
+      "Python": [
+        {
+          "submission_id": "s553475631",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s742592644",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s899633717",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s885075889",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s194618174",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s073789180",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s201790338",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s940453264",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s631674250",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03330": {
+      "Python": [
+        {
+          "submission_id": "s029814515",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s814639955",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s668071581",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s441544485",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s353625049",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s756439963",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s189367397",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s522775546",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s487776214",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03357": {
+      "Python": [
+        {
+          "submission_id": "s367418749",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s668733146",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s145234649",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s297844741",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s642709913",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s838581492",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s923413361",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s789447016",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s076141241",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03380": {
+      "Python": [
+        {
+          "submission_id": "s405515099",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s700607935",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s347249297",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s338296140",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s558172358",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s904086416",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s094570310",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s139353974",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s858416478",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03385": {
+      "Python": [
+        {
+          "submission_id": "s554965335",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s183178326",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s209668441",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s349850197",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s438099705",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s612548631",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s748834168",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s308905532",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s816640271",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03416": {
+      "Python": [
+        {
+          "submission_id": "s979920517",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s598128813",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s798297523",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s667845533",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s666322595",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s159618933",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s051644716",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s266375622",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s352386015",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03438": {
+      "Python": [
+        {
+          "submission_id": "s863003473",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s920526492",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s190639920",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s631028130",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s580486578",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s864744024",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s735286697",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s014503666",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s284698184",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03454": {
+      "Python": [
+        {
+          "submission_id": "s250023882",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s483214954",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s233861506",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s882344431",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s112372109",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s929333897",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s565476060",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s659539933",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s202789730",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03485": {
+      "Python": [
+        {
+          "submission_id": "s561870727",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s085106984",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s565950918",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s240178906",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s479575090",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s627271708",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s525033324",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s345055901",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s319040259",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03619": {
+      "Python": [
+        {
+          "submission_id": "s685622986",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s460616402",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s739350095",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s548032355",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s521758930",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s423985694",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s390101308",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s320928350",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s100728702",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03624": {
+      "Python": [
+        {
+          "submission_id": "s929314928",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s412024710",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s121134274",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s553437212",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s372940832",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s009454642",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s026805119",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s466137636",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s359698948",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03628": {
+      "Python": [
+        {
+          "submission_id": "s415036225",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s586545765",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s219541591",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s940935396",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s202144603",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s006215914",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s755155302",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s659887729",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s286621870",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03645": {
+      "Python": [
+        {
+          "submission_id": "s201892303",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s869777568",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s524827704",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s720041178",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s432430146",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s445834118",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s320423848",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s478368292",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s569567409",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03674": {
+      "Python": [
+        {
+          "submission_id": "s587398201",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s721639258",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s950802082",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s373487120",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s937887164",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s163739809",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s735619814",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s508987980",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s367312836",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03702": {
+      "Python": [
+        {
+          "submission_id": "s648762992",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s616504224",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s221153995",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s913425431",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s947452087",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s568246440",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s092239514",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s760680427",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s817752733",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03711": {
+      "Python": [
+        {
+          "submission_id": "s302366120",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s310320536",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s019503481",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s429260201",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s974581134",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s537342622",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s464829787",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s712509668",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s799318615",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03730": {
+      "Python": [
+        {
+          "submission_id": "s277925171",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s209094023",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s660436191",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s991103382",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s251268773",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s733387694",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s319496979",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s655306540",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s882966790",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03820": {
+      "Python": [
+        {
+          "submission_id": "s234044267",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s413891652",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s560462393",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s146029369",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s088240825",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s773027859",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s051863478",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s711046730",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s532040288",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03837": {
+      "Python": [
+        {
+          "submission_id": "s605952468",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s978058722",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s948870500",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s749502697",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s902639708",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s623337635",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s416580915",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s277132705",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s244658565",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03860": {
+      "Python": [
+        {
+          "submission_id": "s734098045",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s385197152",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s239932238",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s225968466",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s872967464",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s189415269",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s177659321",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s484141814",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s690307533",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03879": {
+      "Python": [
+        {
+          "submission_id": "s449343701",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s950530093",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s504301021",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s349237433",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s092695107",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s108942199",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s864470631",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s654123849",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s818010467",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03923": {
+      "Python": [
+        {
+          "submission_id": "s433512721",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s175806152",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s867221626",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s496086360",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s857382250",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s033213982",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s159428364",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s303884499",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s293551560",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03931": {
+      "Python": [
+        {
+          "submission_id": "s215903345",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s850605673",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s320032156",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s061986531",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s445916876",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s392675143",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s840803085",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s993737242",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s639798656",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p03993": {
+      "Python": [
+        {
+          "submission_id": "s496679279",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s069800679",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s901459768",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s825192707",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s104031742",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s135886585",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s931239207",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s307285147",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s813886672",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p04033": {
+      "Python": [
+        {
+          "submission_id": "s851995216",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s419019648",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s708962335",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s639398297",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s705780010",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s173495192",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s950231852",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s125455558",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s103107009",
+          "extension": "cpp"
+        }
+      ]
+    },
+    "p04048": {
+      "Python": [
+        {
+          "submission_id": "s981932092",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s073001618",
+          "extension": "py"
+        },
+        {
+          "submission_id": "s783693060",
+          "extension": "py"
+        }
+      ],
+      "Java": [
+        {
+          "submission_id": "s810152262",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s078568946",
+          "extension": "java"
+        },
+        {
+          "submission_id": "s572437642",
+          "extension": "java"
+        }
+      ],
+      "C++": [
+        {
+          "submission_id": "s286176856",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s600413470",
+          "extension": "cpp"
+        },
+        {
+          "submission_id": "s838078690",
+          "extension": "cpp"
+        }
+      ]
+    }
+  }
+}

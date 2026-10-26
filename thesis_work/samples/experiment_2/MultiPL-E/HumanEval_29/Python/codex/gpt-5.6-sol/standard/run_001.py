@@ -1,0 +1,1 @@
+Please paste the full problem statement, including input/output format, constraints, and examples.

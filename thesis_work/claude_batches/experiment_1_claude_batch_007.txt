@@ -1,0 +1,348 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000151 PROMPT ===
+Solve the following programming problem in Python.
+
+﻿Score: 100 points Problem Statement There is a farm whose length and width are A yard and B yard, respectively. A farmer, John, made a vertical road and a horizontal road inside the farm from one border to another, as shown below: (The gray part represents the roads.) What is the area of this yard excluding the roads? Find it. Note It can be proved that the positions of the roads do not affect the area. Constraints A is an integer between 2 and 100 (inclusive). B is an integer between 2 and 100 (inclusive). Input Input is given from Standard Input in the following format: A B Output Print the area of this yard excluding the roads (in square yards). Sample Input 1 2 2 Sample Output 1 1 In this case, the area is 1 square yard. Sample Input 2 5 7 Sample Output 2 24 In this case, the area is 24 square yards.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000152 PROMPT ===
+Solve the following programming problem in Java.
+
+﻿Score: 100 points Problem Statement There is a farm whose length and width are A yard and B yard, respectively. A farmer, John, made a vertical road and a horizontal road inside the farm from one border to another, as shown below: (The gray part represents the roads.) What is the area of this yard excluding the roads? Find it. Note It can be proved that the positions of the roads do not affect the area. Constraints A is an integer between 2 and 100 (inclusive). B is an integer between 2 and 100 (inclusive). Input Input is given from Standard Input in the following format: A B Output Print the area of this yard excluding the roads (in square yards). Sample Input 1 2 2 Sample Output 1 1 In this case, the area is 1 square yard. Sample Input 2 5 7 Sample Output 2 24 In this case, the area is 24 square yards.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000153 PROMPT ===
+Solve the following programming problem in C++.
+
+﻿Score: 100 points Problem Statement There is a farm whose length and width are A yard and B yard, respectively. A farmer, John, made a vertical road and a horizontal road inside the farm from one border to another, as shown below: (The gray part represents the roads.) What is the area of this yard excluding the roads? Find it. Note It can be proved that the positions of the roads do not affect the area. Constraints A is an integer between 2 and 100 (inclusive). B is an integer between 2 and 100 (inclusive). Input Input is given from Standard Input in the following format: A B Output Print the area of this yard excluding the roads (in square yards). Sample Input 1 2 2 Sample Output 1 1 In this case, the area is 1 square yard. Sample Input 2 5 7 Sample Output 2 24 In this case, the area is 24 square yards.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000154 PROMPT ===
+Solve the following programming problem in Python.
+
+Score : 400 points Problem Statement There is a grid with N rows and N columns of squares. Let (i,j) be the square at the i -th row from the top and the j -th column from the left. These squares have to be painted in one of the C colors from Color 1 to Color C . Initially, (i,j) is painted in Color c_{i,j} . We say the grid is a good grid when the following condition is met for all i,j,x,y satisfying 1 \leq i,j,x,y \leq N : If (i+j) \% 3=(x+y) \% 3 , the color of (i,j) and the color of (x,y) are the same. If (i+j) \% 3 \neq (x+y) \% 3 , the color of (i,j) and the color of (x,y) are different. Here, X \% Y represents X modulo Y . We will repaint zero or more squares so that the grid will be a good grid. For a square, the wrongness when the color of the square is X before repainting and Y after repainting, is D_{X,Y} . Find the minimum possible sum of the wrongness of all the squares. Constraints 1 \leq N \leq 500 3 \leq C \leq 30 1 \leq D_{i,j} \leq 1000 (i \neq j),D_{i,j}=0 (i=j) 1 \leq c_{i,j} \leq C All values in input are integers. Input Input is given from Standard Input in the following format: N C D_{1,1} ... D_{1,C} : D_{C,1} ... D_{C,C} c_{1,1} ... c_{1,N} : c_{N,1} ... c_{N,N} Output If the minimum possible sum of the wrongness of all the squares is x , print x . Sample Input 1 2 3 0 1 1 1 0 1 1 4 0 1 2 3 3 Sample Output 1 3 Repaint (1,1) to Color 2 . The wrongness of (1,1) becomes D_{1,2}=1 . Repaint (1,2) to Color 3 . The wrongness of (1,2) becomes D_{2,3}=1 . Repaint (2,2) to Color 1 . The wrongness of (2,2) becomes D_{3,1}=1 . In this case, the sum of the wrongness of all the squares is 3 . Note that D_{i,j} \neq D_{j,i} is possible. Sample Input 2 4 3 0 12 71 81 0 53 14 92 0 1 1 2 1 2 1 1 2 2 2 1 3 1 1 2 2 Sample Output 2 428
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000155 PROMPT ===
+Solve the following programming problem in Java.
+
+Score : 400 points Problem Statement There is a grid with N rows and N columns of squares. Let (i,j) be the square at the i -th row from the top and the j -th column from the left. These squares have to be painted in one of the C colors from Color 1 to Color C . Initially, (i,j) is painted in Color c_{i,j} . We say the grid is a good grid when the following condition is met for all i,j,x,y satisfying 1 \leq i,j,x,y \leq N : If (i+j) \% 3=(x+y) \% 3 , the color of (i,j) and the color of (x,y) are the same. If (i+j) \% 3 \neq (x+y) \% 3 , the color of (i,j) and the color of (x,y) are different. Here, X \% Y represents X modulo Y . We will repaint zero or more squares so that the grid will be a good grid. For a square, the wrongness when the color of the square is X before repainting and Y after repainting, is D_{X,Y} . Find the minimum possible sum of the wrongness of all the squares. Constraints 1 \leq N \leq 500 3 \leq C \leq 30 1 \leq D_{i,j} \leq 1000 (i \neq j),D_{i,j}=0 (i=j) 1 \leq c_{i,j} \leq C All values in input are integers. Input Input is given from Standard Input in the following format: N C D_{1,1} ... D_{1,C} : D_{C,1} ... D_{C,C} c_{1,1} ... c_{1,N} : c_{N,1} ... c_{N,N} Output If the minimum possible sum of the wrongness of all the squares is x , print x . Sample Input 1 2 3 0 1 1 1 0 1 1 4 0 1 2 3 3 Sample Output 1 3 Repaint (1,1) to Color 2 . The wrongness of (1,1) becomes D_{1,2}=1 . Repaint (1,2) to Color 3 . The wrongness of (1,2) becomes D_{2,3}=1 . Repaint (2,2) to Color 1 . The wrongness of (2,2) becomes D_{3,1}=1 . In this case, the sum of the wrongness of all the squares is 3 . Note that D_{i,j} \neq D_{j,i} is possible. Sample Input 2 4 3 0 12 71 81 0 53 14 92 0 1 1 2 1 2 1 1 2 2 2 1 3 1 1 2 2 Sample Output 2 428
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000156 PROMPT ===
+Solve the following programming problem in C++.
+
+Score : 400 points Problem Statement There is a grid with N rows and N columns of squares. Let (i,j) be the square at the i -th row from the top and the j -th column from the left. These squares have to be painted in one of the C colors from Color 1 to Color C . Initially, (i,j) is painted in Color c_{i,j} . We say the grid is a good grid when the following condition is met for all i,j,x,y satisfying 1 \leq i,j,x,y \leq N : If (i+j) \% 3=(x+y) \% 3 , the color of (i,j) and the color of (x,y) are the same. If (i+j) \% 3 \neq (x+y) \% 3 , the color of (i,j) and the color of (x,y) are different. Here, X \% Y represents X modulo Y . We will repaint zero or more squares so that the grid will be a good grid. For a square, the wrongness when the color of the square is X before repainting and Y after repainting, is D_{X,Y} . Find the minimum possible sum of the wrongness of all the squares. Constraints 1 \leq N \leq 500 3 \leq C \leq 30 1 \leq D_{i,j} \leq 1000 (i \neq j),D_{i,j}=0 (i=j) 1 \leq c_{i,j} \leq C All values in input are integers. Input Input is given from Standard Input in the following format: N C D_{1,1} ... D_{1,C} : D_{C,1} ... D_{C,C} c_{1,1} ... c_{1,N} : c_{N,1} ... c_{N,N} Output If the minimum possible sum of the wrongness of all the squares is x , print x . Sample Input 1 2 3 0 1 1 1 0 1 1 4 0 1 2 3 3 Sample Output 1 3 Repaint (1,1) to Color 2 . The wrongness of (1,1) becomes D_{1,2}=1 . Repaint (1,2) to Color 3 . The wrongness of (1,2) becomes D_{2,3}=1 . Repaint (2,2) to Color 1 . The wrongness of (2,2) becomes D_{3,1}=1 . In this case, the sum of the wrongness of all the squares is 3 . Note that D_{i,j} \neq D_{j,i} is possible. Sample Input 2 4 3 0 12 71 81 0 53 14 92 0 1 1 2 1 2 1 1 2 2 2 1 3 1 1 2 2 Sample Output 2 428
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000157 PROMPT ===
+Solve the following programming problem in Python.
+
+Score : 100 points Problem Statement You are given two positive integers a and b . Let x be the average of a and b . Print x rounded up to the nearest integer. Constraints a and b are integers. 1 \leq a, b \leq 100 Input Input is given from Standard Input in the following format: a b Output Print x rounded up to the nearest integer. Sample Input 1 1 3 Sample Output 1 2 The average of 1 and 3 is 2.0 , and it will be rounded up to the nearest integer, 2 . Sample Input 2 7 4 Sample Output 2 6 The average of 7 and 4 is 5.5 , and it will be rounded up to the nearest integer, 6 . Sample Input 3 5 5 Sample Output 3 5
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000158 PROMPT ===
+Solve the following programming problem in Java.
+
+Score : 100 points Problem Statement You are given two positive integers a and b . Let x be the average of a and b . Print x rounded up to the nearest integer. Constraints a and b are integers. 1 \leq a, b \leq 100 Input Input is given from Standard Input in the following format: a b Output Print x rounded up to the nearest integer. Sample Input 1 1 3 Sample Output 1 2 The average of 1 and 3 is 2.0 , and it will be rounded up to the nearest integer, 2 . Sample Input 2 7 4 Sample Output 2 6 The average of 7 and 4 is 5.5 , and it will be rounded up to the nearest integer, 6 . Sample Input 3 5 5 Sample Output 3 5
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000159 PROMPT ===
+Solve the following programming problem in C++.
+
+Score : 100 points Problem Statement You are given two positive integers a and b . Let x be the average of a and b . Print x rounded up to the nearest integer. Constraints a and b are integers. 1 \leq a, b \leq 100 Input Input is given from Standard Input in the following format: a b Output Print x rounded up to the nearest integer. Sample Input 1 1 3 Sample Output 1 2 The average of 1 and 3 is 2.0 , and it will be rounded up to the nearest integer, 2 . Sample Input 2 7 4 Sample Output 2 6 The average of 7 and 4 is 5.5 , and it will be rounded up to the nearest integer, 6 . Sample Input 3 5 5 Sample Output 3 5
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000160 PROMPT ===
+Solve the following programming problem in Python.
+
+Score : 900 points Problem Statement In the city of Nevermore, there are 10^8 streets and 10^8 avenues, both numbered from 0 to 10^8-1 . All streets run straight from west to east, and all avenues run straight from south to north. The distance between neighboring streets and between neighboring avenues is exactly 100 meters. Every street intersects every avenue. Every intersection can be described by pair (x, y) , where x is avenue ID and y is street ID. There are N fountains in the city, situated at intersections (X_i, Y_i) . Unlike normal intersections, there's a circle with radius 10 meters centered at the intersection, and there are no road parts inside this circle. The picture below shows an example of how a part of the city with roads and fountains may look like. City governors don't like encountering more than one fountain while moving along the same road. Therefore, every street contains at most one fountain on it, as well as every avenue. Citizens can move along streets, avenues and fountain perimeters. What is the shortest distance one needs to cover in order to get from intersection (x_1, y_1) to intersection (x_2, y_2) ? Constraints 0 \leq x_1, y_1, x_2, y_2 < 10^8 1 \leq N \leq 200,000 0 \leq X_i, Y_i < 10^8 X_i \neq X_j for i \neq j Y_i \neq Y_j for i \neq j Intersections (x_1, y_1) and (x_2, y_2) are different and don't contain fountains. All input values are integers. Input Input is given from Standard Input in the following format: x_1 y_1 x_2 y_2 N X_1 Y_1 X_2 Y_2 : X_N Y_N Output Print the shortest possible distance one needs to cover in order to get from intersection (x_1, y_1) to intersection (x_2, y_2) , in meters. Your answer will be considered correct if its absolute or relative error doesn't exceed 10^{-11} . Sample Input 1 1 1 6 5 3 3 2 5 3 2 4 Sample Output 1 891.415926535897938 One possible shortest path is shown on the picture below. The path starts at the blue point, finishes at the purple point and follows along the red line. Sample Input 2 3 5 6 4 3 3 2 5 3 2 4 Sample Output 2 400.000000000000000 Sample Input 3 4 2 2 2 3 3 2 5 3 2 4 Sample Output 3 211.415926535897938
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000161 PROMPT ===
+Solve the following programming problem in Java.
+
+Score : 900 points Problem Statement In the city of Nevermore, there are 10^8 streets and 10^8 avenues, both numbered from 0 to 10^8-1 . All streets run straight from west to east, and all avenues run straight from south to north. The distance between neighboring streets and between neighboring avenues is exactly 100 meters. Every street intersects every avenue. Every intersection can be described by pair (x, y) , where x is avenue ID and y is street ID. There are N fountains in the city, situated at intersections (X_i, Y_i) . Unlike normal intersections, there's a circle with radius 10 meters centered at the intersection, and there are no road parts inside this circle. The picture below shows an example of how a part of the city with roads and fountains may look like. City governors don't like encountering more than one fountain while moving along the same road. Therefore, every street contains at most one fountain on it, as well as every avenue. Citizens can move along streets, avenues and fountain perimeters. What is the shortest distance one needs to cover in order to get from intersection (x_1, y_1) to intersection (x_2, y_2) ? Constraints 0 \leq x_1, y_1, x_2, y_2 < 10^8 1 \leq N \leq 200,000 0 \leq X_i, Y_i < 10^8 X_i \neq X_j for i \neq j Y_i \neq Y_j for i \neq j Intersections (x_1, y_1) and (x_2, y_2) are different and don't contain fountains. All input values are integers. Input Input is given from Standard Input in the following format: x_1 y_1 x_2 y_2 N X_1 Y_1 X_2 Y_2 : X_N Y_N Output Print the shortest possible distance one needs to cover in order to get from intersection (x_1, y_1) to intersection (x_2, y_2) , in meters. Your answer will be considered correct if its absolute or relative error doesn't exceed 10^{-11} . Sample Input 1 1 1 6 5 3 3 2 5 3 2 4 Sample Output 1 891.415926535897938 One possible shortest path is shown on the picture below. The path starts at the blue point, finishes at the purple point and follows along the red line. Sample Input 2 3 5 6 4 3 3 2 5 3 2 4 Sample Output 2 400.000000000000000 Sample Input 3 4 2 2 2 3 3 2 5 3 2 4 Sample Output 3 211.415926535897938
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000162 PROMPT ===
+Solve the following programming problem in C++.
+
+Score : 900 points Problem Statement In the city of Nevermore, there are 10^8 streets and 10^8 avenues, both numbered from 0 to 10^8-1 . All streets run straight from west to east, and all avenues run straight from south to north. The distance between neighboring streets and between neighboring avenues is exactly 100 meters. Every street intersects every avenue. Every intersection can be described by pair (x, y) , where x is avenue ID and y is street ID. There are N fountains in the city, situated at intersections (X_i, Y_i) . Unlike normal intersections, there's a circle with radius 10 meters centered at the intersection, and there are no road parts inside this circle. The picture below shows an example of how a part of the city with roads and fountains may look like. City governors don't like encountering more than one fountain while moving along the same road. Therefore, every street contains at most one fountain on it, as well as every avenue. Citizens can move along streets, avenues and fountain perimeters. What is the shortest distance one needs to cover in order to get from intersection (x_1, y_1) to intersection (x_2, y_2) ? Constraints 0 \leq x_1, y_1, x_2, y_2 < 10^8 1 \leq N \leq 200,000 0 \leq X_i, Y_i < 10^8 X_i \neq X_j for i \neq j Y_i \neq Y_j for i \neq j Intersections (x_1, y_1) and (x_2, y_2) are different and don't contain fountains. All input values are integers. Input Input is given from Standard Input in the following format: x_1 y_1 x_2 y_2 N X_1 Y_1 X_2 Y_2 : X_N Y_N Output Print the shortest possible distance one needs to cover in order to get from intersection (x_1, y_1) to intersection (x_2, y_2) , in meters. Your answer will be considered correct if its absolute or relative error doesn't exceed 10^{-11} . Sample Input 1 1 1 6 5 3 3 2 5 3 2 4 Sample Output 1 891.415926535897938 One possible shortest path is shown on the picture below. The path starts at the blue point, finishes at the purple point and follows along the red line. Sample Input 2 3 5 6 4 3 3 2 5 3 2 4 Sample Output 2 400.000000000000000 Sample Input 3 4 2 2 2 3 3 2 5 3 2 4 Sample Output 3 211.415926535897938
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000163 PROMPT ===
+Solve the following programming problem in Python.
+
+Score : 400 points Problem Statement You are given an undirected connected weighted graph with N vertices and M edges that contains neither self-loops nor double edges. The i -th (1≤i≤M) edge connects vertex a_i and vertex b_i with a distance of c_i . Here, a self-loop is an edge where a_i = b_i (1≤i≤M) , and double edges are two edges where (a_i,b_i)=(a_j,b_j) or (a_i,b_i)=(b_j,a_j) (1≤i<j≤M) . A connected graph is a graph where there is a path between every pair of different vertices. Find the number of the edges that are not contained in any shortest path between any pair of different vertices. Constraints 2≤N≤100 N-1≤M≤min(N(N-1)/2,1000) 1≤a_i,b_i≤N 1≤c_i≤1000 c_i is an integer. The given graph contains neither self-loops nor double edges. The given graph is connected. Input The input is given from Standard Input in the following format: N M a_1 b_1 c_1 a_2 b_2 c_2 : a_M b_M c_M Output Print the number of the edges in the graph that are not contained in any shortest path between any pair of different vertices. Sample Input 1 3 3 1 2 1 1 3 1 2 3 3 Sample Output 1 1 In the given graph, the shortest paths between all pairs of different vertices are as follows: The shortest path from vertex 1 to vertex 2 is: vertex 1 → vertex 2 , with the length of 1 . The shortest path from vertex 1 to vertex 3 is: vertex 1 → vertex 3 , with the length of 1 . The shortest path from vertex 2 to vertex 1 is: vertex 2 → vertex 1 , with the length of 1 . The shortest path from vertex 2 to vertex 3 is: vertex 2 → vertex 1 → vertex 3 , with the length of 2 . The shortest path from vertex 3 to vertex 1 is: vertex 3 → vertex 1 , with the length of 1 . The shortest path from vertex 3 to vertex 2 is: vertex 3 → vertex 1 → vertex 2 , with the length of 2 . Thus, the only edge that is not contained in any shortest path, is the edge of length 3 connecting vertex 2 and vertex 3 , hence the output should be 1 . Sample Input 2 3 2 1 2 1 2 3 1 Sample Output 2 0 Every edge is contained in some shortest path between some pair of different vertices.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000164 PROMPT ===
+Solve the following programming problem in Java.
+
+Score : 400 points Problem Statement You are given an undirected connected weighted graph with N vertices and M edges that contains neither self-loops nor double edges. The i -th (1≤i≤M) edge connects vertex a_i and vertex b_i with a distance of c_i . Here, a self-loop is an edge where a_i = b_i (1≤i≤M) , and double edges are two edges where (a_i,b_i)=(a_j,b_j) or (a_i,b_i)=(b_j,a_j) (1≤i<j≤M) . A connected graph is a graph where there is a path between every pair of different vertices. Find the number of the edges that are not contained in any shortest path between any pair of different vertices. Constraints 2≤N≤100 N-1≤M≤min(N(N-1)/2,1000) 1≤a_i,b_i≤N 1≤c_i≤1000 c_i is an integer. The given graph contains neither self-loops nor double edges. The given graph is connected. Input The input is given from Standard Input in the following format: N M a_1 b_1 c_1 a_2 b_2 c_2 : a_M b_M c_M Output Print the number of the edges in the graph that are not contained in any shortest path between any pair of different vertices. Sample Input 1 3 3 1 2 1 1 3 1 2 3 3 Sample Output 1 1 In the given graph, the shortest paths between all pairs of different vertices are as follows: The shortest path from vertex 1 to vertex 2 is: vertex 1 → vertex 2 , with the length of 1 . The shortest path from vertex 1 to vertex 3 is: vertex 1 → vertex 3 , with the length of 1 . The shortest path from vertex 2 to vertex 1 is: vertex 2 → vertex 1 , with the length of 1 . The shortest path from vertex 2 to vertex 3 is: vertex 2 → vertex 1 → vertex 3 , with the length of 2 . The shortest path from vertex 3 to vertex 1 is: vertex 3 → vertex 1 , with the length of 1 . The shortest path from vertex 3 to vertex 2 is: vertex 3 → vertex 1 → vertex 2 , with the length of 2 . Thus, the only edge that is not contained in any shortest path, is the edge of length 3 connecting vertex 2 and vertex 3 , hence the output should be 1 . Sample Input 2 3 2 1 2 1 2 3 1 Sample Output 2 0 Every edge is contained in some shortest path between some pair of different vertices.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000165 PROMPT ===
+Solve the following programming problem in C++.
+
+Score : 400 points Problem Statement You are given an undirected connected weighted graph with N vertices and M edges that contains neither self-loops nor double edges. The i -th (1≤i≤M) edge connects vertex a_i and vertex b_i with a distance of c_i . Here, a self-loop is an edge where a_i = b_i (1≤i≤M) , and double edges are two edges where (a_i,b_i)=(a_j,b_j) or (a_i,b_i)=(b_j,a_j) (1≤i<j≤M) . A connected graph is a graph where there is a path between every pair of different vertices. Find the number of the edges that are not contained in any shortest path between any pair of different vertices. Constraints 2≤N≤100 N-1≤M≤min(N(N-1)/2,1000) 1≤a_i,b_i≤N 1≤c_i≤1000 c_i is an integer. The given graph contains neither self-loops nor double edges. The given graph is connected. Input The input is given from Standard Input in the following format: N M a_1 b_1 c_1 a_2 b_2 c_2 : a_M b_M c_M Output Print the number of the edges in the graph that are not contained in any shortest path between any pair of different vertices. Sample Input 1 3 3 1 2 1 1 3 1 2 3 3 Sample Output 1 1 In the given graph, the shortest paths between all pairs of different vertices are as follows: The shortest path from vertex 1 to vertex 2 is: vertex 1 → vertex 2 , with the length of 1 . The shortest path from vertex 1 to vertex 3 is: vertex 1 → vertex 3 , with the length of 1 . The shortest path from vertex 2 to vertex 1 is: vertex 2 → vertex 1 , with the length of 1 . The shortest path from vertex 2 to vertex 3 is: vertex 2 → vertex 1 → vertex 3 , with the length of 2 . The shortest path from vertex 3 to vertex 1 is: vertex 3 → vertex 1 , with the length of 1 . The shortest path from vertex 3 to vertex 2 is: vertex 3 → vertex 1 → vertex 2 , with the length of 2 . Thus, the only edge that is not contained in any shortest path, is the edge of length 3 connecting vertex 2 and vertex 3 , hence the output should be 1 . Sample Input 2 3 2 1 2 1 2 3 1 Sample Output 2 0 Every edge is contained in some shortest path between some pair of different vertices.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000166 PROMPT ===
+Solve the following programming problem in Python.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000167 PROMPT ===
+Solve the following programming problem in Java.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000168 PROMPT ===
+Solve the following programming problem in C++.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000169 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def max_fill(grid, capacity):
+    import math
+    """
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+    Example 1:
+        Input: 
+            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
+            bucket_capacity : 1
+        Output: 6
+
+    Example 2:
+        Input: 
+            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
+            bucket_capacity : 2
+        Output: 5
+    
+    Example 3:
+        Input: 
+            grid : [[0,0,0], [0,0,0]]
+            bucket_capacity : 5
+        Output: 0
+
+    Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000170 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a rectangular grid of wells. Each row represents a single well,
+    // and each 1 in a row represents a single unit of water.
+    // Each well has a corresponding bucket that can be used to extract water from it, 
+    // and all buckets have the same capacity.
+    // Your task is to use the buckets to empty the wells.
+    // Output the number of times you need to lower the buckets.
+    // Example 1:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l))))), (1l))
+    // (6l)
+    // Example 2:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)1l, (long)1l))))), (2l))
+    // (5l)
+    // Example 3:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l))))), (5l))
+    // (0l)
+    // Constraints:
+    // * all wells have the same length
+    // * 1 <= grid.length <= 10^2
+    // * 1 <= grid[:,1].length <= 10^2
+    // * grid[i][j] -> 0 | 1
+    // * 1 <= capacity <= 10
+    public static long maxFill(ArrayList<ArrayList<Long>> grid, long capacity) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000171 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a rectangular grid of wells. Each row represents a single well,
+// and each 1 in a row represents a single unit of water.
+// Each well has a corresponding bucket that can be used to extract water from it, 
+// and all buckets have the same capacity.
+// Your task is to use the buckets to empty the wells.
+// Output the number of times you need to lower the buckets.
+// Example 1:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1})})), (1))
+// (6)
+// Example 2:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)1, (long)1})})), (2))
+// (5)
+// Example 3:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0})})), (5))
+// (0)
+// Constraints:
+// * all wells have the same length
+// * 1 <= grid.length <= 10^2
+// * 1 <= grid[:,1].length <= 10^2
+// * grid[i][j] -> 0 | 1
+// * 1 <= capacity <= 10
+long max_fill(std::vector<std::vector<long>> grid, long capacity) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000172 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000173 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list of two strings, both strings consist of open
+    // parentheses '(' or close parentheses ')' only.
+    // Your job is to check if it is possible to concatenate the two strings in
+    // some order, that the resulting string will be good.
+    // A string S is considered to be good if and only if all parentheses in S
+    // are balanced. For example: the string '(())()' is good, while the string
+    // '())' is not.
+    // Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+    // Examples:
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)"()(", (String)")"))))
+    // ("Yes")
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)")", (String)")"))))
+    // ("No")
+    public static String matchParens(ArrayList<String> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000174 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector of two strings, both strings consist of open
+// parentheses '(' or close parentheses ')' only.
+// Your job is to check if it is possible to concatenate the two strings in
+// some order, that the resulting string will be good.
+// A string S is considered to be good if and only if all parentheses in S
+// are balanced. For example: the string '(())()' is good, while the string
+// '())' is not.
+// Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+// Examples:
+// >>> match_parens((std::vector<std::string>({(std::string)"()(", (std::string)")"})))
+// ("Yes")
+// >>> match_parens((std::vector<std::string>({(std::string)")", (std::string)")"})))
+// ("No")
+std::string match_parens(std::vector<std::string> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000175 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def intersection(interval1, interval2):
+    """You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return "YES",
+    otherwise, return "NO".
+    If the two intervals don't intersect, return "NO".
+
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> "NO"
+    intersection((-1, 1), (0, 4)) ==> "NO"
+    intersection((-3, -1), (-5, 5)) ==> "YES"
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

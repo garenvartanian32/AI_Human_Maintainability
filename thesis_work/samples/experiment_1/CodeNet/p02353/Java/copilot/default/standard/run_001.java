@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (input/output format, constraints, and sample cases). If you prefer, I can pick and solve a common algorithm problem (e.g., Two Sum, Longest Increasing Subsequence, Dijkstra). Which would you like?

@@ -1,0 +1,13 @@
+{
+  "experiment": 2,
+  "dataset": "CodeNet",
+  "problem_id": "p00344",
+  "language": "Java",
+  "source": "AI",
+  "provider": "claude",
+  "model": "Sonnet 5",
+  "model_group": "Sonnet 5",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

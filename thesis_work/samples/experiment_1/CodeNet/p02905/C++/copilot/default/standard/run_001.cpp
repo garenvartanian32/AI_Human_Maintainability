@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem, including input/output format and any constraints or sample I/O. If you want a specific algorithm ( greedy, DP, graph, etc.) or limits (n up to what), mention them — otherwise I'll choose an appropriate optimal solution and provide C++ code.

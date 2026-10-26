@@ -1,0 +1,1195 @@
+=== REQ000201 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine().trim());
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            String s = br.readLine().trim();
+            out.append(parseRecord(s)).append('\n');
+        }
+        System.out.print(out);
+    }
+
+    static String parseRecord(String s) {
+        Map<Character, Character> next = new HashMap<>();
+        Map<Character, Character> prev = new HashMap<>();
+        Set<Character> known = new HashSet<>();
+        char first = s.charAt(0);
+        known.add(first);
+        char curPrev = first;
+        int i = 1;
+        while (i < s.length()) {
+            String dir;
+            if (i + 1 < s.length() && s.charAt(i) == '-' && s.charAt(i+1) == '>') {
+                dir = "back";
+                i += 2;
+            } else {
+                dir = "fwd";
+            }
+            char cur = s.charAt(i);
+            i++;
+            known.add(cur);
+            if (dir.equals("back")) {
+                next.put(curPrev, cur);
+                prev.put(cur, curPrev);
+            } else {
+                prev.put(curPrev, cur);
+                next.put(cur, curPrev);
+            }
+            curPrev = cur;
+        }
+        char head = 0;
+        for (char c : known) {
+            if (!prev.containsKey(c)) { head = c; break; }
+        }
+        StringBuilder sb = new StringBuilder();
+        Character cur = head;
+        while (cur != null) {
+            sb.append((char) cur);
+            cur = next.get(cur);
+        }
+        return sb.toString();
+    }
+}
+=== REQ000201 END ===
+
+=== REQ000202 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Reconstructs a train's carriage order from a conductor's walk record.
+ *
+ * <p>The record is a chain of moves; each move links the current carriage to
+ * the next one either behind it ({@code ->}) or in front of it. Recording both
+ * links builds a doubly linked list, and the front carriage is the only one
+ * with nothing ahead of it.
+ */
+public class Sol {
+
+    private static final String BACKWARD_MARKER = "->";
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int recordCount = Integer.parseInt(reader.readLine().trim());
+
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < recordCount; i++) {
+            output.append(rebuildTrain(reader.readLine().trim())).append('\n');
+        }
+        System.out.print(output);
+    }
+
+    private static String rebuildTrain(String record) {
+        Map<Character, Character> carriageBehind = new HashMap<>();
+        Map<Character, Character> carriageAhead = new HashMap<>();
+        List<Character> seen = new ArrayList<>();
+
+        char current = record.charAt(0);
+        seen.add(current);
+
+        int position = 1;
+        while (position < record.length()) {
+            boolean movedBackward = record.startsWith(BACKWARD_MARKER, position);
+            if (movedBackward) {
+                position += BACKWARD_MARKER.length();
+            }
+
+            char nextCarriage = record.charAt(position);
+            position++;
+            if (!seen.contains(nextCarriage)) {
+                seen.add(nextCarriage);
+            }
+
+            if (movedBackward) {
+                carriageBehind.put(current, nextCarriage);
+                carriageAhead.put(nextCarriage, current);
+            } else {
+                carriageAhead.put(current, nextCarriage);
+                carriageBehind.put(nextCarriage, current);
+            }
+
+            current = nextCarriage;
+        }
+
+        char front = 0;
+        for (char carriage : seen) {
+            if (!carriageAhead.containsKey(carriage)) {
+                front = carriage;
+                break;
+            }
+        }
+
+        StringBuilder order = new StringBuilder();
+        Character carriage = front;
+        while (carriage != null) {
+            order.append((char) carriage);
+            carriage = carriageBehind.get(carriage);
+        }
+        return order.toString();
+    }
+}
+=== REQ000202 END ===
+
+=== REQ000203 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+string parseRecord(const string &s) {
+    map<char, char> nxt, prv;
+    set<char> known;
+    char first = s[0];
+    known.insert(first);
+    char curPrev = first;
+    int i = 1;
+    int len = s.size();
+    while (i < len) {
+        bool back = false;
+        if (i + 1 < len && s[i] == '-' && s[i+1] == '>') {
+            back = true;
+            i += 2;
+        }
+        char cur = s[i];
+        i++;
+        known.insert(cur);
+        if (back) {
+            nxt[curPrev] = cur;
+            prv[cur] = curPrev;
+        } else {
+            prv[curPrev] = cur;
+            nxt[cur] = curPrev;
+        }
+        curPrev = cur;
+    }
+    char head = 0;
+    for (char c : known) {
+        if (prv.find(c) == prv.end()) { head = c; break; }
+    }
+    string result;
+    char cur = head;
+    while (true) {
+        result += cur;
+        auto it = nxt.find(cur);
+        if (it == nxt.end()) break;
+        cur = it->second;
+    }
+    return result;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    cin.ignore();
+    string out;
+    for (int i = 0; i < n; i++) {
+        string s;
+        getline(cin, s);
+        // trim whitespace
+        while (!s.empty() && (s.back() == '\r' || s.back() == '\n' || s.back() == ' ')) s.pop_back();
+        out += parseRecord(s) + "\n";
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000203 END ===
+
+=== REQ000204 START ===
+#include <iostream>
+#include <map>
+#include <set>
+#include <string>
+#include <vector>
+
+namespace {
+
+const std::string kBackwardMarker = "->";
+
+/**
+ * Returns the carriages from the front, given one walk record.
+ *
+ * Each move links the current carriage to the next one either behind it
+ * ("->") or in front of it. Recording both links builds a doubly linked list,
+ * and the front carriage is the only one with nothing ahead of it.
+ */
+std::string rebuildTrain(const std::string& record) {
+    std::map<char, char> carriageBehind;
+    std::map<char, char> carriageAhead;
+    std::vector<char> seen;
+    std::set<char> known;
+
+    char current = record[0];
+    seen.push_back(current);
+    known.insert(current);
+
+    std::size_t position = 1;
+    while (position < record.size()) {
+        const bool movedBackward = record.compare(position, kBackwardMarker.size(),
+                                                  kBackwardMarker) == 0;
+        if (movedBackward) {
+            position += kBackwardMarker.size();
+        }
+
+        const char nextCarriage = record[position];
+        position++;
+        if (known.insert(nextCarriage).second) {
+            seen.push_back(nextCarriage);
+        }
+
+        if (movedBackward) {
+            carriageBehind[current] = nextCarriage;
+            carriageAhead[nextCarriage] = current;
+        } else {
+            carriageAhead[current] = nextCarriage;
+            carriageBehind[nextCarriage] = current;
+        }
+
+        current = nextCarriage;
+    }
+
+    char front = 0;
+    for (char carriage : seen) {
+        if (carriageAhead.find(carriage) == carriageAhead.end()) {
+            front = carriage;
+            break;
+        }
+    }
+
+    std::string order;
+    char carriage = front;
+    while (true) {
+        order += carriage;
+        auto next = carriageBehind.find(carriage);
+        if (next == carriageBehind.end()) {
+            break;
+        }
+        carriage = next->second;
+    }
+    return order;
+}
+
+}  // namespace
+
+int main() {
+    int recordCount;
+    std::cin >> recordCount;
+    std::cin.ignore();
+
+    std::string output;
+    for (int i = 0; i < recordCount; ++i) {
+        std::string record;
+        std::getline(std::cin, record);
+        while (!record.empty() && (record.back() == '\r' || record.back() == ' ')) {
+            record.pop_back();
+        }
+        output += rebuildTrain(record) + "\n";
+    }
+
+    std::cout << output;
+    return 0;
+}
+=== REQ000204 END ===
+
+=== REQ000205 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    out = []
+    while idx < len(data):
+        n = int(data[idx]); idx += 1
+        if n == 0:
+            break
+        cards = data[idx]; idx += 1
+        hands = [0] * n
+        field = 0
+        for i, c in enumerate(cards):
+            player = i % n
+            if c == 'M':
+                hands[player] += 1
+            elif c == 'S':
+                field += hands[player] + 1
+                hands[player] = 0
+            elif c == 'L':
+                hands[player] += field + 1
+                field = 0
+        hands.sort()
+        out.append(' '.join(map(str, hands)) + ' ' + str(field))
+    print('\n'.join(out))
+
+main()
+=== REQ000205 END ===
+
+=== REQ000206 START ===
+"""Simulate the bozu-mekuri card game and report each player's final hand."""
+
+import sys
+
+END_OF_INPUT = 0
+MONK = "S"      # sends the player's whole hand to the field
+PRINCESS = "L"  # sweeps the field into the player's hand
+
+
+def play(player_count: int, cards: str) -> tuple[list[int], int]:
+    """Deal the cards in turn; return sorted hand sizes and the field size."""
+    hands = [0] * player_count
+    field = 0
+
+    for turn, card in enumerate(cards):
+        player = turn % player_count
+
+        if card == MONK:
+            field += hands[player] + 1
+            hands[player] = 0
+        elif card == PRINCESS:
+            hands[player] += field + 1
+            field = 0
+        else:
+            hands[player] += 1
+
+    hands.sort()
+    return hands, field
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    cursor = 0
+    results = []
+
+    while cursor < len(tokens):
+        player_count = int(tokens[cursor])
+        cursor += 1
+        if player_count == END_OF_INPUT:
+            break
+
+        cards = tokens[cursor].decode()
+        cursor += 1
+
+        hands, field = play(player_count, cards)
+        results.append(" ".join(map(str, hands + [field])))
+
+    sys.stdout.write("\n".join(results) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000206 END ===
+
+=== REQ000207 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.wordChars('A','Z');
+        StringBuilder out = new StringBuilder();
+        while (true) {
+            st.nextToken();
+            int n = (int) st.nval;
+            if (n == 0) break;
+            st.nextToken();
+            String cards = st.sval;
+            int[] hands = new int[n];
+            int field = 0;
+            for (int i = 0; i < cards.length(); i++) {
+                char c = cards.charAt(i);
+                int player = i % n;
+                if (c == 'M') {
+                    hands[player]++;
+                } else if (c == 'S') {
+                    field += hands[player] + 1;
+                    hands[player] = 0;
+                } else if (c == 'L') {
+                    hands[player] += field + 1;
+                    field = 0;
+                }
+            }
+            Arrays.sort(hands);
+            StringBuilder line = new StringBuilder();
+            for (int i = 0; i < n; i++) {
+                if (i > 0) line.append(' ');
+                line.append(hands[i]);
+            }
+            line.append(' ').append(field);
+            out.append(line).append('\n');
+        }
+        System.out.print(out);
+    }
+}
+=== REQ000207 END ===
+
+=== REQ000208 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+/**
+ * Simulates the bozu-mekuri card game and reports each player's final hand.
+ */
+public class Sol {
+
+    private static final int END_OF_INPUT = 0;
+    private static final char MONK = 'S';      // sends the player's hand to the field
+    private static final char PRINCESS = 'L';  // sweeps the field into the hand
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        StringBuilder output = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) {
+                continue;
+            }
+            int playerCount = Integer.parseInt(line);
+            if (playerCount == END_OF_INPUT) {
+                break;
+            }
+
+            String cards = reader.readLine().trim();
+            output.append(play(playerCount, cards)).append('\n');
+        }
+
+        System.out.print(output);
+    }
+
+    /** Deals the cards in turn; returns sorted hand sizes then the field size. */
+    private static String play(int playerCount, String cards) {
+        int[] hands = new int[playerCount];
+        int field = 0;
+
+        for (int turn = 0; turn < cards.length(); turn++) {
+            int player = turn % playerCount;
+            char card = cards.charAt(turn);
+
+            if (card == MONK) {
+                field += hands[player] + 1;
+                hands[player] = 0;
+            } else if (card == PRINCESS) {
+                hands[player] += field + 1;
+                field = 0;
+            } else {
+                hands[player]++;
+            }
+        }
+
+        Arrays.sort(hands);
+
+        StringBuilder result = new StringBuilder();
+        for (int hand : hands) {
+            result.append(hand).append(' ');
+        }
+        result.append(field);
+        return result.toString();
+    }
+}
+=== REQ000208 END ===
+
+=== REQ000209 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    string out;
+    while (cin >> n) {
+        if (n == 0) break;
+        string cards;
+        cin >> cards;
+        vector<int> hands(n, 0);
+        int field = 0;
+        for (size_t i = 0; i < cards.size(); i++) {
+            char c = cards[i];
+            int player = i % n;
+            if (c == 'M') {
+                hands[player]++;
+            } else if (c == 'S') {
+                field += hands[player] + 1;
+                hands[player] = 0;
+            } else if (c == 'L') {
+                hands[player] += field + 1;
+                field = 0;
+            }
+        }
+        sort(hands.begin(), hands.end());
+        string line;
+        for (int i = 0; i < n; i++) {
+            if (i > 0) line += ' ';
+            line += to_string(hands[i]);
+        }
+        line += ' ' + to_string(field);
+        out += line + "\n";
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000209 END ===
+
+=== REQ000210 START ===
+#include <algorithm>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+namespace {
+
+constexpr int kEndOfInput = 0;
+constexpr char kMonk = 'S';      // sends the player's hand to the field
+constexpr char kPrincess = 'L';  // sweeps the field into the hand
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    std::ostringstream output;
+    int playerCount;
+
+    while (std::cin >> playerCount) {
+        if (playerCount == kEndOfInput) {
+            break;
+        }
+
+        std::string cards;
+        std::cin >> cards;
+
+        std::vector<int> hands(playerCount, 0);
+        int field = 0;
+
+        for (std::size_t turn = 0; turn < cards.size(); ++turn) {
+            const int player = static_cast<int>(turn) % playerCount;
+            const char card = cards[turn];
+
+            if (card == kMonk) {
+                field += hands[player] + 1;
+                hands[player] = 0;
+            } else if (card == kPrincess) {
+                hands[player] += field + 1;
+                field = 0;
+            } else {
+                hands[player]++;
+            }
+        }
+
+        std::sort(hands.begin(), hands.end());
+        for (int hand : hands) {
+            output << hand << ' ';
+        }
+        output << field << '\n';
+    }
+
+    std::cout << output.str();
+    return 0;
+}
+=== REQ000210 END ===
+
+=== REQ000211 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    a = list(map(int, data[1:1+n]))
+    nxt = [(i + a[i]) % n for i in range(n)]
+    color = [0]*n  # 0=unvisited,1=in progress,2=done
+    on_cycle = [False]*n
+    for i in range(n):
+        if color[i] != 0:
+            continue
+        path = []
+        cur = i
+        while color[cur] == 0:
+            color[cur] = 1
+            path.append(cur)
+            cur = nxt[cur]
+        if color[cur] == 1:
+            # found a new cycle starting at cur
+            idx = path.index(cur)
+            for node in path[idx:]:
+                on_cycle[node] = True
+        for node in path:
+            color[node] = 2
+    print(sum(on_cycle))
+
+main()
+=== REQ000211 END ===
+
+=== REQ000212 START ===
+"""Count the squares that lie on a cycle of a circular sugoroku board."""
+
+import sys
+
+UNVISITED = 0
+ON_CURRENT_WALK = 1
+FINISHED = 2
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    square_count = int(tokens[0])
+
+    # Every square has exactly one successor, so the board is a functional
+    # graph: each walk eventually runs into a cycle.
+    successor = [
+        (index + int(tokens[1 + index])) % square_count for index in range(square_count)
+    ]
+
+    state = [UNVISITED] * square_count
+    lies_on_cycle = [False] * square_count
+
+    for start in range(square_count):
+        if state[start] != UNVISITED:
+            continue
+
+        walk: list[int] = []
+        square = start
+        while state[square] == UNVISITED:
+            state[square] = ON_CURRENT_WALK
+            walk.append(square)
+            square = successor[square]
+
+        # Re-entering the *current* walk means we closed a fresh cycle; the
+        # cycle is the tail of the walk starting at the re-entry point.
+        if state[square] == ON_CURRENT_WALK:
+            cycle_start = walk.index(square)
+            for member in walk[cycle_start:]:
+                lies_on_cycle[member] = True
+
+        for member in walk:
+            state[member] = FINISHED
+
+    print(sum(lies_on_cycle))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000212 END ===
+
+=== REQ000213 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++) { st.nextToken(); a[i] = (long) st.nval; }
+        int[] nxt = new int[n];
+        for (int i = 0; i < n; i++) nxt[i] = (int) ((i + a[i]) % n);
+        int[] color = new int[n];
+        boolean[] onCycle = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            if (color[i] != 0) continue;
+            List<Integer> path = new ArrayList<>();
+            int cur = i;
+            while (color[cur] == 0) {
+                color[cur] = 1;
+                path.add(cur);
+                cur = nxt[cur];
+            }
+            if (color[cur] == 1) {
+                int idx = path.indexOf(cur);
+                for (int k = idx; k < path.size(); k++) onCycle[path.get(k)] = true;
+            }
+            for (int node : path) color[node] = 2;
+        }
+        int count = 0;
+        for (boolean b : onCycle) if (b) count++;
+        System.out.println(count);
+    }
+}
+=== REQ000213 END ===
+
+=== REQ000214 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Counts the squares that lie on a cycle of a circular sugoroku board.
+ *
+ * <p>Every square has exactly one successor, so the board is a functional
+ * graph: each walk eventually runs into a cycle.
+ */
+public class Sol {
+
+    private static final int UNVISITED = 0;
+    private static final int ON_CURRENT_WALK = 1;
+    private static final int FINISHED = 2;
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int squareCount = (int) input.nval;
+
+        int[] successor = new int[squareCount];
+        for (int index = 0; index < squareCount; index++) {
+            input.nextToken();
+            successor[index] = (int) ((index + (long) input.nval) % squareCount);
+        }
+
+        int[] state = new int[squareCount];
+        boolean[] liesOnCycle = new boolean[squareCount];
+
+        for (int start = 0; start < squareCount; start++) {
+            if (state[start] != UNVISITED) {
+                continue;
+            }
+
+            List<Integer> walk = new ArrayList<>();
+            int square = start;
+            while (state[square] == UNVISITED) {
+                state[square] = ON_CURRENT_WALK;
+                walk.add(square);
+                square = successor[square];
+            }
+
+            // Re-entering the current walk means we closed a fresh cycle.
+            if (state[square] == ON_CURRENT_WALK) {
+                int cycleStart = walk.indexOf(square);
+                for (int i = cycleStart; i < walk.size(); i++) {
+                    liesOnCycle[walk.get(i)] = true;
+                }
+            }
+
+            for (int member : walk) {
+                state[member] = FINISHED;
+            }
+        }
+
+        int total = 0;
+        for (boolean onCycle : liesOnCycle) {
+            if (onCycle) {
+                total++;
+            }
+        }
+        System.out.println(total);
+    }
+}
+=== REQ000214 END ===
+
+=== REQ000215 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<long long> a(n);
+    for (auto &x : a) cin >> x;
+    vector<int> nxt(n);
+    for (int i = 0; i < n; i++) nxt[i] = (int)((i + a[i]) % n);
+    vector<int> color(n, 0);
+    vector<bool> onCycle(n, false);
+    for (int i = 0; i < n; i++) {
+        if (color[i] != 0) continue;
+        vector<int> path;
+        int cur = i;
+        while (color[cur] == 0) {
+            color[cur] = 1;
+            path.push_back(cur);
+            cur = nxt[cur];
+        }
+        if (color[cur] == 1) {
+            int idx = -1;
+            for (size_t k = 0; k < path.size(); k++) if (path[k] == cur) { idx = k; break; }
+            for (size_t k = idx; k < path.size(); k++) onCycle[path[k]] = true;
+        }
+        for (int node : path) color[node] = 2;
+    }
+    int count = 0;
+    for (bool b : onCycle) if (b) count++;
+    cout << count << endl;
+    return 0;
+}
+=== REQ000215 END ===
+
+=== REQ000216 START ===
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+namespace {
+
+constexpr int kUnvisited = 0;
+constexpr int kOnCurrentWalk = 1;
+constexpr int kFinished = 2;
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int squareCount;
+    std::cin >> squareCount;
+
+    // Every square has exactly one successor, so the board is a functional
+    // graph: each walk eventually runs into a cycle.
+    std::vector<int> successor(squareCount);
+    for (int index = 0; index < squareCount; ++index) {
+        long long step;
+        std::cin >> step;
+        successor[index] = static_cast<int>((index + step) % squareCount);
+    }
+
+    std::vector<int> state(squareCount, kUnvisited);
+    std::vector<char> liesOnCycle(squareCount, 0);
+
+    for (int start = 0; start < squareCount; ++start) {
+        if (state[start] != kUnvisited) {
+            continue;
+        }
+
+        std::vector<int> walk;
+        int square = start;
+        while (state[square] == kUnvisited) {
+            state[square] = kOnCurrentWalk;
+            walk.push_back(square);
+            square = successor[square];
+        }
+
+        // Re-entering the current walk means we closed a fresh cycle.
+        if (state[square] == kOnCurrentWalk) {
+            const auto cycleStart = std::find(walk.begin(), walk.end(), square);
+            for (auto member = cycleStart; member != walk.end(); ++member) {
+                liesOnCycle[*member] = 1;
+            }
+        }
+
+        for (int member : walk) {
+            state[member] = kFinished;
+        }
+    }
+
+    std::cout << std::count(liesOnCycle.begin(), liesOnCycle.end(), 1) << '\n';
+    return 0;
+}
+=== REQ000216 END ===
+
+=== REQ000217 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    nums = list(map(int, data))
+    w = nums[0:10]
+    k = nums[10:20]
+    w_score = sum(sorted(w, reverse=True)[:3])
+    k_score = sum(sorted(k, reverse=True)[:3])
+    print(w_score, k_score)
+
+main()
+=== REQ000217 END ===
+
+=== REQ000218 START ===
+"""Score two teams by summing each one's three best results."""
+
+import sys
+
+TEAM_SIZE = 10
+COUNTED_RESULTS = 3
+
+
+def team_score(results: list[int]) -> int:
+    """Sum of the three highest results for one team."""
+    return sum(sorted(results, reverse=True)[:COUNTED_RESULTS])
+
+
+def main() -> None:
+    values = [int(token) for token in sys.stdin.buffer.read().split()]
+
+    west_results = values[:TEAM_SIZE]
+    east_results = values[TEAM_SIZE : 2 * TEAM_SIZE]
+
+    print(team_score(west_results), team_score(east_results))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000218 END ===
+
+=== REQ000219 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        int[] w = new int[10], k = new int[10];
+        for (int i = 0; i < 10; i++) { st.nextToken(); w[i] = (int) st.nval; }
+        for (int i = 0; i < 10; i++) { st.nextToken(); k[i] = (int) st.nval; }
+        Integer[] wBox = new Integer[10];
+        Integer[] kBox = new Integer[10];
+        for (int i = 0; i < 10; i++) { wBox[i] = w[i]; kBox[i] = k[i]; }
+        Arrays.sort(wBox, Collections.reverseOrder());
+        Arrays.sort(kBox, Collections.reverseOrder());
+        int wScore = wBox[0] + wBox[1] + wBox[2];
+        int kScore = kBox[0] + kBox[1] + kBox[2];
+        System.out.println(wScore + " " + kScore);
+    }
+}
+=== REQ000219 END ===
+
+=== REQ000220 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+import java.util.Arrays;
+
+/**
+ * Scores two teams by summing each one's three best results.
+ */
+public class Sol {
+
+    private static final int TEAM_SIZE = 10;
+    private static final int COUNTED_RESULTS = 3;
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        int[] allResults = new int[2 * TEAM_SIZE];
+        for (int i = 0; i < allResults.length; i++) {
+            input.nextToken();
+            allResults[i] = (int) input.nval;
+        }
+
+        int westScore = teamScore(allResults, 0);
+        int eastScore = teamScore(allResults, TEAM_SIZE);
+
+        System.out.println(westScore + " " + eastScore);
+    }
+
+    /** Sum of the three highest results for the team starting at {@code offset}. */
+    private static int teamScore(int[] allResults, int offset) {
+        int[] results = Arrays.copyOfRange(allResults, offset, offset + TEAM_SIZE);
+        Arrays.sort(results);
+
+        int score = 0;
+        for (int i = 0; i < COUNTED_RESULTS; i++) {
+            score += results[TEAM_SIZE - 1 - i];
+        }
+        return score;
+    }
+}
+=== REQ000220 END ===
+
+=== REQ000221 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<int> w(10), k(10);
+    for (auto &x : w) cin >> x;
+    for (auto &x : k) cin >> x;
+    sort(w.rbegin(), w.rend());
+    sort(k.rbegin(), k.rend());
+    int wScore = w[0]+w[1]+w[2];
+    int kScore = k[0]+k[1]+k[2];
+    cout << wScore << " " << kScore << endl;
+    return 0;
+}
+=== REQ000221 END ===
+
+=== REQ000222 START ===
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+namespace {
+
+constexpr int kTeamSize = 10;
+constexpr int kCountedResults = 3;
+
+/// Sum of the three highest results for the team starting at `offset`.
+int teamScore(const std::vector<int>& allResults, int offset) {
+    std::vector<int> results(allResults.begin() + offset,
+                             allResults.begin() + offset + kTeamSize);
+    std::sort(results.rbegin(), results.rend());
+
+    int score = 0;
+    for (int i = 0; i < kCountedResults; ++i) {
+        score += results[i];
+    }
+    return score;
+}
+
+}  // namespace
+
+int main() {
+    std::vector<int> allResults(2 * kTeamSize);
+    for (int& result : allResults) {
+        std::cin >> result;
+    }
+
+    std::cout << teamScore(allResults, 0) << ' '
+              << teamScore(allResults, kTeamSize) << '\n';
+    return 0;
+}
+=== REQ000222 END ===
+
+=== REQ000223 START ===
+import sys
+
+def char_to_idx(c):
+    if c.islower():
+        return ord(c) - ord('a')
+    else:
+        return 26 + ord(c) - ord('A')
+
+def idx_to_char(i):
+    i %= 52
+    if i < 26:
+        return chr(ord('a') + i)
+    else:
+        return chr(ord('A') + i - 26)
+
+def main():
+    data = sys.stdin.read().split('\n')
+    idx = 0
+    out = []
+    while idx < len(data):
+        line = data[idx].strip()
+        idx += 1
+        if line == '':
+            continue
+        n = int(line)
+        if n == 0:
+            break
+        keys = list(map(int, data[idx].split()))
+        idx += 1
+        s = data[idx].strip()
+        idx += 1
+        result = []
+        for i, c in enumerate(s):
+            k = keys[i % n]
+            orig_idx = char_to_idx(c)
+            dec_idx = (orig_idx - k) % 52
+            result.append(idx_to_char(dec_idx))
+        out.append(''.join(result))
+    print('\n'.join(out))
+
+main()
+=== REQ000223 END ===
+
+=== REQ000224 START ===
+"""Decode a message enciphered with a repeating sequence of shift keys."""
+
+import sys
+
+ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ALPHABET_INDEX = {letter: position for position, letter in enumerate(ALPHABET)}
+END_OF_INPUT = 0
+
+
+def decode(ciphertext: str, keys: list[int]) -> str:
+    """Undo the encryption by shifting each letter back by its key.
+
+    Lower and upper case form one continuous 52-letter ring, so a shift can
+    carry a letter from one case into the other.
+    """
+    plaintext = []
+    for position, letter in enumerate(ciphertext):
+        shift = keys[position % len(keys)]
+        original = (ALPHABET_INDEX[letter] - shift) % len(ALPHABET)
+        plaintext.append(ALPHABET[original])
+    return "".join(plaintext)
+
+
+def main() -> None:
+    lines = sys.stdin.read().split("\n")
+    cursor = 0
+    messages = []
+
+    while cursor < len(lines):
+        header = lines[cursor].strip()
+        cursor += 1
+        if not header:
+            continue
+
+        key_count = int(header)
+        if key_count == END_OF_INPUT:
+            break
+
+        keys = [int(token) for token in lines[cursor].split()]
+        cursor += 1
+        ciphertext = lines[cursor].strip()
+        cursor += 1
+
+        messages.append(decode(ciphertext, keys))
+
+    sys.stdout.write("\n".join(messages) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000224 END ===
+
+=== REQ000225 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int charToIdx(char c) {
+        if (Character.isLowerCase(c)) return c - 'a';
+        else return 26 + (c - 'A');
+    }
+
+    static char idxToChar(int i) {
+        i = ((i % 52) + 52) % 52;
+        if (i < 26) return (char) ('a' + i);
+        else return (char) ('A' + i - 26);
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder out = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            int n = Integer.parseInt(line);
+            if (n == 0) break;
+            StringTokenizer stk = new StringTokenizer(br.readLine());
+            int[] keys = new int[n];
+            for (int i = 0; i < n; i++) keys[i] = Integer.parseInt(stk.nextToken());
+            String s = br.readLine().trim();
+            StringBuilder res = new StringBuilder();
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                int k = keys[i % n];
+                int origIdx = charToIdx(c);
+                int decIdx = origIdx - k;
+                res.append(idxToChar(decIdx));
+            }
+            out.append(res).append('\n');
+        }
+        System.out.print(out);
+    }
+}
+=== REQ000225 END ===

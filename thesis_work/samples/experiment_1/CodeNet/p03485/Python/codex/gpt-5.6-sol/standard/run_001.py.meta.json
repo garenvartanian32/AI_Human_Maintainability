@@ -1,0 +1,13 @@
+{
+  "experiment": 1,
+  "dataset": "CodeNet",
+  "problem_id": "p03485",
+  "language": "Python",
+  "source": "AI",
+  "provider": "codex",
+  "model": "gpt-5.6-sol",
+  "model_group": "gpt-5.6-sol",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

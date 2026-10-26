@@ -1,0 +1,734 @@
+=== REQ000251 START ===
+#include <iostream>
+#include <sstream>
+#include <string>
+int main() {
+    std::ostringstream ss;
+    ss << std::cin.rdbuf();
+    std::string data = ss.str();
+    return 0;
+}
+=== REQ000251 END ===
+
+=== REQ000252 START ===
+#include <iostream>
+#include <string>
+
+/**
+ * Placeholder: the problem statement for p02506 was not supplied.
+ *
+ * Without a specification there is no behaviour to implement, so the program
+ * simply consumes its input and exits cleanly.
+ */
+int main() {
+    std::string line;
+    while (std::getline(std::cin, line)) {
+        // Nothing to do without a specification.
+    }
+    return 0;
+}
+=== REQ000252 END ===
+
+=== REQ000253 START ===
+import sys
+x = int(sys.stdin.read().strip())
+print(1 - x)
+=== REQ000253 END ===
+
+=== REQ000254 START ===
+"""Flip a single bit: report 1 for input 0, and 0 for input 1."""
+
+import sys
+
+
+def main() -> None:
+    bit = int(sys.stdin.read().strip())
+    print(1 - bit)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000254 END ===
+
+=== REQ000255 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int x = Integer.parseInt(br.readLine().trim());
+        System.out.println(1 - x);
+    }
+}
+=== REQ000255 END ===
+
+=== REQ000256 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Flips a single bit: reports 1 for input 0, and 0 for input 1.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int bit = Integer.parseInt(reader.readLine().trim());
+        System.out.println(1 - bit);
+    }
+}
+=== REQ000256 END ===
+
+=== REQ000257 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int x;
+    cin >> x;
+    cout << (1 - x) << endl;
+    return 0;
+}
+=== REQ000257 END ===
+
+=== REQ000258 START ===
+#include <iostream>
+
+int main() {
+    int bit;
+    std::cin >> bit;
+    std::cout << (1 - bit) << '\n';
+    return 0;
+}
+=== REQ000258 END ===
+
+=== REQ000259 START ===
+import sys
+
+def solve(n, a, s):
+    basis = {}  # leadbit -> value
+    for i in range(n-1, -1, -1):
+        v = a[i]
+        for bit in range(63, -1, -1):
+            if (v >> bit) & 1:
+                if bit in basis:
+                    v ^= basis[bit]
+                else:
+                    break
+        if v != 0:
+            lb = v.bit_length() - 1
+            basis[lb] = v
+            if s[i] == '1':
+                return 1
+    return 0
+
+def main():
+    data = sys.stdin.read().split()
+    idx = 0
+    t = int(data[idx]); idx += 1
+    out = []
+    for _ in range(t):
+        n = int(data[idx]); idx += 1
+        a = [int(data[idx+i]) for i in range(n)]; idx += n
+        s = data[idx]; idx += 1
+        out.append(str(solve(n, a, s)))
+    print('\n'.join(out))
+
+main()
+=== REQ000259 END ===
+
+=== REQ000260 START ===
+"""Decide whether the first player can win the XOR-basis game."""
+
+import sys
+
+BIT_WIDTH = 64
+FIRST_PLAYER_WINS = 1
+FIRST_PLAYER_LOSES = 0
+FIRST_PLAYER_MARK = "1"
+
+
+def first_player_wins(values: list[int], owners: str) -> int:
+    """True when the first player owns a value that is linearly independent.
+
+    Values are folded into a linear basis over GF(2) from the back of the list
+    forwards. The first value that survives reduction is the deciding one: if
+    the first player owns it, they can force the win.
+    """
+    basis = [0] * BIT_WIDTH
+
+    for index in reversed(range(len(values))):
+        residue = values[index]
+
+        for bit in reversed(range(BIT_WIDTH)):
+            if not (residue >> bit) & 1:
+                continue
+            if basis[bit] == 0:
+                basis[bit] = residue
+                return (
+                    FIRST_PLAYER_WINS
+                    if owners[index] == FIRST_PLAYER_MARK
+                    else FIRST_PLAYER_LOSES
+                )
+            residue ^= basis[bit]
+
+    return FIRST_PLAYER_LOSES
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    cursor = 0
+    test_count = int(tokens[cursor])
+    cursor += 1
+
+    verdicts = []
+    for _ in range(test_count):
+        value_count = int(tokens[cursor])
+        cursor += 1
+        values = [int(token) for token in tokens[cursor : cursor + value_count]]
+        cursor += value_count
+        owners = tokens[cursor].decode()
+        cursor += 1
+
+        verdicts.append(first_player_wins(values, owners))
+
+    sys.stdout.write("\n".join(map(str, verdicts)) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000260 END ===
+
+=== REQ000261 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        StringBuilder input = new StringBuilder();
+        int c;
+        while ((c = br.read()) != -1) input.append((char) c);
+        StringTokenizer tk = new StringTokenizer(input.toString());
+
+        int t = Integer.parseInt(tk.nextToken());
+        StringBuilder sb = new StringBuilder();
+        for (int tc = 0; tc < t; tc++) {
+            int n = Integer.parseInt(tk.nextToken());
+            long[] a = new long[n];
+            for (int i = 0; i < n; i++) a[i] = Long.parseLong(tk.nextToken());
+            String s = tk.nextToken();
+
+            Map<Integer, Long> basis = new HashMap<>();
+            int result = 0;
+            for (int i = n - 1; i >= 0; i--) {
+                long v = a[i];
+                for (int bit = 63; bit >= 0; bit--) {
+                    if (((v >> bit) & 1) == 1) {
+                        if (basis.containsKey(bit)) {
+                            v ^= basis.get(bit);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+                if (v != 0) {
+                    int lb = 63 - Long.numberOfLeadingZeros(v);
+                    basis.put(lb, v);
+                    if (s.charAt(i) == '1') {
+                        result = 1;
+                        break;
+                    }
+                }
+            }
+            sb.append(result).append('\n');
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000261 END ===
+
+=== REQ000262 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ * Decides whether the first player can win the XOR-basis game.
+ *
+ * <p>Values are folded into a linear basis over GF(2) from the back of the list
+ * forwards. The first value that survives reduction is the deciding one: if the
+ * first player owns it, they can force the win.
+ */
+public class Sol {
+
+    private static final int BIT_WIDTH = 64;
+    private static final int FIRST_PLAYER_WINS = 1;
+    private static final int FIRST_PLAYER_LOSES = 0;
+    private static final char FIRST_PLAYER_MARK = '1';
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        StringBuilder raw = new StringBuilder();
+        String chunk;
+        while ((chunk = reader.readLine()) != null) {
+            raw.append(chunk).append('\n');
+        }
+        StringTokenizer tokens = new StringTokenizer(raw.toString());
+
+        int testCount = Integer.parseInt(tokens.nextToken());
+        StringBuilder verdicts = new StringBuilder();
+
+        for (int test = 0; test < testCount; test++) {
+            int valueCount = Integer.parseInt(tokens.nextToken());
+            long[] values = new long[valueCount];
+            for (int i = 0; i < valueCount; i++) {
+                values[i] = Long.parseLong(tokens.nextToken());
+            }
+            String owners = tokens.nextToken();
+
+            verdicts.append(firstPlayerWins(values, owners)).append('\n');
+        }
+
+        System.out.print(verdicts);
+    }
+
+    private static int firstPlayerWins(long[] values, String owners) {
+        long[] basis = new long[BIT_WIDTH];
+
+        for (int index = values.length - 1; index >= 0; index--) {
+            long residue = values[index];
+
+            for (int bit = BIT_WIDTH - 1; bit >= 0; bit--) {
+                if (((residue >>> bit) & 1L) == 0L) {
+                    continue;
+                }
+                if (basis[bit] == 0) {
+                    basis[bit] = residue;
+                    return (owners.charAt(index) == FIRST_PLAYER_MARK)
+                            ? FIRST_PLAYER_WINS
+                            : FIRST_PLAYER_LOSES;
+                }
+                residue ^= basis[bit];
+            }
+        }
+
+        return FIRST_PLAYER_LOSES;
+    }
+}
+=== REQ000262 END ===
+
+=== REQ000263 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin >> t;
+    string out;
+    for (int tc = 0; tc < t; tc++) {
+        int n;
+        cin >> n;
+        vector<unsigned long long> a(n);
+        for (auto &x : a) cin >> x;
+        string s;
+        cin >> s;
+
+        unordered_map<int, unsigned long long> basis;
+        int result = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            unsigned long long v = a[i];
+            for (int bit = 63; bit >= 0; bit--) {
+                if ((v >> bit) & 1ULL) {
+                    auto it = basis.find(bit);
+                    if (it != basis.end()) {
+                        v ^= it->second;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            if (v != 0) {
+                int lb = 63 - __builtin_clzll(v);
+                basis[lb] = v;
+                if (s[i] == '1') {
+                    result = 1;
+                    break;
+                }
+            }
+        }
+        out += to_string(result) + "\n";
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000263 END ===
+
+=== REQ000264 START ===
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+namespace {
+
+constexpr int kBitWidth = 64;
+constexpr int kFirstPlayerWins = 1;
+constexpr int kFirstPlayerLoses = 0;
+constexpr char kFirstPlayerMark = '1';
+
+/**
+ * True when the first player owns a value that is linearly independent.
+ *
+ * Values are folded into a linear basis over GF(2) from the back of the list
+ * forwards. The first value that survives reduction is the deciding one.
+ */
+int firstPlayerWins(const std::vector<unsigned long long>& values, const std::string& owners) {
+    unsigned long long basis[kBitWidth] = {0};
+
+    for (int index = static_cast<int>(values.size()) - 1; index >= 0; --index) {
+        unsigned long long residue = values[index];
+
+        for (int bit = kBitWidth - 1; bit >= 0; --bit) {
+            if (!((residue >> bit) & 1ULL)) {
+                continue;
+            }
+            if (basis[bit] == 0) {
+                basis[bit] = residue;
+                return (owners[index] == kFirstPlayerMark) ? kFirstPlayerWins
+                                                           : kFirstPlayerLoses;
+            }
+            residue ^= basis[bit];
+        }
+    }
+
+    return kFirstPlayerLoses;
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int testCount;
+    std::cin >> testCount;
+
+    std::ostringstream verdicts;
+    while (testCount-- > 0) {
+        int valueCount;
+        std::cin >> valueCount;
+
+        std::vector<unsigned long long> values(valueCount);
+        for (auto& value : values) {
+            std::cin >> value;
+        }
+
+        std::string owners;
+        std::cin >> owners;
+
+        verdicts << firstPlayerWins(values, owners) << '\n';
+    }
+
+    std::cout << verdicts.str();
+    return 0;
+}
+=== REQ000264 END ===
+
+=== REQ000265 START ===
+import sys
+
+def main():
+    h1,m1,h2,m2,k = map(int, sys.stdin.read().split())
+    awake = (h2*60+m2) - (h1*60+m1)
+    print(max(0, awake - k))
+
+main()
+=== REQ000265 END ===
+
+=== REQ000266 START ===
+"""Minutes left for study between waking and bedtime."""
+
+import sys
+
+MINUTES_PER_HOUR = 60
+
+
+def to_minutes(hour: int, minute: int) -> int:
+    return hour * MINUTES_PER_HOUR + minute
+
+
+def main() -> None:
+    wake_hour, wake_minute, sleep_hour, sleep_minute, study_length = map(
+        int, sys.stdin.read().split()
+    )
+
+    awake_minutes = to_minutes(sleep_hour, sleep_minute) - to_minutes(wake_hour, wake_minute)
+    print(max(0, awake_minutes - study_length))
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000266 END ===
+
+=== REQ000267 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int h1 = (int) st.nval;
+        st.nextToken(); int m1 = (int) st.nval;
+        st.nextToken(); int h2 = (int) st.nval;
+        st.nextToken(); int m2 = (int) st.nval;
+        st.nextToken(); int k = (int) st.nval;
+        int awake = (h2*60+m2) - (h1*60+m1);
+        System.out.println(Math.max(0, awake - k));
+    }
+}
+=== REQ000267 END ===
+
+=== REQ000268 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ * Minutes left for study between waking and bedtime.
+ */
+public class Sol {
+
+    private static final int MINUTES_PER_HOUR = 60;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer line = new StringTokenizer(reader.readLine());
+
+        int wakeHour = Integer.parseInt(line.nextToken());
+        int wakeMinute = Integer.parseInt(line.nextToken());
+        int sleepHour = Integer.parseInt(line.nextToken());
+        int sleepMinute = Integer.parseInt(line.nextToken());
+        int studyLength = Integer.parseInt(line.nextToken());
+
+        int awakeMinutes = toMinutes(sleepHour, sleepMinute) - toMinutes(wakeHour, wakeMinute);
+        System.out.println(Math.max(0, awakeMinutes - studyLength));
+    }
+
+    private static int toMinutes(int hour, int minute) {
+        return hour * MINUTES_PER_HOUR + minute;
+    }
+}
+=== REQ000268 END ===
+
+=== REQ000269 START ===
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int h1,m1,h2,m2,k;
+    cin >> h1 >> m1 >> h2 >> m2 >> k;
+    int awake = (h2*60+m2)-(h1*60+m1);
+    cout << max(0, awake - k) << endl;
+    return 0;
+}
+=== REQ000269 END ===
+
+=== REQ000270 START ===
+#include <algorithm>
+#include <iostream>
+
+namespace {
+
+constexpr int kMinutesPerHour = 60;
+
+int toMinutes(int hour, int minute) {
+    return hour * kMinutesPerHour + minute;
+}
+
+}  // namespace
+
+int main() {
+    int wakeHour, wakeMinute, sleepHour, sleepMinute, studyLength;
+    std::cin >> wakeHour >> wakeMinute >> sleepHour >> sleepMinute >> studyLength;
+
+    const int awakeMinutes =
+        toMinutes(sleepHour, sleepMinute) - toMinutes(wakeHour, wakeMinute);
+    std::cout << std::max(0, awakeMinutes - studyLength) << '\n';
+    return 0;
+}
+=== REQ000270 END ===
+
+=== REQ000271 START ===
+import sys
+
+def main():
+    n = int(sys.stdin.read().split()[0])
+    buf = []
+    out = []
+    def bt(max_used):
+        if len(buf) == n:
+            out.append(''.join(buf))
+            return
+        for c in range(0, max_used+2):
+            buf.append(chr(ord('a')+c))
+            bt(max(max_used, c))
+            buf.pop()
+    bt(-1)
+    print('\n'.join(out))
+
+main()
+=== REQ000271 END ===
+
+=== REQ000272 START ===
+"""List every length-n string in normal form, in lexicographic order."""
+
+import sys
+
+FIRST_LETTER = "a"
+
+
+def normal_form_strings(length: int) -> list[str]:
+    """All strings where each letter is at most one past the largest so far.
+
+    That rule keeps exactly one representative of every way of partitioning the
+    positions, and generating letters in alphabetical order emits the strings
+    already sorted.
+    """
+    results: list[str] = []
+    buffer = [FIRST_LETTER] * length
+
+    def extend(position: int, letters_used: int) -> None:
+        if position == length:
+            results.append("".join(buffer))
+            return
+
+        for letter_index in range(letters_used + 1):
+            buffer[position] = chr(ord(FIRST_LETTER) + letter_index)
+            next_used = letters_used + 1 if letter_index == letters_used else letters_used
+            extend(position + 1, next_used)
+
+    extend(0, 0)
+    return results
+
+
+def main() -> None:
+    length = int(sys.stdin.read().strip())
+    sys.stdout.write("\n".join(normal_form_strings(length)) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000272 END ===
+
+=== REQ000273 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static int n;
+    static char[] buf;
+    static StringBuilder out = new StringBuilder();
+
+    static void bt(int pos, int maxUsed) {
+        if (pos == n) {
+            out.append(new String(buf, 0, n)).append('\n');
+            return;
+        }
+        for (int c = 0; c <= maxUsed + 1; c++) {
+            buf[pos] = (char) ('a' + c);
+            bt(pos + 1, Math.max(maxUsed, c));
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine().trim());
+        buf = new char[n];
+        bt(0, -1);
+        System.out.print(out);
+    }
+}
+=== REQ000273 END ===
+
+=== REQ000274 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Lists every length-n string in normal form, in lexicographic order.
+ *
+ * <p>Each letter may be at most one past the largest used so far. That rule
+ * keeps exactly one representative of every way of partitioning the positions,
+ * and generating letters in alphabetical order emits them already sorted.
+ */
+public class Sol {
+
+    private static final char FIRST_LETTER = 'a';
+
+    private static int length;
+    private static char[] buffer;
+    private static StringBuilder results;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        length = Integer.parseInt(reader.readLine().trim());
+
+        buffer = new char[length];
+        results = new StringBuilder();
+
+        extend(0, 0);
+        System.out.print(results);
+    }
+
+    private static void extend(int position, int lettersUsed) {
+        if (position == length) {
+            results.append(buffer, 0, length).append('\n');
+            return;
+        }
+
+        for (int letterIndex = 0; letterIndex <= lettersUsed; letterIndex++) {
+            buffer[position] = (char) (FIRST_LETTER + letterIndex);
+            int nextUsed = (letterIndex == lettersUsed) ? lettersUsed + 1 : lettersUsed;
+            extend(position + 1, nextUsed);
+        }
+    }
+}
+=== REQ000274 END ===
+
+=== REQ000275 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+string buf;
+string out;
+
+void bt(int pos, int maxUsed) {
+    if (pos == n) {
+        out += buf;
+        out += '\n';
+        return;
+    }
+    for (int c = 0; c <= maxUsed + 1; c++) {
+        buf[pos] = (char)('a' + c);
+        bt(pos + 1, max(maxUsed, c));
+    }
+}
+
+int main() {
+    cin >> n;
+    buf.resize(n);
+    bt(0, -1);
+    cout << out;
+    return 0;
+}
+=== REQ000275 END ===

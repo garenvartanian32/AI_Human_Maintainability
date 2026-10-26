@@ -1,0 +1,13 @@
+{
+  "experiment": 3,
+  "dataset": "CodeNet",
+  "problem_id": "p02353",
+  "language": "Java",
+  "source": "AI",
+  "provider": "claude",
+  "model": "Opus 4.6",
+  "model_group": "Opus 4.6",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

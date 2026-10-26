@@ -1,0 +1,16 @@
+{
+  "experiment": 2,
+  "dataset": "CodeNet",
+  "problem_id": "p02663",
+  "language": "Python",
+  "source": "Human",
+  "provider": "",
+  "model": "",
+  "model_group": "human",
+  "prompt_type": "original",
+  "run": 1,
+  "correctness": "dataset_provided",
+  "difficulty": "",
+  "scenario": "",
+  "original_file": "C:\\Users\\garen\\OneDrive\\Desktop\\UNI - Garen\\COMP4093\\ThesisB\\datasets\\Project_CodeNet_subset\\data\\p02663\\Python\\s956669427.py"
+}

@@ -1,0 +1,567 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000426 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Checks if given string is a palindrome
+// >>> is_palindrome((""))
+// (true)
+// >>> is_palindrome(("aba"))
+// (true)
+// >>> is_palindrome(("aaaaa"))
+// (true)
+// >>> is_palindrome(("zbcd"))
+// (false)
+bool is_palindrome(std::string text) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000427 PROMPT ===
+Solve the following programming problem in Python.
+
+
+
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "(" and ")".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("(")
+    False
+    >>> correct_bracketing("()")
+    True
+    >>> correct_bracketing("(()())")
+    True
+    >>> correct_bracketing(")(()")
+    False
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000428 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "(" and ")".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("(")
+    False
+    >>> correct_bracketing("()")
+    True
+    >>> correct_bracketing("(()())")
+    True
+    >>> correct_bracketing(")(()")
+    False
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000429 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // brackets is a string of "(" and ")".
+    // return true if every opening bracket has a corresponding closing bracket.
+    // >>> correctBracketing(("("))
+    // (false)
+    // >>> correctBracketing(("()"))
+    // (true)
+    // >>> correctBracketing(("(()())"))
+    // (true)
+    // >>> correctBracketing((")(()"))
+    // (false)
+    public static boolean correctBracketing(String brackets) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000430 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // brackets is a string of "(" and ")".
+    // return true if every opening bracket has a corresponding closing bracket.
+    // >>> correctBracketing(("("))
+    // (false)
+    // >>> correctBracketing(("()"))
+    // (true)
+    // >>> correctBracketing(("(()())"))
+    // (true)
+    // >>> correctBracketing((")(()"))
+    // (false)
+    public static boolean correctBracketing(String brackets) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000431 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// brackets is a string of "(" and ")".
+// return true if every opening bracket has a corresponding closing bracket.
+// >>> correct_bracketing(("("))
+// (false)
+// >>> correct_bracketing(("()"))
+// (true)
+// >>> correct_bracketing(("(()())"))
+// (true)
+// >>> correct_bracketing((")(()"))
+// (false)
+bool correct_bracketing(std::string brackets) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000432 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// brackets is a string of "(" and ")".
+// return true if every opening bracket has a corresponding closing bracket.
+// >>> correct_bracketing(("("))
+// (false)
+// >>> correct_bracketing(("()"))
+// (true)
+// >>> correct_bracketing(("(()())"))
+// (true)
+// >>> correct_bracketing((")(()"))
+// (false)
+bool correct_bracketing(std::string brackets) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000433 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def digitSum(s):
+    """Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("") => 0
+        digitSum("abAB") => 131
+        digitSum("abcCd") => 67
+        digitSum("helloE") => 69
+        digitSum("woArBld") => 131
+        digitSum("aAaaaXa") => 153
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000434 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def digitSum(s):
+    """Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("") => 0
+        digitSum("abAB") => 131
+        digitSum("abcCd") => 67
+        digitSum("helloE") => 69
+        digitSum("woArBld") => 131
+        digitSum("aAaaaXa") => 153
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000435 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Task
+    // Write a function that takes a string as input and returns the sum of the upper characters only'
+    // ASCII codes.
+    // Examples:
+    // >>> digitSum((""))
+    // (0l)
+    // >>> digitSum(("abAB"))
+    // (131l)
+    // >>> digitSum(("abcCd"))
+    // (67l)
+    // >>> digitSum(("helloE"))
+    // (69l)
+    // >>> digitSum(("woArBld"))
+    // (131l)
+    // >>> digitSum(("aAaaaXa"))
+    // (153l)
+    public static long digitSum(String s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000436 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Task
+    // Write a function that takes a string as input and returns the sum of the upper characters only'
+    // ASCII codes.
+    // Examples:
+    // >>> digitSum((""))
+    // (0l)
+    // >>> digitSum(("abAB"))
+    // (131l)
+    // >>> digitSum(("abcCd"))
+    // (67l)
+    // >>> digitSum(("helloE"))
+    // (69l)
+    // >>> digitSum(("woArBld"))
+    // (131l)
+    // >>> digitSum(("aAaaaXa"))
+    // (153l)
+    public static long digitSum(String s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000437 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Task
+// Write a function that takes a string as input and returns the sum of the upper characters only'
+// ASCII codes.
+// Examples:
+// >>> digitSum((""))
+// (0)
+// >>> digitSum(("abAB"))
+// (131)
+// >>> digitSum(("abcCd"))
+// (67)
+// >>> digitSum(("helloE"))
+// (69)
+// >>> digitSum(("woArBld"))
+// (131)
+// >>> digitSum(("aAaaaXa"))
+// (153)
+long digitSum(std::string s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000438 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Task
+// Write a function that takes a string as input and returns the sum of the upper characters only'
+// ASCII codes.
+// Examples:
+// >>> digitSum((""))
+// (0)
+// >>> digitSum(("abAB"))
+// (131)
+// >>> digitSum(("abcCd"))
+// (67)
+// >>> digitSum(("helloE"))
+// (69)
+// >>> digitSum(("woArBld"))
+// (131)
+// >>> digitSum(("aAaaaXa"))
+// (153)
+long digitSum(std::string s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000439 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def search(lst):
+    '''
+    You are given a non-empty list of positive integers. Return the greatest integer that is greater than 
+    zero, and has a frequency greater than or equal to the value of the integer itself. 
+    The frequency of an integer is the number of times it appears in the list.
+    If no such a value exist, return -1.
+    Examples:
+        search([4, 1, 2, 2, 3, 1]) == 2
+        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3
+        search([5, 5, 4, 4, 4]) == -1
+    '''
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000440 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def search(lst):
+    '''
+    You are given a non-empty list of positive integers. Return the greatest integer that is greater than 
+    zero, and has a frequency greater than or equal to the value of the integer itself. 
+    The frequency of an integer is the number of times it appears in the list.
+    If no such a value exist, return -1.
+    Examples:
+        search([4, 1, 2, 2, 3, 1]) == 2
+        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3
+        search([5, 5, 4, 4, 4]) == -1
+    '''
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000441 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a non-empty array list of positive integers. Return the greatest integer that is greater than 
+    // zero, and has a frequency greater than or equal to the value of the integer itself. 
+    // The frequency of an integer is the number of times it appears in the array list.
+    // If no such a value exist, return -1.
+    // Examples:
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)4l, (long)1l, (long)2l, (long)2l, (long)3l, (long)1l))))
+    // (2l)
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)2l, (long)3l, (long)3l, (long)3l, (long)4l, (long)4l, (long)4l))))
+    // (3l)
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)5l, (long)5l, (long)4l, (long)4l, (long)4l))))
+    // (-1l)
+    public static long search(ArrayList<Long> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000442 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a non-empty array list of positive integers. Return the greatest integer that is greater than 
+    // zero, and has a frequency greater than or equal to the value of the integer itself. 
+    // The frequency of an integer is the number of times it appears in the array list.
+    // If no such a value exist, return -1.
+    // Examples:
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)4l, (long)1l, (long)2l, (long)2l, (long)3l, (long)1l))))
+    // (2l)
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)2l, (long)3l, (long)3l, (long)3l, (long)4l, (long)4l, (long)4l))))
+    // (3l)
+    // >>> search((new ArrayList<Long>(Arrays.asList((long)5l, (long)5l, (long)4l, (long)4l, (long)4l))))
+    // (-1l)
+    public static long search(ArrayList<Long> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000443 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a non-empty vector of positive integers. Return the greatest integer that is greater than 
+// zero, and has a frequency greater than or equal to the value of the integer itself. 
+// The frequency of an integer is the number of times it appears in the vector.
+// If no such a value exist, return -1.
+// Examples:
+// >>> search((std::vector<long>({(long)4, (long)1, (long)2, (long)2, (long)3, (long)1})))
+// (2)
+// >>> search((std::vector<long>({(long)1, (long)2, (long)2, (long)3, (long)3, (long)3, (long)4, (long)4, (long)4})))
+// (3)
+// >>> search((std::vector<long>({(long)5, (long)5, (long)4, (long)4, (long)4})))
+// (-1)
+long search(std::vector<long> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000444 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a non-empty vector of positive integers. Return the greatest integer that is greater than 
+// zero, and has a frequency greater than or equal to the value of the integer itself. 
+// The frequency of an integer is the number of times it appears in the vector.
+// If no such a value exist, return -1.
+// Examples:
+// >>> search((std::vector<long>({(long)4, (long)1, (long)2, (long)2, (long)3, (long)1})))
+// (2)
+// >>> search((std::vector<long>({(long)1, (long)2, (long)2, (long)3, (long)3, (long)3, (long)4, (long)4, (long)4})))
+// (3)
+// >>> search((std::vector<long>({(long)5, (long)5, (long)4, (long)4, (long)4})))
+// (-1)
+long search(std::vector<long> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000445 PROMPT ===
+Solve the following programming problem in Python.
+
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """ For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.
+    >>> sum_product([])
+    (0, 1)
+    >>> sum_product([1, 2, 3, 4])
+    (10, 24)
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000446 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """ For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.
+    >>> sum_product([])
+    (0, 1)
+    >>> sum_product([1, 2, 3, 4])
+    (10, 24)
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000447 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // For a given array list of integers, return a pair consisting of a sum and a product of all the integers in an array array list.
+    // Empty sum should be equal to 0 and empty product should be equal to 1.
+    // >>> sumProduct((new ArrayList<Long>(Arrays.asList())))
+    // (Pair.with(0l, 1l))
+    // >>> sumProduct((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l))))
+    // (Pair.with(10l, 24l))
+    public static Pair<Long, Long> sumProduct(ArrayList<Long> numbers) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000448 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // For a given array list of integers, return a pair consisting of a sum and a product of all the integers in an array array list.
+    // Empty sum should be equal to 0 and empty product should be equal to 1.
+    // >>> sumProduct((new ArrayList<Long>(Arrays.asList())))
+    // (Pair.with(0l, 1l))
+    // >>> sumProduct((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l))))
+    // (Pair.with(10l, 24l))
+    public static Pair<Long, Long> sumProduct(ArrayList<Long> numbers) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000449 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// For a given vector of integers, return a tuple consisting of a sum and a product of all the integers in a vector.
+// Empty sum should be equal to 0 and empty product should be equal to 1.
+// >>> sum_product((std::vector<long>()))
+// (std::make_tuple(0, 1))
+// >>> sum_product((std::vector<long>({(long)1, (long)2, (long)3, (long)4})))
+// (std::make_tuple(10, 24))
+std::tuple<long, long> sum_product(std::vector<long> numbers) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000450 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// For a given vector of integers, return a tuple consisting of a sum and a product of all the integers in a vector.
+// Empty sum should be equal to 0 and empty product should be equal to 1.
+// >>> sum_product((std::vector<long>()))
+// (std::make_tuple(0, 1))
+// >>> sum_product((std::vector<long>({(long)1, (long)2, (long)3, (long)4})))
+// (std::make_tuple(10, 24))
+std::tuple<long, long> sum_product(std::vector<long> numbers) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

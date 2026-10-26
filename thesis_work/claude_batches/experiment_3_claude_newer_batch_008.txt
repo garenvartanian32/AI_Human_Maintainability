@@ -1,0 +1,659 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000176 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given two intervals,
+    // where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    // The given intervals are closed which means that the interval (start, end)
+    // includes both start and end.
+    // For each given interval, it is assumed that its start is less or equal its end.
+    // Your task is to determine whether the length of intersection of these two 
+    // intervals is a prime number.
+    // Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    // which its length is 1, which not a prime number.
+    // If the length of the intersection is a prime number, return "YES",
+    // otherwise, return "NO".
+    // If the two intervals don't intersect, return "NO".
+    // [input/output] samples:
+    // >>> intersection((Pair.with(1l, 2l)), (Pair.with(2l, 3l)))
+    // ("NO")
+    // >>> intersection((Pair.with(-1l, 1l)), (Pair.with(0l, 4l)))
+    // ("NO")
+    // >>> intersection((Pair.with(-3l, -1l)), (Pair.with(-5l, 5l)))
+    // ("YES")
+    public static String intersection(Pair<Long, Long> interval1, Pair<Long, Long> interval2) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000177 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given two intervals,
+// where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+// The given intervals are closed which means that the interval (start, end)
+// includes both start and end.
+// For each given interval, it is assumed that its start is less or equal its end.
+// Your task is to determine whether the length of intersection of these two 
+// intervals is a prime number.
+// Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+// which its length is 1, which not a prime number.
+// If the length of the intersection is a prime number, return "YES",
+// otherwise, return "NO".
+// If the two intervals don't intersect, return "NO".
+// [input/output] samples:
+// >>> intersection((std::make_tuple(1, 2)), (std::make_tuple(2, 3)))
+// ("NO")
+// >>> intersection((std::make_tuple(-1, 1)), (std::make_tuple(0, 4)))
+// ("NO")
+// >>> intersection((std::make_tuple(-3, -1)), (std::make_tuple(-5, 5)))
+// ("YES")
+std::string intersection(std::tuple<long, long> interval1, std::tuple<long, long> interval2) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000178 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def prod_signs(arr):
+    """
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+    of each number in the array, represented by 1, -1 or 0.
+    Note: return None for empty arr.
+
+    Example:
+    >>> prod_signs([1, 2, 2, -4]) == -9
+    >>> prod_signs([0, 1]) == 0
+    >>> prod_signs([]) == None
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000179 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list arr of integers and you need to return
+    // sum of magnitudes of integers multiplied by product of all signs
+    // of each number in the array array list, represented by 1, -1 or 0.
+    // Note: return null for empty arr.
+    // Example:
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)2l, (long)-4l))))
+    // Optional.of(9l)
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList((long)0l, (long)1l))))
+    // Optional.of(0l)
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList())))
+    // Optional.empty()
+    public static Optional<Long> prodSigns(ArrayList<Long> arr) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000180 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector arr of integers and you need to return
+// sum of magnitudes of integers multiplied by product of all signs
+// of each number in the vector, represented by 1, -1 or 0.
+// Note: return None for empty arr.
+// Example:
+// >>> prod_signs((std::vector<long>({(long)1, (long)2, (long)2, (long)-4})))
+// 9
+// >>> prod_signs((std::vector<long>({(long)0, (long)1})))
+// 0
+// >>> prod_signs((std::vector<long>()))
+// std::nullopt
+std::optional<long> prod_signs(std::vector<long> arr) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000181 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def minPath(grid, k):
+    """
+    Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    each cell of the grid contains a value. Every integer in the range [1, N * N]
+    inclusive appears exactly once on the cells of the grid.
+
+    You have to find the minimum path of length k in the grid. You can start
+    from any cell, and in each step you can move to any of the neighbor cells,
+    in other words, you can go to cells which share an edge with you current
+    cell.
+    Please note that a path of length k means visiting exactly k cells (not
+    necessarily distinct).
+    You CANNOT go off the grid.
+    A path A (of length k) is considered less than a path B (of length k) if
+    after making the ordered lists of the values on the cells that A and B go
+    through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    lst_A[j] = lst_B[j].
+    It is guaranteed that the answer is unique.
+    Return an ordered list of the values on the cells that the minimum path go through.
+
+    Examples:
+
+        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3
+        Output: [1, 2, 1]
+
+        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
+        Output: [1]
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000182 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    // each cell of the grid contains a value. Every integer in the range [1, N * N]
+    // inclusive appears exactly once on the cells of the grid.
+    // You have to find the minimum path of length k in the grid. You can start
+    // from any cell, and in each step you can move to any of the neighbor cells,
+    // in other words, you can go to cells which share an edge with you current
+    // cell.
+    // Please note that a path of length k means visiting exactly k cells (not
+    // necessarily distinct).
+    // You CANNOT go off the grid.
+    // A path A (of length k) is considered less than a path B (of length k) if
+    // after making the ordered array lists of the values on the cells that A and B go
+    // through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    // than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    // such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    // lst_A[j] = lst_B[j].
+    // It is guaranteed that the answer is unique.
+    // Return an ordered array list of the values on the cells that the minimum path go through.
+    // Examples:    
+    // >>> minPath((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)7l, (long)8l, (long)9l))))), (3l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)1l)))
+    // >>> minPath((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)5l, (long)9l, (long)3l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)7l, (long)8l, (long)2l))))), (1l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l)))
+    public static ArrayList<Long> minPath(ArrayList<ArrayList<Long>> grid, long k) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000183 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+// each cell of the grid contains a value. Every integer in the range [1, N * N]
+// inclusive appears exactly once on the cells of the grid.
+// You have to find the minimum path of length k in the grid. You can start
+// from any cell, and in each step you can move to any of the neighbor cells,
+// in other words, you can go to cells which share an edge with you current
+// cell.
+// Please note that a path of length k means visiting exactly k cells (not
+// necessarily distinct).
+// You CANNOT go off the grid.
+// A path A (of length k) is considered less than a path B (of length k) if
+// after making the ordered vectors of the values on the cells that A and B go
+// through (let's call them lst_A and lst_B), lst_A is lexicographically less
+// than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+// such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+// lst_A[j] = lst_B[j].
+// It is guaranteed that the answer is unique.
+// Return an ordered vector of the values on the cells that the minimum path go through.
+// Examples:    
+// >>> minPath((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3}), (std::vector<long>)std::vector<long>({(long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)7, (long)8, (long)9})})), (3))
+// (std::vector<long>({(long)1, (long)2, (long)1}))
+// >>> minPath((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)5, (long)9, (long)3}), (std::vector<long>)std::vector<long>({(long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)7, (long)8, (long)2})})), (1))
+// (std::vector<long>({(long)1}))
+std::vector<long> minPath(std::vector<std::vector<long>> grid, long k) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000184 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def tri(n):
+    """Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    the last couple centuries. However, what people don't know is Tribonacci sequence.
+    Tribonacci sequence is defined by the recurrence:
+    tri(1) = 3
+    tri(n) = 1 + n / 2, if n is even.
+    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    For example:
+    tri(2) = 1 + (2 / 2) = 2
+    tri(4) = 3
+    tri(3) = tri(2) + tri(1) + tri(4)
+           = 2 + 3 + 3 = 8 
+    You are given a non-negative integer number n, you have to a return a list of the 
+    first n + 1 numbers of the Tribonacci sequence.
+    Examples:
+    tri(3) = [1, 3, 2, 8]
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000185 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    // the last couple centuries. However, what people don't know is Tribonacci sequence.
+    // Tribonacci sequence is defined by the recurrence:
+    // tri(1) = 3
+    // tri(n) = 1 + n / 2, if n is even.
+    // tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    // For example:
+    // tri(2) = 1 + (2 / 2) = 2
+    // tri(4) = 3
+    // tri(3) = tri(2) + tri(1) + tri(4)
+    // = 2 + 3 + 3 = 8 
+    // You are given a non-negative integer number n, you have to a return an array array list of the 
+    // first n + 1 numbers of the Tribonacci sequence.
+    // Examples:
+    // >>> tri((3l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)3l, (long)2l, (long)8l)))
+    public static ArrayList<Long> tri(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000186 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+// the last couple centuries. However, what people don't know is Tribonacci sequence.
+// Tribonacci sequence is defined by the recurrence:
+// tri(1) = 3
+// tri(n) = 1 + n / 2, if n is even.
+// tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+// For example:
+// tri(2) = 1 + (2 / 2) = 2
+// tri(4) = 3
+// tri(3) = tri(2) + tri(1) + tri(4)
+// = 2 + 3 + 3 = 8 
+// You are given a non-negative integer number n, you have to a return a vector of the 
+// first n + 1 numbers of the Tribonacci sequence.
+// Examples:
+// >>> tri((3))
+// (std::vector<long>({(long)1, (long)3, (long)2, (long)8}))
+std::vector<long> tri(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000187 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def digits(n):
+    """Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    digits(4)  == 0
+    digits(235) == 15
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000188 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the product of the odd digits.
+    // Return 0 if all digits are even.
+    // For example:
+    // >>> digits((1l))
+    // (1l)
+    // >>> digits((4l))
+    // (0l)
+    // >>> digits((235l))
+    // (15l)
+    public static long digits(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000189 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the product of the odd digits.
+// Return 0 if all digits are even.
+// For example:
+// >>> digits((1))
+// (1)
+// >>> digits((4))
+// (0)
+// >>> digits((235))
+// (15)
+long digits(long n) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000190 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def int_to_mini_roman(number):
+    """
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000191 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer, obtain its roman numeral equivalent as a string,
+    // and return it in lowercase.
+    // Restrictions: 1 <= num <= 1000
+    // Examples:
+    // >>> intToMiniRoman((19l))
+    // ("xix")
+    // >>> intToMiniRoman((152l))
+    // ("clii")
+    // >>> intToMiniRoman((426l))
+    // ("cdxxvi")
+    public static String intToMiniRoman(long number) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000192 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer, obtain its roman numeral equivalent as a string,
+// and return it in lowercase.
+// Restrictions: 1 <= num <= 1000
+// Examples:
+// >>> int_to_mini_roman((19))
+// ("xix")
+// >>> int_to_mini_roman((152))
+// ("clii")
+// >>> int_to_mini_roman((426))
+// ("cdxxvi")
+std::string int_to_mini_roman(long number) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000193 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def do_algebra(operator, operand):
+    """
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000194 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given two array lists operator, and operand. The first array list has basic algebra operations, and 
+    // the second array list is an array array list of integers. Use the two given array lists to build the algebric 
+    // expression and return the evaluation of this expression.
+    // The basic algebra operations:
+    // Addition ( + ) 
+    // Subtraction ( - ) 
+    // Multiplication ( * ) 
+    // Floor division ( // ) 
+    // Exponentiation ( ** ) 
+    // Example:
+    // operator['+', '*', '-']
+    // array array list = [2, 3, 4, 5]
+    // result = 2 + 3 * 4 - 5
+    // => result = 9
+    // Note:
+    // The length of operator array list is equal to the length of operand array list minus one.
+    // Operand is an array array list of of non-negative integers.
+    // Operator array list has at least one operator, and operand array list has at least two operands.
+    public static long doAlgebra(ArrayList<String> op, ArrayList<Long> operand) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000195 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given two vectors operator, and operand. The first vector has basic algebra operations, and 
+// the second vector is a vector of integers. Use the two given vectors to build the algebric 
+// expression and return the evaluation of this expression.
+// The basic algebra operations:
+// Addition ( + ) 
+// Subtraction ( - ) 
+// Multiplication ( * ) 
+// Floor division ( // ) 
+// Exponentiation ( ** ) 
+// Example:
+// operator['+', '*', '-']
+// vector = [2, 3, 4, 5]
+// result = 2 + 3 * 4 - 5
+// => result = 9
+// Note:
+// The length of operator vector is equal to the length of operand vector minus one.
+// Operand is a vector of of non-negative integers.
+// Operator vector has at least one operator, and operand vector has at least two operands.
+long do_algebra(std::vector<std::string> op, std::vector<long> operand) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000196 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def solve(s):
+    """You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve("1234") = "4321"
+    solve("ab") = "AB"
+    solve("#a@C") = "#A@c"
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000197 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a string s.
+    // if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    // otherwise keep it as it is.
+    // If the string contains no letters, reverse the string.
+    // The function should return the resulted string.
+    // Examples
+    // >>> solve(("1234"))
+    // ("4321")
+    // >>> solve(("ab"))
+    // ("AB")
+    // >>> solve(("#a@C"))
+    // ("#A@c")
+    public static String solve(String s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000198 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a string s.
+// if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+// otherwise keep it as it is.
+// If the string contains no letters, reverse the string.
+// The function should return the resulted string.
+// Examples
+// >>> solve(("1234"))
+// ("4321")
+// >>> solve(("ab"))
+// ("AB")
+// >>> solve(("#a@C"))
+// ("#A@c")
+std::string solve(std::string s) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000199 PROMPT ===
+Solve the following programming problem in Python.
+
+
+
+def strlen(string: str) -> int:
+    """ Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000200 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Return length of given string
+    // >>> stringLength((""))
+    // (0l)
+    // >>> stringLength(("abc"))
+    // (3l)
+    public static long strlen(String string) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

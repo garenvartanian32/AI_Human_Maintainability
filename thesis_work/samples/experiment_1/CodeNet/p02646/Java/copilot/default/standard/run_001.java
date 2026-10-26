@@ -1,0 +1,1 @@
+I don't see the problem statement—please paste the full programming problem (including input/output format, constraints, and example(s)). If you prefer, say whether you want a complete runnable Java program with stdin parsing (Scanner/BufferedReader) and a main method; I'll produce the solution and brief explanation.

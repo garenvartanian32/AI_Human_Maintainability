@@ -1,0 +1,324 @@
+=== REQ000476 START ===
+def multiply(a, b):
+    """Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
+    """
+    def unit_digit(value: int) -> int:
+        """Last decimal digit, ignoring the sign (so -15 gives 5)."""
+        return abs(value) % 10
+
+    return unit_digit(a) * unit_digit(b)
+=== REQ000476 END ===
+
+=== REQ000477 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Complete the function that takes two integers and returns 
+    // the product of their unit digits.
+    // Assume the input is always valid.
+    // Examples:
+    // >>> multiply((148l), (412l))
+    // (16l)
+    // >>> multiply((19l), (28l))
+    // (72l)
+    // >>> multiply((2020l), (1851l))
+    // (0l)
+    // >>> multiply((14l), (-15l))
+    // (20l)
+    public static long multiply(long a, long b) {
+        return (Math.abs(a) % 10) * (Math.abs(b) % 10);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(multiply(148,412));
+        System.out.println(multiply(19,28));
+        System.out.println(multiply(2020,1851));
+        System.out.println(multiply(14,-15));
+    }
+}
+=== REQ000477 END ===
+
+=== REQ000478 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Complete the function that takes two integers and returns 
+    // the product of their unit digits.
+    // Assume the input is always valid.
+    // Examples:
+    // >>> multiply((148l), (412l))
+    // (16l)
+    // >>> multiply((19l), (28l))
+    // (72l)
+    // >>> multiply((2020l), (1851l))
+    // (0l)
+    // >>> multiply((14l), (-15l))
+    // (20l)
+    public static long multiply(long a, long b) {
+        return unitDigit(a) * unitDigit(b);
+    }
+
+    /** Last decimal digit, ignoring the sign (so -15 gives 5). */
+    private static long unitDigit(long value) {
+        return Math.abs(value % 10);
+    }
+}
+=== REQ000478 END ===
+
+=== REQ000479 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Complete the function that takes two integers and returns 
+// the product of their unit digits.
+// Assume the input is always valid.
+// Examples:
+// >>> multiply((148), (412))
+// (16)
+// >>> multiply((19), (28))
+// (72)
+// >>> multiply((2020), (1851))
+// (0)
+// >>> multiply((14), (-15))
+// (20)
+long multiply(long a, long b) {
+    return (std::abs(a) % 10) * (std::abs(b) % 10);
+}
+
+int main() {
+    std::cout << multiply(148,412) << std::endl;
+    std::cout << multiply(19,28) << std::endl;
+    std::cout << multiply(2020,1851) << std::endl;
+    std::cout << multiply(14,-15) << std::endl;
+}
+=== REQ000479 END ===
+
+=== REQ000480 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Complete the function that takes two integers and returns 
+// the product of their unit digits.
+// Assume the input is always valid.
+// Examples:
+// >>> multiply((148), (412))
+// (16)
+// >>> multiply((19), (28))
+// (72)
+// >>> multiply((2020), (1851))
+// (0)
+// >>> multiply((14), (-15))
+// (20)
+
+/// Last decimal digit, ignoring the sign (so -15 gives 5).
+static long unitDigit(long value) {
+    return std::labs(value % 10);
+}
+
+long multiply(long a, long b) {
+    return unitDigit(a) * unitDigit(b);
+}
+=== REQ000480 END ===
+
+=== REQ000481 START ===
+def closest_integer(value):
+    '''
+    Create a function that takes a value (string) representing a number
+    and returns the closest integer to it. If the number is equidistant
+    from two integers, round it away from zero.
+
+    Examples
+    >>> closest_integer("10")
+    10
+    >>> closest_integer("15.3")
+    15
+
+    Note:
+    Rounding away from zero means that if the given number is equidistant
+    from two integers, the one you should return is the one that is the
+    farthest from zero. For example closest_integer("14.5") should
+    return 15 and closest_integer("-14.5") should return -15.
+    '''
+    import math
+    f = float(value)
+    if f >= 0:
+        return math.floor(f + 0.5)
+    else:
+        return math.ceil(f - 0.5)
+=== REQ000481 END ===
+
+=== REQ000482 START ===
+def closest_integer(value):
+    '''
+    Create a function that takes a value (string) representing a number
+    and returns the closest integer to it. If the number is equidistant
+    from two integers, round it away from zero.
+
+    Examples
+    >>> closest_integer("10")
+    10
+    >>> closest_integer("15.3")
+    15
+
+    Note:
+    Rounding away from zero means that if the given number is equidistant
+    from two integers, the one you should return is the one that is the
+    farthest from zero. For example closest_integer("14.5") should
+    return 15 and closest_integer("-14.5") should return -15.
+    '''
+    import math
+
+    number = float(value)
+
+    # Python's round() uses banker's rounding, which would send 14.5 to 14.
+    # Nudging by half before flooring (or ceiling, for negatives) instead
+    # rounds halves away from zero as the specification requires.
+    if number >= 0:
+        return math.floor(number + 0.5)
+    return math.ceil(number - 0.5)
+=== REQ000482 END ===
+
+=== REQ000483 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Create a function that takes a value (string) representing a number
+    // and returns the closest integer to it. If the number is equidistant
+    // from two integers, round it away from zero.
+    // Examples
+    // >>> closestInteger(("10"))
+    // (10l)
+    // >>> closestInteger(("15.3"))
+    // (15l)
+    // Note:
+    // Rounding away from zero means that if the given number is equidistant
+    // from two integers, the one you should return is the one that is the
+    // farthest from zero. For example closest_integer("14.5") should
+    // return 15 and closest_integer("-14.5") should return -15.
+    public static long closestInteger(String value) {
+        double f = Double.parseDouble(value);
+        if (f >= 0) {
+            return (long) Math.floor(f + 0.5);
+        } else {
+            return (long) Math.ceil(f - 0.5);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(closestInteger("10"));
+        System.out.println(closestInteger("15.3"));
+        System.out.println(closestInteger("14.5"));
+        System.out.println(closestInteger("-14.5"));
+    }
+}
+=== REQ000483 END ===
+
+=== REQ000484 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Create a function that takes a value (string) representing a number
+    // and returns the closest integer to it. If the number is equidistant
+    // from two integers, round it away from zero.
+    // Examples
+    // >>> closestInteger(("10"))
+    // (10l)
+    // >>> closestInteger(("15.3"))
+    // (15l)
+    // Note:
+    // Rounding away from zero means that if the given number is equidistant
+    // from two integers, the one you should return is the one that is the
+    // farthest from zero. For example closest_integer("14.5") should
+    // return 15 and closest_integer("-14.5") should return -15.
+    public static long closestInteger(String value) {
+        // BigDecimal with HALF_UP rounds halves away from zero exactly as the
+        // specification asks, and avoids binary floating-point surprises.
+        return new BigDecimal(value.trim())
+                .setScale(0, RoundingMode.HALF_UP)
+                .longValue();
+    }
+}
+=== REQ000484 END ===
+
+=== REQ000485 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Create a function that takes a value (string) representing a number
+// and returns the closest integer to it. If the number is equidistant
+// from two integers, round it away from zero.
+// Examples
+// >>> closest_integer(("10"))
+// (10)
+// >>> closest_integer(("15.3"))
+// (15)
+// Note:
+// Rounding away from zero means that if the given number is equidistant
+// from two integers, the one you should return is the one that is the
+// farthest from zero. For example closest_integer("14.5") should
+// return 15 and closest_integer("-14.5") should return -15.
+long closest_integer(std::string value) {
+    double f = std::stod(value);
+    if (f >= 0) {
+        return (long) std::floor(f + 0.5);
+    } else {
+        return (long) std::ceil(f - 0.5);
+    }
+}
+
+int main() {
+    std::cout << closest_integer("10") << std::endl;
+    std::cout << closest_integer("15.3") << std::endl;
+    std::cout << closest_integer("14.5") << std::endl;
+    std::cout << closest_integer("-14.5") << std::endl;
+}
+=== REQ000485 END ===
+
+=== REQ000486 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Create a function that takes a value (string) representing a number
+// and returns the closest integer to it. If the number is equidistant
+// from two integers, round it away from zero.
+// Examples
+// >>> closest_integer(("10"))
+// (10)
+// >>> closest_integer(("15.3"))
+// (15)
+// Note:
+// Rounding away from zero means that if the given number is equidistant
+// from two integers, the one you should return is the one that is the
+// farthest from zero. For example closest_integer("14.5") should
+// return 15 and closest_integer("-14.5") should return -15.
+long closest_integer(std::string value) {
+    const double number = std::stod(value);
+
+    // std::round breaks ties away from zero, which is precisely the rule the
+    // specification describes for values such as 14.5 and -14.5.
+    return static_cast<long>(std::round(number));
+}
+=== REQ000486 END ===

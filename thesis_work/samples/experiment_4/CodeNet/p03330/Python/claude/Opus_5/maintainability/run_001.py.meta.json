@@ -1,0 +1,13 @@
+{
+  "experiment": 4,
+  "dataset": "CodeNet",
+  "problem_id": "p03330",
+  "language": "Python",
+  "source": "AI",
+  "provider": "claude",
+  "model": "Opus 5",
+  "model_group": "Opus 5",
+  "prompt_type": "maintainability",
+  "run": 1,
+  "correctness": "not_tested"
+}

@@ -1,0 +1,1 @@
+Please send the full problem statement, including the input/output format, constraints, and sample cases.

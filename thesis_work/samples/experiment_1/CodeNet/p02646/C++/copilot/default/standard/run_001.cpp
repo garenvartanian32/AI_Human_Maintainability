@@ -1,0 +1,1 @@
+The problem statement is missing. Please paste the full programming problem (including input/output format and constraints). If you want a specific common problem solved instead, name it (e.g., "Dijkstra", "Longest Increasing Subsequence", "Binary Indexed Tree").

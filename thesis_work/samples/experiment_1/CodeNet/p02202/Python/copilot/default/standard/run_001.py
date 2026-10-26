@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full programming problem (input/output format, constraints, and examples). If you want a common template solution (e.g., two-sum, shortest path, DP knapsack), say which one and include constraints so I can produce an optimized Python solution.

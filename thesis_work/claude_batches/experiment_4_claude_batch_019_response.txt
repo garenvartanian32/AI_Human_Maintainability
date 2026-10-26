@@ -1,0 +1,786 @@
+=== REQ000451 START ===
+def prime_length(string):
+    """Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    prime_length('Hello') == True
+    prime_length('abcdcba') == True
+    prime_length('kittens') == True
+    prime_length('orange') == False
+    """
+    n = len(string)
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+=== REQ000451 END ===
+
+=== REQ000452 START ===
+def prime_length(string):
+    """Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    prime_length('Hello') == True
+    prime_length('abcdcba') == True
+    prime_length('kittens') == True
+    prime_length('orange') == False
+    """
+    def is_prime(value: int) -> bool:
+        if value < 2:
+            return False
+        # A composite always has a factor at or below its square root.
+        divisor = 2
+        while divisor * divisor <= value:
+            if value % divisor == 0:
+                return False
+            divisor += 1
+        return True
+
+    return is_prime(len(string))
+=== REQ000452 END ===
+
+=== REQ000453 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Write a function that takes a string and returns true if the string
+    // length is a prime number or false otherwise
+    // Examples
+    // >>> primeLength(("Hello"))
+    // (true)
+    // >>> primeLength(("abcdcba"))
+    // (true)
+    // >>> primeLength(("kittens"))
+    // (true)
+    // >>> primeLength(("orange"))
+    // (false)
+    public static boolean primeLength(String string) {
+        int n = string.length();
+        if (n < 2) return false;
+        for (int i = 2; (long) i * i <= n; i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(primeLength("Hello"));
+        System.out.println(primeLength("abcdcba"));
+        System.out.println(primeLength("kittens"));
+        System.out.println(primeLength("orange"));
+    }
+}
+=== REQ000453 END ===
+
+=== REQ000454 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Write a function that takes a string and returns true if the string
+    // length is a prime number or false otherwise
+    // Examples
+    // >>> primeLength(("Hello"))
+    // (true)
+    // >>> primeLength(("abcdcba"))
+    // (true)
+    // >>> primeLength(("kittens"))
+    // (true)
+    // >>> primeLength(("orange"))
+    // (false)
+    public static boolean primeLength(String string) {
+        return isPrime(string.length());
+    }
+
+    private static boolean isPrime(int value) {
+        if (value < 2) {
+            return false;
+        }
+        // A composite always has a factor at or below its square root.
+        for (int divisor = 2; (long) divisor * divisor <= value; divisor++) {
+            if (value % divisor == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+=== REQ000454 END ===
+
+=== REQ000455 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Write a function that takes a string and returns true if the string
+// length is a prime number or false otherwise
+// Examples
+// >>> prime_length(("Hello"))
+// (true)
+// >>> prime_length(("abcdcba"))
+// (true)
+// >>> prime_length(("kittens"))
+// (true)
+// >>> prime_length(("orange"))
+// (false)
+bool prime_length(std::string string) {
+    int n = string.length();
+    if (n < 2) return false;
+    for (int i = 2; (long)i * i <= n; i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+int main() {
+    std::cout << std::boolalpha;
+    std::cout << prime_length("Hello") << std::endl;
+    std::cout << prime_length("abcdcba") << std::endl;
+    std::cout << prime_length("kittens") << std::endl;
+    std::cout << prime_length("orange") << std::endl;
+}
+=== REQ000455 END ===
+
+=== REQ000456 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Write a function that takes a string and returns true if the string
+// length is a prime number or false otherwise
+// Examples
+// >>> prime_length(("Hello"))
+// (true)
+// >>> prime_length(("abcdcba"))
+// (true)
+// >>> prime_length(("kittens"))
+// (true)
+// >>> prime_length(("orange"))
+// (false)
+static bool isPrime(long value) {
+    if (value < 2) {
+        return false;
+    }
+    // A composite always has a factor at or below its square root.
+    for (long divisor = 2; divisor * divisor <= value; divisor++) {
+        if (value % divisor == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool prime_length(std::string string) {
+    return isPrime(static_cast<long>(string.size()));
+}
+=== REQ000456 END ===
+
+=== REQ000457 START ===
+def starts_one_ends(n):
+    """
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """
+    if n == 1:
+        return 1
+    return 18 * (10 ** (n - 2))
+=== REQ000457 END ===
+
+=== REQ000458 START ===
+def starts_one_ends(n):
+    """
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """
+    # The single digit 1 is the only one-digit number that qualifies.
+    if n == 1:
+        return 1
+
+    # Inclusion-exclusion over the two conditions:
+    #   leading 1  -> the other n-1 digits are free
+    #   trailing 1 -> the leading digit has 9 choices, the middle n-2 are free
+    #   both       -> only the middle n-2 digits are free
+    starts_with_one = 10 ** (n - 1)
+    ends_with_one = 9 * 10 ** (n - 2)
+    starts_and_ends = 10 ** (n - 2)
+
+    return starts_with_one + ends_with_one - starts_and_ends
+=== REQ000458 END ===
+
+=== REQ000459 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the count of the numbers of n-digit
+    // positive integers that start or end with 1.
+    public static long startsOneEnds(long n) {
+        if (n == 1) return 1;
+        long pow = 1;
+        for (long i = 0; i < n - 2; i++) pow *= 10;
+        return 18L * pow;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(startsOneEnds(1));
+        System.out.println(startsOneEnds(2));
+        System.out.println(startsOneEnds(3));
+        System.out.println(startsOneEnds(10));
+    }
+}
+=== REQ000459 END ===
+
+=== REQ000460 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the count of the numbers of n-digit
+    // positive integers that start or end with 1.
+    public static long startsOneEnds(long n) {
+        // The single digit 1 is the only one-digit number that qualifies.
+        if (n == 1) {
+            return 1L;
+        }
+
+        // Inclusion-exclusion over the two conditions:
+        //   leading 1  -> the other n-1 digits are free
+        //   trailing 1 -> the leading digit has 9 choices, the middle n-2 free
+        //   both       -> only the middle n-2 digits are free
+        long freeMiddle = powerOfTen(n - 2);
+        long startsWithOne = freeMiddle * 10L;
+        long endsWithOne = freeMiddle * 9L;
+
+        return startsWithOne + endsWithOne - freeMiddle;
+    }
+
+    /** Ten raised to {@code exponent}, computed without floating point. */
+    private static long powerOfTen(long exponent) {
+        long result = 1;
+        for (long step = 0; step < exponent; step++) {
+            result *= 10L;
+        }
+        return result;
+    }
+}
+=== REQ000460 END ===
+
+=== REQ000461 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the count of the numbers of n-digit
+// positive integers that start or end with 1.
+long starts_one_ends(long n) {
+    if (n == 1) return 1;
+    long pow = 1;
+    for (long i = 0; i < n - 2; i++) pow *= 10;
+    return 18L * pow;
+}
+
+int main() {
+    std::cout << starts_one_ends(1) << std::endl;
+    std::cout << starts_one_ends(2) << std::endl;
+    std::cout << starts_one_ends(3) << std::endl;
+    std::cout << starts_one_ends(10) << std::endl;
+}
+=== REQ000461 END ===
+
+=== REQ000462 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the count of the numbers of n-digit
+// positive integers that start or end with 1.
+
+/// Ten raised to `exponent`, computed without floating point.
+static long powerOfTen(long exponent) {
+    long result = 1;
+    for (long step = 0; step < exponent; step++) {
+        result *= 10L;
+    }
+    return result;
+}
+
+long starts_one_ends(long n) {
+    // The single digit 1 is the only one-digit number that qualifies.
+    if (n == 1) {
+        return 1L;
+    }
+
+    // Inclusion-exclusion over the two conditions:
+    //   leading 1  -> the other n-1 digits are free
+    //   trailing 1 -> the leading digit has 9 choices, the middle n-2 are free
+    //   both       -> only the middle n-2 digits are free
+    const long freeMiddle = powerOfTen(n - 2);
+    const long startsWithOne = freeMiddle * 10L;
+    const long endsWithOne = freeMiddle * 9L;
+
+    return startsWithOne + endsWithOne - freeMiddle;
+}
+=== REQ000462 END ===
+
+=== REQ000463 START ===
+def get_row(lst, x):
+    """
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """
+    result = []
+    for i, row in enumerate(lst):
+        for j, v in enumerate(row):
+            if v == x:
+                result.append((i, j))
+    result.sort(key=lambda t: (t[0], -t[1]))
+    return result
+=== REQ000463 END ===
+
+=== REQ000464 START ===
+def get_row(lst, x):
+    """
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """
+    # Rows are visited in order and each row is scanned right to left, which
+    # produces the required ordering without a separate sort.
+    coordinates = []
+    for row_index, row in enumerate(lst):
+        for column_index in range(len(row) - 1, -1, -1):
+            if row[column_index] == x:
+                coordinates.append((row_index, column_index))
+
+    return coordinates
+=== REQ000464 END ===
+
+=== REQ000465 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a 2 dimensional data, as a nested array lists,
+    // which is similar to matrix, however, unlike matrices,
+    // each row may contain a different number of columns.
+    // Given lst, and integer x, find integers x in the array list,
+    // and return array list of pairs, [(x1, y1), (x2, y2) ...] such that
+    // each pair is a coordinate - (row, columns), starting with 0.
+    // Sort coordinates initially by rows in ascending order.
+    // Also, sort coordinates of the row by columns in descending order.
+    // Examples:
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)1l))))), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(0l, 0l), (Pair<Long, Long>)Pair.with(1l, 4l), (Pair<Long, Long>)Pair.with(1l, 0l), (Pair<Long, Long>)Pair.with(2l, 5l), (Pair<Long, Long>)Pair.with(2l, 0l))))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList())), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList()))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList()), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l))))), (3l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(2l, 2l))))
+    public static ArrayList<Pair<Long, Long>> getRow(ArrayList<ArrayList<Long>> lst, long x) {
+        ArrayList<Pair<Long, Long>> result = new ArrayList<>();
+        for (int i = 0; i < lst.size(); i++) {
+            ArrayList<Long> row = lst.get(i);
+            for (int j = 0; j < row.size(); j++) {
+                if (row.get(j) == x) {
+                    result.add(Pair.with((long) i, (long) j));
+                }
+            }
+        }
+        result.sort((a, b) -> {
+            if (!a.getValue0().equals(b.getValue0())) return Long.compare(a.getValue0(), b.getValue0());
+            return Long.compare(b.getValue1(), a.getValue1());
+        });
+        return result;
+    }
+}
+=== REQ000465 END ===
+
+=== REQ000466 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a 2 dimensional data, as a nested array lists,
+    // which is similar to matrix, however, unlike matrices,
+    // each row may contain a different number of columns.
+    // Given lst, and integer x, find integers x in the array list,
+    // and return array list of pairs, [(x1, y1), (x2, y2) ...] such that
+    // each pair is a coordinate - (row, columns), starting with 0.
+    // Sort coordinates initially by rows in ascending order.
+    // Also, sort coordinates of the row by columns in descending order.
+    // Examples:
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)1l))))), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(0l, 0l), (Pair<Long, Long>)Pair.with(1l, 4l), (Pair<Long, Long>)Pair.with(1l, 0l), (Pair<Long, Long>)Pair.with(2l, 5l), (Pair<Long, Long>)Pair.with(2l, 0l))))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList())), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList()))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList()), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l))))), (3l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(2l, 2l))))
+    public static ArrayList<Pair<Long, Long>> getRow(ArrayList<ArrayList<Long>> lst, long x) {
+        // Rows are visited in order and each row is scanned right to left,
+        // which produces the required ordering without a separate sort.
+        ArrayList<Pair<Long, Long>> coordinates = new ArrayList<>();
+
+        for (int rowIndex = 0; rowIndex < lst.size(); rowIndex++) {
+            ArrayList<Long> row = lst.get(rowIndex);
+            for (int columnIndex = row.size() - 1; columnIndex >= 0; columnIndex--) {
+                if (row.get(columnIndex) == x) {
+                    coordinates.add(Pair.with((long) rowIndex, (long) columnIndex));
+                }
+            }
+        }
+
+        return coordinates;
+    }
+}
+=== REQ000466 END ===
+
+=== REQ000467 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a 2 dimensional data, as a nested vectors,
+// which is similar to matrix, however, unlike matrices,
+// each row may contain a different number of columns.
+// Given lst, and integer x, find integers x in the vector,
+// and return vector of tuples, [(x1, y1), (x2, y2) ...] such that
+// each tuple is a coordinate - (row, columns), starting with 0.
+// Sort coordinates initially by rows in ascending order.
+// Also, sort coordinates of the row by columns in descending order.
+// Examples:
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)1})})), (1))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(0, 0), (std::tuple<long, long>)std::make_tuple(1, 4), (std::tuple<long, long>)std::make_tuple(1, 0), (std::tuple<long, long>)std::make_tuple(2, 5), (std::tuple<long, long>)std::make_tuple(2, 0)}))
+// >>> get_row((std::vector<std::vector<long>>()), (1))
+// (std::vector<std::tuple<long, long>>())
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>(), (std::vector<long>)std::vector<long>({(long)1}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3})})), (3))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(2, 2)}))
+std::vector<std::tuple<long, long>> get_row(std::vector<std::vector<long>> lst, long x) {
+    std::vector<std::tuple<long, long>> result;
+    for (size_t i = 0; i < lst.size(); i++) {
+        for (size_t j = 0; j < lst[i].size(); j++) {
+            if (lst[i][j] == x) {
+                result.push_back(std::make_tuple((long)i, (long)j));
+            }
+        }
+    }
+    std::sort(result.begin(), result.end(), [](const std::tuple<long,long>& a, const std::tuple<long,long>& b) {
+        if (std::get<0>(a) != std::get<0>(b)) return std::get<0>(a) < std::get<0>(b);
+        return std::get<1>(a) > std::get<1>(b);
+    });
+    return result;
+}
+
+int main() {
+    std::vector<std::vector<long>> g1 = {{1,2,3,4,5,6},{1,2,3,4,1,6},{1,2,3,4,5,1}};
+    for (auto &t : get_row(g1, 1)) std::cout << "(" << std::get<0>(t) << "," << std::get<1>(t) << ") ";
+    std::cout << std::endl;
+    for (auto &t : get_row({}, 1)) std::cout << "(" << std::get<0>(t) << "," << std::get<1>(t) << ") ";
+    std::cout << std::endl;
+    std::vector<std::vector<long>> g2 = {{}, {1}, {1,2,3}};
+    for (auto &t : get_row(g2, 3)) std::cout << "(" << std::get<0>(t) << "," << std::get<1>(t) << ") ";
+    std::cout << std::endl;
+}
+=== REQ000467 END ===
+
+=== REQ000468 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a 2 dimensional data, as a nested vectors,
+// which is similar to matrix, however, unlike matrices,
+// each row may contain a different number of columns.
+// Given lst, and integer x, find integers x in the vector,
+// and return vector of tuples, [(x1, y1), (x2, y2) ...] such that
+// each tuple is a coordinate - (row, columns), starting with 0.
+// Sort coordinates initially by rows in ascending order.
+// Also, sort coordinates of the row by columns in descending order.
+// Examples:
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)1})})), (1))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(0, 0), (std::tuple<long, long>)std::make_tuple(1, 4), (std::tuple<long, long>)std::make_tuple(1, 0), (std::tuple<long, long>)std::make_tuple(2, 5), (std::tuple<long, long>)std::make_tuple(2, 0)}))
+// >>> get_row((std::vector<std::vector<long>>()), (1))
+// (std::vector<std::tuple<long, long>>())
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>(), (std::vector<long>)std::vector<long>({(long)1}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3})})), (3))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(2, 2)}))
+std::vector<std::tuple<long, long>> get_row(std::vector<std::vector<long>> lst, long x) {
+    // Rows are visited in order and each row is scanned right to left, which
+    // produces the required ordering without a separate sort.
+    std::vector<std::tuple<long, long>> coordinates;
+
+    for (std::size_t rowIndex = 0; rowIndex < lst.size(); ++rowIndex) {
+        const std::vector<long>& row = lst[rowIndex];
+        for (std::size_t columnIndex = row.size(); columnIndex-- > 0; ) {
+            if (row[columnIndex] == x) {
+                coordinates.emplace_back(static_cast<long>(rowIndex),
+                                         static_cast<long>(columnIndex));
+            }
+        }
+    }
+
+    return coordinates;
+}
+=== REQ000468 END ===
+
+=== REQ000469 START ===
+def is_bored(S):
+    """
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word "I".
+    Sentences are delimited by '.', '?' or '!'.
+   
+    For example:
+    >>> is_bored("Hello world")
+    0
+    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
+    1
+    """
+    import re
+    sentences = re.split(r'[.?!]', S)
+    count = 0
+    for s in sentences:
+        s = s.strip()
+        if s == 'I' or s.startswith('I '):
+            count += 1
+    return count
+=== REQ000469 END ===
+
+=== REQ000470 START ===
+def is_bored(S):
+    """
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word "I".
+    Sentences are delimited by '.', '?' or '!'.
+   
+    For example:
+    >>> is_bored("Hello world")
+    0
+    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
+    1
+    """
+    import re
+
+    SENTENCE_DELIMITERS = r"[.?!]"
+
+    def begins_with_i(sentence: str) -> bool:
+        """True when the sentence's first word is exactly "I"."""
+        words = sentence.split()
+        return bool(words) and words[0] == "I"
+
+    sentences = re.split(SENTENCE_DELIMITERS, S)
+    return sum(1 for sentence in sentences if begins_with_i(sentence))
+=== REQ000470 END ===
+
+=== REQ000471 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You'll be given a string of words, and your task is to count the number
+    // of boredoms. A boredom is a sentence that starts with the word "I".
+    // Sentences are delimited by '.', '?' or '!'.
+    // For example:
+    // >>> isBored(("Hello world"))
+    // (0l)
+    // >>> isBored(("The sky is blue. The sun is shining. I love this weather"))
+    // (1l)
+    public static long isBored(String S) {
+        String[] sentences = S.split("[.?!]");
+        long count = 0;
+        for (String s : sentences) {
+            String trimmed = s.trim();
+            if (trimmed.equals("I") || trimmed.startsWith("I ")) count++;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isBored("Hello world"));
+        System.out.println(isBored("The sky is blue. The sun is shining. I love this weather"));
+    }
+}
+=== REQ000471 END ===
+
+=== REQ000472 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You'll be given a string of words, and your task is to count the number
+    // of boredoms. A boredom is a sentence that starts with the word "I".
+    // Sentences are delimited by '.', '?' or '!'.
+    // For example:
+    // >>> isBored(("Hello world"))
+    // (0l)
+    // >>> isBored(("The sky is blue. The sun is shining. I love this weather"))
+    // (1l)
+    private static final String SENTENCE_DELIMITERS = "[.?!]";
+    private static final String FIRST_PERSON = "I";
+
+    public static long isBored(String S) {
+        long boredoms = 0;
+        for (String sentence : S.split(SENTENCE_DELIMITERS)) {
+            if (beginsWithI(sentence)) {
+                boredoms++;
+            }
+        }
+        return boredoms;
+    }
+
+    /** True when the sentence's first word is exactly "I". */
+    private static boolean beginsWithI(String sentence) {
+        StringTokenizer words = new StringTokenizer(sentence);
+        return words.hasMoreTokens() && words.nextToken().equals(FIRST_PERSON);
+    }
+}
+=== REQ000472 END ===
+
+=== REQ000473 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You'll be given a string of words, and your task is to count the number
+// of boredoms. A boredom is a sentence that starts with the word "I".
+// Sentences are delimited by '.', '?' or '!'.
+// For example:
+// >>> is_bored(("Hello world"))
+// (0)
+// >>> is_bored(("The sky is blue. The sun is shining. I love this weather"))
+// (1)
+long is_bored(std::string S) {
+    std::vector<std::string> sentences;
+    std::string cur;
+    for (char c : S) {
+        if (c == '.' || c == '?' || c == '!') {
+            sentences.push_back(cur);
+            cur.clear();
+        } else {
+            cur += c;
+        }
+    }
+    sentences.push_back(cur);
+
+    long count = 0;
+    for (auto &s : sentences) {
+        size_t start = s.find_first_not_of(" \t\n\r");
+        if (start == std::string::npos) continue;
+        size_t end = s.find_last_not_of(" \t\n\r");
+        std::string trimmed = s.substr(start, end - start + 1);
+        if (trimmed == "I" || (trimmed.size() >= 2 && trimmed[0] == 'I' && trimmed[1] == ' ')) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    std::cout << is_bored("Hello world") << std::endl;
+    std::cout << is_bored("The sky is blue. The sun is shining. I love this weather") << std::endl;
+}
+=== REQ000473 END ===
+
+=== REQ000474 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You'll be given a string of words, and your task is to count the number
+// of boredoms. A boredom is a sentence that starts with the word "I".
+// Sentences are delimited by '.', '?' or '!'.
+// For example:
+// >>> is_bored(("Hello world"))
+// (0)
+// >>> is_bored(("The sky is blue. The sun is shining. I love this weather"))
+// (1)
+
+/// True when the sentence's first word is exactly "I".
+static bool beginsWithI(const std::string& sentence) {
+    std::istringstream words(sentence);
+    std::string firstWord;
+    return (words >> firstWord) && firstWord == "I";
+}
+
+static bool isSentenceDelimiter(char character) {
+    return character == '.' || character == '?' || character == '!';
+}
+
+long is_bored(std::string S) {
+    long boredoms = 0;
+    std::string sentence;
+
+    // A trailing delimiter is appended so the final sentence is also examined.
+    for (char character : S + ".") {
+        if (isSentenceDelimiter(character)) {
+            if (beginsWithI(sentence)) {
+                boredoms++;
+            }
+            sentence.clear();
+        } else {
+            sentence += character;
+        }
+    }
+
+    return boredoms;
+}
+=== REQ000474 END ===
+
+=== REQ000475 START ===
+def multiply(a, b):
+    """Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
+    """
+    return (abs(a) % 10) * (abs(b) % 10)
+=== REQ000475 END ===

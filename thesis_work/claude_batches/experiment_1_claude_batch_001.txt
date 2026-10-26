@@ -1,0 +1,1247 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000001 PROMPT ===
+Solve the following programming problem in Python.
+
+You are given a 0-indexed integer array nums. You have to find the maximum sum of a pair of numbers from nums such that the maximum digit in both numbers are equal.
+
+Return the maximum sum or -1 if no such pair exists.
+
+Example 1:
+
+Input: nums = [51,71,17,24,42]
+Output: 88
+Explanation: 
+For i = 1 and j = 2, nums[i] and nums[j] have equal maximum digits with a pair sum of 71 + 17 = 88. 
+For i = 3 and j = 4, nums[i] and nums[j] have equal maximum digits with a pair sum of 24 + 42 = 66.
+It can be shown that there are no other pairs with equal maximum digits, so the answer is 88.
+
+Example 2:
+
+Input: nums = [1,2,3,4]
+Output: -1
+Explanation: No pair exists in nums with equal maximum digits.
+
+Constraints:
+
+2 <= nums.length <= 100
+1 <= nums[i] <= 10^4 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000002 PROMPT ===
+Solve the following programming problem in Java.
+
+You are given a 0-indexed integer array nums. You have to find the maximum sum of a pair of numbers from nums such that the maximum digit in both numbers are equal.
+
+Return the maximum sum or -1 if no such pair exists.
+
+Example 1:
+
+Input: nums = [51,71,17,24,42]
+Output: 88
+Explanation: 
+For i = 1 and j = 2, nums[i] and nums[j] have equal maximum digits with a pair sum of 71 + 17 = 88. 
+For i = 3 and j = 4, nums[i] and nums[j] have equal maximum digits with a pair sum of 24 + 42 = 66.
+It can be shown that there are no other pairs with equal maximum digits, so the answer is 88.
+
+Example 2:
+
+Input: nums = [1,2,3,4]
+Output: -1
+Explanation: No pair exists in nums with equal maximum digits.
+
+Constraints:
+
+2 <= nums.length <= 100
+1 <= nums[i] <= 10^4 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000003 PROMPT ===
+Solve the following programming problem in C++.
+
+You are given a 0-indexed integer array nums. You have to find the maximum sum of a pair of numbers from nums such that the maximum digit in both numbers are equal.
+
+Return the maximum sum or -1 if no such pair exists.
+
+Example 1:
+
+Input: nums = [51,71,17,24,42]
+Output: 88
+Explanation: 
+For i = 1 and j = 2, nums[i] and nums[j] have equal maximum digits with a pair sum of 71 + 17 = 88. 
+For i = 3 and j = 4, nums[i] and nums[j] have equal maximum digits with a pair sum of 24 + 42 = 66.
+It can be shown that there are no other pairs with equal maximum digits, so the answer is 88.
+
+Example 2:
+
+Input: nums = [1,2,3,4]
+Output: -1
+Explanation: No pair exists in nums with equal maximum digits.
+
+Constraints:
+
+2 <= nums.length <= 100
+1 <= nums[i] <= 10^4 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000004 PROMPT ===
+Solve the following programming problem in Python.
+
+Your laptop keyboard is faulty, and whenever you type a character 'i' on it, it reverses the string that you have written. Typing other characters works as expected.
+
+You are given a 0-indexed string s, and you type each character of s using your faulty keyboard.
+
+Return the final string that will be present on your laptop screen.
+
+Example 1:
+
+Input: s = "string"
+Output: "rtsng"
+Explanation: 
+After typing first character, the text on the screen is "s".
+After the second character, the text is "st". 
+After the third character, the text is "str".
+Since the fourth character is an 'i', the text gets reversed and becomes "rts".
+After the fifth character, the text is "rtsn". 
+After the sixth character, the text is "rtsng". 
+Therefore, we return "rtsng".
+
+Example 2:
+
+Input: s = "poiinter"
+Output: "ponter"
+Explanation: 
+After the first character, the text on the screen is "p".
+After the second character, the text is "po". 
+Since the third character you type is an 'i', the text gets reversed and becomes "op". 
+Since the fourth character you type is an 'i', the text gets reversed and becomes "po".
+After the fifth character, the text is "pon".
+After the sixth character, the text is "pont". 
+After the seventh character, the text is "ponte". 
+After the eighth character, the text is "ponter". 
+Therefore, we return "ponter".
+ 
+Constraints:
+
+1 <= s.length <= 100
+s consists of lowercase English letters.
+s[0] != 'i'
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000005 PROMPT ===
+Solve the following programming problem in Java.
+
+Your laptop keyboard is faulty, and whenever you type a character 'i' on it, it reverses the string that you have written. Typing other characters works as expected.
+
+You are given a 0-indexed string s, and you type each character of s using your faulty keyboard.
+
+Return the final string that will be present on your laptop screen.
+
+Example 1:
+
+Input: s = "string"
+Output: "rtsng"
+Explanation: 
+After typing first character, the text on the screen is "s".
+After the second character, the text is "st". 
+After the third character, the text is "str".
+Since the fourth character is an 'i', the text gets reversed and becomes "rts".
+After the fifth character, the text is "rtsn". 
+After the sixth character, the text is "rtsng". 
+Therefore, we return "rtsng".
+
+Example 2:
+
+Input: s = "poiinter"
+Output: "ponter"
+Explanation: 
+After the first character, the text on the screen is "p".
+After the second character, the text is "po". 
+Since the third character you type is an 'i', the text gets reversed and becomes "op". 
+Since the fourth character you type is an 'i', the text gets reversed and becomes "po".
+After the fifth character, the text is "pon".
+After the sixth character, the text is "pont". 
+After the seventh character, the text is "ponte". 
+After the eighth character, the text is "ponter". 
+Therefore, we return "ponter".
+ 
+Constraints:
+
+1 <= s.length <= 100
+s consists of lowercase English letters.
+s[0] != 'i'
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000006 PROMPT ===
+Solve the following programming problem in C++.
+
+Your laptop keyboard is faulty, and whenever you type a character 'i' on it, it reverses the string that you have written. Typing other characters works as expected.
+
+You are given a 0-indexed string s, and you type each character of s using your faulty keyboard.
+
+Return the final string that will be present on your laptop screen.
+
+Example 1:
+
+Input: s = "string"
+Output: "rtsng"
+Explanation: 
+After typing first character, the text on the screen is "s".
+After the second character, the text is "st". 
+After the third character, the text is "str".
+Since the fourth character is an 'i', the text gets reversed and becomes "rts".
+After the fifth character, the text is "rtsn". 
+After the sixth character, the text is "rtsng". 
+Therefore, we return "rtsng".
+
+Example 2:
+
+Input: s = "poiinter"
+Output: "ponter"
+Explanation: 
+After the first character, the text on the screen is "p".
+After the second character, the text is "po". 
+Since the third character you type is an 'i', the text gets reversed and becomes "op". 
+Since the fourth character you type is an 'i', the text gets reversed and becomes "po".
+After the fifth character, the text is "pon".
+After the sixth character, the text is "pont". 
+After the seventh character, the text is "ponte". 
+After the eighth character, the text is "ponter". 
+Therefore, we return "ponter".
+ 
+Constraints:
+
+1 <= s.length <= 100
+s consists of lowercase English letters.
+s[0] != 'i'
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000007 PROMPT ===
+Solve the following programming problem in Python.
+
+You are given a 0-indexed integer array nums and an integer x.
+
+Find the minimum absolute difference between two elements in the array that are at least x indices apart.
+
+In other words, find two indices i and j such that abs(i - j) >= x and abs(nums[i] - nums[j]) is minimized.
+
+Return an integer denoting the minimum absolute difference between two elements that are at least x indices apart.
+
+Example 1:
+
+Input: nums = [4,3,2,4], x = 2
+Output: 0
+Explanation: We can select nums[0] = 4 and nums[3] = 4. 
+They are at least 2 indices apart, and their absolute difference is the minimum, 0. 
+It can be shown that 0 is the optimal answer.
+
+Example 2:
+
+Input: nums = [5,3,2,10,15], x = 1
+Output: 1
+Explanation: We can select nums[1] = 3 and nums[2] = 2.
+They are at least 1 index apart, and their absolute difference is the minimum, 1.
+It can be shown that 1 is the optimal answer.
+
+Example 3:
+
+Input: nums = [1,2,3,4], x = 3
+Output: 3
+Explanation: We can select nums[0] = 1 and nums[3] = 4.
+They are at least 3 indices apart, and their absolute difference is the minimum, 3.
+It can be shown that 3 is the optimal answer.
+ 
+Constraints:
+
+1 <= nums.length <= 10^5
+1 <= nums[i] <= 10^9
+0 <= x < nums.length 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000008 PROMPT ===
+Solve the following programming problem in Java.
+
+You are given a 0-indexed integer array nums and an integer x.
+
+Find the minimum absolute difference between two elements in the array that are at least x indices apart.
+
+In other words, find two indices i and j such that abs(i - j) >= x and abs(nums[i] - nums[j]) is minimized.
+
+Return an integer denoting the minimum absolute difference between two elements that are at least x indices apart.
+
+Example 1:
+
+Input: nums = [4,3,2,4], x = 2
+Output: 0
+Explanation: We can select nums[0] = 4 and nums[3] = 4. 
+They are at least 2 indices apart, and their absolute difference is the minimum, 0. 
+It can be shown that 0 is the optimal answer.
+
+Example 2:
+
+Input: nums = [5,3,2,10,15], x = 1
+Output: 1
+Explanation: We can select nums[1] = 3 and nums[2] = 2.
+They are at least 1 index apart, and their absolute difference is the minimum, 1.
+It can be shown that 1 is the optimal answer.
+
+Example 3:
+
+Input: nums = [1,2,3,4], x = 3
+Output: 3
+Explanation: We can select nums[0] = 1 and nums[3] = 4.
+They are at least 3 indices apart, and their absolute difference is the minimum, 3.
+It can be shown that 3 is the optimal answer.
+ 
+Constraints:
+
+1 <= nums.length <= 10^5
+1 <= nums[i] <= 10^9
+0 <= x < nums.length 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000009 PROMPT ===
+Solve the following programming problem in C++.
+
+You are given a 0-indexed integer array nums and an integer x.
+
+Find the minimum absolute difference between two elements in the array that are at least x indices apart.
+
+In other words, find two indices i and j such that abs(i - j) >= x and abs(nums[i] - nums[j]) is minimized.
+
+Return an integer denoting the minimum absolute difference between two elements that are at least x indices apart.
+
+Example 1:
+
+Input: nums = [4,3,2,4], x = 2
+Output: 0
+Explanation: We can select nums[0] = 4 and nums[3] = 4. 
+They are at least 2 indices apart, and their absolute difference is the minimum, 0. 
+It can be shown that 0 is the optimal answer.
+
+Example 2:
+
+Input: nums = [5,3,2,10,15], x = 1
+Output: 1
+Explanation: We can select nums[1] = 3 and nums[2] = 2.
+They are at least 1 index apart, and their absolute difference is the minimum, 1.
+It can be shown that 1 is the optimal answer.
+
+Example 3:
+
+Input: nums = [1,2,3,4], x = 3
+Output: 3
+Explanation: We can select nums[0] = 1 and nums[3] = 4.
+They are at least 3 indices apart, and their absolute difference is the minimum, 3.
+It can be shown that 3 is the optimal answer.
+ 
+Constraints:
+
+1 <= nums.length <= 10^5
+1 <= nums[i] <= 10^9
+0 <= x < nums.length 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000010 PROMPT ===
+Solve the following programming problem in Python.
+
+You are given the head of a non-empty linked list representing a non-negative integer without leading zeroes.
+
+Return the head of the linked list after doubling it.
+
+Example 1:
+
+Input: head = [1,8,9]
+Output: [3,7,8]
+Explanation: The figure above corresponds to the given linked list which represents the number 189. Hence, the returned linked list represents the number 189 * 2 = 378.
+
+Example 2:
+
+Input: head = [9,9,9]
+Output: [1,9,9,8]
+Explanation: The figure above corresponds to the given linked list which represents the number 999. Hence, the returned linked list reprersents the number 999 * 2 = 1998. 
+
+Constraints:
+
+The number of nodes in the list is in the range [1, 10^4]
+0 <= Node.val <= 9
+The input is generated such that the list represents a number that does not have leading zeros, except the number 0 itself. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000011 PROMPT ===
+Solve the following programming problem in Java.
+
+You are given the head of a non-empty linked list representing a non-negative integer without leading zeroes.
+
+Return the head of the linked list after doubling it.
+
+Example 1:
+
+Input: head = [1,8,9]
+Output: [3,7,8]
+Explanation: The figure above corresponds to the given linked list which represents the number 189. Hence, the returned linked list represents the number 189 * 2 = 378.
+
+Example 2:
+
+Input: head = [9,9,9]
+Output: [1,9,9,8]
+Explanation: The figure above corresponds to the given linked list which represents the number 999. Hence, the returned linked list reprersents the number 999 * 2 = 1998. 
+
+Constraints:
+
+The number of nodes in the list is in the range [1, 10^4]
+0 <= Node.val <= 9
+The input is generated such that the list represents a number that does not have leading zeros, except the number 0 itself. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000012 PROMPT ===
+Solve the following programming problem in C++.
+
+You are given the head of a non-empty linked list representing a non-negative integer without leading zeroes.
+
+Return the head of the linked list after doubling it.
+
+Example 1:
+
+Input: head = [1,8,9]
+Output: [3,7,8]
+Explanation: The figure above corresponds to the given linked list which represents the number 189. Hence, the returned linked list represents the number 189 * 2 = 378.
+
+Example 2:
+
+Input: head = [9,9,9]
+Output: [1,9,9,8]
+Explanation: The figure above corresponds to the given linked list which represents the number 999. Hence, the returned linked list reprersents the number 999 * 2 = 1998. 
+
+Constraints:
+
+The number of nodes in the list is in the range [1, 10^4]
+0 <= Node.val <= 9
+The input is generated such that the list represents a number that does not have leading zeros, except the number 0 itself. 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000013 PROMPT ===
+Solve the following programming problem in Python.
+
+You are given an array nums of n positive integers and an integer k.
+
+Initially, you start with a score of 1. You have to maximize your score by applying the following operation at most k times:
+
+Choose any non-empty subarray nums[l, ..., r] that you haven't chosen previously.
+Choose an element x of nums[l, ..., r] with the highest prime score. If multiple such elements exist, choose the one with the smallest index.
+Multiply your score by x.
+Here, nums[l, ..., r] denotes the subarray of nums starting at index l and ending at the index r, both ends being inclusive.
+
+The prime score of an integer x is equal to the number of distinct prime factors of x. For example, the prime score of 300 is 3 since 300 = 2 * 2 * 3 * 5 * 5.
+
+Return the maximum possible score after applying at most k operations.
+
+Since the answer may be large, return it modulo 10^9 + 7.
+
+Example 1:
+
+Input: nums = [8,3,9,3,8], k = 2
+Output: 81
+Explanation: To get a score of 81, we can apply the following operations:
+- Choose subarray nums[2, ..., 2]. nums[2] is the only element in this subarray. Hence, we multiply the score by nums[2]. The score becomes 1 * 9 = 9.
+- Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 1, but nums[2] has the smaller index. Hence, we multiply the score by nums[2]. The score becomes 9 * 9 = 81.
+It can be proven that 81 is the highest score one can obtain.
+
+Example 2:
+
+Input: nums = [19,12,14,6,10,18], k = 3
+Output: 4788
+Explanation: To get a score of 4788, we can apply the following operations: 
+- Choose subarray nums[0, ..., 0]. nums[0] is the only element in this subarray. Hence, we multiply the score by nums[0]. The score becomes 1 * 19 = 19.
+- Choose subarray nums[5, ..., 5]. nums[5] is the only element in this subarray. Hence, we multiply the score by nums[5]. The score becomes 19 * 18 = 342.
+- Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 2, but nums[2] has the smaller index. Hence, we multipy the score by nums[2]. The score becomes 342 * 14 = 4788.
+It can be proven that 4788 is the highest score one can obtain.
+ 
+Constraints:
+
+1 <= nums.length == n <= 10^5
+1 <= nums[i] <= 10^5
+1 <= k <= min(n * (n + 1) / 2, 10^9) 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000014 PROMPT ===
+Solve the following programming problem in Java.
+
+You are given an array nums of n positive integers and an integer k.
+
+Initially, you start with a score of 1. You have to maximize your score by applying the following operation at most k times:
+
+Choose any non-empty subarray nums[l, ..., r] that you haven't chosen previously.
+Choose an element x of nums[l, ..., r] with the highest prime score. If multiple such elements exist, choose the one with the smallest index.
+Multiply your score by x.
+Here, nums[l, ..., r] denotes the subarray of nums starting at index l and ending at the index r, both ends being inclusive.
+
+The prime score of an integer x is equal to the number of distinct prime factors of x. For example, the prime score of 300 is 3 since 300 = 2 * 2 * 3 * 5 * 5.
+
+Return the maximum possible score after applying at most k operations.
+
+Since the answer may be large, return it modulo 10^9 + 7.
+
+Example 1:
+
+Input: nums = [8,3,9,3,8], k = 2
+Output: 81
+Explanation: To get a score of 81, we can apply the following operations:
+- Choose subarray nums[2, ..., 2]. nums[2] is the only element in this subarray. Hence, we multiply the score by nums[2]. The score becomes 1 * 9 = 9.
+- Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 1, but nums[2] has the smaller index. Hence, we multiply the score by nums[2]. The score becomes 9 * 9 = 81.
+It can be proven that 81 is the highest score one can obtain.
+
+Example 2:
+
+Input: nums = [19,12,14,6,10,18], k = 3
+Output: 4788
+Explanation: To get a score of 4788, we can apply the following operations: 
+- Choose subarray nums[0, ..., 0]. nums[0] is the only element in this subarray. Hence, we multiply the score by nums[0]. The score becomes 1 * 19 = 19.
+- Choose subarray nums[5, ..., 5]. nums[5] is the only element in this subarray. Hence, we multiply the score by nums[5]. The score becomes 19 * 18 = 342.
+- Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 2, but nums[2] has the smaller index. Hence, we multipy the score by nums[2]. The score becomes 342 * 14 = 4788.
+It can be proven that 4788 is the highest score one can obtain.
+ 
+Constraints:
+
+1 <= nums.length == n <= 10^5
+1 <= nums[i] <= 10^5
+1 <= k <= min(n * (n + 1) / 2, 10^9) 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000015 PROMPT ===
+Solve the following programming problem in C++.
+
+You are given an array nums of n positive integers and an integer k.
+
+Initially, you start with a score of 1. You have to maximize your score by applying the following operation at most k times:
+
+Choose any non-empty subarray nums[l, ..., r] that you haven't chosen previously.
+Choose an element x of nums[l, ..., r] with the highest prime score. If multiple such elements exist, choose the one with the smallest index.
+Multiply your score by x.
+Here, nums[l, ..., r] denotes the subarray of nums starting at index l and ending at the index r, both ends being inclusive.
+
+The prime score of an integer x is equal to the number of distinct prime factors of x. For example, the prime score of 300 is 3 since 300 = 2 * 2 * 3 * 5 * 5.
+
+Return the maximum possible score after applying at most k operations.
+
+Since the answer may be large, return it modulo 10^9 + 7.
+
+Example 1:
+
+Input: nums = [8,3,9,3,8], k = 2
+Output: 81
+Explanation: To get a score of 81, we can apply the following operations:
+- Choose subarray nums[2, ..., 2]. nums[2] is the only element in this subarray. Hence, we multiply the score by nums[2]. The score becomes 1 * 9 = 9.
+- Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 1, but nums[2] has the smaller index. Hence, we multiply the score by nums[2]. The score becomes 9 * 9 = 81.
+It can be proven that 81 is the highest score one can obtain.
+
+Example 2:
+
+Input: nums = [19,12,14,6,10,18], k = 3
+Output: 4788
+Explanation: To get a score of 4788, we can apply the following operations: 
+- Choose subarray nums[0, ..., 0]. nums[0] is the only element in this subarray. Hence, we multiply the score by nums[0]. The score becomes 1 * 19 = 19.
+- Choose subarray nums[5, ..., 5]. nums[5] is the only element in this subarray. Hence, we multiply the score by nums[5]. The score becomes 19 * 18 = 342.
+- Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 2, but nums[2] has the smaller index. Hence, we multipy the score by nums[2]. The score becomes 342 * 14 = 4788.
+It can be proven that 4788 is the highest score one can obtain.
+ 
+Constraints:
+
+1 <= nums.length == n <= 10^5
+1 <= nums[i] <= 10^5
+1 <= k <= min(n * (n + 1) / 2, 10^9) 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000016 PROMPT ===
+Solve the following programming problem in Python.
+
+You are given a 0-indexed 2D integer array items of length n and an integer k.
+
+items[i] = [profit_i, category_i], where profit_i and category_i denote the profit and category of the i^th item respectively.
+
+Let's define the elegance of a subsequence of items as total_profit + distinct_categories^2, where total_profit is the sum of all profits in the subsequence, and distinct_categories is the number of distinct categories from all the categories in the selected subsequence.
+
+Your task is to find the maximum elegance from all subsequences of size k in items.
+
+Return an integer denoting the maximum elegance of a subsequence of items with size exactly k.
+
+Note: A subsequence of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the remaining elements' relative order.
+
+Example 1:
+
+Input: items = [[3,2],[5,1],[10,1]], k = 2
+Output: 17
+Explanation: In this example, we have to select a subsequence of size 2.
+We can select items[0] = [3,2] and items[2] = [10,1].
+The total profit in this subsequence is 3 + 10 = 13, and the subsequence contains 2 distinct categories [2,1].
+Hence, the elegance is 13 + 2^2 = 17, and we can show that it is the maximum achievable elegance. 
+
+Example 2:
+
+Input: items = [[3,1],[3,1],[2,2],[5,3]], k = 3
+Output: 19
+Explanation: In this example, we have to select a subsequence of size 3. 
+We can select items[0] = [3,1], items[2] = [2,2], and items[3] = [5,3]. 
+The total profit in this subsequence is 3 + 2 + 5 = 10, and the subsequence contains 3 distinct categories [1,2,3]. 
+Hence, the elegance is 10 + 3^2 = 19, and we can show that it is the maximum achievable elegance.
+
+Example 3:
+
+Input: items = [[1,1],[2,1],[3,1]], k = 3
+Output: 7
+Explanation: In this example, we have to select a subsequence of size 3. 
+We should select all the items. 
+The total profit will be 1 + 2 + 3 = 6, and the subsequence contains 1 distinct category [1]. 
+Hence, the maximum elegance is 6 + 1^2 = 7.  
+ 
+Constraints:
+
+1 <= items.length == n <= 10^5
+items[i].length == 2
+items[i][0] == profit_i
+items[i][1] == category_i
+1 <= profit_i <= 10^9
+1 <= category_i <= n 
+1 <= k <= n 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000017 PROMPT ===
+Solve the following programming problem in Java.
+
+You are given a 0-indexed 2D integer array items of length n and an integer k.
+
+items[i] = [profit_i, category_i], where profit_i and category_i denote the profit and category of the i^th item respectively.
+
+Let's define the elegance of a subsequence of items as total_profit + distinct_categories^2, where total_profit is the sum of all profits in the subsequence, and distinct_categories is the number of distinct categories from all the categories in the selected subsequence.
+
+Your task is to find the maximum elegance from all subsequences of size k in items.
+
+Return an integer denoting the maximum elegance of a subsequence of items with size exactly k.
+
+Note: A subsequence of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the remaining elements' relative order.
+
+Example 1:
+
+Input: items = [[3,2],[5,1],[10,1]], k = 2
+Output: 17
+Explanation: In this example, we have to select a subsequence of size 2.
+We can select items[0] = [3,2] and items[2] = [10,1].
+The total profit in this subsequence is 3 + 10 = 13, and the subsequence contains 2 distinct categories [2,1].
+Hence, the elegance is 13 + 2^2 = 17, and we can show that it is the maximum achievable elegance. 
+
+Example 2:
+
+Input: items = [[3,1],[3,1],[2,2],[5,3]], k = 3
+Output: 19
+Explanation: In this example, we have to select a subsequence of size 3. 
+We can select items[0] = [3,1], items[2] = [2,2], and items[3] = [5,3]. 
+The total profit in this subsequence is 3 + 2 + 5 = 10, and the subsequence contains 3 distinct categories [1,2,3]. 
+Hence, the elegance is 10 + 3^2 = 19, and we can show that it is the maximum achievable elegance.
+
+Example 3:
+
+Input: items = [[1,1],[2,1],[3,1]], k = 3
+Output: 7
+Explanation: In this example, we have to select a subsequence of size 3. 
+We should select all the items. 
+The total profit will be 1 + 2 + 3 = 6, and the subsequence contains 1 distinct category [1]. 
+Hence, the maximum elegance is 6 + 1^2 = 7.  
+ 
+Constraints:
+
+1 <= items.length == n <= 10^5
+items[i].length == 2
+items[i][0] == profit_i
+items[i][1] == category_i
+1 <= profit_i <= 10^9
+1 <= category_i <= n 
+1 <= k <= n 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000018 PROMPT ===
+Solve the following programming problem in C++.
+
+You are given a 0-indexed 2D integer array items of length n and an integer k.
+
+items[i] = [profit_i, category_i], where profit_i and category_i denote the profit and category of the i^th item respectively.
+
+Let's define the elegance of a subsequence of items as total_profit + distinct_categories^2, where total_profit is the sum of all profits in the subsequence, and distinct_categories is the number of distinct categories from all the categories in the selected subsequence.
+
+Your task is to find the maximum elegance from all subsequences of size k in items.
+
+Return an integer denoting the maximum elegance of a subsequence of items with size exactly k.
+
+Note: A subsequence of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the remaining elements' relative order.
+
+Example 1:
+
+Input: items = [[3,2],[5,1],[10,1]], k = 2
+Output: 17
+Explanation: In this example, we have to select a subsequence of size 2.
+We can select items[0] = [3,2] and items[2] = [10,1].
+The total profit in this subsequence is 3 + 10 = 13, and the subsequence contains 2 distinct categories [2,1].
+Hence, the elegance is 13 + 2^2 = 17, and we can show that it is the maximum achievable elegance. 
+
+Example 2:
+
+Input: items = [[3,1],[3,1],[2,2],[5,3]], k = 3
+Output: 19
+Explanation: In this example, we have to select a subsequence of size 3. 
+We can select items[0] = [3,1], items[2] = [2,2], and items[3] = [5,3]. 
+The total profit in this subsequence is 3 + 2 + 5 = 10, and the subsequence contains 3 distinct categories [1,2,3]. 
+Hence, the elegance is 10 + 3^2 = 19, and we can show that it is the maximum achievable elegance.
+
+Example 3:
+
+Input: items = [[1,1],[2,1],[3,1]], k = 3
+Output: 7
+Explanation: In this example, we have to select a subsequence of size 3. 
+We should select all the items. 
+The total profit will be 1 + 2 + 3 = 6, and the subsequence contains 1 distinct category [1]. 
+Hence, the maximum elegance is 6 + 1^2 = 7.  
+ 
+Constraints:
+
+1 <= items.length == n <= 10^5
+items[i].length == 2
+items[i][0] == profit_i
+items[i][1] == category_i
+1 <= profit_i <= 10^9
+1 <= category_i <= n 
+1 <= k <= n 
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000019 PROMPT ===
+Solve the following programming problem in Python.
+
+You are given q queries in the following form:
+
+Given three integers l_i, r_i and d_i, find minimum positive integer x_i such that it is divisible by d_i and it does not belong to the segment [l_i, r_i].
+
+Can you answer all the queries?
+
+Recall that a number x belongs to segment [l, r] if l ≤ x ≤ r.
+
+Input
+
+The first line contains one integer q (1 ≤ q ≤ 500) — the number of queries.
+
+Then q lines follow, each containing a query given in the format l_i r_i d_i (1 ≤ l_i ≤ r_i ≤ 10^9, 1 ≤ d_i ≤ 10^9). l_i, r_i and d_i are integers.
+
+Output
+
+For each query print one integer: the answer to this query.
+
+Example
+
+Input
+
+
+5
+2 4 2
+5 10 4
+3 10 1
+1 2 3
+4 6 5
+
+
+Output
+
+
+6
+4
+1
+3
+10
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000020 PROMPT ===
+Solve the following programming problem in Java.
+
+You are given q queries in the following form:
+
+Given three integers l_i, r_i and d_i, find minimum positive integer x_i such that it is divisible by d_i and it does not belong to the segment [l_i, r_i].
+
+Can you answer all the queries?
+
+Recall that a number x belongs to segment [l, r] if l ≤ x ≤ r.
+
+Input
+
+The first line contains one integer q (1 ≤ q ≤ 500) — the number of queries.
+
+Then q lines follow, each containing a query given in the format l_i r_i d_i (1 ≤ l_i ≤ r_i ≤ 10^9, 1 ≤ d_i ≤ 10^9). l_i, r_i and d_i are integers.
+
+Output
+
+For each query print one integer: the answer to this query.
+
+Example
+
+Input
+
+
+5
+2 4 2
+5 10 4
+3 10 1
+1 2 3
+4 6 5
+
+
+Output
+
+
+6
+4
+1
+3
+10
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000021 PROMPT ===
+Solve the following programming problem in C++.
+
+You are given q queries in the following form:
+
+Given three integers l_i, r_i and d_i, find minimum positive integer x_i such that it is divisible by d_i and it does not belong to the segment [l_i, r_i].
+
+Can you answer all the queries?
+
+Recall that a number x belongs to segment [l, r] if l ≤ x ≤ r.
+
+Input
+
+The first line contains one integer q (1 ≤ q ≤ 500) — the number of queries.
+
+Then q lines follow, each containing a query given in the format l_i r_i d_i (1 ≤ l_i ≤ r_i ≤ 10^9, 1 ≤ d_i ≤ 10^9). l_i, r_i and d_i are integers.
+
+Output
+
+For each query print one integer: the answer to this query.
+
+Example
+
+Input
+
+
+5
+2 4 2
+5 10 4
+3 10 1
+1 2 3
+4 6 5
+
+
+Output
+
+
+6
+4
+1
+3
+10
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000022 PROMPT ===
+Solve the following programming problem in Python.
+
+Note that this is the first problem of the two similar problems. You can hack this problem only if you solve both problems.
+
+You are given a tree with n nodes. In the beginning, 0 is written on all edges. In one operation, you can choose any 2 distinct leaves u, v and any real number x and add x to values written on all edges on the simple path between u and v.
+
+For example, on the picture below you can see the result of applying two operations to the graph: adding 2 on the path from 7 to 6, and then adding -0.5 on the path from 4 to 5. 
+
+<image>
+
+Is it true that for any configuration of real numbers written on edges, we can achieve it with a finite number of operations?
+
+Leaf is a node of a tree of degree 1. Simple path is a path that doesn't contain any node twice.
+
+Input
+
+The first line contains a single integer n (2 ≤ n ≤ 10^5) — the number of nodes.
+
+Each of the next n-1 lines contains two integers u and v (1 ≤ u, v ≤ n, u ≠ v), meaning that there is an edge between nodes u and v. It is guaranteed that these edges form a tree.
+
+Output
+
+If there is a configuration of real numbers written on edges of the tree that we can't achieve by performing the operations, output "NO". 
+
+Otherwise, output "YES". 
+
+You can print each letter in any case (upper or lower).
+
+Examples
+
+Input
+
+
+2
+1 2
+
+
+Output
+
+
+YES
+
+Input
+
+
+3
+1 2
+2 3
+
+
+Output
+
+
+NO
+
+Input
+
+
+5
+1 2
+1 3
+1 4
+2 5
+
+
+Output
+
+
+NO
+
+Input
+
+
+6
+1 2
+1 3
+1 4
+2 5
+2 6
+
+
+Output
+
+
+YES
+
+Note
+
+In the first example, we can add any real x to the value written on the only edge (1, 2).
+
+<image>
+
+In the second example, one of configurations that we can't reach is 0 written on (1, 2) and 1 written on (2, 3).
+
+<image>
+
+Below you can see graphs from examples 3, 4:
+
+<image> <image>
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000023 PROMPT ===
+Solve the following programming problem in Java.
+
+Note that this is the first problem of the two similar problems. You can hack this problem only if you solve both problems.
+
+You are given a tree with n nodes. In the beginning, 0 is written on all edges. In one operation, you can choose any 2 distinct leaves u, v and any real number x and add x to values written on all edges on the simple path between u and v.
+
+For example, on the picture below you can see the result of applying two operations to the graph: adding 2 on the path from 7 to 6, and then adding -0.5 on the path from 4 to 5. 
+
+<image>
+
+Is it true that for any configuration of real numbers written on edges, we can achieve it with a finite number of operations?
+
+Leaf is a node of a tree of degree 1. Simple path is a path that doesn't contain any node twice.
+
+Input
+
+The first line contains a single integer n (2 ≤ n ≤ 10^5) — the number of nodes.
+
+Each of the next n-1 lines contains two integers u and v (1 ≤ u, v ≤ n, u ≠ v), meaning that there is an edge between nodes u and v. It is guaranteed that these edges form a tree.
+
+Output
+
+If there is a configuration of real numbers written on edges of the tree that we can't achieve by performing the operations, output "NO". 
+
+Otherwise, output "YES". 
+
+You can print each letter in any case (upper or lower).
+
+Examples
+
+Input
+
+
+2
+1 2
+
+
+Output
+
+
+YES
+
+Input
+
+
+3
+1 2
+2 3
+
+
+Output
+
+
+NO
+
+Input
+
+
+5
+1 2
+1 3
+1 4
+2 5
+
+
+Output
+
+
+NO
+
+Input
+
+
+6
+1 2
+1 3
+1 4
+2 5
+2 6
+
+
+Output
+
+
+YES
+
+Note
+
+In the first example, we can add any real x to the value written on the only edge (1, 2).
+
+<image>
+
+In the second example, one of configurations that we can't reach is 0 written on (1, 2) and 1 written on (2, 3).
+
+<image>
+
+Below you can see graphs from examples 3, 4:
+
+<image> <image>
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000024 PROMPT ===
+Solve the following programming problem in C++.
+
+Note that this is the first problem of the two similar problems. You can hack this problem only if you solve both problems.
+
+You are given a tree with n nodes. In the beginning, 0 is written on all edges. In one operation, you can choose any 2 distinct leaves u, v and any real number x and add x to values written on all edges on the simple path between u and v.
+
+For example, on the picture below you can see the result of applying two operations to the graph: adding 2 on the path from 7 to 6, and then adding -0.5 on the path from 4 to 5. 
+
+<image>
+
+Is it true that for any configuration of real numbers written on edges, we can achieve it with a finite number of operations?
+
+Leaf is a node of a tree of degree 1. Simple path is a path that doesn't contain any node twice.
+
+Input
+
+The first line contains a single integer n (2 ≤ n ≤ 10^5) — the number of nodes.
+
+Each of the next n-1 lines contains two integers u and v (1 ≤ u, v ≤ n, u ≠ v), meaning that there is an edge between nodes u and v. It is guaranteed that these edges form a tree.
+
+Output
+
+If there is a configuration of real numbers written on edges of the tree that we can't achieve by performing the operations, output "NO". 
+
+Otherwise, output "YES". 
+
+You can print each letter in any case (upper or lower).
+
+Examples
+
+Input
+
+
+2
+1 2
+
+
+Output
+
+
+YES
+
+Input
+
+
+3
+1 2
+2 3
+
+
+Output
+
+
+NO
+
+Input
+
+
+5
+1 2
+1 3
+1 4
+2 5
+
+
+Output
+
+
+NO
+
+Input
+
+
+6
+1 2
+1 3
+1 4
+2 5
+2 6
+
+
+Output
+
+
+YES
+
+Note
+
+In the first example, we can add any real x to the value written on the only edge (1, 2).
+
+<image>
+
+In the second example, one of configurations that we can't reach is 0 written on (1, 2) and 1 written on (2, 3).
+
+<image>
+
+Below you can see graphs from examples 3, 4:
+
+<image> <image>
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000025 PROMPT ===
+Solve the following programming problem in Python.
+
+There are n points on a coordinate axis OX. The i-th point is located at the integer point x_i and has a speed v_i. It is guaranteed that no two points occupy the same coordinate. All n points move with the constant speed, the coordinate of the i-th point at the moment t (t can be non-integer) is calculated as x_i + t ⋅ v_i.
+
+Consider two points i and j. Let d(i, j) be the minimum possible distance between these two points over any possible moments of time (even non-integer). It means that if two points i and j coincide at some moment, the value d(i, j) will be 0.
+
+Your task is to calculate the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Input
+
+The first line of the input contains one integer n (2 ≤ n ≤ 2 ⋅ 10^5) — the number of points.
+
+The second line of the input contains n integers x_1, x_2, ..., x_n (1 ≤ x_i ≤ 10^8), where x_i is the initial coordinate of the i-th point. It is guaranteed that all x_i are distinct.
+
+The third line of the input contains n integers v_1, v_2, ..., v_n (-10^8 ≤ v_i ≤ 10^8), where v_i is the speed of the i-th point.
+
+Output
+
+Print one integer — the value ∑_{1 ≤ i < j ≤ n} d(i, j) (the sum of minimum distances over all pairs of points).
+
+Examples
+
+Input
+
+
+3
+1 3 2
+-100 2 3
+
+
+Output
+
+
+3
+
+
+Input
+
+
+5
+2 1 4 3 5
+2 2 2 3 4
+
+
+Output
+
+
+19
+
+
+Input
+
+
+2
+2 1
+-3 0
+
+
+Output
+
+
+0
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

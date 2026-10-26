@@ -1,0 +1,13 @@
+{
+  "experiment": 4,
+  "dataset": "Back3474",
+  "problem_id": "problem_6",
+  "language": "C++",
+  "source": "AI",
+  "provider": "copilot",
+  "model": "",
+  "model_group": "default",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

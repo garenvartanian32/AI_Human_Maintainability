@@ -1,0 +1,897 @@
+=== REQ000101 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static String rebuild(String record) {
+        Map<Character, Character> behind = new HashMap<>();
+        Map<Character, Character> ahead = new HashMap<>();
+        Set<Character> seen = new LinkedHashSet<>();
+
+        char current = record.charAt(0);
+        seen.add(current);
+        int i = 1;
+        while (i < record.length()) {
+            boolean backwards = false;
+            if (record.charAt(i) == '-') {
+                backwards = true;
+                i += 2;
+            }
+            char next = record.charAt(i);
+            i++;
+            seen.add(next);
+            if (backwards) {
+                behind.put(current, next);
+                ahead.put(next, current);
+            } else {
+                ahead.put(current, next);
+                behind.put(next, current);
+            }
+            current = next;
+        }
+
+        char head = 0;
+        for (char car : seen) {
+            if (!ahead.containsKey(car)) { head = car; break; }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        Character car = head;
+        while (car != null) {
+            sb.append((char) car);
+            car = behind.get(car);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine().trim());
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            out.append(rebuild(br.readLine().trim())).append('\n');
+        }
+        System.out.print(out);
+    }
+}
+=== REQ000101 END ===
+
+=== REQ000102 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+string rebuild(const string &record) {
+    map<char, char> behind, ahead;
+    vector<char> seen;
+    set<char> known;
+
+    char current = record[0];
+    seen.push_back(current);
+    known.insert(current);
+
+    size_t i = 1;
+    while (i < record.size()) {
+        bool backwards = false;
+        if (record[i] == '-') {
+            backwards = true;
+            i += 2;
+        }
+        char next = record[i];
+        i++;
+        if (!known.count(next)) {
+            known.insert(next);
+            seen.push_back(next);
+        }
+        if (backwards) {
+            behind[current] = next;
+            ahead[next] = current;
+        } else {
+            ahead[current] = next;
+            behind[next] = current;
+        }
+        current = next;
+    }
+
+    char head = 0;
+    for (char car : seen) {
+        if (!ahead.count(car)) { head = car; break; }
+    }
+
+    string out;
+    char car = head;
+    while (true) {
+        out += car;
+        auto it = behind.find(car);
+        if (it == behind.end()) break;
+        car = it->second;
+    }
+    return out;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    cin.ignore();
+    string out;
+    for (int i = 0; i < n; i++) {
+        string line;
+        getline(cin, line);
+        while (!line.empty() && (line.back() == '\r' || line.back() == ' ')) line.pop_back();
+        out += rebuild(line) + "\n";
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000102 END ===
+
+=== REQ000103 START ===
+import sys
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    pos = 0
+    out = []
+    while pos < len(data):
+        n = int(data[pos]); pos += 1
+        if n == 0:
+            break
+        cards = data[pos].decode(); pos += 1
+
+        hands = [0] * n
+        pile = 0
+        for turn, card in enumerate(cards):
+            who = turn % n
+            if card == 'M':
+                hands[who] += 1
+            elif card == 'S':
+                pile += hands[who] + 1
+                hands[who] = 0
+            else:
+                hands[who] += pile + 1
+                pile = 0
+
+        hands.sort()
+        out.append(' '.join(map(str, hands + [pile])))
+    sys.stdout.write('\n'.join(out) + '\n')
+
+
+main()
+=== REQ000103 END ===
+
+=== REQ000104 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder out = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            int n = Integer.parseInt(line);
+            if (n == 0) break;
+            String cards = br.readLine().trim();
+
+            int[] hands = new int[n];
+            int pile = 0;
+            for (int turn = 0; turn < cards.length(); turn++) {
+                int who = turn % n;
+                char card = cards.charAt(turn);
+                if (card == 'M') {
+                    hands[who]++;
+                } else if (card == 'S') {
+                    pile += hands[who] + 1;
+                    hands[who] = 0;
+                } else {
+                    hands[who] += pile + 1;
+                    pile = 0;
+                }
+            }
+
+            Arrays.sort(hands);
+            StringBuilder row = new StringBuilder();
+            for (int h : hands) row.append(h).append(' ');
+            row.append(pile);
+            out.append(row).append('\n');
+        }
+        System.out.print(out);
+    }
+}
+=== REQ000104 END ===
+
+=== REQ000105 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    ostringstream out;
+    while (cin >> n) {
+        if (n == 0) break;
+        string cards;
+        cin >> cards;
+
+        vector<int> hands(n, 0);
+        int pile = 0;
+        for (size_t turn = 0; turn < cards.size(); turn++) {
+            int who = turn % n;
+            char card = cards[turn];
+            if (card == 'M') {
+                hands[who]++;
+            } else if (card == 'S') {
+                pile += hands[who] + 1;
+                hands[who] = 0;
+            } else {
+                hands[who] += pile + 1;
+                pile = 0;
+            }
+        }
+
+        sort(hands.begin(), hands.end());
+        for (int h : hands) out << h << ' ';
+        out << pile << '\n';
+    }
+    cout << out.str();
+    return 0;
+}
+=== REQ000105 END ===
+
+=== REQ000106 START ===
+import sys
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0])
+    step = [(i + int(data[1 + i])) % n for i in range(n)]
+
+    state = [0] * n            # 0 unvisited, 1 on current walk, 2 finished
+    on_cycle = [False] * n
+
+    for start in range(n):
+        if state[start]:
+            continue
+        walk = []
+        node = start
+        while state[node] == 0:
+            state[node] = 1
+            walk.append(node)
+            node = step[node]
+        if state[node] == 1:
+            mark = False
+            for v in walk:
+                if v == node:
+                    mark = True
+                if mark:
+                    on_cycle[v] = True
+        for v in walk:
+            state[v] = 2
+
+    print(sum(on_cycle))
+
+
+main()
+=== REQ000106 END ===
+
+=== REQ000107 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        in.nextToken();
+        int n = (int) in.nval;
+
+        int[] step = new int[n];
+        for (int i = 0; i < n; i++) {
+            in.nextToken();
+            step[i] = (int) ((i + (long) in.nval) % n);
+        }
+
+        int[] state = new int[n];
+        boolean[] onCycle = new boolean[n];
+
+        for (int start = 0; start < n; start++) {
+            if (state[start] != 0) continue;
+            List<Integer> walk = new ArrayList<>();
+            int node = start;
+            while (state[node] == 0) {
+                state[node] = 1;
+                walk.add(node);
+                node = step[node];
+            }
+            if (state[node] == 1) {
+                boolean mark = false;
+                for (int v : walk) {
+                    if (v == node) mark = true;
+                    if (mark) onCycle[v] = true;
+                }
+            }
+            for (int v : walk) state[v] = 2;
+        }
+
+        int count = 0;
+        for (boolean b : onCycle) if (b) count++;
+        System.out.println(count);
+    }
+}
+=== REQ000107 END ===
+
+=== REQ000108 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+    vector<int> step(n);
+    for (int i = 0; i < n; i++) {
+        long long a;
+        cin >> a;
+        step[i] = (int)((i + a) % n);
+    }
+
+    vector<int> state(n, 0);
+    vector<char> onCycle(n, 0);
+
+    for (int start = 0; start < n; start++) {
+        if (state[start]) continue;
+        vector<int> walk;
+        int node = start;
+        while (state[node] == 0) {
+            state[node] = 1;
+            walk.push_back(node);
+            node = step[node];
+        }
+        if (state[node] == 1) {
+            bool mark = false;
+            for (int v : walk) {
+                if (v == node) mark = true;
+                if (mark) onCycle[v] = 1;
+            }
+        }
+        for (int v : walk) state[v] = 2;
+    }
+
+    cout << count(onCycle.begin(), onCycle.end(), (char) 1) << '\n';
+    return 0;
+}
+=== REQ000108 END ===
+
+=== REQ000109 START ===
+import sys
+
+
+def main():
+    values = [int(x) for x in sys.stdin.buffer.read().split()]
+    west = sorted(values[:10], reverse=True)
+    east = sorted(values[10:20], reverse=True)
+    print(sum(west[:3]), sum(east[:3]))
+
+
+main()
+=== REQ000109 END ===
+
+=== REQ000110 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+
+        int[] all = new int[20];
+        for (int i = 0; i < 20; i++) {
+            in.nextToken();
+            all[i] = (int) in.nval;
+        }
+
+        System.out.println(topThree(all, 0) + " " + topThree(all, 10));
+    }
+
+    static int topThree(int[] all, int offset) {
+        int[] team = Arrays.copyOfRange(all, offset, offset + 10);
+        Arrays.sort(team);
+        return team[9] + team[8] + team[7];
+    }
+}
+=== REQ000110 END ===
+
+=== REQ000111 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<int> all(20);
+    for (int &v : all) cin >> v;
+
+    auto topThree = [&](int offset) {
+        vector<int> team(all.begin() + offset, all.begin() + offset + 10);
+        sort(team.rbegin(), team.rend());
+        return team[0] + team[1] + team[2];
+    };
+
+    cout << topThree(0) << ' ' << topThree(10) << '\n';
+    return 0;
+}
+=== REQ000111 END ===
+
+=== REQ000112 START ===
+import sys
+
+ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+INDEX = {ch: i for i, ch in enumerate(ALPHABET)}
+
+
+def main():
+    lines = sys.stdin.read().split('\n')
+    pos = 0
+    out = []
+    while pos < len(lines):
+        header = lines[pos].strip()
+        pos += 1
+        if not header:
+            continue
+        n = int(header)
+        if n == 0:
+            break
+        keys = [int(x) for x in lines[pos].split()]
+        pos += 1
+        text = lines[pos].strip()
+        pos += 1
+
+        out.append(''.join(
+            ALPHABET[(INDEX[ch] - keys[i % n]) % 52]
+            for i, ch in enumerate(text)
+        ))
+    sys.stdout.write('\n'.join(out) + '\n')
+
+
+main()
+=== REQ000112 END ===
+
+=== REQ000113 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static final String ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder out = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            int n = Integer.parseInt(line);
+            if (n == 0) break;
+
+            StringTokenizer tk = new StringTokenizer(br.readLine());
+            int[] keys = new int[n];
+            for (int i = 0; i < n; i++) keys[i] = Integer.parseInt(tk.nextToken());
+            String text = br.readLine().trim();
+
+            StringBuilder row = new StringBuilder();
+            for (int i = 0; i < text.length(); i++) {
+                int idx = ALPHABET.indexOf(text.charAt(i));
+                int shifted = ((idx - keys[i % n]) % 52 + 52) % 52;
+                row.append(ALPHABET.charAt(shifted));
+            }
+            out.append(row).append('\n');
+        }
+        System.out.print(out);
+    }
+}
+=== REQ000113 END ===
+
+=== REQ000114 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    const string ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    int n;
+    ostringstream out;
+    while (cin >> n) {
+        if (n == 0) break;
+        vector<int> keys(n);
+        for (int &k : keys) cin >> k;
+        string text;
+        cin >> text;
+
+        string row;
+        for (size_t i = 0; i < text.size(); i++) {
+            int idx = (int) ALPHABET.find(text[i]);
+            int shifted = ((idx - keys[i % n]) % 52 + 52) % 52;
+            row += ALPHABET[shifted];
+        }
+        out << row << '\n';
+    }
+    cout << out.str();
+    return 0;
+}
+=== REQ000114 END ===
+
+=== REQ000115 START ===
+import sys
+from math import sqrt, floor
+
+
+def main():
+    d = float(sys.stdin.read().strip())
+
+    best = d * sqrt(2.0)
+    for k in range(1, int(floor(d + 1e-9)) + 1):
+        remainder = d * d - float(k) * k
+        if remainder < 0.0:
+            remainder = 0.0
+        candidate = k + max(1.0, sqrt(remainder))
+        if candidate > best:
+            best = candidate
+
+    print('%.12f' % best)
+
+
+main()
+=== REQ000115 END ===
+
+=== REQ000116 START ===
+import java.io.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        double d = Double.parseDouble(br.readLine().trim());
+
+        double best = d * Math.sqrt(2.0);
+        int limit = (int) Math.floor(d + 1e-9);
+        for (int k = 1; k <= limit; k++) {
+            double remainder = d * d - (double) k * k;
+            if (remainder < 0.0) remainder = 0.0;
+            double candidate = k + Math.max(1.0, Math.sqrt(remainder));
+            if (candidate > best) best = candidate;
+        }
+
+        System.out.printf("%.12f%n", best);
+    }
+}
+=== REQ000116 END ===
+
+=== REQ000117 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    double d;
+    cin >> d;
+
+    double best = d * sqrt(2.0);
+    int limit = (int) floor(d + 1e-9);
+    for (int k = 1; k <= limit; k++) {
+        double remainder = d * d - (double) k * k;
+        if (remainder < 0.0) remainder = 0.0;
+        double candidate = k + max(1.0, sqrt(remainder));
+        if (candidate > best) best = candidate;
+    }
+
+    printf("%.12f\n", best);
+    return 0;
+}
+=== REQ000117 END ===
+
+=== REQ000118 START ===
+import sys
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0])
+    values = [int(x) for x in data[1:1 + n]]
+    print(sum(v - (i + 1) for i, v in enumerate(values)))
+
+
+main()
+=== REQ000118 END ===
+
+=== REQ000119 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        in.nextToken();
+        int n = (int) in.nval;
+
+        long total = 0;
+        for (int i = 1; i <= n; i++) {
+            in.nextToken();
+            total += (long) in.nval - i;
+        }
+        System.out.println(total);
+    }
+}
+=== REQ000119 END ===
+
+=== REQ000120 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    long long n;
+    cin >> n;
+    long long total = 0;
+    for (long long i = 1; i <= n; i++) {
+        long long v;
+        cin >> v;
+        total += v - i;
+    }
+    cout << total << '\n';
+    return 0;
+}
+=== REQ000120 END ===
+
+=== REQ000121 START ===
+import sys
+
+
+def main():
+    sys.setrecursionlimit(300000)
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0]); q = int(data[1])
+
+    width = 1
+    while width < n:
+        width <<= 1
+
+    total = [0] * (2 * width)
+    pending = [None] * (2 * width)
+
+    def push(node, span):
+        val = pending[node]
+        if val is None:
+            return
+        half = span >> 1
+        for child in (2 * node, 2 * node + 1):
+            total[child] = val * half
+            pending[child] = val
+        pending[node] = None
+
+    def update(node, lo, hi, s, t, val):
+        if t < lo or hi < s:
+            return
+        if s <= lo and hi <= t:
+            total[node] = val * (hi - lo + 1)
+            pending[node] = val
+            return
+        push(node, hi - lo + 1)
+        mid = (lo + hi) >> 1
+        update(2 * node, lo, mid, s, t, val)
+        update(2 * node + 1, mid + 1, hi, s, t, val)
+        total[node] = total[2 * node] + total[2 * node + 1]
+
+    def query(node, lo, hi, s, t):
+        if t < lo or hi < s:
+            return 0
+        if s <= lo and hi <= t:
+            return total[node]
+        push(node, hi - lo + 1)
+        mid = (lo + hi) >> 1
+        return query(2 * node, lo, mid, s, t) + query(2 * node + 1, mid + 1, hi, s, t)
+
+    out = []
+    pos = 2
+    for _ in range(q):
+        kind = int(data[pos]); pos += 1
+        if kind == 0:
+            s = int(data[pos]); t = int(data[pos + 1]); x = int(data[pos + 2])
+            pos += 3
+            update(1, 0, width - 1, s, t, x)
+        else:
+            s = int(data[pos]); t = int(data[pos + 1])
+            pos += 2
+            out.append(query(1, 0, width - 1, s, t))
+
+    sys.stdout.write('\n'.join(map(str, out)) + '\n')
+
+
+main()
+=== REQ000121 END ===
+
+=== REQ000122 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static long[] total;
+    static long[] pending;
+    static boolean[] hasPending;
+    static int width;
+
+    static void push(int node, int span) {
+        if (!hasPending[node]) return;
+        long val = pending[node];
+        int half = span >> 1;
+        for (int child = 2 * node; child <= 2 * node + 1; child++) {
+            total[child] = val * half;
+            pending[child] = val;
+            hasPending[child] = true;
+        }
+        hasPending[node] = false;
+    }
+
+    static void update(int node, int lo, int hi, int s, int t, long val) {
+        if (t < lo || hi < s) return;
+        if (s <= lo && hi <= t) {
+            total[node] = val * (hi - lo + 1);
+            pending[node] = val;
+            hasPending[node] = true;
+            return;
+        }
+        push(node, hi - lo + 1);
+        int mid = (lo + hi) >>> 1;
+        update(2 * node, lo, mid, s, t, val);
+        update(2 * node + 1, mid + 1, hi, s, t, val);
+        total[node] = total[2 * node] + total[2 * node + 1];
+    }
+
+    static long query(int node, int lo, int hi, int s, int t) {
+        if (t < lo || hi < s) return 0;
+        if (s <= lo && hi <= t) return total[node];
+        push(node, hi - lo + 1);
+        int mid = (lo + hi) >>> 1;
+        return query(2 * node, lo, mid, s, t) + query(2 * node + 1, mid + 1, hi, s, t);
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        in.nextToken(); int n = (int) in.nval;
+        in.nextToken(); int q = (int) in.nval;
+
+        width = 1;
+        while (width < n) width <<= 1;
+        total = new long[2 * width];
+        pending = new long[2 * width];
+        hasPending = new boolean[2 * width];
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            in.nextToken();
+            int kind = (int) in.nval;
+            if (kind == 0) {
+                in.nextToken(); int s = (int) in.nval;
+                in.nextToken(); int t = (int) in.nval;
+                in.nextToken(); long x = (long) in.nval;
+                update(1, 0, width - 1, s, t, x);
+            } else {
+                in.nextToken(); int s = (int) in.nval;
+                in.nextToken(); int t = (int) in.nval;
+                sb.append(query(1, 0, width - 1, s, t)).append('\n');
+            }
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000122 END ===
+
+=== REQ000123 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int width;
+vector<long long> total_, pending_;
+vector<char> hasPending;
+
+void push(int node, int span) {
+    if (!hasPending[node]) return;
+    long long val = pending_[node];
+    int half = span >> 1;
+    for (int child = 2 * node; child <= 2 * node + 1; child++) {
+        total_[child] = val * half;
+        pending_[child] = val;
+        hasPending[child] = 1;
+    }
+    hasPending[node] = 0;
+}
+
+void update(int node, int lo, int hi, int s, int t, long long val) {
+    if (t < lo || hi < s) return;
+    if (s <= lo && hi <= t) {
+        total_[node] = val * (hi - lo + 1);
+        pending_[node] = val;
+        hasPending[node] = 1;
+        return;
+    }
+    push(node, hi - lo + 1);
+    int mid = (lo + hi) >> 1;
+    update(2 * node, lo, mid, s, t, val);
+    update(2 * node + 1, mid + 1, hi, s, t, val);
+    total_[node] = total_[2 * node] + total_[2 * node + 1];
+}
+
+long long query(int node, int lo, int hi, int s, int t) {
+    if (t < lo || hi < s) return 0;
+    if (s <= lo && hi <= t) return total_[node];
+    push(node, hi - lo + 1);
+    int mid = (lo + hi) >> 1;
+    return query(2 * node, lo, mid, s, t) + query(2 * node + 1, mid + 1, hi, s, t);
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, q;
+    cin >> n >> q;
+
+    width = 1;
+    while (width < n) width <<= 1;
+    total_.assign(2 * width, 0);
+    pending_.assign(2 * width, 0);
+    hasPending.assign(2 * width, 0);
+
+    ostringstream out;
+    for (int i = 0; i < q; i++) {
+        int kind;
+        cin >> kind;
+        if (kind == 0) {
+            int s, t;
+            long long x;
+            cin >> s >> t >> x;
+            update(1, 0, width - 1, s, t, x);
+        } else {
+            int s, t;
+            cin >> s >> t;
+            out << query(1, 0, width - 1, s, t) << '\n';
+        }
+    }
+    cout << out.str();
+    return 0;
+}
+=== REQ000123 END ===
+
+=== REQ000124 START ===
+import sys
+
+
+def main():
+    sys.stdin.read()
+
+
+main()
+=== REQ000124 END ===
+
+=== REQ000125 START ===
+import java.io.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        while (br.readLine() != null) {
+            // no problem statement provided
+        }
+    }
+}
+=== REQ000125 END ===

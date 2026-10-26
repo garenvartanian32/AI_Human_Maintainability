@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full programming problem (including input/output format and constraints). If you want a common default, say "use typical competitive programming I/O (stdin/stdout) and include solution + main method" — otherwise paste the problem and I'll implement it in Java.

@@ -1,0 +1,1 @@
+It looks like the problem statement is missing. Please paste the full problem (including input/output format, constraints, and sample tests). If you prefer, name a known problem (e.g., "Two Sum", "Dijkstra", "Longest Increasing Subsequence", a specific Codeforces/LeetCode problem) and I’ll solve that in Java.

@@ -1,0 +1,5 @@
+language,source,model,n,mi_mean,mi_median,mi_stdev,mi_min,mi_max,cc_mean,cc_median,cc_stdev,cc_min,cc_max,loc_mean,loc_median,loc_stdev,loc_min,loc_max,halstead_volume_mean,halstead_volume_median,halstead_volume_stdev,halstead_volume_min,halstead_volume_max
+Java,AI,ChatGPT,100,70.347,66.0,15.905,40.32,100.0,3.57,3.0,2.016,2.0,14.0,10.54,9.0,7.265,3.0,43.0,365.198,250.25,331.097,24.0,1463.49
+Java,Human,,100,57.944,57.555,9.425,38.34,76.07,4.76,4.0,3.188,2.0,19.0,14.7,12.0,10.21,3.0,46.0,558.811,384.795,502.735,78.14,2718.19
+Python,AI,ChatGPT,100,69.085,64.2,14.999,38.82,100.0,4.26,4.0,2.751,2.0,16.0,9.25,8.0,7.062,2.0,44.0,361.866,211.52,386.53,22.46,2439.81
+Python,Human,,100,66.807,67.62,11.453,42.99,100.0,5.13,4.0,3.472,2.0,18.0,13.47,9.0,13.472,2.0,87.0,543.133,318.05,579.966,92.0,3461.97

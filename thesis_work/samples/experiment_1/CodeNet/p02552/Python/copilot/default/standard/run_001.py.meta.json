@@ -1,0 +1,13 @@
+{
+  "experiment": 1,
+  "dataset": "CodeNet",
+  "problem_id": "p02552",
+  "language": "Python",
+  "source": "AI",
+  "provider": "copilot",
+  "model": "",
+  "model_group": "default",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

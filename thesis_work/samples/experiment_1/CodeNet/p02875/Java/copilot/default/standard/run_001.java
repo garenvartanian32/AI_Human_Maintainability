@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including input/output format, constraints, and sample I/O). If you want a particular judge style (e.g., Codeforces, LeetCode), mention that. Alternatively, say "pick a problem" and I'll choose and solve one in Java with fast I/O and explanation.

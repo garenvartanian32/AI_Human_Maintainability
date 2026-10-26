@@ -1,0 +1,1 @@
+I don't see the problem statement — please paste the full problem (including input format, constraints, and examples). If you want, mention limits (n up to?) or required complexity so I pick the right algorithm. Once posted I'll produce a complete, tested Python solution.

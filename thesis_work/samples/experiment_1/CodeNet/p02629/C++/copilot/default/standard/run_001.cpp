@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including input/output format and constraints). If you prefer, say which common problem to solve (e.g., two-sum, LIS, Dijkstra, max-flow) and I'll provide a complete C++ solution with explanation and complexity.

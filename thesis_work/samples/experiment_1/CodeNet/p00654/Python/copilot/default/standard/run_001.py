@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full programming problem (including input/output format, examples, and constraints). If it's from an online judge, include the link and time/memory limits. Once provided, a complete Python solution will be given.

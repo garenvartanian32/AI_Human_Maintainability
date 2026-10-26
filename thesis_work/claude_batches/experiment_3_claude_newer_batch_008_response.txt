@@ -1,0 +1,884 @@
+=== REQ000176 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given two intervals,
+    // where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    // The given intervals are closed which means that the interval (start, end)
+    // includes both start and end.
+    // For each given interval, it is assumed that its start is less or equal its end.
+    // Your task is to determine whether the length of intersection of these two 
+    // intervals is a prime number.
+    // Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    // which its length is 1, which not a prime number.
+    // If the length of the intersection is a prime number, return "YES",
+    // otherwise, return "NO".
+    // If the two intervals don't intersect, return "NO".
+    // [input/output] samples:
+    // >>> intersection((Pair.with(1l, 2l)), (Pair.with(2l, 3l)))
+    // ("NO")
+    // >>> intersection((Pair.with(-1l, 1l)), (Pair.with(0l, 4l)))
+    // ("NO")
+    // >>> intersection((Pair.with(-3l, -1l)), (Pair.with(-5l, 5l)))
+    // ("YES")
+    public static String intersection(Pair<Long, Long> interval1, Pair<Long, Long> interval2) {
+        long span = Math.min(interval1.getValue1(), interval2.getValue1())
+                  - Math.max(interval1.getValue0(), interval2.getValue0());
+        if (span < 2) return "NO";
+        for (long divisor = 2; divisor * divisor <= span; divisor++) {
+            if (span % divisor == 0) return "NO";
+        }
+        return "YES";
+    }
+}
+=== REQ000176 END ===
+
+=== REQ000177 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given two intervals,
+// where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+// The given intervals are closed which means that the interval (start, end)
+// includes both start and end.
+// For each given interval, it is assumed that its start is less or equal its end.
+// Your task is to determine whether the length of intersection of these two 
+// intervals is a prime number.
+// Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+// which its length is 1, which not a prime number.
+// If the length of the intersection is a prime number, return "YES",
+// otherwise, return "NO".
+// If the two intervals don't intersect, return "NO".
+// [input/output] samples:
+// >>> intersection((std::make_tuple(1, 2)), (std::make_tuple(2, 3)))
+// ("NO")
+// >>> intersection((std::make_tuple(-1, 1)), (std::make_tuple(0, 4)))
+// ("NO")
+// >>> intersection((std::make_tuple(-3, -1)), (std::make_tuple(-5, 5)))
+// ("YES")
+std::string intersection(std::tuple<long, long> interval1, std::tuple<long, long> interval2) {
+    long span = std::min(std::get<1>(interval1), std::get<1>(interval2))
+              - std::max(std::get<0>(interval1), std::get<0>(interval2));
+    if (span < 2) return "NO";
+    for (long divisor = 2; divisor * divisor <= span; divisor++) {
+        if (span % divisor == 0) return "NO";
+    }
+    return "YES";
+}
+=== REQ000177 END ===
+
+=== REQ000178 START ===
+def prod_signs(arr):
+    """
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+    of each number in the array, represented by 1, -1 or 0.
+    Note: return None for empty arr.
+
+    Example:
+    >>> prod_signs([1, 2, 2, -4]) == -9
+    >>> prod_signs([0, 1]) == 0
+    >>> prod_signs([]) == None
+    """
+    if not arr:
+        return None
+    if 0 in arr:
+        return 0
+    negatives = sum(1 for x in arr if x < 0)
+    magnitude = sum(abs(x) for x in arr)
+    return -magnitude if negatives % 2 else magnitude
+=== REQ000178 END ===
+
+=== REQ000179 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list arr of integers and you need to return
+    // sum of magnitudes of integers multiplied by product of all signs
+    // of each number in the array array list, represented by 1, -1 or 0.
+    // Note: return null for empty arr.
+    // Example:
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)2l, (long)-4l))))
+    // Optional.of(9l)
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList((long)0l, (long)1l))))
+    // Optional.of(0l)
+    // >>> prodSigns((new ArrayList<Long>(Arrays.asList())))
+    // Optional.empty()
+    public static Optional<Long> prodSigns(ArrayList<Long> arr) {
+        if (arr.isEmpty()) return Optional.empty();
+        long magnitude = 0;
+        int negatives = 0;
+        for (long x : arr) {
+            if (x == 0) return Optional.of(0L);
+            if (x < 0) negatives++;
+            magnitude += Math.abs(x);
+        }
+        return Optional.of(negatives % 2 == 0 ? magnitude : -magnitude);
+    }
+}
+=== REQ000179 END ===
+
+=== REQ000180 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector arr of integers and you need to return
+// sum of magnitudes of integers multiplied by product of all signs
+// of each number in the vector, represented by 1, -1 or 0.
+// Note: return None for empty arr.
+// Example:
+// >>> prod_signs((std::vector<long>({(long)1, (long)2, (long)2, (long)-4})))
+// 9
+// >>> prod_signs((std::vector<long>({(long)0, (long)1})))
+// 0
+// >>> prod_signs((std::vector<long>()))
+// std::nullopt
+std::optional<long> prod_signs(std::vector<long> arr) {
+    if (arr.empty()) return std::nullopt;
+    long magnitude = 0;
+    int negatives = 0;
+    for (long x : arr) {
+        if (x == 0) return 0L;
+        if (x < 0) negatives++;
+        magnitude += std::labs(x);
+    }
+    return (negatives % 2 == 0) ? magnitude : -magnitude;
+}
+=== REQ000180 END ===
+
+=== REQ000181 START ===
+def minPath(grid, k):
+    """
+    Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    each cell of the grid contains a value. Every integer in the range [1, N * N]
+    inclusive appears exactly once on the cells of the grid.
+
+    You have to find the minimum path of length k in the grid. You can start
+    from any cell, and in each step you can move to any of the neighbor cells,
+    in other words, you can go to cells which share an edge with you current
+    cell.
+    Please note that a path of length k means visiting exactly k cells (not
+    necessarily distinct).
+    You CANNOT go off the grid.
+    A path A (of length k) is considered less than a path B (of length k) if
+    after making the ordered lists of the values on the cells that A and B go
+    through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    lst_A[j] = lst_B[j].
+    It is guaranteed that the answer is unique.
+    Return an ordered list of the values on the cells that the minimum path go through.
+
+    Examples:
+
+        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3
+        Output: [1, 2, 1]
+
+        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
+        Output: [1]
+    """
+    size = len(grid)
+    row = col = 0
+    for r in range(size):
+        for c in range(size):
+            if grid[r][c] == 1:
+                row, col = r, c
+
+    partner = min(
+        grid[row + dr][col + dc]
+        for dr, dc in ((-1, 0), (1, 0), (0, -1), (0, 1))
+        if 0 <= row + dr < size and 0 <= col + dc < size
+    )
+
+    return [1 if step % 2 == 0 else partner for step in range(k)]
+=== REQ000181 END ===
+
+=== REQ000182 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    // each cell of the grid contains a value. Every integer in the range [1, N * N]
+    // inclusive appears exactly once on the cells of the grid.
+    // You have to find the minimum path of length k in the grid. You can start
+    // from any cell, and in each step you can move to any of the neighbor cells,
+    // in other words, you can go to cells which share an edge with you current
+    // cell.
+    // Please note that a path of length k means visiting exactly k cells (not
+    // necessarily distinct).
+    // You CANNOT go off the grid.
+    // A path A (of length k) is considered less than a path B (of length k) if
+    // after making the ordered array lists of the values on the cells that A and B go
+    // through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    // than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    // such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    // lst_A[j] = lst_B[j].
+    // It is guaranteed that the answer is unique.
+    // Return an ordered array list of the values on the cells that the minimum path go through.
+    // Examples:    
+    // >>> minPath((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)7l, (long)8l, (long)9l))))), (3l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)1l)))
+    // >>> minPath((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)5l, (long)9l, (long)3l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)7l, (long)8l, (long)2l))))), (1l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l)))
+    public static ArrayList<Long> minPath(ArrayList<ArrayList<Long>> grid, long k) {
+        int size = grid.size();
+        int row = 0, col = 0;
+        for (int r = 0; r < size; r++) {
+            for (int c = 0; c < size; c++) {
+                if (grid.get(r).get(c) == 1L) { row = r; col = c; }
+            }
+        }
+
+        int[][] moves = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        long partner = Long.MAX_VALUE;
+        for (int[] move : moves) {
+            int nr = row + move[0], nc = col + move[1];
+            if (nr >= 0 && nr < size && nc >= 0 && nc < size) {
+                partner = Math.min(partner, grid.get(nr).get(nc));
+            }
+        }
+
+        ArrayList<Long> path = new ArrayList<>();
+        for (long step = 0; step < k; step++) {
+            path.add(step % 2 == 0 ? 1L : partner);
+        }
+        return path;
+    }
+}
+=== REQ000182 END ===
+
+=== REQ000183 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+// each cell of the grid contains a value. Every integer in the range [1, N * N]
+// inclusive appears exactly once on the cells of the grid.
+// You have to find the minimum path of length k in the grid. You can start
+// from any cell, and in each step you can move to any of the neighbor cells,
+// in other words, you can go to cells which share an edge with you current
+// cell.
+// Please note that a path of length k means visiting exactly k cells (not
+// necessarily distinct).
+// You CANNOT go off the grid.
+// A path A (of length k) is considered less than a path B (of length k) if
+// after making the ordered vectors of the values on the cells that A and B go
+// through (let's call them lst_A and lst_B), lst_A is lexicographically less
+// than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+// such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+// lst_A[j] = lst_B[j].
+// It is guaranteed that the answer is unique.
+// Return an ordered vector of the values on the cells that the minimum path go through.
+// Examples:    
+// >>> minPath((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3}), (std::vector<long>)std::vector<long>({(long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)7, (long)8, (long)9})})), (3))
+// (std::vector<long>({(long)1, (long)2, (long)1}))
+// >>> minPath((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)5, (long)9, (long)3}), (std::vector<long>)std::vector<long>({(long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)7, (long)8, (long)2})})), (1))
+// (std::vector<long>({(long)1}))
+std::vector<long> minPath(std::vector<std::vector<long>> grid, long k) {
+    int size = grid.size();
+    int row = 0, col = 0;
+    for (int r = 0; r < size; r++) {
+        for (int c = 0; c < size; c++) {
+            if (grid[r][c] == 1) { row = r; col = c; }
+        }
+    }
+
+    int moves[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    long partner = LONG_MAX;
+    for (auto &move : moves) {
+        int nr = row + move[0], nc = col + move[1];
+        if (nr >= 0 && nr < size && nc >= 0 && nc < size) {
+            partner = std::min(partner, grid[nr][nc]);
+        }
+    }
+
+    std::vector<long> path;
+    for (long step = 0; step < k; step++) {
+        path.push_back(step % 2 == 0 ? 1L : partner);
+    }
+    return path;
+}
+=== REQ000183 END ===
+
+=== REQ000184 START ===
+def tri(n):
+    """Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    the last couple centuries. However, what people don't know is Tribonacci sequence.
+    Tribonacci sequence is defined by the recurrence:
+    tri(1) = 3
+    tri(n) = 1 + n / 2, if n is even.
+    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    For example:
+    tri(2) = 1 + (2 / 2) = 2
+    tri(4) = 3
+    tri(3) = tri(2) + tri(1) + tri(4)
+           = 2 + 3 + 3 = 8 
+    You are given a non-negative integer number n, you have to a return a list of the 
+    first n + 1 numbers of the Tribonacci sequence.
+    Examples:
+    tri(3) = [1, 3, 2, 8]
+    """
+    def even_term(m):
+        return 1 + m // 2
+
+    sequence = [1]
+    for i in range(1, n + 1):
+        if i == 1:
+            sequence.append(3)
+        elif i % 2 == 0:
+            sequence.append(even_term(i))
+        else:
+            sequence.append(sequence[i - 1] + sequence[i - 2] + even_term(i + 1))
+    return sequence
+=== REQ000184 END ===
+
+=== REQ000185 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    // the last couple centuries. However, what people don't know is Tribonacci sequence.
+    // Tribonacci sequence is defined by the recurrence:
+    // tri(1) = 3
+    // tri(n) = 1 + n / 2, if n is even.
+    // tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    // For example:
+    // tri(2) = 1 + (2 / 2) = 2
+    // tri(4) = 3
+    // tri(3) = tri(2) + tri(1) + tri(4)
+    // = 2 + 3 + 3 = 8 
+    // You are given a non-negative integer number n, you have to a return an array array list of the 
+    // first n + 1 numbers of the Tribonacci sequence.
+    // Examples:
+    // >>> tri((3l))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)3l, (long)2l, (long)8l)))
+    public static ArrayList<Long> tri(long n) {
+        ArrayList<Long> sequence = new ArrayList<>();
+        sequence.add(1L);
+        for (int i = 1; i <= n; i++) {
+            if (i == 1) {
+                sequence.add(3L);
+            } else if (i % 2 == 0) {
+                sequence.add(evenTerm(i));
+            } else {
+                sequence.add(sequence.get(i - 1) + sequence.get(i - 2) + evenTerm(i + 1));
+            }
+        }
+        return sequence;
+    }
+
+    private static long evenTerm(long m) {
+        return 1 + m / 2;
+    }
+}
+=== REQ000185 END ===
+
+=== REQ000186 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+// the last couple centuries. However, what people don't know is Tribonacci sequence.
+// Tribonacci sequence is defined by the recurrence:
+// tri(1) = 3
+// tri(n) = 1 + n / 2, if n is even.
+// tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+// For example:
+// tri(2) = 1 + (2 / 2) = 2
+// tri(4) = 3
+// tri(3) = tri(2) + tri(1) + tri(4)
+// = 2 + 3 + 3 = 8 
+// You are given a non-negative integer number n, you have to a return a vector of the 
+// first n + 1 numbers of the Tribonacci sequence.
+// Examples:
+// >>> tri((3))
+// (std::vector<long>({(long)1, (long)3, (long)2, (long)8}))
+static long even_term(long m) {
+    return 1 + m / 2;
+}
+
+std::vector<long> tri(long n) {
+    std::vector<long> sequence;
+    sequence.push_back(1);
+    for (long i = 1; i <= n; i++) {
+        if (i == 1) {
+            sequence.push_back(3);
+        } else if (i % 2 == 0) {
+            sequence.push_back(even_term(i));
+        } else {
+            sequence.push_back(sequence[i - 1] + sequence[i - 2] + even_term(i + 1));
+        }
+    }
+    return sequence;
+}
+=== REQ000186 END ===
+
+=== REQ000187 START ===
+def digits(n):
+    """Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    digits(4)  == 0
+    digits(235) == 15
+    """
+    odds = [int(ch) for ch in str(n) if int(ch) % 2 == 1]
+    if not odds:
+        return 0
+    product = 1
+    for d in odds:
+        product *= d
+    return product
+=== REQ000187 END ===
+
+=== REQ000188 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the product of the odd digits.
+    // Return 0 if all digits are even.
+    // For example:
+    // >>> digits((1l))
+    // (1l)
+    // >>> digits((4l))
+    // (0l)
+    // >>> digits((235l))
+    // (15l)
+    public static long digits(long n) {
+        long product = 1;
+        int odds = 0;
+        for (long rest = n; rest > 0; rest /= 10) {
+            long d = rest % 10;
+            if (d % 2 == 1) {
+                product *= d;
+                odds++;
+            }
+        }
+        return odds == 0 ? 0 : product;
+    }
+}
+=== REQ000188 END ===
+
+=== REQ000189 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the product of the odd digits.
+// Return 0 if all digits are even.
+// For example:
+// >>> digits((1))
+// (1)
+// >>> digits((4))
+// (0)
+// >>> digits((235))
+// (15)
+long digits(long n) {
+    long product = 1;
+    int odds = 0;
+    for (long rest = n; rest > 0; rest /= 10) {
+        long d = rest % 10;
+        if (d % 2 == 1) {
+            product *= d;
+            odds++;
+        }
+    }
+    return odds == 0 ? 0 : product;
+}
+=== REQ000189 END ===
+
+=== REQ000190 START ===
+def int_to_mini_roman(number):
+    """
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """
+    table = (
+        (1000, 'm'), (900, 'cm'), (500, 'd'), (400, 'cd'),
+        (100, 'c'), (90, 'xc'), (50, 'l'), (40, 'xl'),
+        (10, 'x'), (9, 'ix'), (5, 'v'), (4, 'iv'), (1, 'i'),
+    )
+    parts = []
+    rest = number
+    for amount, symbol in table:
+        count, rest = divmod(rest, amount)
+        parts.append(symbol * count)
+    return ''.join(parts)
+=== REQ000190 END ===
+
+=== REQ000191 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer, obtain its roman numeral equivalent as a string,
+    // and return it in lowercase.
+    // Restrictions: 1 <= num <= 1000
+    // Examples:
+    // >>> intToMiniRoman((19l))
+    // ("xix")
+    // >>> intToMiniRoman((152l))
+    // ("clii")
+    // >>> intToMiniRoman((426l))
+    // ("cdxxvi")
+    public static String intToMiniRoman(long number) {
+        long[] amounts = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] symbols = {"m", "cm", "d", "cd", "c", "xc", "l", "xl", "x", "ix", "v", "iv", "i"};
+
+        StringBuilder sb = new StringBuilder();
+        long rest = number;
+        for (int i = 0; i < amounts.length; i++) {
+            long count = rest / amounts[i];
+            rest %= amounts[i];
+            for (long c = 0; c < count; c++) sb.append(symbols[i]);
+        }
+        return sb.toString();
+    }
+}
+=== REQ000191 END ===
+
+=== REQ000192 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer, obtain its roman numeral equivalent as a string,
+// and return it in lowercase.
+// Restrictions: 1 <= num <= 1000
+// Examples:
+// >>> int_to_mini_roman((19))
+// ("xix")
+// >>> int_to_mini_roman((152))
+// ("clii")
+// >>> int_to_mini_roman((426))
+// ("cdxxvi")
+std::string int_to_mini_roman(long number) {
+    const long amounts[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    const std::string symbols[] = {"m", "cm", "d", "cd", "c", "xc", "l", "xl", "x", "ix", "v", "iv", "i"};
+
+    std::string out;
+    long rest = number;
+    for (int i = 0; i < 13; i++) {
+        long count = rest / amounts[i];
+        rest %= amounts[i];
+        for (long c = 0; c < count; c++) out += symbols[i];
+    }
+    return out;
+}
+=== REQ000192 END ===
+
+=== REQ000193 START ===
+def do_algebra(operator, operand):
+    """
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """
+    pieces = [str(operand[0])]
+    for i, op in enumerate(operator):
+        pieces.append(op)
+        pieces.append(str(operand[i + 1]))
+    return eval(' '.join(pieces))
+=== REQ000193 END ===
+
+=== REQ000194 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given two array lists operator, and operand. The first array list has basic algebra operations, and 
+    // the second array list is an array array list of integers. Use the two given array lists to build the algebric 
+    // expression and return the evaluation of this expression.
+    // The basic algebra operations:
+    // Addition ( + ) 
+    // Subtraction ( - ) 
+    // Multiplication ( * ) 
+    // Floor division ( // ) 
+    // Exponentiation ( ** ) 
+    // Example:
+    // operator['+', '*', '-']
+    // array array list = [2, 3, 4, 5]
+    // result = 2 + 3 * 4 - 5
+    // => result = 9
+    // Note:
+    // The length of operator array list is equal to the length of operand array list minus one.
+    // Operand is an array array list of of non-negative integers.
+    // Operator array list has at least one operator, and operand array list has at least two operands.
+    public static long doAlgebra(ArrayList<String> op, ArrayList<Long> operand) {
+        LinkedList<Long> values = new LinkedList<>(operand);
+        LinkedList<String> ops = new LinkedList<>(op);
+
+        collapse(values, ops, new HashSet<>(Arrays.asList("**")));
+        collapse(values, ops, new HashSet<>(Arrays.asList("*", "//")));
+        collapse(values, ops, new HashSet<>(Arrays.asList("+", "-")));
+
+        return values.getFirst();
+    }
+
+    private static void collapse(LinkedList<Long> values, LinkedList<String> ops, Set<String> wanted) {
+        int i = 0;
+        while (i < ops.size()) {
+            String o = ops.get(i);
+            if (!wanted.contains(o)) {
+                i++;
+                continue;
+            }
+            long a = values.get(i), b = values.get(i + 1);
+            long result;
+            switch (o) {
+                case "**": result = power(a, b); break;
+                case "*": result = a * b; break;
+                case "//": result = Math.floorDiv(a, b); break;
+                case "+": result = a + b; break;
+                default: result = a - b; break;
+            }
+            values.set(i, result);
+            values.remove(i + 1);
+            ops.remove(i);
+        }
+    }
+
+    private static long power(long base, long exp) {
+        long acc = 1;
+        for (long e = 0; e < exp; e++) acc *= base;
+        return acc;
+    }
+}
+=== REQ000194 END ===
+
+=== REQ000195 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given two vectors operator, and operand. The first vector has basic algebra operations, and 
+// the second vector is a vector of integers. Use the two given vectors to build the algebric 
+// expression and return the evaluation of this expression.
+// The basic algebra operations:
+// Addition ( + ) 
+// Subtraction ( - ) 
+// Multiplication ( * ) 
+// Floor division ( // ) 
+// Exponentiation ( ** ) 
+// Example:
+// operator['+', '*', '-']
+// vector = [2, 3, 4, 5]
+// result = 2 + 3 * 4 - 5
+// => result = 9
+// Note:
+// The length of operator vector is equal to the length of operand vector minus one.
+// Operand is a vector of of non-negative integers.
+// Operator vector has at least one operator, and operand vector has at least two operands.
+static long apply_op(const std::string &o, long a, long b) {
+    if (o == "**") {
+        long acc = 1;
+        for (long e = 0; e < b; e++) acc *= a;
+        return acc;
+    }
+    if (o == "*") return a * b;
+    if (o == "//") {
+        long q = a / b;
+        if ((a % b != 0) && ((a < 0) != (b < 0))) q--;
+        return q;
+    }
+    if (o == "+") return a + b;
+    return a - b;
+}
+
+static void collapse(std::vector<long> &values, std::vector<std::string> &ops,
+                     const std::set<std::string> &wanted) {
+    size_t i = 0;
+    while (i < ops.size()) {
+        if (!wanted.count(ops[i])) {
+            i++;
+            continue;
+        }
+        values[i] = apply_op(ops[i], values[i], values[i + 1]);
+        values.erase(values.begin() + i + 1);
+        ops.erase(ops.begin() + i);
+    }
+}
+
+long do_algebra(std::vector<std::string> op, std::vector<long> operand) {
+    std::vector<long> values = operand;
+    std::vector<std::string> ops = op;
+
+    collapse(values, ops, {"**"});
+    collapse(values, ops, {"*", "//"});
+    collapse(values, ops, {"+", "-"});
+
+    return values[0];
+}
+=== REQ000195 END ===
+
+=== REQ000196 START ===
+def solve(s):
+    """You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve("1234") = "4321"
+    solve("ab") = "AB"
+    solve("#a@C") = "#A@c"
+    """
+    if not any(ch.isalpha() for ch in s):
+        return s[::-1]
+    return s.swapcase()
+=== REQ000196 END ===
+
+=== REQ000197 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a string s.
+    // if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    // otherwise keep it as it is.
+    // If the string contains no letters, reverse the string.
+    // The function should return the resulted string.
+    // Examples
+    // >>> solve(("1234"))
+    // ("4321")
+    // >>> solve(("ab"))
+    // ("AB")
+    // >>> solve(("#a@C"))
+    // ("#A@c")
+    public static String solve(String s) {
+        boolean hasLetter = false;
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLetter(s.charAt(i))) { hasLetter = true; break; }
+        }
+        if (!hasLetter) {
+            return new StringBuilder(s).reverse().toString();
+        }
+
+        char[] out = s.toCharArray();
+        for (int i = 0; i < out.length; i++) {
+            if (Character.isUpperCase(out[i])) out[i] = Character.toLowerCase(out[i]);
+            else if (Character.isLowerCase(out[i])) out[i] = Character.toUpperCase(out[i]);
+        }
+        return new String(out);
+    }
+}
+=== REQ000197 END ===
+
+=== REQ000198 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a string s.
+// if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+// otherwise keep it as it is.
+// If the string contains no letters, reverse the string.
+// The function should return the resulted string.
+// Examples
+// >>> solve(("1234"))
+// ("4321")
+// >>> solve(("ab"))
+// ("AB")
+// >>> solve(("#a@C"))
+// ("#A@c")
+std::string solve(std::string s) {
+    bool hasLetter = std::any_of(s.begin(), s.end(),
+                                 [](unsigned char ch) { return std::isalpha(ch); });
+    if (!hasLetter) {
+        std::reverse(s.begin(), s.end());
+        return s;
+    }
+    for (char &ch : s) {
+        unsigned char u = (unsigned char) ch;
+        if (std::isupper(u)) ch = (char) std::tolower(u);
+        else if (std::islower(u)) ch = (char) std::toupper(u);
+    }
+    return s;
+}
+=== REQ000198 END ===
+
+=== REQ000199 START ===
+
+
+def strlen(string: str) -> int:
+    """ Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """
+    count = 0
+    for _ in string:
+        count += 1
+    return count
+=== REQ000199 END ===
+
+=== REQ000200 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Return length of given string
+    // >>> stringLength((""))
+    // (0l)
+    // >>> stringLength(("abc"))
+    // (3l)
+    public static long strlen(String string) {
+        return (long) string.length();
+    }
+}
+=== REQ000200 END ===

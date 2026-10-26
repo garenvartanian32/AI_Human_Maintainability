@@ -1,0 +1,6 @@
+n = int(input())
+s = list(map(int, input().split()))
+summ = sum(s)
+maxx = max(s)
+x = max(maxx, (2*summ//n)+1)
+print(x)

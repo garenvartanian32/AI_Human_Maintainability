@@ -1,0 +1,828 @@
+=== REQ000001 START ===
+from collections import defaultdict
+
+
+class Solution:
+    def maxSum(self, nums):
+        groups = defaultdict(list)
+        for value in nums:
+            top = max(int(ch) for ch in str(value))
+            groups[top].append(value)
+
+        answer = -1
+        for bucket in groups.values():
+            if len(bucket) >= 2:
+                bucket.sort(reverse=True)
+                answer = max(answer, bucket[0] + bucket[1])
+        return answer
+=== REQ000001 END ===
+
+=== REQ000002 START ===
+import java.util.*;
+
+class Solution {
+    public int maxSum(int[] nums) {
+        Map<Integer, List<Integer>> groups = new HashMap<>();
+        for (int value : nums) {
+            int top = 0;
+            for (int t = value; t > 0; t /= 10) {
+                top = Math.max(top, t % 10);
+            }
+            groups.computeIfAbsent(top, k -> new ArrayList<>()).add(value);
+        }
+
+        int answer = -1;
+        for (List<Integer> bucket : groups.values()) {
+            if (bucket.size() >= 2) {
+                bucket.sort(Collections.reverseOrder());
+                answer = Math.max(answer, bucket.get(0) + bucket.get(1));
+            }
+        }
+        return answer;
+    }
+}
+=== REQ000002 END ===
+
+=== REQ000003 START ===
+#include <vector>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    int maxSum(vector<int>& nums) {
+        map<int, vector<int>> groups;
+        for (int value : nums) {
+            int top = 0;
+            for (int t = value; t > 0; t /= 10) {
+                top = max(top, t % 10);
+            }
+            groups[top].push_back(value);
+        }
+
+        int answer = -1;
+        for (auto &entry : groups) {
+            vector<int> &bucket = entry.second;
+            if (bucket.size() >= 2) {
+                sort(bucket.rbegin(), bucket.rend());
+                answer = max(answer, bucket[0] + bucket[1]);
+            }
+        }
+        return answer;
+    }
+};
+=== REQ000003 END ===
+
+=== REQ000004 START ===
+class Solution:
+    def finalString(self, s: str) -> str:
+        out = []
+        for ch in s:
+            if ch == 'i':
+                out.reverse()
+            else:
+                out.append(ch)
+        return ''.join(out)
+=== REQ000004 END ===
+
+=== REQ000005 START ===
+class Solution {
+    public String finalString(String s) {
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch == 'i') {
+                out.reverse();
+            } else {
+                out.append(ch);
+            }
+        }
+        return out.toString();
+    }
+}
+=== REQ000005 END ===
+
+=== REQ000006 START ===
+#include <string>
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    string finalString(string s) {
+        string out;
+        for (char ch : s) {
+            if (ch == 'i') {
+                reverse(out.begin(), out.end());
+            } else {
+                out.push_back(ch);
+            }
+        }
+        return out;
+    }
+};
+=== REQ000006 END ===
+
+=== REQ000007 START ===
+from bisect import bisect_left, insort
+
+
+class Solution:
+    def minAbsoluteDifference(self, nums, x):
+        if x == 0:
+            return 0
+
+        window = []
+        best = float('inf')
+        for j in range(x, len(nums)):
+            insort(window, nums[j - x])
+            target = nums[j]
+            pos = bisect_left(window, target)
+            if pos < len(window):
+                best = min(best, window[pos] - target)
+            if pos > 0:
+                best = min(best, target - window[pos - 1])
+        return best
+=== REQ000007 END ===
+
+=== REQ000008 START ===
+import java.util.*;
+
+class Solution {
+    public int minAbsoluteDifference(int[] nums, int x) {
+        if (x == 0) {
+            return 0;
+        }
+
+        TreeMap<Integer, Integer> window = new TreeMap<>();
+        int best = Integer.MAX_VALUE;
+        for (int j = x; j < nums.length; j++) {
+            window.merge(nums[j - x], 1, Integer::sum);
+            int target = nums[j];
+            Integer below = window.floorKey(target);
+            Integer above = window.ceilingKey(target);
+            if (below != null) {
+                best = Math.min(best, target - below);
+            }
+            if (above != null) {
+                best = Math.min(best, above - target);
+            }
+        }
+        return best;
+    }
+}
+=== REQ000008 END ===
+
+=== REQ000009 START ===
+#include <vector>
+#include <set>
+#include <climits>
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    int minAbsoluteDifference(vector<int>& nums, int x) {
+        if (x == 0) {
+            return 0;
+        }
+
+        multiset<int> window;
+        int best = INT_MAX;
+        for (size_t j = x; j < nums.size(); j++) {
+            window.insert(nums[j - x]);
+            int target = nums[j];
+            auto above = window.lower_bound(target);
+            if (above != window.end()) {
+                best = min(best, *above - target);
+            }
+            if (above != window.begin()) {
+                best = min(best, target - *prev(above));
+            }
+        }
+        return best;
+    }
+};
+=== REQ000009 END ===
+
+=== REQ000010 START ===
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class Solution:
+    def doubleIt(self, head):
+        head = self._reverse(head)
+
+        carry = 0
+        node = head
+        tail = None
+        while node:
+            doubled = node.val * 2 + carry
+            node.val = doubled % 10
+            carry = doubled // 10
+            tail = node
+            node = node.next
+
+        if carry:
+            tail.next = ListNode(carry)
+
+        return self._reverse(head)
+
+    def _reverse(self, node):
+        prev = None
+        while node:
+            nxt = node.next
+            node.next = prev
+            prev = node
+            node = nxt
+        return prev
+=== REQ000010 END ===
+
+=== REQ000011 START ===
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+class Solution {
+    public ListNode doubleIt(ListNode head) {
+        head = reverse(head);
+
+        int carry = 0;
+        ListNode node = head;
+        ListNode tail = null;
+        while (node != null) {
+            int doubled = node.val * 2 + carry;
+            node.val = doubled % 10;
+            carry = doubled / 10;
+            tail = node;
+            node = node.next;
+        }
+
+        if (carry > 0) {
+            tail.next = new ListNode(carry);
+        }
+
+        return reverse(head);
+    }
+
+    private ListNode reverse(ListNode node) {
+        ListNode prev = null;
+        while (node != null) {
+            ListNode nxt = node.next;
+            node.next = prev;
+            prev = node;
+            node = nxt;
+        }
+        return prev;
+    }
+}
+=== REQ000011 END ===
+
+=== REQ000012 START ===
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+class Solution {
+public:
+    ListNode* doubleIt(ListNode* head) {
+        head = reverse(head);
+
+        int carry = 0;
+        ListNode* node = head;
+        ListNode* tail = nullptr;
+        while (node) {
+            int doubled = node->val * 2 + carry;
+            node->val = doubled % 10;
+            carry = doubled / 10;
+            tail = node;
+            node = node->next;
+        }
+
+        if (carry > 0) {
+            tail->next = new ListNode(carry);
+        }
+
+        return reverse(head);
+    }
+
+private:
+    ListNode* reverse(ListNode* node) {
+        ListNode* prev = nullptr;
+        while (node) {
+            ListNode* nxt = node->next;
+            node->next = prev;
+            prev = node;
+            node = nxt;
+        }
+        return prev;
+    }
+};
+=== REQ000012 END ===
+
+=== REQ000013 START ===
+class Solution:
+    def maximumScore(self, nums, k):
+        MOD = 10 ** 9 + 7
+        n = len(nums)
+        limit = max(nums) + 1
+
+        # omega[v] = number of distinct primes dividing v
+        omega = [0] * limit
+        for p in range(2, limit):
+            if omega[p] == 0:
+                for multiple in range(p, limit, p):
+                    omega[multiple] += 1
+
+        score = [omega[v] for v in nums]
+
+        # nearest strictly-greater score on the left, >= on the right
+        left = [-1] * n
+        right = [n] * n
+        stack = []
+        for i in range(n):
+            while stack and score[stack[-1]] < score[i]:
+                stack.pop()
+            left[i] = stack[-1] if stack else -1
+            stack.append(i)
+        stack.clear()
+        for i in reversed(range(n)):
+            while stack and score[stack[-1]] <= score[i]:
+                stack.pop()
+            right[i] = stack[-1] if stack else n
+            stack.append(i)
+
+        result = 1
+        budget = k
+        for i in sorted(range(n), key=lambda idx: nums[idx], reverse=True):
+            if budget == 0:
+                break
+            reach = (i - left[i]) * (right[i] - i)
+            use = min(reach, budget)
+            result = result * pow(nums[i], use, MOD) % MOD
+            budget -= use
+        return result
+=== REQ000013 END ===
+
+=== REQ000014 START ===
+import java.util.*;
+
+class Solution {
+    private static final long MOD = 1_000_000_007L;
+
+    public int maximumScore(List<Integer> nums, int k) {
+        int n = nums.size();
+        int limit = 0;
+        for (int v : nums) {
+            limit = Math.max(limit, v);
+        }
+        limit++;
+
+        int[] omega = new int[limit];
+        for (int p = 2; p < limit; p++) {
+            if (omega[p] == 0) {
+                for (int multiple = p; multiple < limit; multiple += p) {
+                    omega[multiple]++;
+                }
+            }
+        }
+
+        int[] score = new int[n];
+        for (int i = 0; i < n; i++) {
+            score[i] = omega[nums.get(i)];
+        }
+
+        int[] left = new int[n];
+        int[] right = new int[n];
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && score[stack.peek()] < score[i]) {
+                stack.pop();
+            }
+            left[i] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(i);
+        }
+        stack.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && score[stack.peek()] <= score[i]) {
+                stack.pop();
+            }
+            right[i] = stack.isEmpty() ? n : stack.peek();
+            stack.push(i);
+        }
+
+        Integer[] order = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            order[i] = i;
+        }
+        Arrays.sort(order, (a, b) -> Integer.compare(nums.get(b), nums.get(a)));
+
+        long result = 1;
+        long budget = k;
+        for (int i : order) {
+            if (budget == 0) {
+                break;
+            }
+            long reach = (long) (i - left[i]) * (right[i] - i);
+            long use = Math.min(reach, budget);
+            result = result * modPow(nums.get(i), use) % MOD;
+            budget -= use;
+        }
+        return (int) result;
+    }
+
+    private long modPow(long base, long exp) {
+        long acc = 1;
+        base %= MOD;
+        while (exp > 0) {
+            if ((exp & 1L) == 1L) {
+                acc = acc * base % MOD;
+            }
+            base = base * base % MOD;
+            exp >>= 1;
+        }
+        return acc;
+    }
+}
+=== REQ000014 END ===
+
+=== REQ000015 START ===
+#include <vector>
+#include <algorithm>
+#include <numeric>
+using namespace std;
+
+class Solution {
+public:
+    int maximumScore(vector<int>& nums, int k) {
+        const long long MOD = 1000000007LL;
+        int n = nums.size();
+        int limit = *max_element(nums.begin(), nums.end()) + 1;
+
+        vector<int> omega(limit, 0);
+        for (int p = 2; p < limit; p++) {
+            if (omega[p] == 0) {
+                for (int multiple = p; multiple < limit; multiple += p) {
+                    omega[multiple]++;
+                }
+            }
+        }
+
+        vector<int> score(n);
+        for (int i = 0; i < n; i++) {
+            score[i] = omega[nums[i]];
+        }
+
+        vector<int> left(n), right(n), stack;
+        for (int i = 0; i < n; i++) {
+            while (!stack.empty() && score[stack.back()] < score[i]) stack.pop_back();
+            left[i] = stack.empty() ? -1 : stack.back();
+            stack.push_back(i);
+        }
+        stack.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.empty() && score[stack.back()] <= score[i]) stack.pop_back();
+            right[i] = stack.empty() ? n : stack.back();
+            stack.push_back(i);
+        }
+
+        vector<int> order(n);
+        iota(order.begin(), order.end(), 0);
+        sort(order.begin(), order.end(), [&](int a, int b) { return nums[a] > nums[b]; });
+
+        auto modPow = [&](long long base, long long exp) {
+            long long acc = 1;
+            base %= MOD;
+            while (exp > 0) {
+                if (exp & 1LL) acc = acc * base % MOD;
+                base = base * base % MOD;
+                exp >>= 1;
+            }
+            return acc;
+        };
+
+        long long result = 1;
+        long long budget = k;
+        for (int i : order) {
+            if (budget == 0) break;
+            long long reach = (long long)(i - left[i]) * (right[i] - i);
+            long long use = min(reach, budget);
+            result = result * modPow(nums[i], use) % MOD;
+            budget -= use;
+        }
+        return (int) result;
+    }
+};
+=== REQ000015 END ===
+
+=== REQ000016 START ===
+class Solution:
+    def findMaximumElegance(self, items, k):
+        order = sorted(items, key=lambda item: item[0], reverse=True)
+
+        profit = 0
+        seen = set()
+        spare = []          # profits of picked items whose category repeats
+        for value, category in order[:k]:
+            profit += value
+            if category in seen:
+                spare.append(value)
+            else:
+                seen.add(category)
+
+        best = profit + len(seen) * len(seen)
+        for value, category in order[k:]:
+            if not spare:
+                break
+            if category in seen:
+                continue
+            profit += value - spare.pop()
+            seen.add(category)
+            best = max(best, profit + len(seen) * len(seen))
+        return best
+=== REQ000016 END ===
+
+=== REQ000017 START ===
+import java.util.*;
+
+class Solution {
+    public long findMaximumElegance(int[][] items, int k) {
+        Arrays.sort(items, (a, b) -> Integer.compare(b[0], a[0]));
+
+        long profit = 0;
+        Set<Integer> seen = new HashSet<>();
+        Deque<Integer> spare = new ArrayDeque<>();
+        for (int i = 0; i < k; i++) {
+            profit += items[i][0];
+            if (!seen.add(items[i][1])) {
+                spare.push(items[i][0]);
+            }
+        }
+
+        long distinct = seen.size();
+        long best = profit + distinct * distinct;
+        for (int i = k; i < items.length; i++) {
+            if (spare.isEmpty()) {
+                break;
+            }
+            if (seen.contains(items[i][1])) {
+                continue;
+            }
+            profit += items[i][0] - spare.pop();
+            seen.add(items[i][1]);
+            distinct = seen.size();
+            best = Math.max(best, profit + distinct * distinct);
+        }
+        return best;
+    }
+}
+=== REQ000017 END ===
+
+=== REQ000018 START ===
+#include <vector>
+#include <algorithm>
+#include <unordered_set>
+using namespace std;
+
+class Solution {
+public:
+    long long findMaximumElegance(vector<vector<int>>& items, int k) {
+        sort(items.begin(), items.end(), [](const vector<int>& a, const vector<int>& b) {
+            return a[0] > b[0];
+        });
+
+        long long profit = 0;
+        unordered_set<int> seen;
+        vector<int> spare;
+        for (int i = 0; i < k; i++) {
+            profit += items[i][0];
+            if (!seen.insert(items[i][1]).second) {
+                spare.push_back(items[i][0]);
+            }
+        }
+
+        long long distinct = (long long) seen.size();
+        long long best = profit + distinct * distinct;
+        for (size_t i = k; i < items.size(); i++) {
+            if (spare.empty()) break;
+            if (seen.count(items[i][1])) continue;
+            profit += items[i][0] - spare.back();
+            spare.pop_back();
+            seen.insert(items[i][1]);
+            distinct = (long long) seen.size();
+            best = max(best, profit + distinct * distinct);
+        }
+        return best;
+    }
+};
+=== REQ000018 END ===
+
+=== REQ000019 START ===
+import sys
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    q = int(data[0])
+    out = []
+    pos = 1
+    for _ in range(q):
+        l = int(data[pos]); r = int(data[pos + 1]); d = int(data[pos + 2])
+        pos += 3
+        if d < l or d > r:
+            out.append(d)
+        else:
+            out.append((r // d + 1) * d)
+    sys.stdout.write('\n'.join(map(str, out)) + '\n')
+
+
+main()
+=== REQ000019 END ===
+
+=== REQ000020 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        DataInputStream in = new DataInputStream(new BufferedInputStream(System.in, 1 << 16));
+        int q = nextInt(in);
+        StringBuilder sb = new StringBuilder();
+        while (q-- > 0) {
+            long l = nextInt(in);
+            long r = nextInt(in);
+            long d = nextInt(in);
+            sb.append((d < l || d > r) ? d : (r / d + 1) * d).append('\n');
+        }
+        System.out.print(sb);
+    }
+
+    private static int nextInt(DataInputStream in) throws IOException {
+        int value = 0;
+        int b = in.read();
+        while (b < '0' || b > '9') {
+            b = in.read();
+        }
+        while (b >= '0' && b <= '9') {
+            value = value * 10 + (b - '0');
+            b = in.read();
+        }
+        return value;
+    }
+}
+=== REQ000020 END ===
+
+=== REQ000021 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int q;
+    cin >> q;
+    ostringstream out;
+    while (q--) {
+        long long l, r, d;
+        cin >> l >> r >> d;
+        out << ((d < l || d > r) ? d : (r / d + 1) * d) << '\n';
+    }
+    cout << out.str();
+    return 0;
+}
+=== REQ000021 END ===
+
+=== REQ000022 START ===
+import sys
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0])
+    degree = [0] * (n + 1)
+    pos = 1
+    for _ in range(n - 1):
+        u = int(data[pos]); v = int(data[pos + 1])
+        pos += 2
+        degree[u] += 1
+        degree[v] += 1
+    print("NO" if any(degree[v] == 2 for v in range(1, n + 1)) else "YES")
+
+
+main()
+=== REQ000022 END ===
+
+=== REQ000023 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer in = new StreamTokenizer(br);
+        in.nextToken();
+        int n = (int) in.nval;
+        int[] degree = new int[n + 1];
+        for (int e = 0; e < n - 1; e++) {
+            in.nextToken();
+            degree[(int) in.nval]++;
+            in.nextToken();
+            degree[(int) in.nval]++;
+        }
+        for (int v = 1; v <= n; v++) {
+            if (degree[v] == 2) {
+                System.out.println("NO");
+                return;
+            }
+        }
+        System.out.println("YES");
+    }
+}
+=== REQ000023 END ===
+
+=== REQ000024 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+    vector<int> degree(n + 1, 0);
+    for (int e = 0; e < n - 1; e++) {
+        int u, v;
+        cin >> u >> v;
+        degree[u]++;
+        degree[v]++;
+    }
+    for (int v = 1; v <= n; v++) {
+        if (degree[v] == 2) {
+            cout << "NO\n";
+            return 0;
+        }
+    }
+    cout << "YES\n";
+    return 0;
+}
+=== REQ000024 END ===
+
+=== REQ000025 START ===
+import sys
+
+
+class Fenwick:
+    def __init__(self, size):
+        self.size = size
+        self.cnt = [0] * (size + 1)
+        self.tot = [0] * (size + 1)
+
+    def add(self, i, x):
+        while i <= self.size:
+            self.cnt[i] += 1
+            self.tot[i] += x
+            i += i & -i
+
+    def query(self, i):
+        c = t = 0
+        while i > 0:
+            c += self.cnt[i]
+            t += self.tot[i]
+            i -= i & -i
+        return c, t
+
+
+def main():
+    data = sys.stdin.buffer.read().split()
+    n = int(data[0])
+    xs = list(map(int, data[1:1 + n]))
+    vs = list(map(int, data[1 + n:1 + 2 * n]))
+
+    ranks = {v: i + 1 for i, v in enumerate(sorted(set(vs)))}
+    tree = Fenwick(len(ranks))
+
+    total = 0
+    for x, v in sorted(zip(xs, vs)):
+        c, t = tree.query(ranks[v])
+        total += c * x - t
+        tree.add(ranks[v], x)
+
+    print(total)
+
+
+main()
+=== REQ000025 END ===

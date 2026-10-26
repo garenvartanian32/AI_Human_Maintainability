@@ -1,0 +1,513 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000326 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+Score : 400 points Problem Statement You are given an undirected connected weighted graph with N vertices and M edges that contains neither self-loops nor double edges. The i -th (1≤i≤M) edge connects vertex a_i and vertex b_i with a distance of c_i . Here, a self-loop is an edge where a_i = b_i (1≤i≤M) , and double edges are two edges where (a_i,b_i)=(a_j,b_j) or (a_i,b_i)=(b_j,a_j) (1≤i<j≤M) . A connected graph is a graph where there is a path between every pair of different vertices. Find the number of the edges that are not contained in any shortest path between any pair of different vertices. Constraints 2≤N≤100 N-1≤M≤min(N(N-1)/2,1000) 1≤a_i,b_i≤N 1≤c_i≤1000 c_i is an integer. The given graph contains neither self-loops nor double edges. The given graph is connected. Input The input is given from Standard Input in the following format: N M a_1 b_1 c_1 a_2 b_2 c_2 : a_M b_M c_M Output Print the number of the edges in the graph that are not contained in any shortest path between any pair of different vertices. Sample Input 1 3 3 1 2 1 1 3 1 2 3 3 Sample Output 1 1 In the given graph, the shortest paths between all pairs of different vertices are as follows: The shortest path from vertex 1 to vertex 2 is: vertex 1 → vertex 2 , with the length of 1 . The shortest path from vertex 1 to vertex 3 is: vertex 1 → vertex 3 , with the length of 1 . The shortest path from vertex 2 to vertex 1 is: vertex 2 → vertex 1 , with the length of 1 . The shortest path from vertex 2 to vertex 3 is: vertex 2 → vertex 1 → vertex 3 , with the length of 2 . The shortest path from vertex 3 to vertex 1 is: vertex 3 → vertex 1 , with the length of 1 . The shortest path from vertex 3 to vertex 2 is: vertex 3 → vertex 1 → vertex 2 , with the length of 2 . Thus, the only edge that is not contained in any shortest path, is the edge of length 3 connecting vertex 2 and vertex 3 , hence the output should be 1 . Sample Input 2 3 2 1 2 1 2 3 1 Sample Output 2 0 Every edge is contained in some shortest path between some pair of different vertices.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000327 PROMPT ===
+Solve the following programming problem in Java.
+
+Score : 400 points Problem Statement You are given an undirected connected weighted graph with N vertices and M edges that contains neither self-loops nor double edges. The i -th (1≤i≤M) edge connects vertex a_i and vertex b_i with a distance of c_i . Here, a self-loop is an edge where a_i = b_i (1≤i≤M) , and double edges are two edges where (a_i,b_i)=(a_j,b_j) or (a_i,b_i)=(b_j,a_j) (1≤i<j≤M) . A connected graph is a graph where there is a path between every pair of different vertices. Find the number of the edges that are not contained in any shortest path between any pair of different vertices. Constraints 2≤N≤100 N-1≤M≤min(N(N-1)/2,1000) 1≤a_i,b_i≤N 1≤c_i≤1000 c_i is an integer. The given graph contains neither self-loops nor double edges. The given graph is connected. Input The input is given from Standard Input in the following format: N M a_1 b_1 c_1 a_2 b_2 c_2 : a_M b_M c_M Output Print the number of the edges in the graph that are not contained in any shortest path between any pair of different vertices. Sample Input 1 3 3 1 2 1 1 3 1 2 3 3 Sample Output 1 1 In the given graph, the shortest paths between all pairs of different vertices are as follows: The shortest path from vertex 1 to vertex 2 is: vertex 1 → vertex 2 , with the length of 1 . The shortest path from vertex 1 to vertex 3 is: vertex 1 → vertex 3 , with the length of 1 . The shortest path from vertex 2 to vertex 1 is: vertex 2 → vertex 1 , with the length of 1 . The shortest path from vertex 2 to vertex 3 is: vertex 2 → vertex 1 → vertex 3 , with the length of 2 . The shortest path from vertex 3 to vertex 1 is: vertex 3 → vertex 1 , with the length of 1 . The shortest path from vertex 3 to vertex 2 is: vertex 3 → vertex 1 → vertex 2 , with the length of 2 . Thus, the only edge that is not contained in any shortest path, is the edge of length 3 connecting vertex 2 and vertex 3 , hence the output should be 1 . Sample Input 2 3 2 1 2 1 2 3 1 Sample Output 2 0 Every edge is contained in some shortest path between some pair of different vertices.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000328 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+Score : 400 points Problem Statement You are given an undirected connected weighted graph with N vertices and M edges that contains neither self-loops nor double edges. The i -th (1≤i≤M) edge connects vertex a_i and vertex b_i with a distance of c_i . Here, a self-loop is an edge where a_i = b_i (1≤i≤M) , and double edges are two edges where (a_i,b_i)=(a_j,b_j) or (a_i,b_i)=(b_j,a_j) (1≤i<j≤M) . A connected graph is a graph where there is a path between every pair of different vertices. Find the number of the edges that are not contained in any shortest path between any pair of different vertices. Constraints 2≤N≤100 N-1≤M≤min(N(N-1)/2,1000) 1≤a_i,b_i≤N 1≤c_i≤1000 c_i is an integer. The given graph contains neither self-loops nor double edges. The given graph is connected. Input The input is given from Standard Input in the following format: N M a_1 b_1 c_1 a_2 b_2 c_2 : a_M b_M c_M Output Print the number of the edges in the graph that are not contained in any shortest path between any pair of different vertices. Sample Input 1 3 3 1 2 1 1 3 1 2 3 3 Sample Output 1 1 In the given graph, the shortest paths between all pairs of different vertices are as follows: The shortest path from vertex 1 to vertex 2 is: vertex 1 → vertex 2 , with the length of 1 . The shortest path from vertex 1 to vertex 3 is: vertex 1 → vertex 3 , with the length of 1 . The shortest path from vertex 2 to vertex 1 is: vertex 2 → vertex 1 , with the length of 1 . The shortest path from vertex 2 to vertex 3 is: vertex 2 → vertex 1 → vertex 3 , with the length of 2 . The shortest path from vertex 3 to vertex 1 is: vertex 3 → vertex 1 , with the length of 1 . The shortest path from vertex 3 to vertex 2 is: vertex 3 → vertex 1 → vertex 2 , with the length of 2 . Thus, the only edge that is not contained in any shortest path, is the edge of length 3 connecting vertex 2 and vertex 3 , hence the output should be 1 . Sample Input 2 3 2 1 2 1 2 3 1 Sample Output 2 0 Every edge is contained in some shortest path between some pair of different vertices.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000329 PROMPT ===
+Solve the following programming problem in C++.
+
+Score : 400 points Problem Statement You are given an undirected connected weighted graph with N vertices and M edges that contains neither self-loops nor double edges. The i -th (1≤i≤M) edge connects vertex a_i and vertex b_i with a distance of c_i . Here, a self-loop is an edge where a_i = b_i (1≤i≤M) , and double edges are two edges where (a_i,b_i)=(a_j,b_j) or (a_i,b_i)=(b_j,a_j) (1≤i<j≤M) . A connected graph is a graph where there is a path between every pair of different vertices. Find the number of the edges that are not contained in any shortest path between any pair of different vertices. Constraints 2≤N≤100 N-1≤M≤min(N(N-1)/2,1000) 1≤a_i,b_i≤N 1≤c_i≤1000 c_i is an integer. The given graph contains neither self-loops nor double edges. The given graph is connected. Input The input is given from Standard Input in the following format: N M a_1 b_1 c_1 a_2 b_2 c_2 : a_M b_M c_M Output Print the number of the edges in the graph that are not contained in any shortest path between any pair of different vertices. Sample Input 1 3 3 1 2 1 1 3 1 2 3 3 Sample Output 1 1 In the given graph, the shortest paths between all pairs of different vertices are as follows: The shortest path from vertex 1 to vertex 2 is: vertex 1 → vertex 2 , with the length of 1 . The shortest path from vertex 1 to vertex 3 is: vertex 1 → vertex 3 , with the length of 1 . The shortest path from vertex 2 to vertex 1 is: vertex 2 → vertex 1 , with the length of 1 . The shortest path from vertex 2 to vertex 3 is: vertex 2 → vertex 1 → vertex 3 , with the length of 2 . The shortest path from vertex 3 to vertex 1 is: vertex 3 → vertex 1 , with the length of 1 . The shortest path from vertex 3 to vertex 2 is: vertex 3 → vertex 1 → vertex 2 , with the length of 2 . Thus, the only edge that is not contained in any shortest path, is the edge of length 3 connecting vertex 2 and vertex 3 , hence the output should be 1 . Sample Input 2 3 2 1 2 1 2 3 1 Sample Output 2 0 Every edge is contained in some shortest path between some pair of different vertices.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000330 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+Score : 400 points Problem Statement You are given an undirected connected weighted graph with N vertices and M edges that contains neither self-loops nor double edges. The i -th (1≤i≤M) edge connects vertex a_i and vertex b_i with a distance of c_i . Here, a self-loop is an edge where a_i = b_i (1≤i≤M) , and double edges are two edges where (a_i,b_i)=(a_j,b_j) or (a_i,b_i)=(b_j,a_j) (1≤i<j≤M) . A connected graph is a graph where there is a path between every pair of different vertices. Find the number of the edges that are not contained in any shortest path between any pair of different vertices. Constraints 2≤N≤100 N-1≤M≤min(N(N-1)/2,1000) 1≤a_i,b_i≤N 1≤c_i≤1000 c_i is an integer. The given graph contains neither self-loops nor double edges. The given graph is connected. Input The input is given from Standard Input in the following format: N M a_1 b_1 c_1 a_2 b_2 c_2 : a_M b_M c_M Output Print the number of the edges in the graph that are not contained in any shortest path between any pair of different vertices. Sample Input 1 3 3 1 2 1 1 3 1 2 3 3 Sample Output 1 1 In the given graph, the shortest paths between all pairs of different vertices are as follows: The shortest path from vertex 1 to vertex 2 is: vertex 1 → vertex 2 , with the length of 1 . The shortest path from vertex 1 to vertex 3 is: vertex 1 → vertex 3 , with the length of 1 . The shortest path from vertex 2 to vertex 1 is: vertex 2 → vertex 1 , with the length of 1 . The shortest path from vertex 2 to vertex 3 is: vertex 2 → vertex 1 → vertex 3 , with the length of 2 . The shortest path from vertex 3 to vertex 1 is: vertex 3 → vertex 1 , with the length of 1 . The shortest path from vertex 3 to vertex 2 is: vertex 3 → vertex 1 → vertex 2 , with the length of 2 . Thus, the only edge that is not contained in any shortest path, is the edge of length 3 connecting vertex 2 and vertex 3 , hence the output should be 1 . Sample Input 2 3 2 1 2 1 2 3 1 Sample Output 2 0 Every edge is contained in some shortest path between some pair of different vertices.
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000331 PROMPT ===
+Solve the following programming problem in Python.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000332 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000333 PROMPT ===
+Solve the following programming problem in Java.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000334 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000335 PROMPT ===
+Solve the following programming problem in C++.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000336 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+Problem Statement You are given two integers a and b ( a≤b ). Determine if the product of the integers a , a+1 , … , b is positive, negative or zero. Constraints a and b are integers. -10^9≤a≤b≤10^9 Partial Score In test cases worth 100 points, -10≤a≤b≤10 . Input The input is given from Standard Input in the following format: a b Output If the product is positive, print Positive . If it is negative, print Negative . If it is zero, print Zero . Sample Input 1 1 3 Sample Output 1 Positive 1×2×3=6 is positive. Sample Input 2 -3 -1 Sample Output 2 Negative (-3)×(-2)×(-1)=-6 is negative. Sample Input 3 -1 1 Sample Output 3 Zero (-1)×0×1=0 .
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000337 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def max_fill(grid, capacity):
+    import math
+    """
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+    Example 1:
+        Input: 
+            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
+            bucket_capacity : 1
+        Output: 6
+
+    Example 2:
+        Input: 
+            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
+            bucket_capacity : 2
+        Output: 5
+    
+    Example 3:
+        Input: 
+            grid : [[0,0,0], [0,0,0]]
+            bucket_capacity : 5
+        Output: 0
+
+    Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000338 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def max_fill(grid, capacity):
+    import math
+    """
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+    Example 1:
+        Input: 
+            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
+            bucket_capacity : 1
+        Output: 6
+
+    Example 2:
+        Input: 
+            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
+            bucket_capacity : 2
+        Output: 5
+    
+    Example 3:
+        Input: 
+            grid : [[0,0,0], [0,0,0]]
+            bucket_capacity : 5
+        Output: 0
+
+    Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000339 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a rectangular grid of wells. Each row represents a single well,
+    // and each 1 in a row represents a single unit of water.
+    // Each well has a corresponding bucket that can be used to extract water from it, 
+    // and all buckets have the same capacity.
+    // Your task is to use the buckets to empty the wells.
+    // Output the number of times you need to lower the buckets.
+    // Example 1:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l))))), (1l))
+    // (6l)
+    // Example 2:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)1l, (long)1l))))), (2l))
+    // (5l)
+    // Example 3:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l))))), (5l))
+    // (0l)
+    // Constraints:
+    // * all wells have the same length
+    // * 1 <= grid.length <= 10^2
+    // * 1 <= grid[:,1].length <= 10^2
+    // * grid[i][j] -> 0 | 1
+    // * 1 <= capacity <= 10
+    public static long maxFill(ArrayList<ArrayList<Long>> grid, long capacity) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000340 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a rectangular grid of wells. Each row represents a single well,
+    // and each 1 in a row represents a single unit of water.
+    // Each well has a corresponding bucket that can be used to extract water from it, 
+    // and all buckets have the same capacity.
+    // Your task is to use the buckets to empty the wells.
+    // Output the number of times you need to lower the buckets.
+    // Example 1:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l))))), (1l))
+    // (6l)
+    // Example 2:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)1l, (long)1l, (long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)1l, (long)1l, (long)1l))))), (2l))
+    // (5l)
+    // Example 3:
+    // >>> maxFill((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)0l, (long)0l, (long)0l))))), (5l))
+    // (0l)
+    // Constraints:
+    // * all wells have the same length
+    // * 1 <= grid.length <= 10^2
+    // * 1 <= grid[:,1].length <= 10^2
+    // * grid[i][j] -> 0 | 1
+    // * 1 <= capacity <= 10
+    public static long maxFill(ArrayList<ArrayList<Long>> grid, long capacity) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000341 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a rectangular grid of wells. Each row represents a single well,
+// and each 1 in a row represents a single unit of water.
+// Each well has a corresponding bucket that can be used to extract water from it, 
+// and all buckets have the same capacity.
+// Your task is to use the buckets to empty the wells.
+// Output the number of times you need to lower the buckets.
+// Example 1:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1})})), (1))
+// (6)
+// Example 2:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)1, (long)1})})), (2))
+// (5)
+// Example 3:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0})})), (5))
+// (0)
+// Constraints:
+// * all wells have the same length
+// * 1 <= grid.length <= 10^2
+// * 1 <= grid[:,1].length <= 10^2
+// * grid[i][j] -> 0 | 1
+// * 1 <= capacity <= 10
+long max_fill(std::vector<std::vector<long>> grid, long capacity) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000342 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a rectangular grid of wells. Each row represents a single well,
+// and each 1 in a row represents a single unit of water.
+// Each well has a corresponding bucket that can be used to extract water from it, 
+// and all buckets have the same capacity.
+// Your task is to use the buckets to empty the wells.
+// Output the number of times you need to lower the buckets.
+// Example 1:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1})})), (1))
+// (6)
+// Example 2:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)1, (long)1, (long)1, (long)1}), (std::vector<long>)std::vector<long>({(long)0, (long)1, (long)1, (long)1})})), (2))
+// (5)
+// Example 3:
+// >>> max_fill((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0}), (std::vector<long>)std::vector<long>({(long)0, (long)0, (long)0})})), (5))
+// (0)
+// Constraints:
+// * all wells have the same length
+// * 1 <= grid.length <= 10^2
+// * 1 <= grid[:,1].length <= 10^2
+// * grid[i][j] -> 0 | 1
+// * 1 <= capacity <= 10
+long max_fill(std::vector<std::vector<long>> grid, long capacity) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000343 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000344 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000345 PROMPT ===
+Solve the following programming problem in Java.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list of two strings, both strings consist of open
+    // parentheses '(' or close parentheses ')' only.
+    // Your job is to check if it is possible to concatenate the two strings in
+    // some order, that the resulting string will be good.
+    // A string S is considered to be good if and only if all parentheses in S
+    // are balanced. For example: the string '(())()' is good, while the string
+    // '())' is not.
+    // Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+    // Examples:
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)"()(", (String)")"))))
+    // ("Yes")
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)")", (String)")"))))
+    // ("No")
+    public static String matchParens(ArrayList<String> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000346 PROMPT ===
+Solve the following programming problem in Java, but now prioritise software maintainability, readability, and a clear structure.
+
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given an array array list of two strings, both strings consist of open
+    // parentheses '(' or close parentheses ')' only.
+    // Your job is to check if it is possible to concatenate the two strings in
+    // some order, that the resulting string will be good.
+    // A string S is considered to be good if and only if all parentheses in S
+    // are balanced. For example: the string '(())()' is good, while the string
+    // '())' is not.
+    // Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+    // Examples:
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)"()(", (String)")"))))
+    // ("Yes")
+    // >>> matchParens((new ArrayList<String>(Arrays.asList((String)")", (String)")"))))
+    // ("No")
+    public static String matchParens(ArrayList<String> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000347 PROMPT ===
+Solve the following programming problem in C++.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector of two strings, both strings consist of open
+// parentheses '(' or close parentheses ')' only.
+// Your job is to check if it is possible to concatenate the two strings in
+// some order, that the resulting string will be good.
+// A string S is considered to be good if and only if all parentheses in S
+// are balanced. For example: the string '(())()' is good, while the string
+// '())' is not.
+// Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+// Examples:
+// >>> match_parens((std::vector<std::string>({(std::string)"()(", (std::string)")"})))
+// ("Yes")
+// >>> match_parens((std::vector<std::string>({(std::string)")", (std::string)")"})))
+// ("No")
+std::string match_parens(std::vector<std::string> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000348 PROMPT ===
+Solve the following programming problem in C++, but now prioritise software maintainability, readability, and a clear structure.
+
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a vector of two strings, both strings consist of open
+// parentheses '(' or close parentheses ')' only.
+// Your job is to check if it is possible to concatenate the two strings in
+// some order, that the resulting string will be good.
+// A string S is considered to be good if and only if all parentheses in S
+// are balanced. For example: the string '(())()' is good, while the string
+// '())' is not.
+// Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+// Examples:
+// >>> match_parens((std::vector<std::string>({(std::string)"()(", (std::string)")"})))
+// ("Yes")
+// >>> match_parens((std::vector<std::string>({(std::string)")", (std::string)")"})))
+// ("No")
+std::string match_parens(std::vector<std::string> lst) {
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000349 PROMPT ===
+Solve the following programming problem in Python.
+
+
+def intersection(interval1, interval2):
+    """You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return "YES",
+    otherwise, return "NO".
+    If the two intervals don't intersect, return "NO".
+
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> "NO"
+    intersection((-1, 1), (0, 4)) ==> "NO"
+    intersection((-3, -1), (-5, 5)) ==> "YES"
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+
+=== REQ000350 PROMPT ===
+Solve the following programming problem in Python, but now prioritise software maintainability, readability, and a clear structure.
+
+
+def intersection(interval1, interval2):
+    """You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return "YES",
+    otherwise, return "NO".
+    If the two intervals don't intersect, return "NO".
+
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> "NO"
+    intersection((-1, 1), (0, 4)) ==> "NO"
+    intersection((-3, -1), (-5, 5)) ==> "YES"
+    """
+
+
+Return only the complete source code. Do not include explanations or Markdown code fences.
+

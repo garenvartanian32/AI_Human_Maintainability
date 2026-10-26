@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full programming problem (input/output format and constraints). If you prefer, name a common problem (e.g., Two Sum, Longest Increasing Subsequence, Dijkstra) and I'll provide a complete Python solution with explanation and tests.

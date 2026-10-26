@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (including input/output format and constraints). If you prefer, name a common problem (e.g., Two Sum, Longest Increasing Subsequence) and I’ll implement it in Python with explanation and tests. Also tell me any required Python version or I/O style (function vs. stdin/stdout).

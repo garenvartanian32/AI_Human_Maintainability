@@ -1,0 +1,13 @@
+{
+  "experiment": 3,
+  "dataset": "CodeContests",
+  "problem_id": "CodeContests_0027",
+  "language": "Java",
+  "source": "AI",
+  "provider": "claude",
+  "model": "Opus 4.6",
+  "model_group": "Opus 4.6",
+  "prompt_type": "standard",
+  "run": 1,
+  "correctness": "not_tested"
+}

@@ -1,0 +1,1 @@
+I don’t see the problem statement. Please paste the full problem (including input format, constraints, and sample I/O). If you want, also tell me any required algorithmic complexity or edge cases to handle. Once provided, code in Python will be implemented, explained briefly, and a few tests shown.

@@ -1,0 +1,1101 @@
+=== REQ000226 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ * Decodes a message enciphered with a repeating sequence of shift keys.
+ *
+ * <p>Lower and upper case form one continuous 52-letter ring, so a shift can
+ * carry a letter from one case into the other.
+ */
+public class Sol {
+
+    private static final String ALPHABET =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final int END_OF_INPUT = 0;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        StringBuilder messages = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) {
+                continue;
+            }
+
+            int keyCount = Integer.parseInt(line);
+            if (keyCount == END_OF_INPUT) {
+                break;
+            }
+
+            StringTokenizer keyTokens = new StringTokenizer(reader.readLine());
+            int[] keys = new int[keyCount];
+            for (int i = 0; i < keyCount; i++) {
+                keys[i] = Integer.parseInt(keyTokens.nextToken());
+            }
+
+            String ciphertext = reader.readLine().trim();
+            messages.append(decode(ciphertext, keys)).append('\n');
+        }
+
+        System.out.print(messages);
+    }
+
+    /** Undoes the encryption by shifting each letter back by its key. */
+    private static String decode(String ciphertext, int[] keys) {
+        StringBuilder plaintext = new StringBuilder(ciphertext.length());
+        for (int position = 0; position < ciphertext.length(); position++) {
+            int shift = keys[position % keys.length];
+            int enciphered = ALPHABET.indexOf(ciphertext.charAt(position));
+            int original = ((enciphered - shift) % ALPHABET.length() + ALPHABET.length())
+                    % ALPHABET.length();
+            plaintext.append(ALPHABET.charAt(original));
+        }
+        return plaintext.toString();
+    }
+}
+=== REQ000226 END ===
+
+=== REQ000227 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int charToIdx(char c) {
+    if (islower(c)) return c - 'a';
+    else return 26 + (c - 'A');
+}
+
+char idxToChar(int i) {
+    i = ((i % 52) + 52) % 52;
+    if (i < 26) return (char)('a' + i);
+    else return (char)('A' + i - 26);
+}
+
+int main() {
+    string out;
+    int n;
+    while (cin >> n) {
+        if (n == 0) break;
+        vector<int> keys(n);
+        for (auto &k : keys) cin >> k;
+        string s;
+        cin >> s;
+        string res;
+        for (size_t i = 0; i < s.size(); i++) {
+            char c = s[i];
+            int k = keys[i % n];
+            int origIdx = charToIdx(c);
+            int decIdx = origIdx - k;
+            res += idxToChar(decIdx);
+        }
+        out += res + "\n";
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000227 END ===
+
+=== REQ000228 START ===
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+namespace {
+
+const std::string kAlphabet =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+constexpr int kEndOfInput = 0;
+
+/**
+ * Undoes the encryption by shifting each letter back by its key.
+ *
+ * Lower and upper case form one continuous 52-letter ring, so a shift can
+ * carry a letter from one case into the other.
+ */
+std::string decode(const std::string& ciphertext, const std::vector<int>& keys) {
+    const int ringSize = static_cast<int>(kAlphabet.size());
+
+    std::string plaintext;
+    plaintext.reserve(ciphertext.size());
+    for (std::size_t position = 0; position < ciphertext.size(); ++position) {
+        const int shift = keys[position % keys.size()];
+        const int enciphered = static_cast<int>(kAlphabet.find(ciphertext[position]));
+        const int original = ((enciphered - shift) % ringSize + ringSize) % ringSize;
+        plaintext += kAlphabet[original];
+    }
+    return plaintext;
+}
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    std::ostringstream messages;
+    int keyCount;
+
+    while (std::cin >> keyCount) {
+        if (keyCount == kEndOfInput) {
+            break;
+        }
+
+        std::vector<int> keys(keyCount);
+        for (int& key : keys) {
+            std::cin >> key;
+        }
+
+        std::string ciphertext;
+        std::cin >> ciphertext;
+
+        messages << decode(ciphertext, keys) << '\n';
+    }
+
+    std::cout << messages.str();
+    return 0;
+}
+=== REQ000228 END ===
+
+=== REQ000229 START ===
+import sys
+import math
+
+def main():
+    d = float(sys.stdin.read().strip())
+    best = d * math.sqrt(2)
+    floor_d = int(math.floor(d + 1e-9))
+    for k in range(1, floor_d + 1):
+        rem = d*d - k*k
+        if rem < 0:
+            rem = 0
+        dy = math.sqrt(rem)
+        val = k + max(1.0, dy)
+        if val > best:
+            best = val
+    print(f"{best:.12f}")
+
+main()
+=== REQ000229 END ===
+
+=== REQ000230 START ===
+"""Longest road distance reachable within a straight-line limit."""
+
+import math
+import sys
+
+DECIMAL_PLACES = 12
+MINIMUM_LEG = 1.0
+
+
+def longest_reachable(limit: float) -> float:
+    """Return the greatest total road length within straight-line ``limit``.
+
+    A route is a horizontal leg plus a vertical leg. For an integral number of
+    horizontal blocks the vertical leg can stretch to whatever the straight-line
+    budget still allows, but never below one block. The unconstrained diagonal
+    is also a candidate, so it seeds the search.
+    """
+    best = limit * math.sqrt(2.0)
+
+    for horizontal in range(1, int(math.floor(limit + 1e-9)) + 1):
+        remaining_squared = max(limit * limit - float(horizontal) * horizontal, 0.0)
+        vertical = max(MINIMUM_LEG, math.sqrt(remaining_squared))
+        best = max(best, horizontal + vertical)
+
+    return best
+
+
+def main() -> None:
+    limit = float(sys.stdin.read().strip())
+    print(f"{longest_reachable(limit):.{DECIMAL_PLACES}f}")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000230 END ===
+
+=== REQ000231 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        double d = Double.parseDouble(br.readLine().trim());
+        double best = d * Math.sqrt(2);
+        int floorD = (int) Math.floor(d + 1e-9);
+        for (int k = 1; k <= floorD; k++) {
+            double rem = d*d - (double)k*k;
+            if (rem < 0) rem = 0;
+            double dy = Math.sqrt(rem);
+            double val = k + Math.max(1.0, dy);
+            if (val > best) best = val;
+        }
+        System.out.printf("%.12f%n", best);
+    }
+}
+=== REQ000231 END ===
+
+=== REQ000232 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Longest road distance reachable within a straight-line limit.
+ */
+public class Sol {
+
+    private static final double MINIMUM_LEG = 1.0;
+    private static final double FLOOR_TOLERANCE = 1e-9;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        double limit = Double.parseDouble(reader.readLine().trim());
+
+        System.out.printf("%.12f%n", longestReachable(limit));
+    }
+
+    /**
+     * Returns the greatest total road length within straight-line {@code limit}.
+     *
+     * <p>A route is a horizontal leg plus a vertical leg. For an integral number
+     * of horizontal blocks the vertical leg stretches to whatever the
+     * straight-line budget still allows, but never below one block. The
+     * unconstrained diagonal is also a candidate, so it seeds the search.
+     */
+    private static double longestReachable(double limit) {
+        double best = limit * Math.sqrt(2.0);
+
+        int horizontalCeiling = (int) Math.floor(limit + FLOOR_TOLERANCE);
+        for (int horizontal = 1; horizontal <= horizontalCeiling; horizontal++) {
+            double remainingSquared =
+                    Math.max(limit * limit - (double) horizontal * horizontal, 0.0);
+            double vertical = Math.max(MINIMUM_LEG, Math.sqrt(remainingSquared));
+            best = Math.max(best, horizontal + vertical);
+        }
+
+        return best;
+    }
+}
+=== REQ000232 END ===
+
+=== REQ000233 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    double d;
+    cin >> d;
+    double best = d * sqrt(2.0);
+    int floorD = (int) floor(d + 1e-9);
+    for (int k = 1; k <= floorD; k++) {
+        double rem = d*d - (double)k*k;
+        if (rem < 0) rem = 0;
+        double dy = sqrt(rem);
+        double val = k + max(1.0, dy);
+        if (val > best) best = val;
+    }
+    printf("%.12f\n", best);
+    return 0;
+}
+=== REQ000233 END ===
+
+=== REQ000234 START ===
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
+#include <iostream>
+
+namespace {
+
+constexpr double kMinimumLeg = 1.0;
+constexpr double kFloorTolerance = 1e-9;
+
+/**
+ * Returns the greatest total road length within straight-line `limit`.
+ *
+ * A route is a horizontal leg plus a vertical leg. For an integral number of
+ * horizontal blocks the vertical leg stretches to whatever the straight-line
+ * budget still allows, but never below one block. The unconstrained diagonal is
+ * also a candidate, so it seeds the search.
+ */
+double longestReachable(double limit) {
+    double best = limit * std::sqrt(2.0);
+
+    const int horizontalCeiling = static_cast<int>(std::floor(limit + kFloorTolerance));
+    for (int horizontal = 1; horizontal <= horizontalCeiling; ++horizontal) {
+        const double remainingSquared =
+            std::max(limit * limit - static_cast<double>(horizontal) * horizontal, 0.0);
+        const double vertical = std::max(kMinimumLeg, std::sqrt(remainingSquared));
+        best = std::max(best, horizontal + vertical);
+    }
+
+    return best;
+}
+
+}  // namespace
+
+int main() {
+    double limit;
+    std::cin >> limit;
+    std::printf("%.12f\n", longestReachable(limit));
+    return 0;
+}
+=== REQ000234 END ===
+
+=== REQ000235 START ===
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    v = list(map(int, data[1:1+n]))
+    total = sum(v) - n*(n+1)//2
+    print(total)
+
+main()
+=== REQ000235 END ===
+
+=== REQ000236 START ===
+"""Total happiness once each gag is discounted by its position in the show."""
+
+import sys
+
+
+def main() -> None:
+    tokens = sys.stdin.buffer.read().split()
+    gag_count = int(tokens[0])
+    values = [int(token) for token in tokens[1 : 1 + gag_count]]
+
+    # The nth gag performed loses n happiness, so ordering never matters:
+    # the penalties are always 1, 2, ..., gag_count in some assignment.
+    total_value = sum(values)
+    total_penalty = gag_count * (gag_count + 1) // 2
+
+    print(total_value - total_penalty)
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000236 END ===
+
+=== REQ000237 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        long total = 0;
+        for (int i = 0; i < n; i++) {
+            st.nextToken();
+            total += (long) st.nval;
+        }
+        total -= (long) n * (n + 1) / 2;
+        System.out.println(total);
+    }
+}
+=== REQ000237 END ===
+
+=== REQ000238 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+
+/**
+ * Total happiness once each gag is discounted by its position in the show.
+ *
+ * <p>The nth gag performed loses n happiness, so ordering never matters: the
+ * penalties are always 1, 2, ..., gagCount in some assignment.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        long gagCount = (long) input.nval;
+
+        long totalValue = 0;
+        for (long gag = 0; gag < gagCount; gag++) {
+            input.nextToken();
+            totalValue += (long) input.nval;
+        }
+
+        long totalPenalty = gagCount * (gagCount + 1) / 2;
+        System.out.println(totalValue - totalPenalty);
+    }
+}
+=== REQ000238 END ===
+
+=== REQ000239 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long n;
+    cin >> n;
+    long long total = 0;
+    for (int i = 0; i < n; i++) {
+        long long v;
+        cin >> v;
+        total += v;
+    }
+    total -= n * (n + 1) / 2;
+    cout << total << endl;
+    return 0;
+}
+=== REQ000239 END ===
+
+=== REQ000240 START ===
+#include <iostream>
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    long long gagCount;
+    std::cin >> gagCount;
+
+    long long totalValue = 0;
+    for (long long gag = 0; gag < gagCount; ++gag) {
+        long long value;
+        std::cin >> value;
+        totalValue += value;
+    }
+
+    // The nth gag performed loses n happiness, so ordering never matters: the
+    // penalties are always 1, 2, ..., gagCount in some assignment.
+    const long long totalPenalty = gagCount * (gagCount + 1) / 2;
+
+    std::cout << totalValue - totalPenalty << '\n';
+    return 0;
+}
+=== REQ000240 END ===
+
+=== REQ000241 START ===
+import sys
+
+def main():
+    input_data = sys.stdin.buffer.read().split()
+    idx = 0
+    n = int(input_data[idx]); q = int(input_data[idx+1]); idx += 2
+
+    size = 1
+    while size < n:
+        size *= 2
+
+    sum_tree = [0] * (2 * size)
+    lazy = [None] * (2 * size)
+
+    def push_down(node, node_len):
+        if lazy[node] is not None:
+            val = lazy[node]
+            left = 2*node
+            right = 2*node+1
+            half = node_len // 2
+            sum_tree[left] = val * half
+            sum_tree[right] = val * half
+            lazy[left] = val
+            lazy[right] = val
+            lazy[node] = None
+
+    def update(node, node_l, node_r, s, t, x):
+        if t < node_l or node_r < s:
+            return
+        if s <= node_l and node_r <= t:
+            sum_tree[node] = x * (node_r - node_l + 1)
+            lazy[node] = x
+            return
+        push_down(node, node_r - node_l + 1)
+        mid = (node_l + node_r) // 2
+        update(2*node, node_l, mid, s, t, x)
+        update(2*node+1, mid+1, node_r, s, t, x)
+        sum_tree[node] = sum_tree[2*node] + sum_tree[2*node+1]
+
+    def query(node, node_l, node_r, s, t):
+        if t < node_l or node_r < s:
+            return 0
+        if s <= node_l and node_r <= t:
+            return sum_tree[node]
+        push_down(node, node_r - node_l + 1)
+        mid = (node_l + node_r) // 2
+        return query(2*node, node_l, mid, s, t) + query(2*node+1, mid+1, node_r, s, t)
+
+    out = []
+    for _ in range(q):
+        typ = int(input_data[idx]); idx += 1
+        if typ == 0:
+            s = int(input_data[idx]); t = int(input_data[idx+1]); x = int(input_data[idx+2]); idx += 3
+            update(1, 0, size-1, s, t, x)
+        else:
+            s = int(input_data[idx]); t = int(input_data[idx+1]); idx += 2
+            out.append(str(query(1, 0, size-1, s, t)))
+
+    print('\n'.join(out))
+
+main()
+=== REQ000241 END ===
+
+=== REQ000242 START ===
+"""Range Update Query plus Range Sum Query, backed by a lazy segment tree."""
+
+import sys
+
+UPDATE_COMMAND = 0
+
+
+class LazySegmentTree:
+    """Segment tree supporting assign-on-range and sum-over-range."""
+
+    def __init__(self, length: int) -> None:
+        self._width = 1
+        while self._width < length:
+            self._width *= 2
+
+        self._sums = [0] * (2 * self._width)
+        self._pending = [None] * (2 * self._width)
+
+    def assign(self, first: int, last: int, value: int) -> None:
+        """Set every element in [first, last] to ``value``."""
+        self._assign(1, 0, self._width - 1, first, last, value)
+
+    def total(self, first: int, last: int) -> int:
+        """Return the sum over [first, last]."""
+        return self._total(1, 0, self._width - 1, first, last)
+
+    def _push_down(self, node: int, span: int) -> None:
+        """Hand a pending assignment down to both children."""
+        value = self._pending[node]
+        if value is None:
+            return
+
+        half = span // 2
+        for child in (2 * node, 2 * node + 1):
+            self._sums[child] = value * half
+            self._pending[child] = value
+        self._pending[node] = None
+
+    def _assign(self, node: int, low: int, high: int, first: int, last: int, value: int) -> None:
+        if last < low or high < first:
+            return
+        if first <= low and high <= last:
+            self._sums[node] = value * (high - low + 1)
+            self._pending[node] = value
+            return
+
+        self._push_down(node, high - low + 1)
+        middle = (low + high) // 2
+        self._assign(2 * node, low, middle, first, last, value)
+        self._assign(2 * node + 1, middle + 1, high, first, last, value)
+        self._sums[node] = self._sums[2 * node] + self._sums[2 * node + 1]
+
+    def _total(self, node: int, low: int, high: int, first: int, last: int) -> int:
+        if last < low or high < first:
+            return 0
+        if first <= low and high <= last:
+            return self._sums[node]
+
+        self._push_down(node, high - low + 1)
+        middle = (low + high) // 2
+        return (
+            self._total(2 * node, low, middle, first, last)
+            + self._total(2 * node + 1, middle + 1, high, first, last)
+        )
+
+
+def main() -> None:
+    sys.setrecursionlimit(300_000)
+    tokens = sys.stdin.buffer.read().split()
+
+    length = int(tokens[0])
+    query_count = int(tokens[1])
+    tree = LazySegmentTree(length)
+
+    answers = []
+    cursor = 2
+    for _ in range(query_count):
+        command = int(tokens[cursor])
+        cursor += 1
+
+        if command == UPDATE_COMMAND:
+            first, last, value = (int(tokens[cursor + offset]) for offset in range(3))
+            cursor += 3
+            tree.assign(first, last, value)
+        else:
+            first, last = int(tokens[cursor]), int(tokens[cursor + 1])
+            cursor += 2
+            answers.append(tree.total(first, last))
+
+    sys.stdout.write("\n".join(map(str, answers)) + "\n")
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000242 END ===
+
+=== REQ000243 START ===
+import java.io.*;
+import java.util.*;
+
+public class Sol {
+    static long[] sumTree;
+    static Long[] lazy;
+    static int size;
+
+    static void pushDown(int node, int nodeLen) {
+        if (lazy[node] != null) {
+            long val = lazy[node];
+            int left = 2*node, right = 2*node+1;
+            int half = nodeLen / 2;
+            sumTree[left] = val * half;
+            sumTree[right] = val * half;
+            lazy[left] = val;
+            lazy[right] = val;
+            lazy[node] = null;
+        }
+    }
+
+    static void update(int node, int nodeL, int nodeR, int s, int t, long x) {
+        if (t < nodeL || nodeR < s) return;
+        if (s <= nodeL && nodeR <= t) {
+            sumTree[node] = x * (nodeR - nodeL + 1);
+            lazy[node] = x;
+            return;
+        }
+        pushDown(node, nodeR - nodeL + 1);
+        int mid = (nodeL + nodeR) / 2;
+        update(2*node, nodeL, mid, s, t, x);
+        update(2*node+1, mid+1, nodeR, s, t, x);
+        sumTree[node] = sumTree[2*node] + sumTree[2*node+1];
+    }
+
+    static long query(int node, int nodeL, int nodeR, int s, int t) {
+        if (t < nodeL || nodeR < s) return 0;
+        if (s <= nodeL && nodeR <= t) return sumTree[node];
+        pushDown(node, nodeR - nodeL + 1);
+        int mid = (nodeL + nodeR) / 2;
+        return query(2*node, nodeL, mid, s, t) + query(2*node+1, mid+1, nodeR, s, t);
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StreamTokenizer st = new StreamTokenizer(br);
+        st.nextToken(); int n = (int) st.nval;
+        st.nextToken(); int q = (int) st.nval;
+
+        size = 1;
+        while (size < n) size *= 2;
+        sumTree = new long[2 * size];
+        lazy = new Long[2 * size];
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            st.nextToken(); int typ = (int) st.nval;
+            if (typ == 0) {
+                st.nextToken(); int s = (int) st.nval;
+                st.nextToken(); int t = (int) st.nval;
+                st.nextToken(); int x = (int) st.nval;
+                update(1, 0, size-1, s, t, x);
+            } else {
+                st.nextToken(); int s = (int) st.nval;
+                st.nextToken(); int t = (int) st.nval;
+                sb.append(query(1, 0, size-1, s, t)).append('\n');
+            }
+        }
+        System.out.print(sb);
+    }
+}
+=== REQ000243 END ===
+
+=== REQ000244 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
+
+/**
+ * Range Update Query plus Range Sum Query, backed by a lazy segment tree.
+ */
+public class Sol {
+
+    private static final int UPDATE_COMMAND = 0;
+
+    /** Segment tree supporting assign-on-range and sum-over-range. */
+    private static final class LazySegmentTree {
+        private final int width;
+        private final long[] sums;
+        private final long[] pending;
+        private final boolean[] hasPending;
+
+        LazySegmentTree(int length) {
+            int size = 1;
+            while (size < length) {
+                size *= 2;
+            }
+            this.width = size;
+            this.sums = new long[2 * size];
+            this.pending = new long[2 * size];
+            this.hasPending = new boolean[2 * size];
+        }
+
+        /** Sets every element in [first, last] to {@code value}. */
+        void assign(int first, int last, long value) {
+            assign(1, 0, width - 1, first, last, value);
+        }
+
+        /** Returns the sum over [first, last]. */
+        long total(int first, int last) {
+            return total(1, 0, width - 1, first, last);
+        }
+
+        /** Hands a pending assignment down to both children. */
+        private void pushDown(int node, int span) {
+            if (!hasPending[node]) {
+                return;
+            }
+
+            long value = pending[node];
+            int half = span / 2;
+            for (int child = 2 * node; child <= 2 * node + 1; child++) {
+                sums[child] = value * half;
+                pending[child] = value;
+                hasPending[child] = true;
+            }
+            hasPending[node] = false;
+        }
+
+        private void assign(int node, int low, int high, int first, int last, long value) {
+            if (last < low || high < first) {
+                return;
+            }
+            if (first <= low && high <= last) {
+                sums[node] = value * (high - low + 1);
+                pending[node] = value;
+                hasPending[node] = true;
+                return;
+            }
+
+            pushDown(node, high - low + 1);
+            int middle = (low + high) >>> 1;
+            assign(2 * node, low, middle, first, last, value);
+            assign(2 * node + 1, middle + 1, high, first, last, value);
+            sums[node] = sums[2 * node] + sums[2 * node + 1];
+        }
+
+        private long total(int node, int low, int high, int first, int last) {
+            if (last < low || high < first) {
+                return 0;
+            }
+            if (first <= low && high <= last) {
+                return sums[node];
+            }
+
+            pushDown(node, high - low + 1);
+            int middle = (low + high) >>> 1;
+            return total(2 * node, low, middle, first, last)
+                 + total(2 * node + 1, middle + 1, high, first, last);
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer input = new StreamTokenizer(
+                new BufferedReader(new InputStreamReader(System.in)));
+
+        input.nextToken();
+        int length = (int) input.nval;
+        input.nextToken();
+        int queryCount = (int) input.nval;
+
+        LazySegmentTree tree = new LazySegmentTree(length);
+        StringBuilder answers = new StringBuilder();
+
+        for (int query = 0; query < queryCount; query++) {
+            input.nextToken();
+            int command = (int) input.nval;
+
+            input.nextToken();
+            int first = (int) input.nval;
+            input.nextToken();
+            int last = (int) input.nval;
+
+            if (command == UPDATE_COMMAND) {
+                input.nextToken();
+                long value = (long) input.nval;
+                tree.assign(first, last, value);
+            } else {
+                answers.append(tree.total(first, last)).append('\n');
+            }
+        }
+
+        System.out.print(answers);
+    }
+}
+=== REQ000244 END ===
+
+=== REQ000245 START ===
+#include <bits/stdc++.h>
+using namespace std;
+
+int sizeN;
+vector<long long> sumTree;
+vector<long long> lazy;
+vector<bool> hasLazy;
+
+void pushDown(int node, int nodeLen) {
+    if (hasLazy[node]) {
+        long long val = lazy[node];
+        int left = 2*node, right = 2*node+1;
+        int half = nodeLen / 2;
+        sumTree[left] = val * half;
+        sumTree[right] = val * half;
+        lazy[left] = val; hasLazy[left] = true;
+        lazy[right] = val; hasLazy[right] = true;
+        hasLazy[node] = false;
+    }
+}
+
+void update(int node, int nodeL, int nodeR, int s, int t, long long x) {
+    if (t < nodeL || nodeR < s) return;
+    if (s <= nodeL && nodeR <= t) {
+        sumTree[node] = x * (long long)(nodeR - nodeL + 1);
+        lazy[node] = x;
+        hasLazy[node] = true;
+        return;
+    }
+    pushDown(node, nodeR - nodeL + 1);
+    int mid = (nodeL + nodeR) / 2;
+    update(2*node, nodeL, mid, s, t, x);
+    update(2*node+1, mid+1, nodeR, s, t, x);
+    sumTree[node] = sumTree[2*node] + sumTree[2*node+1];
+}
+
+long long query(int node, int nodeL, int nodeR, int s, int t) {
+    if (t < nodeL || nodeR < s) return 0;
+    if (s <= nodeL && nodeR <= t) return sumTree[node];
+    pushDown(node, nodeR - nodeL + 1);
+    int mid = (nodeL + nodeR) / 2;
+    return query(2*node, nodeL, mid, s, t) + query(2*node+1, mid+1, nodeR, s, t);
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, q;
+    cin >> n >> q;
+    sizeN = 1;
+    while (sizeN < n) sizeN *= 2;
+    sumTree.assign(2*sizeN, 0);
+    lazy.assign(2*sizeN, 0);
+    hasLazy.assign(2*sizeN, false);
+
+    string out;
+    for (int i = 0; i < q; i++) {
+        int typ;
+        cin >> typ;
+        if (typ == 0) {
+            int s, t;
+            long long x;
+            cin >> s >> t >> x;
+            update(1, 0, sizeN-1, s, t, x);
+        } else {
+            int s, t;
+            cin >> s >> t;
+            out += to_string(query(1, 0, sizeN-1, s, t)) + "\n";
+        }
+    }
+    cout << out;
+    return 0;
+}
+=== REQ000245 END ===
+
+=== REQ000246 START ===
+#include <iostream>
+#include <sstream>
+#include <vector>
+
+namespace {
+
+constexpr int kUpdateCommand = 0;
+
+/// Segment tree supporting assign-on-range and sum-over-range.
+class LazySegmentTree {
+public:
+    explicit LazySegmentTree(int length) {
+        width_ = 1;
+        while (width_ < length) {
+            width_ *= 2;
+        }
+        sums_.assign(2 * width_, 0);
+        pending_.assign(2 * width_, 0);
+        hasPending_.assign(2 * width_, 0);
+    }
+
+    /// Sets every element in [first, last] to `value`.
+    void assign(int first, int last, long long value) {
+        assign(1, 0, width_ - 1, first, last, value);
+    }
+
+    /// Returns the sum over [first, last].
+    long long total(int first, int last) {
+        return total(1, 0, width_ - 1, first, last);
+    }
+
+private:
+    /// Hands a pending assignment down to both children.
+    void pushDown(int node, int span) {
+        if (!hasPending_[node]) {
+            return;
+        }
+
+        const long long value = pending_[node];
+        const int half = span / 2;
+        for (int child = 2 * node; child <= 2 * node + 1; ++child) {
+            sums_[child] = value * half;
+            pending_[child] = value;
+            hasPending_[child] = 1;
+        }
+        hasPending_[node] = 0;
+    }
+
+    void assign(int node, int low, int high, int first, int last, long long value) {
+        if (last < low || high < first) {
+            return;
+        }
+        if (first <= low && high <= last) {
+            sums_[node] = value * (high - low + 1);
+            pending_[node] = value;
+            hasPending_[node] = 1;
+            return;
+        }
+
+        pushDown(node, high - low + 1);
+        const int middle = (low + high) / 2;
+        assign(2 * node, low, middle, first, last, value);
+        assign(2 * node + 1, middle + 1, high, first, last, value);
+        sums_[node] = sums_[2 * node] + sums_[2 * node + 1];
+    }
+
+    long long total(int node, int low, int high, int first, int last) {
+        if (last < low || high < first) {
+            return 0;
+        }
+        if (first <= low && high <= last) {
+            return sums_[node];
+        }
+
+        pushDown(node, high - low + 1);
+        const int middle = (low + high) / 2;
+        return total(2 * node, low, middle, first, last)
+             + total(2 * node + 1, middle + 1, high, first, last);
+    }
+
+    int width_;
+    std::vector<long long> sums_;
+    std::vector<long long> pending_;
+    std::vector<char> hasPending_;
+};
+
+}  // namespace
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int length, queryCount;
+    std::cin >> length >> queryCount;
+
+    LazySegmentTree tree(length);
+    std::ostringstream answers;
+
+    for (int query = 0; query < queryCount; ++query) {
+        int command, first, last;
+        std::cin >> command >> first >> last;
+
+        if (command == kUpdateCommand) {
+            long long value;
+            std::cin >> value;
+            tree.assign(first, last, value);
+        } else {
+            answers << tree.total(first, last) << '\n';
+        }
+    }
+
+    std::cout << answers.str();
+    return 0;
+}
+=== REQ000246 END ===
+
+=== REQ000247 START ===
+import sys
+
+def main():
+    data = sys.stdin.read()
+
+main()
+=== REQ000247 END ===
+
+=== REQ000248 START ===
+"""Placeholder: the problem statement for p02506 was not supplied.
+
+Without a specification there is no behaviour to implement, so the program
+simply consumes its input and exits cleanly.
+"""
+
+import sys
+
+
+def main() -> None:
+    sys.stdin.read()
+
+
+if __name__ == "__main__":
+    main()
+=== REQ000248 END ===
+
+=== REQ000249 START ===
+import java.io.*;
+
+public class Sol {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int c;
+        while ((c = br.read()) != -1) {
+            sb.append((char) c);
+        }
+    }
+}
+=== REQ000249 END ===
+
+=== REQ000250 START ===
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Placeholder: the problem statement for p02506 was not supplied.
+ *
+ * <p>Without a specification there is no behaviour to implement, so the program
+ * simply consumes its input and exits cleanly.
+ */
+public class Sol {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        while (reader.readLine() != null) {
+            // Nothing to do without a specification.
+        }
+    }
+}
+=== REQ000250 END ===

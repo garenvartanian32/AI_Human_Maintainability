@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full programming problem (including sample input/output and constraints). Also confirm if the solution should read from stdin and write to stdout (typical for online judges). Once provided, a complete Java solution with explanation and complexity analysis will be delivered.

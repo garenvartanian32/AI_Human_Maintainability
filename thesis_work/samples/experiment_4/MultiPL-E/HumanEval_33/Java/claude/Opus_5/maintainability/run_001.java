@@ -1,0 +1,34 @@
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // This function takes an array array list l and returns an array array list l' such that
+    // l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    // to the values of the corresponding indicies of l, but sorted.
+    // >>> sortThird((new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l))))
+    // (new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l)))
+    // >>> sortThird((new ArrayList<Long>(Arrays.asList((long)5l, (long)6l, (long)3l, (long)4l, (long)8l, (long)9l, (long)2l))))
+    // (new ArrayList<Long>(Arrays.asList((long)2l, (long)6l, (long)3l, (long)4l, (long)8l, (long)9l, (long)5l)))
+    private static final int STRIDE = 3;
+
+    public static ArrayList<Long> sortThird(ArrayList<Long> l) {
+        // Only the every-third positions are reordered; they keep their slots
+        // but receive the same values back in ascending order.
+        List<Long> sortedValues = new ArrayList<>();
+        for (int slot = 0; slot < l.size(); slot += STRIDE) {
+            sortedValues.add(l.get(slot));
+        }
+        Collections.sort(sortedValues);
+
+        ArrayList<Long> result = new ArrayList<>(l);
+        int nextValue = 0;
+        for (int slot = 0; slot < result.size(); slot += STRIDE) {
+            result.set(slot, sortedValues.get(nextValue++));
+        }
+        return result;
+    }
+}

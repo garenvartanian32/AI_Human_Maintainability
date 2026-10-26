@@ -1,0 +1,1 @@
+I don't see the problem statement. Paste the full problem (including input/output format and constraints and any sample I/O). Alternatively, say "give me a template" and I’ll provide a ready-to-use C++ competitive-programming template.

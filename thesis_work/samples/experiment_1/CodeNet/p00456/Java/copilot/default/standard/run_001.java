@@ -1,0 +1,1 @@
+I don't see the problem statement. Please paste the full problem (description, input/output format, constraints, and sample I/O). Also tell me if you want a single-file Java solution with a specific class name (e.g., Main). Once provided, a complete Java solution with explanation and complexity will be returned.

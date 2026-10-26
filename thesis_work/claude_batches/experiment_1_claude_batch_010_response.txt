@@ -1,0 +1,482 @@
+For each request below, return ONLY the requested source code.
+Keep the request markers exactly as written.
+
+Required response format:
+=== REQ000001 START ===
+[source code]
+=== REQ000001 END ===
+
+=== REQ000226 START ===
+
+def prime_length(string):
+    """Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    prime_length('Hello') == True
+    prime_length('abcdcba') == True
+    prime_length('kittens') == True
+    prime_length('orange') == False
+    """
+    n = len(string)
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+
+=== REQ000226 END ===
+
+=== REQ000227 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Write a function that takes a string and returns true if the string
+    // length is a prime number or false otherwise
+    // Examples
+    // >>> primeLength(("Hello"))
+    // (true)
+    // >>> primeLength(("abcdcba"))
+    // (true)
+    // >>> primeLength(("kittens"))
+    // (true)
+    // >>> primeLength(("orange"))
+    // (false)
+    public static boolean primeLength(String string) {
+
+        int n = string.length();
+        if (n < 2) return false;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+}
+
+=== REQ000227 END ===
+
+=== REQ000228 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Write a function that takes a string and returns true if the string
+// length is a prime number or false otherwise
+// Examples
+// >>> prime_length(("Hello"))
+// (true)
+// >>> prime_length(("abcdcba"))
+// (true)
+// >>> prime_length(("kittens"))
+// (true)
+// >>> prime_length(("orange"))
+// (false)
+bool prime_length(std::string string) {
+
+    size_t n = string.size();
+    if (n < 2) return false;
+    for (size_t i = 2; i*i <= n; i++) if (n % i == 0) return false;
+    return true;
+}
+
+=== REQ000228 END ===
+
+=== REQ000229 START ===
+
+def starts_one_ends(n):
+    """
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """
+    if n == 1:
+        return 1
+    return 18 * (10 ** (n-2))
+
+=== REQ000229 END ===
+
+=== REQ000230 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Given a positive integer n, return the count of the numbers of n-digit
+    // positive integers that start or end with 1.
+    public static long startsOneEnds(long n) {
+
+        if (n == 1) return 1;
+        return 18L * (long) Math.pow(10, n - 2);
+    }
+}
+
+=== REQ000230 END ===
+
+=== REQ000231 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Given a positive integer n, return the count of the numbers of n-digit
+// positive integers that start or end with 1.
+long starts_one_ends(long n) {
+
+    if (n == 1) return 1;
+    return 18L * (long) std::pow(10, n - 2);
+}
+
+=== REQ000231 END ===
+
+=== REQ000232 START ===
+
+def get_row(lst, x):
+    """
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """
+    coords = []
+    for r, row in enumerate(lattice):
+        for c, v in enumerate(row):
+            if v == x:
+                coords.append((r, c))
+    coords.sort(key=lambda p: (p[0], -p[1]))
+    return coords
+
+=== REQ000232 END ===
+
+=== REQ000233 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You are given a 2 dimensional data, as a nested array lists,
+    // which is similar to matrix, however, unlike matrices,
+    // each row may contain a different number of columns.
+    // Given lst, and integer x, find integers x in the array list,
+    // and return array list of pairs, [(x1, y1), (x2, y2) ...] such that
+    // each pair is a coordinate - (row, columns), starting with 0.
+    // Sort coordinates initially by rows in ascending order.
+    // Also, sort coordinates of the row by columns in descending order.
+    // Examples:
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)1l, (long)6l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l, (long)4l, (long)5l, (long)1l))))), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(0l, 0l), (Pair<Long, Long>)Pair.with(1l, 4l), (Pair<Long, Long>)Pair.with(1l, 0l), (Pair<Long, Long>)Pair.with(2l, 5l), (Pair<Long, Long>)Pair.with(2l, 0l))))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList())), (1l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList()))
+    // >>> getRow((new ArrayList<ArrayList<Long>>(Arrays.asList((ArrayList<Long>)new ArrayList<Long>(Arrays.asList()), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l)), (ArrayList<Long>)new ArrayList<Long>(Arrays.asList((long)1l, (long)2l, (long)3l))))), (3l))
+    // (new ArrayList<Pair<Long, Long>>(Arrays.asList((Pair<Long, Long>)Pair.with(2l, 2l))))
+    public static ArrayList<Pair<Long, Long>> getRow(ArrayList<ArrayList<Long>> lst, long x) {
+
+        ArrayList<Pair<Long, Long>> result = new ArrayList<Pair<Long, Long>>();
+        for (int r = 0; r < lst.size(); r++) {
+            ArrayList<Long> row = lst.get(r);
+            ArrayList<Integer> cols = new ArrayList<Integer>();
+            for (int c = 0; c < row.size(); c++) {
+                if (row.get(c) == x) cols.add(c);
+            }
+            Collections.sort(cols, Collections.reverseOrder());
+            for (int c : cols) {
+                result.add(Pair.with((long) r, (long) c));
+            }
+        }
+        return result;
+    }
+}
+
+=== REQ000233 END ===
+
+=== REQ000234 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You are given a 2 dimensional data, as a nested vectors,
+// which is similar to matrix, however, unlike matrices,
+// each row may contain a different number of columns.
+// Given lst, and integer x, find integers x in the vector,
+// and return vector of tuples, [(x1, y1), (x2, y2) ...] such that
+// each tuple is a coordinate - (row, columns), starting with 0.
+// Sort coordinates initially by rows in ascending order.
+// Also, sort coordinates of the row by columns in descending order.
+// Examples:
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)1, (long)6}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3, (long)4, (long)5, (long)1})})), (1))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(0, 0), (std::tuple<long, long>)std::make_tuple(1, 4), (std::tuple<long, long>)std::make_tuple(1, 0), (std::tuple<long, long>)std::make_tuple(2, 5), (std::tuple<long, long>)std::make_tuple(2, 0)}))
+// >>> get_row((std::vector<std::vector<long>>()), (1))
+// (std::vector<std::tuple<long, long>>())
+// >>> get_row((std::vector<std::vector<long>>({(std::vector<long>)std::vector<long>(), (std::vector<long>)std::vector<long>({(long)1}), (std::vector<long>)std::vector<long>({(long)1, (long)2, (long)3})})), (3))
+// (std::vector<std::tuple<long, long>>({(std::tuple<long, long>)std::make_tuple(2, 2)}))
+std::vector<std::tuple<long, long>> get_row(std::vector<std::vector<long>> lst, long x) {
+
+    using namespace std;
+    vector<tuple<long,long>> result;
+    for (size_t r = 0; r < lst.size(); r++) {
+        vector<long> cols;
+        for (size_t c = 0; c < lst[r].size(); c++) {
+            if (lst[r][c] == x) cols.push_back((long) c);
+        }
+        sort(cols.rbegin(), cols.rend());
+        for (long c : cols) result.push_back(std::make_tuple((long) r, c));
+    }
+    return result;
+}
+
+=== REQ000234 END ===
+
+=== REQ000235 START ===
+
+def is_bored(S):
+    """
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word "I".
+    Sentences are delimited by '.', '?' or '!'.
+   
+    For example:
+    >>> is_bored("Hello world")
+    0
+    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
+    1
+    """
+    import re
+    sentences = re.split(r'[.!?]', S)
+    return sum(1 for s in sentences if s.strip().startswith('I '))
+
+=== REQ000235 END ===
+
+=== REQ000236 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // You'll be given a string of words, and your task is to count the number
+    // of boredoms. A boredom is a sentence that starts with the word "I".
+    // Sentences are delimited by '.', '?' or '!'.
+    // For example:
+    // >>> isBored(("Hello world"))
+    // (0l)
+    // >>> isBored(("The sky is blue. The sun is shining. I love this weather"))
+    // (1l)
+    public static long isBored(String S) {
+
+        String[] parts = S.split("[.?!]");
+        long count = 0;
+        for (String p : parts) {
+            if (p.trim().startsWith("I ") || p.trim().equals("I")) count++;
+        }
+        return count;
+    }
+}
+
+=== REQ000236 END ===
+
+=== REQ000237 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// You'll be given a string of words, and your task is to count the number
+// of boredoms. A boredom is a sentence that starts with the word "I".
+// Sentences are delimited by '.', '?' or '!'.
+// For example:
+// >>> is_bored(("Hello world"))
+// (0)
+// >>> is_bored(("The sky is blue. The sun is shining. I love this weather"))
+// (1)
+long is_bored(std::string S) {
+
+    using namespace std;
+    vector<string> parts;
+    string cur;
+    for (char c : S) {
+        if (c == '.' || c == '?' || c == '!') {
+            parts.push_back(cur);
+            cur = "";
+        } else cur += c;
+    }
+    if (!cur.empty()) parts.push_back(cur);
+    long count = 0;
+    for (auto &p : parts) {
+        size_t start = p.find_first_not_of(' ');
+        if (start == string::npos) continue;
+        string trimmed = p.substr(start);
+        if (trimmed.substr(0,2) == "I " || trimmed == "I") count++;
+    }
+    return count;
+}
+
+=== REQ000237 END ===
+
+=== REQ000238 START ===
+
+def multiply(a, b):
+    """Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
+    """
+    return abs(a) % 10 * (abs(b) % 10)
+
+=== REQ000238 END ===
+
+=== REQ000239 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Complete the function that takes two integers and returns 
+    // the product of their unit digits.
+    // Assume the input is always valid.
+    // Examples:
+    // >>> multiply((148l), (412l))
+    // (16l)
+    // >>> multiply((19l), (28l))
+    // (72l)
+    // >>> multiply((2020l), (1851l))
+    // (0l)
+    // >>> multiply((14l), (-15l))
+    // (20l)
+    public static long multiply(long a, long b) {
+
+        long da = Math.abs(a) % 10;
+        long db = Math.abs(b) % 10;
+        return da * db;
+    }
+}
+
+=== REQ000239 END ===
+
+=== REQ000240 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Complete the function that takes two integers and returns 
+// the product of their unit digits.
+// Assume the input is always valid.
+// Examples:
+// >>> multiply((148), (412))
+// (16)
+// >>> multiply((19), (28))
+// (72)
+// >>> multiply((2020), (1851))
+// (0)
+// >>> multiply((14), (-15))
+// (20)
+long multiply(long a, long b) {
+
+    return (std::labs(a) % 10) * (std::labs(b) % 10);
+}
+
+=== REQ000240 END ===
+
+=== REQ000241 START ===
+
+def closest_integer(value):
+    '''
+    Create a function that takes a value (string) representing a number
+    and returns the closest integer to it. If the number is equidistant
+    from two integers, round it away from zero.
+
+    Examples
+    >>> closest_integer("10")
+    10
+    >>> closest_integer("15.3")
+    15
+
+    Note:
+    Rounding away from zero means that if the given number is equidistant
+    from two integers, the one you should return is the one that is the
+    farthest from zero. For example closest_integer("14.5") should
+    return 15 and closest_integer("-14.5") should return -15.
+    '''
+    v = float(value)
+    import math
+    if v >= 0:
+        return math.floor(v + 0.5)
+    else:
+        return math.ceil(v - 0.5)
+
+=== REQ000241 END ===
+
+=== REQ000242 START ===
+import java.util.*;
+import java.lang.reflect.*;
+import org.javatuples.*;
+import java.security.*;
+import java.math.*;
+import java.io.*;
+import java.util.stream.*;
+class Problem {
+    // Create a function that takes a value (string) representing a number
+    // and returns the closest integer to it. If the number is equidistant
+    // from two integers, round it away from zero.
+    // Examples
+    // >>> closestInteger(("10"))
+    // (10l)
+    // >>> closestInteger(("15.3"))
+    // (15l)
+    // Note:
+    // Rounding away from zero means that if the given number is equidistant
+    // from two integers, the one you should return is the one that is the
+    // farthest from zero. For example closest_integer("14.5") should
+    // return 15 and closest_integer("-14.5") should return -15.
+    public static long closestInteger(String value) {
+
+        double v = Double.parseDouble(value);
+        if (v >= 0) return (long) Math.floor(v + 0.5);
+        else return (long) Math.ceil(v - 0.5);
+    }
+}
+
+=== REQ000242 END ===
+
+=== REQ000243 START ===
+#include<assert.h>
+#include<bits/stdc++.h>
+// Create a function that takes a value (string) representing a number
+// and returns the closest integer to it. If the number is equidistant
+// from two integers, round it away from zero.
+// Examples
+// >>> closest_integer(("10"))
+// (10)
+// >>> closest_integer(("15.3"))
+// (15)
+// Note:
+// Rounding away from zero means that if the given number is equidistant
+// from two integers, the one you should return is the one that is the
+// farthest from zero. For example closest_integer("14.5") should
+// return 15 and closest_integer("-14.5") should return -15.
+long closest_integer(std::string value) {
+
+    double v = std::stod(value);
+    if (v >= 0) return (long) std::floor(v + 0.5);
+    return (long) std::ceil(v - 0.5);
+}
+
+=== REQ000243 END ===
