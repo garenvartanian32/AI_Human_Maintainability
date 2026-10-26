@@ -1,0 +1,8 @@
+# Ignore everything by default
+/*
+
+# Only track essential repository files
+!/.gitignore
+!/README.md
+!/requirements.txt
+!/AI_Human_Maintainability.py
